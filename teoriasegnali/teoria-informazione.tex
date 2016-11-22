@@ -1,0 +1,208 @@
+\chapter[Teoria dell’informazione]{Principi di teoria dell’informazione e teorema di Shannon}
+In un canale di comunicazione basato su un sistema di trasmissione numerico l'informazione viene trasformata nei blocchi di filtraggio, campionamento e quantizzazione in una sequenza di bit corrispondenti ad un alfabeto di $N$ simboli. In ricezione giunge in generale una sequenza di bit a cui sono associati $M$ simboli. In un canale di comunicazione ideale l'informazione viene trasmessa senza errori di trasmissione pertanto non è possibile scambiare un simbolo per un altro ($N=M$) per cui 
+\[\begin{cases}
+p(a_{i_R}|a_{i_T})=1 \\ p(a_{j_R}|a_{i_T})=0 \quad i\neq j
+\end{cases}\]
+Un canale binario può trasmettere e ricevere solo due simboli, ad esempio 0 e 1, emessi con probabilità $P(0_T)=P_0$ e $P(1_T)=P_1$. Ogni simbolo trasmesso può essere ricevuto correttamente con probabilità o con errore
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}
+\node (t0) {0};
+\node [below= of t0](t1) {1};
+\node [right of = t0,node distance=4cm](r0) {0};
+\node [below= of r0](r1) {1};
+\draw [-latex] (t0)--(r0) node[above,pos=.3] {$q_0$};
+\draw [-latex] (t0)--(r1) node[above,pos=.3] {$p_0$};
+\draw [-latex] (t1)--(r0) node[below,pos=.8] {$p_1$};
+\draw [-latex] (t1)--(r1) node[below,pos=.8] {$q_1$};
+\end{tikzpicture}
+\end{figure}
+
+\[\begin{cases}
+q_0=P(0_R|0_T)& \text{prob. trasmissione corretta simbolo 0}\\ p_0=P(1_R|0_T)&\text{prob. trasmissione errata simbolo 0}\\ q_0+p_0=1\\
+q_1=P(1_R|1_T)& \text{prob. trasmissione corretta simbolo 1}\\ p_1=P(0_R|1_T)& \text{prob. trasmissione errata simbolo 1} \\ q_1+p_1=1
+\end{cases}\]
+
+Si ha un \textsc{canale binario simmetrico} quando la probabilità di errore o \textsc{Bit Error Rate} non distingue i due simboli  $p_0=p_1=\text{BER}$
+
+La probabilità di errore per trasmissione su un canale binario 
+\[ P(E)=P(E\cap 0_T)+P(E\cap 1_T)=P(1_R|0_T)P(0_T)+P(0_R|1_T)P(1_T)=p_0 P_0+p_1 P_1 \]
+
+Se il canale è binario simmetrico
+\[P(E)=\text{BER}\cdot(P_0+P_1)=\text{BER}\]
+
+Le probabilità di ricevere i due simboli
+\[P(0_R)=P(0_R|0_T)P(0_T)+P(0_R|1_T)P(1_T)=q_0 P_0+p_1 P_1\]
+\[P(1_R)=P(1_R|0_T)P(0_T)+P(1_R|1_T)P(1_T)=p_0 P_0+q_1 P_1\]
+
+
+
+\begin{figure}[!h]
+	\begin{center}\begin{tikzpicture}[node distance=.5cm]
+		\node [draw,circle] (S) {S};
+		\node [block, right= of S,text width=2cm] (cs) {codifica sorgente};
+		\node [block, right=of cs,text width=2cm] (cc) {codifica canale};
+		\node [block,right=of cc,text width=2cm, minimum height=.5cm,node distance=2cm] (c) {canale};
+		\node [block, right=of c,text width=2cm] (dc) {decodifica canale};
+		\node [draw, dashed, fit=(cc)(c)(dc), rounded corners, inner sep=2mm] {};
+		\node [block, right=of dc,text width=2cm] (ds) {decodifica sorgente};
+		\node [draw,circle,right=of ds] (R) {R};		
+		\draw [-latex] (S) -- (cs);
+		\draw [-latex] (cs) -- (cc);
+		\draw [-latex] (cc) -- (c);
+		\draw [-latex] (c) -- (dc);
+		\draw [-latex] (dc) -- (ds);
+		\draw [-latex] (ds) -- (R);		
+		\end{tikzpicture}
+	\end{center}
+\caption{Schema a blocchi di trasmissione numerica}
+\end{figure}
+
+\section{Codifica di sorgente}
+L'errore sul canale binario può essere ridotto ricorrendo alla \keyword[codifica di sorgente]{codifica di sorgente} che trasforma i simboli generati dalla sorgente in una sequenza di bit che possa risolvere o ridurre alcuni problemi causati dalla trasmissione su canale rumoroso.
+
+La codifica di canale è la parte del sistema che trasforma la sequenza di bit in forme d'onda adattate al mezzo trasmissivo.
+
+In ricezione si eseguono le operazioni contrarie per riottenere l'informazione trasmessa.
+
+\subsection{Codice a ripetizione}
+Una codifica di sorgente è il \keyword[codifica di sorgente!codice a ripetizione]{codice a ripetizione} per un canale binario simmetrico. Ogni bit generato dalla sorgente viene ripetuto $2n+1$ volte, il che riduce la velocità di trasmissione (\emph{bit rate}) dello stesso fattore. Il ricevitore interpreta la sequenza di $2n+1$ bit come il bit che si è presentato in maggioranza. Questo consente in ricezione di rilevare e correggere fino a $n$ errori. La sequenza è interpretata erroneamente se sono errati la maggioranza dei bit, ovvero almeno $n+1$. 
+
+La sequenza di bit in ricezione può essere assimilata ad un processo di Bernoulli, con due simboli che arrivano indipendentemente l'uno dall'altro. La probabilità di errore è data da tutte le combinazioni che hanno tra $n+1$ e $2n+1$ bit errati, ovvero
+\[p(E)=\sum_{k=n+1}^{2n+1}\binom{2n+1}{k}p^k(1-p)^{2n+1-k}\]
+
+\begin{esempio}
+Dato un canale di trasmissione binario con probabilità di errore sul bit $p=10^{-3}$, si vuole dimensionare un codice a ripetizione tale da avere una probabilità di errore $p(E)=10^{-9}$.
+Con la formula di Bernoulli si può approssimare con una stima per difetto la probabilità di errore con \[\binom{2n+1}{n+1}p^{n+1}(1-p)^n=\frac{(2n+1)!}{(n+1)!n!}\,p^{n+1}(1-p)^n\]
+con $n=1$ si ha $p(E)=\frac{3!}{2!1!}(10^{-3})^2(1-10^{-3})\cong 10^{-6}$\\
+con $n=2$ si ha $p(E)=\frac{5!}{3!2!}(10^{-3})^3(1-10^{-3})^2\cong 10^{-8}$\\
+\end{esempio}
+
+\subsection{Codice a controllo di parità}
+Nella codifica di sorgente \keyword[codifica di sorgente!codice a controllo di parità]{a controllo di parità} si aggiunge alla stringa di bit da trasmettere un bit di parità. In una codifica a parità pari ci si assicura che la stringa di $n$ bit contenga un numero pari di bit uguali ad 1.
+
+Se il canale di trasmissione introduce un errore su un bit con probabilità $p$ il ricevitore rivela la parità errata. In generale il ricevitore può rivelare un numero dispari di errori.
+La probabilità di avere un numero dispari di errori è
+\[p(R)=\sum_{k=1}^{n/2}\binom{n}{2k-1}\,p^{2k-1}(1-p)^{n-2k+1}\]
+
+Il ricevitore non può rivelare l'errore in caso di un numero pari di errori, il che si verifica con probabilità
+\[p(E_{NR})=\sum_{k=1}^{n/2}\binom{n}{2k}\,p^{2k}(1-p)^{n-2k}\]
+
+La probabilità che la trasmissione della stringa di $n$ bit sia corretta è
+\[p(C)=(1-p)^n\]
+
+Date le tre alternative si ha
+\[p(R)+p(E_{NR})+p(C)=1\]
+
+Il ricevitore può chiedere la ritrasmissione della stringa di $n$ bit quando rivela la parità errata.
+Se il ricevitore continua a chiedere la ritrasmissione sino a che non rivela un errore si ha una probabilità di errore totale
+\[p(E)=p(E_{NR})+p(R)p(E_{NR})+p(R)^2p(E_{NR})+\dots=p(E_{NR})\cdot\sum_{k=0}^{\infty}p(R)^k=\frac{p(E_{NR})}{1-p(R)}\]
+
+Il numero di ritrasmissioni è una variabile casuale.
+La ritrasmissione non è necessaria se la trasmissione è corretta o si verificano uno o più errori non rivelabili, con probabilità \[p(n_R=0)=p(E_{NR})+p(C)=1-p(R)\]
+
+\`{E} necessaria $k$ volte con probabilità \[p(n_R=k)=[1-p(R)]p(R)^k\]
+
+Il numero medio di ritrasmissioni
+\[\E{n_R}=\sum_{k=0}^{\infty}k\cdot p(n_R=k)=\sum_{k=0}^{\infty}k\cdot[1-p(R)]p(R)^k=\frac{p(R)}{1-p(R)}\]
+
+Il numero medio di trasmissioni compressa la prima è $n_T=1+n_R$:
+\[\E{n_T}=1+\E{n_R}=\frac{1}{1-p(R)}\]
+La probabilità di ricezione corretta complessiva considerato il caso con ritrasmissioni
+\[p(C_T)=p(C)+p(R)p(C)+p(R)^2p(C)+\dots=p(C)\cdot\sum_{k=0}^{\infty}p(R)^k=\frac{p(C)}{1-p(R)}\]
+
+\begin{esempio}
+Dato un canale di trasmissione binario con probabilità di errore sul bit $p=10^{-3}$, si vuole dimensionare un codice a ripetizione tale da avere una probabilità di errore $p(E)=10^{-9}$.
+
+Si da una stima approssimata di errore non rilevato per il caso più probabile di doppio errore di trasmissione
+\[p(E_{NR})\cong\binom{n}{2}p^2(1-p)^2=\frac{n!}{2!(n-2)!}\cdot 10^{-6}\]
+Non è possibile ridurre il \emph{bit error rate} al di sotto di tale stima ed avere un $\text{BER}\leq 10^{-9}$ 
+\end{esempio}
+
+\section{Teoria dell'informazione}
+Dato un canale di comunicazione basato su un sistema di trasmissione è importante quantificare il limite teorico di informazione trasmissibile (\textsc{Shannon}, 1948). \`{E} fondamentale poter confrontare i sistemi reali affetti da rumore gaussiano rispetto ad un sistema teorico, che astrae i dettagli implementativi e fissa un limite teorico di efficienza del sistema di trasmissione.
+
+Nel modello l'informazione viene generata da una sorgente che emette, a velocità costante e incorrelati tra loro, $m$ simboli $x_1,x_2,\dots,x_m$ scelti da un alfabeto. Un legge di codifica associa ad ogni simbolo una sequenza di bit. Per rappresentare $m$ simboli di un alfabeto sono necessari $\log_2 m$ bit/simbolo.
+
+Ogni simbolo $x_i$ può occorrere con una certa probabilità $p_i=p(x_i)$ ed essere rappresentato con una stringa di $n_i$ bit.
+Se i simboli sono equiprobabili è ragionevole una codifica a lunghezza fissa. Se i simboli non sono equiprobabili è ragionevole attribuire stringhe di bit più corte ai simboli più probabili.
+
+La quantità di informazione media che transita sul canale sarà quindi una media pesata delle lunghezze in bit dei simboli per la probabilità dei simboli: \[\sum_{i}p_i\cdot n_i\]
+
+Nel caso di una sorgente ergodica è possibile derivare le statistiche del processo dall'osservazione di una singola realizzazione. In un messaggio costituito da una sequenza di $N$ simboli, con $N$ grande, ogni simbolo $x_i$ si presenterà mediamente $n_i=p_i N$ volte. Con questi $N$ simboli si possono costruire numerosi messaggi che rispettino tali statistiche di sorgente e che si differenziano tra loro per la posizione dei simboli all'interno del messaggio. La probabilità di generare un messaggio lecito è
+\begin{equation}p_\text{mess}=p_1^{p_1 N}\cdot p_2^{p_2 N}\cdot\dots\cdot p_m^{p_m N}\end{equation}
+Per una sorgente ergodica ogni messaggio lecito di lunghezza $N$ è equiprobabile, essendo i simboli emessi in modo indipendente il particolare ordine di emissione non è importante, quindi tutti i possibili messaggi leciti con $N$ simboli sono proprio $1/p_\text{mess}$.
+Per rappresentare quindi un tal numero di messaggi leciti sono necessari un numero di bit di informazione pari a
+\[n=\log_2\frac{1}{p_\text{mess}}=-\log_2 p_\text{mess}\]
+e quindi il numero medio di bit per simbolo generato dalla sorgente S, anche detta \textsc{entropia della sorgente}
+\begin{equation}\begin{split}
+H(S)=\frac{n}{N}&=\frac{1}{N}\log_2\frac{1}{p_\text{mess}}=-\frac{1}{N}\log_2 p_\text{mess}=\\
+&=-\frac{1}{N}\log_2\prod_{i=1}^{m}p_i^{N p_i}=-\frac{1}{N}\sum_{i=1}^{m}\log_2 p_i^{N p_i}=\\
+&=-\sum_{i=1}^{m}p_i\log_2 p_i
+\end{split}\end{equation}
+La quantità $I(x_i)=-\log_2 p(x_i)$ rappresenta il minimo numero di bit necessari per descrivere il simbolo $x_i$ e quindi una misura dell'informazione associata al simbolo. Quanto più probabile è l'emissione di un simbolo tanto meno informazione esso trasporta. Si possono riassumere le seguenti proprietà per l'informazione associata alla sorgente:
+\begin{enumerate}
+\item L'emissione di un simbolo come evento certo non contiene alcuna informazione \[p(x_i)=1 \iff I(x_i)=0\]
+\item Vi è maggiore informazione associata ad un simbolo meno probabile \[I(x_i)>I(x_j)\iff p(x_i)<p(x_j)\]
+\item Per coppie di simboli emessi in modo indipendente si ha
+\[P(x_i,x_j)=p(x_i)\cdot p(x_j)\implies I(x_i,x_j)=I(x_i)+I(x_j)\]
+infatti $I(x_i,x_j)=\log_2\frac{1}{p(x_i,x_j)}=\log_2\frac{1}{p(x_1)p(x_2)}=\log_2\frac{1}{p(x_i)}+\log_2\frac{1}{p(x_j)}=I(x_i)+I(x_j)$
+\item Dato un alfabeto di $M$ simboli, l'entropia della sorgente verifica la disuguaglianza
+\begin{equation}H(S)\leq\log_2 M\end{equation}
+\begin{proof}
+\[H(S)-\log_2 M\leq 0\]
+\[\sum_{i=1}^{M}p_i\log_2\frac{1}{p_i}-\log_2 M\leq 0\]
+sviluppando il primo membro, ed essendo $\sum_i p_i=1$
+\[\sum_{i=1}^{M}p_i\log_2\frac{1}{p_i}-\sum_{i=1}^{M}p_i\log_2 M=\sum_{i=1}^{M}p_i\left[\log_2\frac{1}{p_i}-\log_2 M\right]=\sum_{i=1}^{M}p_i\log_2\frac{1}{p_i M}\]
+che è possibile maggiorare essendo $\log y\leq y-1$
+\[\leq \sum_{i=1}^{M}p_i\left(\frac{1}{p_i M}-1\right)\log_2\e{}= \sum_{i=1}^{M}\left(\frac{1}{M}-p_i\right)\log_2\e{}=0\]
+\end{proof}
+
+\begin{esempio}
+Nel caso di sorgente con $M$ simboli equiprobabili si ha
+\[p_i=p=\frac{1}{M}\qquad I(x)=\log_2\frac{1}{M}\]
+L'entropia della sorgente
+\[H(S)=\sum_{i=1}^{M}p_i I(x_i)=-\sum_{i=1}^{M}\frac{1}{M}\log_2\frac{1}{M}=\log_2 M\]
+assume il valore massimo teorico con l'uguaglianza $H(S)=\log_2 M$.
+\end{esempio}
+\begin{esempio}
+Nel caso di sorgente binaria con 2 simboli con probabilità $p_0=p$ e $p_1=1-p$ si ha l'entropia
+\[H(S)=-p\log_2 p-(1-p)\log_2(1-p)\]
+
+\begin{figure}[h!]
+	\centering\begin{tikzpicture}[scale=.6]
+	\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0.5,1},xticklabels={$\frac{1}{2}$,$1$},ytick={1},xlabel={$p$},ylabel={$H(S)$},xscale=2]
+	\addplot [thick,domain=0:1] { -x*ln(x)/ln(2)-(1-x)*ln(1-x)/ln(2) };
+	\end{axis}\end{tikzpicture}
+	\caption{Entropia di una sorgente binaria}
+\end{figure}
+\end{esempio}
+\end{enumerate}
+
+\section{Sorgente con memoria}
+Una sorgente può emettere simboli che non siano statisticamente indipendenti tra loro. La definizione di entropia della sorgente deve tener conto dell'informazione associata alla dipendenza statistica fra simboli.
+
+L'informazione legata all'emissione del simbolo $x_1$ condizionata all'emissione di un simbolo precedente $x_0$:
+\[I(x_1|x_0)=-\log_2(x_1|x_0)\]
+
+L'entropia della sorgente, ovvero l'informazione media per simbolo generato da sorgente con memoria, condizionata all'emissione di un simbolo $x_0$ risulta
+\[H(S|x_0)=\sum_i p(x_i|x_0) I(x_i|x_0) = -\sum_i p(x_i|x_0)\log_2 p(x_i|x_0)\]
+
+\`{E} possibile definire l'informazione media o entropia del primo ordine considerando la media pesata di tutte le possibili emissioni di simboli precedenti. Per estensione si può supporre una sorgente con memoria più estesa e dipendenza tra più simboli in sequenza.
+
+\section{Teorema di Shannon}
+Si definisce la \textsc{capacità del canale} trasmissivo la misura dell'informazione che il canale è in grado di far transitare, ovvero alla quantità di bit nell'unità di tempo che riescono a transitare correttamente sul canale.
+
+Su un canale reale i simboli in uscita dal mezzo trasmissivo sono affetti da errori, l'entropia del canale contiene anche informazione errata a causa degli errori di trasmissione.
+
+Dato un canale affetto da errore di tipo gaussiano, a media nulla e data varianza, si ha che la capacità del canale, calcolata in bit/s,
+\begin{equation}
+C=B \log_2 \left(1+\frac{S}{N}\right)
+\end{equation}
+
+Tale risultato, noto come \textsc{teorema di Shannon}, permette di stabilire un limite superiore alla capacità di trasmettere bit sul canale, dato il rapporto tra potenza statistica del segnale sorgente $S$ e potenza statistica del rumore di canale $N$.
+
+\begin{nota}
+\`{E} possibile aumentare il rapporto segnale/rumore incrementando la potenza del segnale trasmesso o riducendo il rumore sul canale (ad esempio avvicinando Tx e Rx o modificando la tecnologia del mezzo trasmissivo).
+\end{nota}
+

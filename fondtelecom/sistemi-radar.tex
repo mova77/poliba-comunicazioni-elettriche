@@ -48,7 +48,7 @@ block/.style={draw,align=center,text width=2.5cm}]
 \label{fig:ricevitore_radar}
 \end{figure}
 
-\section{Risoluzione radiometrica}
+\section{Risoluzione radiometrica}\index{risoluzione radiometrica}
 L'obiettivo del dimensionamento di un sistema \ac{RADAR} è di ottimizzare la potenza trasmissibile e la struttura dell'antenna per ottenere la massima capacità di distinguere il segnale dell'eco riflesso dal rumore.
 
 Data la massima distanza $R_\text{max}$ a cui si vuole rilevare un bersaglio con sezione \ac{RADAR} $\sigma_\text{min}$ si calcola il rapporto segnale rumore che garantisca una minima probabilità di mancato bersaglio e di falso allarme. Non è possibile realizzare \ac{RADAR} in grado di rilevare un qualsiasi bersaglio a qualsiasi distanza.
@@ -86,7 +86,7 @@ Il dimensionamento del sistema con i parametri $\sigma_\text{min},R_\text{max},P
 
 \begin{figure}[ht!]\centering\def\soglia{5}
 	\subfloat[Probabilità di falso allarme]{\begin{tikzpicture}
-		\begin{axis}[xlabel=$X$,ylabel=$f_R(X)$,ytick=\empty,xtick={5.0},xticklabels={soglia},yticklabels={},yscale=.8,domain=0:10]
+		\begin{axis}[xlabel=$X$,ylabel=$f_R(X)$,ytick=\empty,xtick={5.0},xticklabels={soglia},yticklabels={},yscale=.9,domain=0:10]
 		\addplot [name path=rayleigh5,smooth]{x/5.*exp(-(x^2)/10.)};
 		\path[name path=axis] (axis cs:0,0)--node[above right,pin=45:$P_\text{FA}$]{}(axis cs:10,0);
 		\addplot[pattern=north west lines] fill between[of=rayleigh5 and axis,soft clip={domain=\soglia:10}];
@@ -95,7 +95,7 @@ Il dimensionamento del sistema con i parametri $\sigma_\text{min},R_\text{max},P
 		\end{tikzpicture}
 	}\quad\subfloat[Probabilità di bersaglio mancato]{
 		\begin{tikzpicture}
-		\begin{axis}[xlabel=$X$,ylabel=$f_D(X)$,xtick={10},ytick=\empty,xticklabels={A},yticklabels={},yscale=.8,extra x ticks={5.0},extra x tick labels={soglia},extra x tick style={grid=major},domain=0:20]
+		\begin{axis}[xlabel=$X$,ylabel=$f_D(X)$,xtick={10},ytick=\empty,xticklabels={A},yticklabels={},yscale=.9,extra x ticks={5.0},extra x tick labels={soglia},extra x tick style={grid=major},domain=0:20]
 		\addplot [name path=gauss5,smooth] {100*gauss(x,10,5)};
 		\path[name path=axis] (axis cs:0,0.75)--node[above right,pos=.33,pin=135:$P_\text{BM}$]{}(axis cs:\soglia,.75);
 		\addplot[pattern=north east lines] fill between[of=gauss5 and axis,soft clip={domain=0:\soglia}];
@@ -152,7 +152,7 @@ H(f)\propto\frac{\conj{S}(f)}{h'_n}
 \label{eq:radar_filtro_adattato_rumore_colorato}
 \end{equation}
 
-\section{Risoluzione geometrica azimutale}
+\section{Risoluzione geometrica azimutale}\index{risoluzione geometrica azimutale}
 Un sistema \ac{RADAR} con una antenna omnidirezionale può rilevare la presenza di un bersaglio e calcolare la sua distanza che è proporzionale al ritardo col quale l'eco torna all'antenna
 \begin{equation}
 R=c\,\frac{\tau}{2}
@@ -356,7 +356,8 @@ Il sistema \ac{RADAR} può rilevare e distinguere l'eco di due bersagli a distan
 
 Per rilevare anche la quota del bersaglio è necessario utilizzare un altro \ac{RADAR} il cui fascio di radiazioni sia concentrato in un piano che ruoti trasversalmente al piano azimutale.
 
-\section{Risoluzione geometrica radiale}
+\clearpage
+\section{Risoluzione geometrica radiale}\index{risoluzione geometrica radiale}
 In presenza di più bersagli a distanze diverse per ogni impulso trasmesso il sistema \ac{RADAR} riceverà più segnali eco riflessi con attenuazioni e ritardi differenti. Le forme d'onda sono risolvibili l'una dall'altra fino a quando sono distinte all'uscita del filtro in ricezione, pertanto la capacità risolutiva è tanto maggiore quanto più stretta è la forma d'onda. L'uscita del filtro per un segnale sinusoidale sarà del tipo
 \begin{equation}
 s(t)=\intinf{S_R(f)\conj{S}(f)\e{\jmath\omega t_m}}{f}
@@ -395,11 +396,11 @@ In alternativa si può ottimizzare la capacità di riconoscere un segnale di dur
 
 \begin{figure}[ht]\centering
 	\begin{tikzpicture}
-	\begin{axis}[yscale=.6,xlabel=$t$,ylabel=$s_T(t)$,xtick={1},xticklabels={$T$},ytick={-1,1},black,smooth,samples=500]
+	\begin{axis}[yscale=.7,xlabel=$t$,ylabel=$s_T(t)$,xtick={1},xticklabels={$T$},ytick={-1,1},black,smooth,samples=500]
 	\addplot[domain=0:1] {sin(((7*pi+32*pi*x)*x))};
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Segnale \keyword{Chirp}}
+	\caption{Segnale \textsc{Chirp}}
 \end{figure}
 
 \section{Bersagli fissi e mobili}

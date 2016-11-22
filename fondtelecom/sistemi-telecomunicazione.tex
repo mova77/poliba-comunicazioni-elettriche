@@ -4,7 +4,7 @@
 
 Applicando la teoria dei segnali si vogliono acquisire la capacità di progettare sistemi di telecomunicazione per la trasmissione dell'informazione da una sorgente ad un ricevitore su un canale trasmissivo garantendo un sufficiente livello di accuratezza in presenza di fenomeni di disturbo.
 
-Un sistema di telecomunicazione tra una \keyword[sistema di telecomunicazione!sorgente]{sorgente} dell'informazione e un \keyword[sistema di telecomunicazione!destinatario]{destinatario} è modellato per componenti: un \keyword{trasmettitore}, un \keyword[sistema di telecomunicazione!canale di trasmissione]{canale di trasmissione}, un \keyword[sistema di telecomunicazione!ricevitore]{ricevitore}. Il messaggio contenente l'informazione generata alla sorgente $m(t)$ viene trasmesso sul canale di trasmissione e ricevuto come $\tilde{m}(t)$ al destinatario. Ogni passaggio può alterare il contenuto del messaggio che viene elaborato, filtrato, affetto da disturbi, non linearità, attenuazione e distorsione. Per ricostruire il messaggio originale è necessario che tali modifiche siano reversibili.
+Un sistema di telecomunicazione tra una \keyword[sistema di telecomunicazione!sorgente]{sorgente} dell'informazione e un \keyword[sistema di telecomunicazione!destinatario]{destinatario} è modellato per componenti: un \keyword[sistema di telecomunicazione!trasmettitore]{trasmettitore}, un \keyword[sistema di telecomunicazione!canale di trasmissione]{canale di trasmissione}, un \keyword[sistema di telecomunicazione!ricevitore]{ricevitore}. Il messaggio contenente l'informazione generata alla sorgente $m(t)$ viene trasmesso sul canale di trasmissione e ricevuto come $\tilde{m}(t)$ al destinatario. Ogni passaggio può alterare il contenuto del messaggio che viene elaborato, filtrato, affetto da disturbi, non linearità, attenuazione e distorsione. Per ricostruire il messaggio originale è necessario che tali modifiche siano reversibili.
 
 Per sistemi analogici l'informazione è generata, elaborata e trasmessa come onda elettromagnetica. Nei sistemi digitali l'informazione è rappresentata da stringhe di bit alla sorgente che il trasmettitore trasforma in onde elettromagnetiche per la trasmissione.
 
@@ -41,8 +41,8 @@ In ogni punto del sistema di telecomunicazione sarà possibile misurare il rappo
 \begin{table}[!ht]\centering
 	\begin{tabular}{c|p{0.3\textwidth}|p{0.3\textwidth}}
 		\hline \rule[-2ex]{0pt}{5.5ex}  & Onde Convogliate & Onde Irradiate \\ 
-		\hline \rule[-2ex]{0pt}{5.5ex} \keyword{LP} & \parbox[c]{5cm}{Doppino telefonico\\ Cavo coassiale} &  \\ 
-		\hline \rule[-2ex]{0pt}{5.5ex} \keyword{BP} & Fibra Ottica & Mezzo Radio \\ 
+		\hline \rule[-2ex]{0pt}{5.5ex} \textsc{LP} & \parbox[c]{5cm}{Doppino telefonico\\ Cavo coassiale} &  \\ 
+		\hline \rule[-2ex]{0pt}{5.5ex} \textsc{BP} & Fibra Ottica & Mezzo Radio \\ 
 		\hline 
 	\end{tabular} 
 	\caption{Tipologie di mezzi trasmissivi}\label{tab:mezzi-trasmissivi}
@@ -161,7 +161,7 @@ Il primo termine $F_1$ incide maggiormente essendo il secondo e terzo termine sc
 
 \section{Attenuatore passivo}
 \`{E} importante calcolare il peggioramento di prestazioni introdotto da un cavo o una guida d'onda frapposta tra due componenti. Ad esempio una \keyword[sistema di telecomunicazione!antenna]{Antenna} collegata con un cavo al \keyword[sistema di telecomunicazione!amplificazione]{Primo Stadio di Amplificazione} di un sistema di ricezione:
-\begin{figure}[h!]
+\begin{figure}[!ht]
 	\centering
 	\begin{circuitikz}[scale=.8]
 		\draw (0,0) node[antenna,label=left:Antenna]{} to[short] (4,0) node[draw,block,label=below:Amplificatore]{$A$};
@@ -204,7 +204,7 @@ con fattore di rumore di attenuazione (di quanto moltiplicare il rumore del gene
 	\end{itemize}
 \end{esempio}
 
-\begin{esempio}Si ha un sistema composto da due filtri $H_1(f)$ passa basso e $H_2(f)$ passa banda in parallelo con in ingresso un segnale di rumore con densità spettrale di potenza $h_n(f)$ costante. 
+\begin{esempio}Si ha un sistema composto da due filtri $H_1(f)$ passa basso e $H_2(f)$ passa banda in parallelo con in ingresso un segnale di rumore con densità spettrale di potenza\index{densità spettrale di potenza} $h_n(f)$ costante. 
 	
 \begin{figure}[!ht]\centering
 	\begin{tikzpicture}[>=latex']

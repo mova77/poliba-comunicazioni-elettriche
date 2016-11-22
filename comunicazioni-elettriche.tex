@@ -10,7 +10,7 @@
 \subtitle{Modulo Teoria dei Segnali\\Modulo Fondamenti di Telecomunicazioni}
 \author{Marco Salvatore \textsc{Vanad\`{i}a}}
 \authoremail{marco.vanadia@gmail.com}
-%\authorURL{https://it.linkedin.com/in/marcovanadia}
+\authorURL{https://it.linkedin.com/in/marcovanadia}
 \professor{Prof. Ing. L.A. Grieco}
 \department{Dipartimento di Ingegneria Elettrica e dell'Informazione}
 \version{\gitRel}
@@ -33,6 +33,8 @@ Il presente documento è rilasciato sotto licenza \ccLogo \textbf{Creative Commo
 
 \'{E} consentita la creazione di opere derivate, traduzioni, adattamenti, totali o parziali, fatta salva l'attribuzione dell'autore originale e il mantenimento della licenza. 
 
+Per collaborare alla stesura e alla correzione dei sorgenti è possibile iscriversi come contributori al repository GitHub all'indirizzo \url{https://github.com/mova77/poliba-comunicazioni-elettriche}
+
 Marco Salvatore \textsc{Vanadìa}\\Politecnico di Bari
 \cleardoublepage\clearpage{\pagestyle{empty}\cleardoublepage}
 
@@ -41,7 +43,16 @@ Marco Salvatore \textsc{Vanadìa}\\Politecnico di Bari
 
 \mainmatter
 \part{Teoria dei Segnali}
-\input{teoriasegnali/appunti}
+\input{teoriasegnali/segnali-elementari}
+\input{teoriasegnali/fourier}
+\input{teoriasegnali/sistemi-lineari-tempoinvarianti}
+\input{teoriasegnali/teoria-probabilità}
+\input{teoriasegnali/variabili-aleatorie}
+\input{teoriasegnali/processi-stocastici}
+\input{teoriasegnali/analisi-spettrale-processi-aleatori}
+\input{teoriasegnali/trasmissione-segnali}
+\input{teoriasegnali/teoria-informazione}
+\input{teoriasegnali/appendice}
 \part{Fondamenti di Telecomunicazioni}
 \input{fondtelecom/sistemi-telecomunicazione}
 \input{fondtelecom/sistemi-telecom-canale-passa-basso}
@@ -54,8 +65,10 @@ Marco Salvatore \textsc{Vanadìa}\\Politecnico di Bari
 \phantomsection
 \addcontentsline{toc}{chapter}{Acronimi}
 \input{fondtelecom/acronimi}
+\phantomsection
 \addcontentsline{toc}{chapter}{\indexname}
 \printindex
+\phantomsection
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 %\bibliography{biblio}

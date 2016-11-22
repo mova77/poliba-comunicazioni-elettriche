@@ -34,7 +34,7 @@ Al ricevitore è necessario operare inversamente: demodulare il segnale passa ba
 
 Tutto quanto studiato nel capitolo \ref{cap:sis_telcom_band_pass} sui sistemi di telecomunicazione su canale radio passa banda, con riferimento alle modulazioni d'ampiezza e angolare di segnali analogici, si può applicare alla trasmissione numerica.
 
-\section{Amplitude Shift Keying}
+\section{Amplitude Shift Keying}\index{modulazione di ampiezza!Amplitude Shift Keying}
 La modulazione d'ampiezza in un mezzo trasmissivo passa banda modifica l'ampiezza della portante trasmessa in accordo con la forma d'onda da trasmettere. Un semplice esempio di modulazione \ac{ASK} si ottiene modulando una portante sinusoidale con una forma d'onda a codifica di linea ortogonale, costituita da rettangoli di ampiezza positiva unitaria per codificare il simbolo “1” e forma d'onda nulla per codificare lo “0” (fig.~\ref{fig:OOK_modulazione}). Tale modulazione del tipo “tutto o niente” \ac{OOK} può essere realizzata con un interruttore che pone a massa l'uscita di un oscillatore che genera la sinusoide portante quando si deve trasmettere il simbolo “0” (fig.~\ref{fig:OOK_circuito}).
 
 Per un migliore sfruttamento della potenza trasmessa si utilizza la codifica antipodale che modula la portante con valori costanti positivi o negativi. Si realizza di fatto una modulazione 2-\ac{PSK} in cui la forma d'onda ha inviluppo costante e la portante inverte la fase ogni volta che il segnale modulante cambia segno (fig.~\ref{fig:2PSK_modulazione}).
@@ -117,7 +117,7 @@ Nel caso la portante sia modulata da forme d'onda con inviluppo non costante si 
 \caption{Modulazione numerica \acf{ASK}}
 \end{figure}
 
-\section{Quadrature Amplitude Modulation}
+\section{Quadrature Amplitude Modulation}\index{modulazione di ampiezza!Quadrature Amplitude Modulation}
 Per aumentare l'efficienza spettrale di un sistema di trasmissione numerica in modulazione di ampiezza \ac{ASK} si sfruttano le due bande laterali per trasmettere due segnali modulanti con portanti in quadratura, ad esempio dei bit pari sul canale in fase e dei bit dispari sul canale in quadratura. 
 
 Nella trasmissione analogica in \ac{DSB-SC} l'imperfetta ortogonalità delle portanti causata da un errore di fase nella modulazione in quadratura genera un accoppiamento tra i canali. La trasmissione numerica è più robusta all'interferenza tra canali finché è garantita una buona discriminazione dei livelli associati ai simboli in ricezione. L'operazione di decisione al ricevitore consiste nella verifica del sottospazio nel quale cade il punto identificato dalle misure ottenute dai due campionatori sul canale in fase e sul canale in quadratura.
@@ -326,7 +326,7 @@ Per ottimizzare ulteriormente il valore valore di picco di potenza dell'amplific
 	\caption{Schema spazio dei segnali nella modulazione M-\ac{QAM} a 16 e 256 configurazioni}
 \end{figure}
 
-\subsection{Vantaggi dell'inviluppo costante}
+\subsection{Vantaggi dell'inviluppo costante}\index{inviluppo costante}
 Nella modulazione \ac{PSK} la forma d'onda è a inviluppo costante: l'informazione è contenuta alla fase della portante pertanto è possibile mandare in saturazione gli amplificatori di trasmissione per il massimo guadagno di potenza. La sinusoide della portante viene squadrata e assume al limite la forma di un'onda quadra alla stessa frequenza della portante modulata, conservando gli istanti di attraversamento dello zero al cambio di segno. Se il segnale modulante è un treno di impulsi rettangolari all'uscita dell'amplificatore in saturazione si ottiene un segnale con spettro costituito dalle repliche dei seni cardinali centrati nelle armoniche della frequenza portante (fig.~\ref{fig:portante_squadrata_PSK}). \`{E} possibile limitare in banda lo spettro eliminando le code del $\sinc{f}$ mediante filtro passa banda, in quanto in ricezione si devono fornire forme d'onda ad intersimbolo nullo con termini spettrali contenuti all'interno del lobo principale. Maggiore attenzione è necessaria per segnali modulanti di ampiezza generica su portante squadrata: il segnale ricostruito viene distorto dalle non linearità. La portante squadrata filtrata passa-banda presenta spigoli smussati quindi un inviluppo non costante, amplificando e filtrando in ricezione si ottiene un segnale con modulazione di fase spuria.
 
 \begin{figure}[ht!]\centering
@@ -350,7 +350,7 @@ Per ridurre la banda necessaria in trasmissione si introduce la modulazione in q
 I simboli della sequenza numerica generati con una frequenza di cifra $f_s$ vengono inviati sul canale in quadratura con un ritardo di mezzo periodo di cifra $T_s/2$ rispetto al canale in fase: in tal modo non si può verificare una transizione contemporanea di polarità sulle due portanti, per cui la loro somma potrà differire al massimo di $\ang{90}$. Riducendo l'ampiezza delle discontinuità sfasando temporalmente le commutazioni si dimezza l'occupazione in banda.
 
 \clearpage
-\section{Frequency Shift Keying \ac{FSK}}
+\section{Frequency Shift Keying \ac{FSK}}\index{modulazione di frequenza!Frequency Shift Keying}
 La modulazione di frequenza \ac{FSK} è una tecnica di modulazione per la trasmissione numerica digitale. Le forme d'onda trasmesse per codificare i simboli “0” e “1” sono sinusoidi a frequenze $f_0$ e $f_1$. Il generatore di forme d'onda nel modulatore \ac{FSK} può essere realizzato con due oscillatori alle frequenze $f_0$ o $f_1$ e uno switch commutatore comandato che seleziona la forma d'onda in base al bit da trasmettere (fig.~\ref{fig:FSK_modulatore_oscillatori}). In alternativa è possibile utilizzare un oscillatore controllato in tensione con in ingresso la forma d'onda rettangolare rappresentante i bit da trasmettere (fig.~\ref{fig:FSK_modulatore_VCO}).
 
 La prima soluzione nella transizione tra oscillazioni a frequenze diverse si può presentare discontinuità nel segnale, data la difficoltà di commutare esattamente in corrispondenza degli zeri, introducendo componenti spettrali non legate all'informazione ma che causano una maggiore occupazione di banda.
@@ -416,14 +416,16 @@ Il ricevitore è costituito da un circuito \keyword{demodulatore} molto semplice
 \end{figure}
 
 \clearpage
-\section{Continuous Phase \ac{FSK}}
+\section{Continuous Phase \ac{FSK}}\index{modulazione di frequenza!Continuous Phase FSK}
 La codifica di linea della modulazione \ac{FSK} non trasmette forme d'onda in codifica antipodale il che causa una perdita di efficienza rispetto alla codifica antipodale della modulazione \ac{PSK} di almeno $\SI{3}{\decibel}$. Le discontinuità nella fase della portante della modulazione \ac{PSK} sono causa di inefficienza spettrale che è possibile superare con opportuni accorgimenti nella modulazione \ac{FSK}.
 
 Al fine di ottenere una alta efficienza spettrale si definisce la modulazione \ac{CP-FSK} imponendo per costruzione l'ortogonalità delle forme d'onda trasmesse e la continuità di fase ad ogni periodo di simbolo $T$.
 
 L'ortogonalità impone che le frequenze adottate per la trasmissione dei simboli “0” e “1” non possano essere svincolate dal tempo di simbolo, il periodo $T$, dovendo far rientrare un numero intero di oscillazioni nel periodo, e non possono essere svincolate tra loro, dovendo imporre ad ogni tempo di simbolo la continuità di fase del segnale.
 
-\begin{figure}[ht!]\centering
+\begin{figure}[ht!]
+\label{fig:FSK_ortogonali}
+\centering
 \def\freqA{20}
 \foreach\freqB[count=\c] in{40,45,50} {
 \subfloat[$T=\frac{1}{10},f_0=\SI{\freqA}{\hertz},f_1=\SI{\freqB}{\hertz}$]{
@@ -441,10 +443,9 @@ L'ortogonalità impone che le frequenze adottate per la trasmissione dei simboli
 % 	\end{axis}
 % 	\end{scope}
  	\end{tikzpicture}}}
-\label{fig:FSK_ortogonali}
 \end{figure}
 
-L'\keyword{ortogonalità} dalle forme d'onda trasmesse ha inoltre l'effetto di ridurre la densità spettrale di potenza dei lobi secondari dei $\sinc{}$ compresi tra le frequenze $f_0$ e $f_1$ (notare la differenza tra fig.~\ref{fig:FSK_ortogonali}b e fig.~\ref{fig:FSK_ortogonali}c).
+L'\keyword[forme d'onda!ortogonalità]{ortogonalità} dalle forme d'onda trasmesse ha inoltre l'effetto di ridurre la densità spettrale di potenza\index{densità spettrale di potenza} dei lobi secondari dei $\sinc{}$ compresi tra le frequenze $f_0$ e $f_1$ (notare la differenza tra fig.~\ref{fig:FSK_ortogonali}b e fig.~\ref{fig:FSK_ortogonali}c).
 
 Si ha l'ortogonalità imponendo che:
 \begin{equation}
@@ -460,9 +461,9 @@ dove i termini si annullano per
 
 L'ortogonalità richiesta da \ac{CP-FSK} è garantita dall'integrale nullo quando $f_0$ e $f_1$ sono multipli interi differenti di $\frac{1}{2 T}$. Per \ac{FSK} è sufficiente che siano multipli interi differenti di $\frac{1}{T}$.
 
-\section{Minimum Shift Keying \ac{MSK}}
+\section{Minimum Shift Keying \ac{MSK}}\index{modulazione di frequenza!Minimum Shift Keying}
 Tra le possibili scelte consentite dalla modulazione \ac{CP-FSK} quella che garantisce la minima occupazione di banda si ha imponendo la minima differenza tra le frequenze $f_0=\frac{n}{2T}$ e $f_1=\frac{n+1}{2T}$ pari a $f_1-f_0=\frac{1}{2T}$.
-Per tali frequenze i lobi principali della densità spettrale di potenza hanno distanza minima (fig.~\ref{fig:FSK_ortogonali}a).
+Per tali frequenze i lobi principali della densità spettrale di potenza\index{densità spettrale di potenza} hanno distanza minima (fig.~\ref{fig:FSK_ortogonali}a).
 
 La portante modulata assume la seguente espressione:
 \begin{equation}
@@ -551,7 +552,7 @@ La modulazione \ac{M-FSK} è l'estensione a più livelli della modulazione \ac{F
 
 Una ulteriore estensione consente la trasmissione in parallelo su $M$ portanti ortogonali ciascuna modulata \ac{QAM}. Ogni canale dello spettro ha il suo rapporto \ac{SNR} a seconda del quale si sceglie la migliore modulazione M-\ac{QAM}. Adattando la modulazione al rapporto segnale rumore variabile nel tempo si ottiene la modulazione \ac{OFDM} utilizzata nelle comunicazioni Wi-Fi e \ac{ADSL}.
 
-\section{Demodulazione coerente}
+\section{Demodulazione coerente}\index{demodulazione coerente}
 L'utilizzo di portanti in quadratura nella modulazione \ac{QAM} e nella necessità di rilevare la fase nella modulazione \ac{PSK} richiede in ricezione una demodulazione coerente: è necessaria una oscillazione sincrona con la portante di riferimento per la fase locale al ricevitore. Tale informazione deve essere estratta direttamente dal segnale ricevuto.
 
 Non è possibile pensare di filtrare ad esempio un segnale in modulazione \ac{PSK} binaria $\cos{\omega_0 t+a_i\pi}$ ($a_i=0$ se trasmetto “0” e $a_i=1$ se trasmetto “1”) (fig.~\ref{fig:2PSK_modulazione}) con un filtro molto stretto centrato attorno alla frequenza $f_0$: un filtro a banda molto stretta media i valori del segnale nel tempo su intervalli temporali lunghi fornendo un risultato a media nulla.
@@ -603,7 +604,7 @@ All'uscita del filtro è necessario quindi un divisore di frequenza che è possi
 \caption{Estrazione della portante da segnale \ac{PSK} binario}
 \end{figure}
 
-\section{Modulazioni differenziali}
+\section{Modulazioni differenziali}\index{modulazione differenziale}
 \`{E} possibile svincolarsi dalla necessità di estrarre la fase assoluta dalla portante mediante la codifica \ac{DPSK}: si associano i simboli “0” e “1” alle transizione di fase piuttosto che al valore assoluto della fase. Nel \ac{DPSK} binario in trasmissione si fa cambiare la fase della portante rispetto alla fase del periodo precedente per trasmettere “1”, si lascia invariata la fase per trasmettere “0”. Nella modulazione 4-\ac{DPSK} si lascia invariata la fase per trasmettere la coppia di bit “00” e si cambia la fase di multipli di $\pi/2$ per le successive configurazioni.
 
 Per realizzare la modulazione \ac{DPSK} si può utilizzare il modulatore \ac{PSK} a patto di modificare la sequenza di binaria in ingresso, operando una complementazione del bit in funzione del bit inviato al modulatore nel periodo precedente, ottenibile con un circuito dotato di uno operatore logico XOR e un delay (fig.~\ref{fig:DPSK_circuiti}). Similmente in ricezione bisogna effettuare l'operazione duale ricostruendo la sequenza di bit di informazione, verificando la permanenza o la variazione della fase tra periodi successivi.
