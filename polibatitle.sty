@@ -1,0 +1,38 @@
+% Copyright note: This package defines how titles should
+% be typeset at the Poliba University
+\ProvidesPackage{polibatitle}
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\newcommand*{\university}[1]{\gdef\@university{#1}}
+\newcommand*{\@university}{Politecnico di Bari}
+\newcommand*{\coursedegree}[1]{\gdef\@coursedegree{#1}}
+\newcommand*{\@coursedegree}{Corso di Laurea in Ingegneria Informatica e dell'Automazione}
+\newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand*{\professor}[1]{\gdef\@professor{#1}}
+\newcommand*{\department}[1]{\gdef\@department{#1}}
+\newcommand*{\authoremail}[1]{\gdef\@authoremail{#1}}
+\newcommand*{\authorURL}[1]{\gdef\@authorURL{#1}}
+\newcommand*{\@authorURL}{}
+\newcommand*{\version}[1]{\gdef\@version{#1}}
+\newcommand*{\versiondate}[1]{\gdef\@versiondate{#1}}
+\renewcommand*{\maketitle}{%
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.20\textwidth]{Simbolo_Politecnico.png}\par\vspace{1cm}
+	{\scshape\LARGE\@university\unskip\strut\par}
+	\vspace{1cm}
+	{\scshape\Large\@coursedegree\unskip\strut\par}
+	\vspace{1.5cm}
+	{\huge\bfseries\@title\unskip\strut\par}
+	\vspace{0.5cm}
+	{\LARGE\bfseries\@subtitle\unskip\strut\par}
+	\vspace{2cm}
+	{\Large\itshape Corso \@professor\unskip\strut\\ \@department\unskip\strut\\ \@university\unskip\strut\par}
+	\vfill
+	a cura di\par\href{\@authorURL}{\@author\unskip\strut}\\\href{\@authoremail}{\@authoremail\unskip\strut}
+	\vfill
+	% Bottom of the page
+	{\large Versione \@version\unskip\strut\\(\@versiondate\unskip\strut)\par}
+\end{titlepage}
+}
+\endinput

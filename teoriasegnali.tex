@@ -1,0 +1,41 @@
+\documentclass[10pt,a4paper,onecolumn,titlepage,twoside,openright,final]{book}
+
+% formato pagina
+\usepackage[width=15.00cm, left=3.00cm, height=23.00cm]{geometry}
+
+% frontespizio Poliba
+\usepackage{polibatitle}
+\title{Appunti di \\ Comunicazioni Elettriche}
+\subtitle{Modulo Teoria dei Segnali}
+\author{Marco Salvatore \textsc{Vanadìa}}
+\authoremail{marco.vanadia@gmail.com}
+\authorURL{https://it.linkedin.com/in/marcovanadia}
+\professor{Prof. Ing. L.A. Grieco}
+\department{Dipartimento di Ingegneria Elettrica e dell'Informazione}
+\version{1.0}
+\versiondate{settembre 2016}
+% include
+\include{include}
+
+\makeindex
+
+\begin{document}
+\frontmatter
+\maketitle
+
+\cleardoublepage\clearpage{\pagestyle{empty}\cleardoublepage}
+\tableofcontents
+
+\mainmatter
+
+\part{Teoria dei Segnali}
+\include{teoriasegnali-appunti}
+
+\phantomsection
+\addcontentsline{toc}{section}{\indexname}
+
+\printindex
+
+%\bibliography{biblio}
+
+\end{document}

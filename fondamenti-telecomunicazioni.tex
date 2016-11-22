@@ -1,0 +1,46 @@
+\documentclass[10pt,a4paper,onecolumn,titlepage,twoside,openright,final]{book}
+
+% formato pagina
+\usepackage[width=15.00cm, left=3.00cm, height=23.00cm]{geometry}
+
+% frontespizio Poliba
+\usepackage{polibatitle}
+\title{Appunti di \\ Comunicazioni Elettriche}
+\subtitle{Modulo Fondamenti di Telecomunicazioni}
+\author{Marco Salvatore \textsc{Vanadìa}}
+\authoremail{marco.vanadia@gmail.com}
+\authorURL{https://it.linkedin.com/in/marcovanadia}
+\professor{Prof. Ing. L.A. Grieco}
+\department{Dipartimento di Ingegneria Elettrica e dell'Informazione}
+
+% include
+\include{include}
+
+\makeindex
+
+\begin{document}
+\frontmatter
+\maketitle
+
+\cleardoublepage\clearpage{\pagestyle{empty}\cleardoublepage}
+\tableofcontents
+
+\include{fondtelecom-programma}
+
+\mainmatter
+
+\part{Fondamenti di Telecomunicazioni}
+\include{fondtelecom-sistemi-telecomunicazione}
+\include{fondtelecom-sistemi-telecom-canale-passa-basso}
+\include{fondtelecom-sistemi-telecom-canale-radio}
+\include{fondtelecom-sistemi-radar}
+\include{fondtelecom-sistemi-trasmissione-numerica}
+\include{fondtelecom-sistemi-trasmissione-modulazione}
+\include{fondtelecom-sistemi-telecom-canale-fibra-ottica}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{\indexname}
+\include{fondtelecom-acronimi}
+\printindex
+%\bibliography{biblio}
+\end{document}

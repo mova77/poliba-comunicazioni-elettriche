@@ -1,0 +1,62 @@
+\documentclass[10pt,a4paper,onecolumn,titlepage,twoside,openright,final]{book}
+\include{preamble}
+
+% formato pagina
+\usepackage[width=15.00cm, left=3.00cm, height=23.00cm]{geometry}
+
+% frontespizio Poliba
+\usepackage{polibatitle}
+\title{Appunti di \\ Comunicazioni Elettriche}
+\subtitle{Modulo Teoria dei Segnali\\Modulo Fondamenti di Telecomunicazioni}
+\author{Marco Salvatore \textsc{Vanad\`{i}a}}
+\authoremail{marco.vanadia@gmail.com}
+%\authorURL{https://it.linkedin.com/in/marcovanadia}
+\professor{Prof. Ing. L.A. Grieco}
+\department{Dipartimento di Ingegneria Elettrica e dell'Informazione}
+\version{\gitRel}
+\versiondate{\gitAuthorDate}
+
+
+\makeindex
+
+\begin{document}
+\frontmatter
+\maketitle
+\newpage
+
+% dedica
+\null\vspace{\stretch{1}} 
+\begin{flushright}a Giulia\end{flushright}
+\vspace{\stretch{2}}\null
+\vfill
+Il presente documento è rilasciato sotto licenza \ccLogo \textbf{Creative Commons 3.0 by-sa-nc} \ccbyncsa. 
+
+\'{E} consentita la creazione di opere derivate, traduzioni, adattamenti, totali o parziali, fatta salva l'attribuzione dell'autore originale e il mantenimento della licenza. 
+
+Marco Salvatore \textsc{Vanadìa}\\Politecnico di Bari
+\cleardoublepage\clearpage{\pagestyle{empty}\cleardoublepage}
+
+% indice contenuti
+\tableofcontents
+
+\mainmatter
+\part{Teoria dei Segnali}
+\input{teoriasegnali/appunti}
+\part{Fondamenti di Telecomunicazioni}
+\input{fondtelecom/sistemi-telecomunicazione}
+\input{fondtelecom/sistemi-telecom-canale-passa-basso}
+\input{fondtelecom/sistemi-telecom-canale-radio}
+\input{fondtelecom/sistemi-radar}
+\input{fondtelecom/sistemi-trasmissione-numerica}
+\input{fondtelecom/sistemi-trasmissione-modulazione}
+\input{fondtelecom/sistemi-telecom-canale-fibra-ottica}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Acronimi}
+\input{fondtelecom/acronimi}
+\addcontentsline{toc}{chapter}{\indexname}
+\printindex
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+%\bibliography{biblio}
+\end{document}
