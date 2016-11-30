@@ -198,7 +198,8 @@
 	mark=at position 1 with{%
 		\arrow{latex}}
 }]
-\tikzstyle{section}=[thick,decorate,decoration={markings,
+\tikzstyle{section}=[thick,decorate,decoration={
+	markings,
 	mark connection node=sect,
 	mark=at position 0.5 with {%
 		\node (sect) [transform shape,rotate=-90,minimum width=20pt,minimum height=3pt,draw=none] {};
@@ -212,9 +213,7 @@
 	decoration={
 		raise=#1,
 		markings,
-		mark=at position 0.5 with {
-			\node[inner sep=0] {#2};
-		}
+		mark=at position 0.5 with {\node[inner sep=0] {#2};}
 	},
 	postaction={decorate}
 }}
