@@ -24,6 +24,8 @@
 %\usepackage[backend=biber]{biblatex}
 \usepackage{multicol}
 \usepackage{acronym}
+% layout
+\usepackage{rotating}
 
 % diagrammi circuiti elettrici
 \usepackage[siunitx]{circuitikz}
@@ -55,6 +57,7 @@
 \usepackage{booktabs}
 \usepackage{tablefootnote}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
 
 % hyperlink
 \usepackage{hyperref}
@@ -205,8 +208,7 @@
 		\node (sect) [transform shape,rotate=-90,minimum width=20pt,minimum height=3pt,draw=none] {};
 		\draw [thin,dashed] ($(sect.north)+(0,-20pt)$)node[below]{#1} -- ($(sect.north)+(0,20pt)$);
 	},
-	mark=at position 1 with{%
-		\arrow{latex'}}
+	mark=at position 1 with{\arrow{latex'}}
 }]
 \tikzset{
 	arcnode/.style 2 args={

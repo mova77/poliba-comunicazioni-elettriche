@@ -1,14 +1,78 @@
-\chapter*{Appendice}
-\begin{table*}[!h]
+%\chapter*{Appendice}
+
+\begin{sidewaystable}
 \centering
 \caption{Variabili aleatorie}
 \begin{tabular}{cccccc}
-\hline \rule[-2ex]{0pt}{5.5ex} v.a. & $f_X(x)$\quad\tablefootnote{funzione probabilità di massa per v.a. discrete $f_X(x)=\sum_k p_k\impulse(x-k)$} & $\mu_X$ & $\E{X^2}$ & $\sigma^2_X$ & $G_X(t)$\quad\tablefootnote{funzione generatrice dei momenti} \\
-\hline \rule[-2ex]{0pt}{5.5ex} uniforme & $\frac{1}{b-a}$ & $\frac{b+a}{2}$ & $\frac{b^2+ab+a^2}{3}$ & $\frac{(b-a)^2}{12}$ \\
-\hline \rule[-2ex]{0pt}{5.5ex} esponenziale & $\lambda\e{-\lambda x}\step(x)$ & $\frac{1}{\lambda}$ & $\frac{2}{\lambda^2}$ & $\frac{1}{\lambda^2}$\\
-\hline \rule[-2ex]{0pt}{5.5ex} disc. Poisson & $\frac{(\Lambda T)^k}{k!}\e{-\Lambda T}$ & $\Lambda T$ & $(\Lambda T)^2+\Lambda T$ & & $\e{-\Lambda T}\e{\Lambda T\e{t}}$ \\
-\hline \rule[-2ex]{0pt}{5.5ex} disc. Bernoulli & $\binom{n}{k}p^k(1-p)^{n-k}$ & $n p$ & $n p [p(n-1)+1]$ & $n p(1-p)$ & $(p\e{t}+1-p)^n$ \\
-\hline \rule[-2ex]{0pt}{5.5ex} disc. geometrica & $p^k(1-p)$ & $\frac{p}{1-p}$ & $\frac{p(1-p)}{(1-p)^2}$ & $\frac{p}{(1-p)^2}$ & $(1-p)(1-p\e{t})^{-1}$ \\
-\hline \rule[-2ex]{0pt}{5.5ex} gaussiana & $\frac{1}{\sqrt{2\pi\sigma^2_X}}\;\e{-\tfrac{(x-\mu_X)^2}{2\sigma^2_X}}$ & $\mu_X$ & $\mu^2_X+\sigma^2_X$ & $\sigma^2_X$ & $\e{t\mu_X+\frac{\sigma^2_X t^2}{2}}$
+	\toprule
+	\rule[-2ex]{0pt}{5.5ex} v.a.
+		& \(f_X(x)\) \quad
+			\tablefootnote{funzione probabilità di massa per v.a. discrete
+			\(f_X(x) = \sum_k p_k \impulse(x-k)\)}
+		& \(\mu_X\)
+		& \(\E{X^2}\)
+		& \(\sigma^2_X\)
+		& \(G_X(t)\) \quad
+			\tablefootnote{funzione generatrice dei momenti} \\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} uniforme
+		& \(\frac{1}{b-a}\)
+		& \(\frac{b+a}{2}\)
+		& \(\frac{b^2+ab+a^2}{3}\)
+		& \(\frac{(b-a)^2}{12}\) \\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} esponenziale
+		& \(\lambda\e{-\lambda x}\step(x)\)
+		& \(\frac{1}{\lambda}\)
+		& \(\frac{2}{\lambda^2}\)
+		& \(\frac{1}{\lambda^2}\)\\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} disc. Poisson
+		& \(\frac{(\Lambda T)^k}{k!}\e{-\Lambda T}\)
+		& \(\Lambda T\)
+		& \((\Lambda T)^2+\Lambda T\)
+		&
+		& \(\e{-\Lambda T}\e{\Lambda T\e{t}}\) \\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} disc. Bernoulli
+		& \(\binom{n}{k}p^k(1-p)^{n-k}\)
+		& \(n p\)
+		& \(n p [p(n-1)+1]\)
+		& \(n p(1-p)\)
+		& \((p\e{t}+1-p)^n\) \\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} disc. geometrica
+		& \(p^k(1-p)\)
+		& \(\frac{p}{1-p}\)
+		& \(\frac{p(1-p)}{(1-p)^2}\)
+		& \(\frac{p}{(1-p)^2}\)
+		& \((1-p)(1-p\e{t})^{-1}\) \\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} gaussiana
+		& \(\frac{1}{\sqrt{2\pi\sigma^2_X}}\;\e{-\tfrac{(x-\mu_X)^2}{2\sigma^2_X}}\)
+		& \(\mu_X\)
+		& \(\mu^2_X+\sigma^2_X\)
+		& \(\sigma^2_X\)
+		& \(\e{t\mu_X+\frac{\sigma^2_X t^2}{2}}\) \\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} paretiana
+		& \(\begin{cases} \alpha \frac{x_m^\alpha}{x^{\alpha + 1}}
+		& x > x_m \\ 0
+		& \text{altrove} \end{cases}\)
+		& \(\begin{cases} \frac{\alpha}{\alpha -1}x_m
+		& \alpha > 1 \\ +\infty
+		& \alpha \leq 1 \end{cases}\)
+		& \(\begin{cases} \frac{\alpha}{\alpha -2}x_m^2
+		& \alpha > 2 \\ +\infty
+		& \alpha \leq 2 \end{cases}\)
+		& \(\frac{\mu_X^2}{\alpha (\alpha -2)}\) \\
+	\midrule
+	\rule[-2ex]{0pt}{5.5ex} disc. Zeta
+		& \(\frac{C}{k^{\alpha+1}}\)
+		& \(\frac{\zeta(\alpha-1)}{\zeta(\alpha)}\)
+		& \(\frac{\zeta(\alpha -2)}{\zeta(\alpha)}\)
+		& \(\frac{\zeta(\alpha-2)\zeta(\alpha) - \zeta(\alpha-1)^2}{\zeta(\alpha)^2}\)
+		& \(\frac{1}{\zeta(\alpha)} \sum_{k=1}^\infty \frac{\e{tk}}{k^{\alpha}}\) \\
+	\bottomrule
 \end{tabular}
-\end{table*}
+\end{sidewaystable}
