@@ -7,14 +7,14 @@
 *Politecnico di Bari*
 
 ---
-Appunti del corso di Comunicazioni Elettriche del [Prof. Ing. L.A. Grieco](http://telematics.poliba.it/index.php/it/main-grieco) 
+Appunti del corso di Comunicazioni Elettriche del [Prof. Ing. L.A. Grieco](http://telematics.poliba.it/index.php/it/main-grieco)
 
 Scritti in LaTeX da Marco Salvatore Vanadia (@mova77) sulla base delle dispense e il materiale di riferimento nell'a.a. 2015/2016 per il moduli:
 - [Teoria dei Segnali](http://telematics.poliba.it/index.php/it/teaching-182/230-teoria-dei-segnali)
 - [Fondamenti di Telecomunicazioni](http://telematics.poliba.it/index.php/it/teaching-182/240-fondamenti-di-telecomunicazioni)
 
 Ultima [release](https://github.com/mova77/poliba-comunicazioni-elettriche/releases):
-* [comunicazioni-elettriche.pdf](https://github.com/mova77/poliba-comunicazioni-elettriche/blob/master/comunicazioni-elettriche.pdf) 
+* [comunicazioni-elettriche.pdf](https://github.com/mova77/poliba-comunicazioni-elettriche/blob/v1.0-20161122/comunicazioni-elettriche.pdf)
 
 Opera rilasciata sotto licenza [Creative Commons by-nc-sa 4.0 ![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it)
 
