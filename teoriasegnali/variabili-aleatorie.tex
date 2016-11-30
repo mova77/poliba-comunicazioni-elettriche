@@ -174,7 +174,7 @@ La funzione distribuzione essendone l'integrale ha la definizione di una rampa
 		\begin{tikzpicture}[scale=.7]
 		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=1.2,xtick={1,2,3},xticklabels={$a$,$\frac{b+a}{2}$,$b$},ytick={1},xlabel={$x$}]
 		\addplot [very thick] coordinates{(-1,0)(1,0)(3,1)(4,1)};
-		\end{axis}\end{tikzpicture}	
+		\end{axis}\end{tikzpicture}
 	}
 	\caption{Variabile aleatoria uniforme}
 \end{figure}
@@ -206,7 +206,7 @@ F_X(x)=\intd{-\infty}{x}{f_X(\alpha)}{\alpha}=\intd{-\infty}{x}{\lambda\e{-\lamb
 		\begin{tikzpicture}[scale=.7]
 		\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0},ytick={0,1},ylabel={$F_X(x)$}]
 		\addplot [very thick,domain=-1:3,samples=100] {x>0?1-exp(-2*x):0};
-		\end{axis}\end{tikzpicture}	
+		\end{axis}\end{tikzpicture}
 	}
 	\caption{Variabile aleatoria esponenziale}
 \end{figure}
@@ -542,6 +542,140 @@ Il valor medio e la varianza della variabile aleatoria gaussiana calcolati dai m
 \end{split}
 \end{equation}
 \end{proof}
+
+% La VA paretiana è stata introdotta nell'A.A. 16/17
+\section{Variabile aleatoria di Pareto (di tipo 1)}
+La \textsc{variabile aleatoria di pareto} (o \emph{paretiana}) ha funzione distribuzione
+di probabilità
+\[
+	F_X(x) =
+	\begin{cases}
+		1-\Bigl(\frac{x_m}{x}\Bigr)^\alpha & x > x_m \\
+		0 & \text{altrove}
+	\end{cases}
+\]
+dove \(x_m\) è il valore minimo che può assumere la funzione.
+
+In teoria delle probabilità, la distribuzione paretiana è una distribuzione di
+probabilità continua, utilizzata in particolar modo per descrivere la distribuzione
+dei redditi.
+
+La variabile ha densità di probabilità
+\[
+	f_X(x) =
+	\begin{cases}
+		\alpha \frac{x_m^\alpha}{x^{\alpha + 1}} & x > x_m \\
+		0 & \text{altrove}
+	\end{cases}
+\]
+dove \(0 < x_m \leq x < +\infty\) e \(\alpha > 0\).
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=.8]
+		\begin{scope}\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={1},xticklabels={\(x_m\)},xlabel=\(x\),ytick={1},ylabel=\(F_X(x)\)]
+			\addplot [very thick,samples=200,domain=1:5] {1-(1/x)^2};
+			\addplot [dashed] coordinates {(1,0) (1,1)};
+			\addplot [dashed,domain=0:5] {1};
+		\end{axis}\end{scope}
+		\begin{scope}[xshift=9cm]\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={1,3},xticklabels={\(x_m\),\(x_0\)},xlabel=\(x\),ytick={0},ylabel=\(f_X(x)\)]
+			\addplot [very thick,samples=200,domain=1:5] {3*(1/x^3)};
+			\addplot [dashed] coordinates {(1,0) (1,3)};
+			\node[above] at (4,0) {\scriptsize Coda lunga};
+		\end{axis}\end{scope}
+	\end{tikzpicture}
+	\caption{Funzione distribuzione e densità di probabilità di una variabile aleatoria paretiana.}
+\end{figure}
+
+\paragraph{Valor medio}
+\[
+	\mu_X = \E{X} = \intd{x_m}{+\infty}{\alpha x_m^\alpha x^{-(\alpha +1)} x}{x} =
+	\alpha x_m^\alpha \frac{x^{-\alpha +1}}{1-\alpha} \Bigg|_{x_m}^{+\infty} =
+	\begin{cases}
+		\frac{\alpha}{\alpha -1}x_m & \alpha > 1 \\
+		+\infty & \alpha \leq 1
+	\end{cases}
+\]
+
+\paragraph{Potenza}
+\[
+	\E{X^2} = \intd{x_m}{+\infty}{\alpha x_m^\alpha x^{-(\alpha +1)} x^2}{x} =
+	\alpha x_m^\alpha \frac{x^{-\alpha +2}}{2-\alpha} \Bigg|_{x_m}^{+\infty} =
+	\begin{cases}
+		\frac{\alpha}{\alpha -2}x_m^2 & \alpha > 2 \\
+		+\infty & \alpha \leq 2
+	\end{cases}
+\]
+
+\paragraph{Varianza}
+\[\begin{split}
+	\sigma_X^2 = \E{X^2} - \Esp^2[X] &=
+		\frac{\alpha}{\alpha -2} x_m^2 - \Bigl(\frac{\alpha}{\alpha -1} x_m\Bigr)^2 =
+		\frac{\alpha}{\alpha -2} x_m^2 - \frac{\alpha^2}{(\alpha - 1)^2} x_m^2 = \\
+	&= \frac{(\alpha -1)^2 - (\alpha -2)\alpha}{(\alpha -2)(\alpha -1)^2}(\alpha x_m)^2 =
+		\frac{\alpha^2 +1 -2\alpha -\alpha^2 +2\alpha}{(\alpha -2)(\alpha -1)^2} (\alpha x_m^2) = \\
+	& = \frac{\alpha x_m^2}{(\alpha -2)(\alpha -1)^2} = \frac{\mu_X^2}{\alpha (\alpha -2)}, \text{ per } \alpha > 2
+\end{split}\]
+
+\paragraph{Deviazione standard}
+\[
+	\sigma_X = \frac{x_m \sqrt{\alpha}}{(\alpha -1) \sqrt{\alpha -2}} = \frac{\mu_x}{\sqrt{\alpha (\alpha -2)}}, \text{ per } \alpha > 2
+\]
+
+% La VA Zeta è stata introdotta nell'A.A. 16/17
+\section{Variabile aleatoria Zeta}
+Una variabile aleatoria ha una distribuzione di probabilità \textsc{Zeta}
+(talvolta detta di \emph{Zipf}) se la sua densità discreta è data da
+\[
+	P(X = k) = \frac{C}{k^{\alpha+1}},
+	\quad k=1,2,\dots
+\]
+per qualche valore \(\alpha > 0\). Poiché la somma delle precedenti probabilità
+deve essere uguale a \(1\), segue che
+\[
+	C = \Bigl[ \frac{1}{\sum_{k=1}^{\infty} k^{-(\alpha+1)}} \Bigr]
+\]
+
+La distribuzione Zeta deve il suo nome al fatto che la funzione
+\[
+	\zeta(\alpha) = 1 + \Bigl(\frac{1}{2}\Bigr)^\alpha + \Bigl(\frac{1}{3}\Bigr)^\alpha + \dots + \Bigl(\frac{1}{k}\Bigr)^\alpha + \dots
+\]
+è nota in matematica come la \emph{funzione Zeta di Riemann}.
+
+Se \(X\) è una variabile aleatoria Zeta con parametro \(\alpha\), allora la probabilità
+che \(X\) assuma valore \(k\) è data dalla \emph{funzione con massa di probabilità}
+\[
+	f_\alpha(k) = \frac{k^{-\alpha}}{\zeta(\alpha)}
+\]
+
+Si calcolano gli indici statistici mediante la funzione generatrice dei momenti:
+\[
+	G_X(t;\alpha) = \E{e^{tX}} = \frac{1}{\zeta(\alpha)} \sum_{k=1}^\infty \frac{e^{tk}}{k^{\alpha}}
+\]
+
+\paragraph{Valor medio (momento di primo ordine)}
+\[
+	\mu_X = \restrict{\deriv{G_X(t;\alpha)}{t}}{t=0} =
+	\frac{1}{\zeta(\alpha)} \sum_{k=1}^\infty \frac{1}{k^{\alpha-1}} =
+	\frac{\zeta(\alpha-1)}{\zeta(\alpha)},
+	\quad \text{ per } \alpha > 2
+\]
+
+\paragraph{Potenza (momento di secondo ordine)}
+\[
+	\E{X^2} = \restrict{\frac{\mathrm{d}^2 G_X(t;\alpha)}{\mathrm{d}t^2}}{t=0} =
+	\frac{1}{\zeta(\alpha)} \sum_{k=1}^\infty \frac{1}{k^{\alpha -2}} =
+	\frac{\zeta(\alpha -2)}{\zeta(\alpha)},
+	\quad \text{ per } \alpha > 3
+\]
+
+\paragraph{Varianza}
+\[
+	\sigma_X^2 = \E{X^2} - \Esp^2[X] =
+	\frac{\zeta(\alpha -2)}{\zeta(\alpha)} - \Biggl(\frac{\zeta(\alpha-1)}{\zeta(\alpha)}\Biggr)^2 =
+	\frac{\zeta(\alpha-2)\zeta(\alpha) - \zeta(\alpha-1)^2}{\zeta(\alpha)^2},
+	\quad \text{ per } \alpha > 3
+\]
 
 \section{Variabili aleatorie condizionate}
 Data una variabile aleatoria X si ha la funzione distribuzione di probabilità, $F_X(x)=P(X\leq x)=P(A)$ che rappresenta la probabilità che si verifichi l'evento $A$ per cui la variabile aleatoria $X$ assuma valori minori o uguali a $x$.
@@ -909,4 +1043,3 @@ Il \keyword[Teorema!del limite centrale]{teorema del limite centrale} (di Lyapun
 \lim\limits_{n\to\infty}f_{Z_n}(x)=f_\mathcal{N}(x)=\frac{1}{\sqrt{2\pi}}\e{-\frac{x^2}{2}}
 \end{equation}
 \begin{nota}Il teorema del limite è centrale, ovvero fondamentale, perché modella un fenomeno fisico importante come il rumore termico che è composto dalla sovrapposizione di moltissimi contributi elementari indipendenti che complessivamente sono descritti da una statistica gaussiana standard.\end{nota}
-
