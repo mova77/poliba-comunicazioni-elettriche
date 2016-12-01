@@ -14,7 +14,7 @@ $A\cap B$ (intersezione di A e B) è il sottoinsieme degli eventi che appartengo
 $A\cap\bar{A}=\emptyset$ l'intersezione tra eventi complementari è l'insieme vuoto.
 
 \section{Spazio di probabilità}
-Una definizione assiomatica di uno spazio di probabilità per \textsc{esperimenti aleatori} è caratterizzata da 
+Una definizione assiomatica di uno spazio di probabilità per \textsc{esperimenti aleatori} è caratterizzata da
 \begin{itemize}
 \item uno spazio campione $\Omega$
 \item un insieme $S$ degli eventi di interesse (non necessariamente $\Omega$)
@@ -39,7 +39,7 @@ volte un esperimento e contando il numero $N_A$ di volte in cui si verifica l'ev
 \end{equation}
 
 La definizione frequentista rientra nella teoria assiomatica infatti
-$P(A)=\frac{N_A}{N}\geq 0$, se $A=\Omega\implies N_A=N\implies P(A)=1$, inoltre 
+$P(A)=\frac{N_A}{N}\geq 0$, se $A=\Omega\implies N_A=N\implies P(A)=1$, inoltre
 e $A\cap B=\emptyset$ allora $N_{A\cup B}=N_A+N_B\implies P(A\cup B)= \lim\limits_{N\to\infty}\frac{N_{A\cup B}}{N}=\lim\limits_{N\to\infty}\frac{N_A+N_B}{N}=P(A)+P(B)$
 
 \section{Teoremi}
@@ -64,7 +64,7 @@ $A\cap\bar{A}=0\implies P(A\cup\bar{A})=P(A)+P(\bar{A})$
 \subsection{Teorema probabilità congiunte}\index{Teorema!probabilità congiunte}
 \begin{equation}P(A\cup B)=P(A)+P(B)-P(A\cap B)\end{equation}
 
-\begin{proof}[Dim.] 
+\begin{proof}[Dim.]
 \[A\cup B=A\cup(B\cap\bar{A})\implies P(A\cup B)=P(A)+P(B\cap\bar{A})\]
 
 \[B=B\cap(A\cup\bar{A})=(B\cap A)\cup(B\cap\bar{A})\implies P(B)=P(B\cap A)+P(B\cap\bar{A})\]
@@ -116,7 +116,7 @@ La \textsc{formula binomiale di Bernoulli} esprime la probabilità dell'evento A
 P(A)=\binom{n}{k} p^k (1-p)^{n-k}
 \end{equation}
 
-Il coefficiente binomiale 
+Il coefficiente binomiale
 \begin{equation}\binom{n}{k}=\frac{n!}{k!(n-k)!}\end{equation}
 tiene conto delle possibili \textsc{combinazioni} in cui $k$ elementi possono essere disposti in $n$ posizioni non distinguendoli per l'ordine. Si ottiene dal numero di \textsc{disposizioni} possibili di $k$ oggetti in $n$ posizioni distinguendo le posizioni $D_{n,k}=n\cdot(n-1)\dots(n-k+1)=\frac{n!}{(n-k)!}$ diviso il numero delle \textsc{permutazioni} $P_{n,k}=k!$ di $k$ oggetti in $n$ posizioni.
 
@@ -151,7 +151,7 @@ Esperimento aleatorio composto
 \item 1 scatola con 500 articoli di cui 40\% grandi
 \item 1 scatola con 1000 articoli di cui 10\% grandi
 \item 1 scatola con 1000 articoli di cui 10\% grandi
-\end{itemize} 
+\end{itemize}
 Si scelga una scatola a caso e si estragga un articolo a caso e si valuti la probabilità $P(G)$ che sia estratto un articolo grande.
 
 Per il teorema delle probabilità totali ho
@@ -169,7 +169,7 @@ Per il teorema di Bayes
 \begin{esempio}
 Esperimento aleatorio composto
 
-Ho 6 scatole di 3 tipi diversi ognuna con 12 palline alcune bianche alcune nere 
+Ho 6 scatole di 3 tipi diversi ognuna con 12 palline alcune bianche alcune nere
 \begin{itemize}
 	\item $A_1$ 1 scatola con 7 palline bianche 5 nere
 	\item $A_2$ 2 scatola con 5 palline bianche 7 nere
@@ -181,7 +181,7 @@ Qual è la probabilità dell'evento $E=\lbrace 2B+1N \rbrace$ ?
 
 Si può scomporre l'evento in eventi disgiunti ed applicare il teorema delle probabilità totali
 \[P(E)=\sum_{i=1}^{3}P(E|A_i)P(A_i)\]
-dove data la ripartizione delle scatole $P(A_1)=\frac{1}{6}, P(A_2)=\frac{2}{6}=\frac{1}{3}, P(A_3)=\frac{3}{6}=\frac{1}{2}$  
+dove data la ripartizione delle scatole $P(A_1)=\frac{1}{6}, P(A_2)=\frac{2}{6}=\frac{1}{3}, P(A_3)=\frac{3}{6}=\frac{1}{2}$
 Le probabilità condizionate si calcolano come prove ripetute di Bernoulli binarie indipendenti sull'evento E:
 \[\begin{split}
 P(E|A_1)&=\binom{3}{2}P(B|A_1)^2 P(N|A_1)=3\left(\frac{7}{12}\right)^2\frac{5}{12}=\frac{5}{4}\left(\frac{7}{12}\right)^2\\

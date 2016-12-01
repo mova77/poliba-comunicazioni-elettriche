@@ -66,7 +66,7 @@ s_R(t)=s_R^\text{I}(t)\cos{\omega_0 t}-s_R^\text{Q}(t)\cos{\omega_0 t}=A(t)\cos{
 n(t)=n^\text{I}(t)\cos{\omega_0 t}-n^\text{Q}(t)\cos{\omega_0 t}=r(t)\cos{\omega_0 t+\phi(t)}\quad r(t)=\sqrt{n^\text{I}(t)+n^\text{Q}(t)}
 \end{equation}
 
-Essendo il rumore la composizione di due variabili aleatorie gaussiane si ottiene una densità di probabilità di variabile aleatoria di Rayleigh (v.\ref{eq:Rayleigh}). 
+Essendo il rumore la composizione di due variabili aleatorie gaussiane si ottiene una densità di probabilità di variabile aleatoria di Rayleigh (v.\ref{eq:Rayleigh}).
 
 In assenza di bersaglio la probabilità di rilevare una tensione all'uscita del demodulatore ad inviluppo superiore alla soglia è la \keyword[probabilità!di falso allarme]{probabilità di falso allarme} $P_\text{FA}$ (v.\ref{fig:radar_prob_falso_allarme}).
 
@@ -74,7 +74,7 @@ In presenza di bersaglio ricevo il segnale riflesso cui si somma il rumore per c
 \begin{equation}
 A(t)\cos{\omega_0 t+\phi(t)}+r(t)\cos{\omega_0 t+\phi(t)}=D(t)\cos{\omega_0 t+\phi(t)}
 \end{equation}
-di cui il demodulatore estrarrà il modulo $D(t)$, pari al modulo della somma dei vettori rotanti del segnale e del rumore. 
+di cui il demodulatore estrarrà il modulo $D(t)$, pari al modulo della somma dei vettori rotanti del segnale e del rumore.
 
 Nel funzionamento nominale del \ac{RADAR} il termine del segnale è dominante sul rumore (v.fig.\ref{fig:segnale_modulato_angolarmente_affetto_da_rumore}), si può approssimare il modulo con la somma delle componenti in fase, considerando l'errore di fase uniformente distribuito in $[0,2\pi]$:
 \[D(t)\cong A(t)+r(t)\cos{\phi_N(t)-\phi(t)}\cong A(t)+r(t)\cos{\phi_N(t)}\]
@@ -116,7 +116,7 @@ Il dimensionamento del sistema con i parametri $\sigma_\text{min},R_\text{max},P
 \label{fig:radar_soglia}
 \end{figure}
 
-Per ottimizzare la potenza di picco del segnale ricevuto bisogna agire sulla funzione di trasferimento $H(f)$ del filtro passa banda del ricevitore. Per massimizzare il valore di uscita del demodulatore in presenza di bersaglio bisogna esaltare la potenza di picco del segnale, nell'istante $t_m$ del suo massimo, più della potenza del rumore, agendo sulla funzione di trasferimento del filtro che viene adattata al segnale trasmesso. 
+Per ottimizzare la potenza di picco del segnale ricevuto bisogna agire sulla funzione di trasferimento $H(f)$ del filtro passa banda del ricevitore. Per massimizzare il valore di uscita del demodulatore in presenza di bersaglio bisogna esaltare la potenza di picco del segnale, nell'istante $t_m$ del suo massimo, più della potenza del rumore, agendo sulla funzione di trasferimento del filtro che viene adattata al segnale trasmesso.
 
 Data la trasformata di Fourier del segnale ricevuto $k s(t-\tau) \stackrel{\Fourier}{\longrightarrow} k S(f) \e{-\jmath\omega_0\tau}$ si calcola la potenza di picco del segnale nell'istante $t_m$:
 \begin{equation}
@@ -132,7 +132,7 @@ Il rapporto segnale rumore, definito come rapporto della potenza picco-picco del
 \restrict{\frac{S}{N}}{\text{post dem}}&=\frac{P_S^\text{PP}}{P_N}=\frac{\abs{\intinf{k S(f) H(f)\e{\jmath\omega_0 (t_m-\tau)}}{f}}^2}{\intinf{h_n\abs{H(f)}^2}{f}}=
 \frac{\intinf{k^2\abs{S(f)}^2\abs{H(f)}^2}{f}}{\intinf{h_n\abs{H(f)}^2}{f}}=\\
 &<\frac{\intinf{k^2\abs{S(f)}^2}{f}\cdot\intinf{\abs{H(f)}^2}{f}}{h_n\intinf{\abs{H(f)}^2}{f}}=\frac{\intinf{k^2\abs{S(f)}^2}{f}}{h_n}=\frac{E_R}{h_n}
-\end{split}\end{equation} 
+\end{split}\end{equation}
 
 Per il teorema di Parseval (v.eq.\ref{eq:parseval}) il termine a numeratore $E_R=\intinf{\abs{k S(f)}^2}{f}$ è l'energia del segnale ricevuto.
 
@@ -281,7 +281,7 @@ Per poter determinare la direzione da cui proviene il segnale riflesso una anten
 \caption{Risoluzione geometrica azimutale}
 \end{figure}
 
-Il sistema \ac{RADAR} può rilevare e distinguere l'eco di due bersagli a distanza radiale $R$ dall'antenna e distanza trasversale $d$ fra loro se il fascio azimutale ha una risoluzione angolare inferiore a 
+Il sistema \ac{RADAR} può rilevare e distinguere l'eco di due bersagli a distanza radiale $R$ dall'antenna e distanza trasversale $d$ fra loro se il fascio azimutale ha una risoluzione angolare inferiore a
 \begin{equation}
 \theta=\arctan\frac{d}{R}
 \end{equation}

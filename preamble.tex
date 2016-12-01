@@ -47,7 +47,7 @@
 % icone creative commons
 \usepackage{ccicons}
 
-% float and figure 
+% float and figure
 \usepackage{float}
 \usepackage{subfig}
 \usepackage{caption}
@@ -71,7 +71,7 @@
 }
 
 
-% definizioni nuovi stili teoremi 
+% definizioni nuovi stili teoremi
 \theoremstyle{definition}
 \newtheorem{definizione}{Definizione}[chapter]
 \newtheorem{esempio}{Esempio}[chapter]
@@ -166,15 +166,15 @@
 \tikzstyle{mult} =	[draw, thick, fill=white, circle, minimum width=5mm, cross]
 \tikzstyle{fitted} =	[draw, thick, dotted, inner sep=4mm, rounded corners]
 
-\tikzstyle{passabasso}=	[block, path picture={ 
+\tikzstyle{passabasso}=	[block, path picture={
 	\draw [<->] (-16pt, 12pt)--(-16pt,-12pt)--(18pt,-12pt);
 	\draw (-16pt,5pt)-|(10pt,-12pt);
 }]
-\tikzstyle{passabanda}=	[block, path picture={ 
+\tikzstyle{passabanda}=	[block, path picture={
 	\draw [<->] (-16pt, 12pt)--(-16pt,-12pt)--(18pt,-12pt);
 	\draw (-8pt,-12pt)--(-8pt,5pt)-|(10pt,-12pt);
 }]
-\tikzstyle{decisore}=	[block, path picture={ 
+\tikzstyle{decisore}=	[block, path picture={
 	\draw [->] (-16pt, 0pt)--(16pt,0pt);
 	\draw [->] (0pt,-12pt)--(0pt,12pt);
 	\draw [thick] (-16pt,-8pt)--(0pt,-8pt)|-(16pt,8pt);
@@ -183,13 +183,13 @@
 	\draw(path picture bounding box.west)-- ++(30:12mm);
 	\draw[<-](path picture bounding box.west)++(8mm,0)arc(0:60:8mm);
 }]
-\tikzstyle{sumpic}=	[draw, thick, circle, node distance=1cm, path picture={ 
+\tikzstyle{sumpic}=	[draw, thick, circle, node distance=1cm, path picture={
 	\draw[black](path picture bounding box.south)--(path picture bounding box.north)(path picture bounding box.west)--(path picture bounding box.east);
 }]
-\tikzstyle{cross} = [path picture={ 
+\tikzstyle{cross} = [path picture={
 	\draw[black](path picture bounding box.south east)--(path picture bounding box.north west)(path picture bounding box.south west)--(path picture bounding box.north east);
 }]
-\tikzstyle{clock} = [path picture={ 
+\tikzstyle{clock} = [path picture={
 	\draw[black](path picture bounding box.south east)--(path picture bounding box.east)--(path picture bounding box.center)--(path picture bounding box.south)--(path picture bounding box.south west)--(path picture bounding box.west);
 }]
 \tikzstyle{dot}=	[thick,decorate,decoration={markings,mark connection node=dot,
@@ -198,7 +198,7 @@
 	mark=at position 1 with{%
 		\arrow{latex}}
 }]
-\tikzstyle{section}=[thick,decorate,decoration={markings,  
+\tikzstyle{section}=[thick,decorate,decoration={markings,
 	mark connection node=sect,
 	mark=at position 0.5 with {%
 		\node (sect) [transform shape,rotate=-90,minimum width=20pt,minimum height=3pt,draw=none] {};
@@ -210,9 +210,8 @@
 \tikzset{
 	arcnode/.style 2 args={
 	decoration={
-		raise=#1,             
-		markings,   
-		mark=at position 0.5 with { 
+		raise=#1,
+		mark=at position 0.5 with {
 			\node[inner sep=0] {#2};
 		}
 	},
@@ -227,12 +226,12 @@
 	}
 }
 \tikzset{
-	antenna/.pic={ 
+	antenna/.pic={
 	\draw[thick](0,0)--(.5,0)arc(180:160:4)(.5,0)arc(180:200:4)(.5,.25)--(1,0)--(.5,-.25);
 	\draw[decorate,decoration={expanding waves,angle=30}](1,0)--(3,0);
 }}
 \tikzset{
-	antennarx/.pic={ 
+	antennarx/.pic={
 		\draw[thick](0,0)--(.5,0)arc(180:160:4)(.5,0)arc(180:200:4)(.5,.25)--(1,0)--(.5,-.25);
 		\draw[decorate,decoration={expanding waves,angle=30,amplitude=30}](3,0)--(1,0);
 }}

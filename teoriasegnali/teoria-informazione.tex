@@ -1,5 +1,5 @@
 \chapter[Teoria dell’informazione]{Principi di teoria dell’informazione e teorema di Shannon}
-In un canale di comunicazione basato su un sistema di trasmissione numerico l'informazione viene trasformata nei blocchi di filtraggio, campionamento e quantizzazione in una sequenza di bit corrispondenti ad un alfabeto di $N$ simboli. In ricezione giunge in generale una sequenza di bit a cui sono associati $M$ simboli. In un canale di comunicazione ideale l'informazione viene trasmessa senza errori di trasmissione pertanto non è possibile scambiare un simbolo per un altro ($N=M$) per cui 
+In un canale di comunicazione basato su un sistema di trasmissione numerico l'informazione viene trasformata nei blocchi di filtraggio, campionamento e quantizzazione in una sequenza di bit corrispondenti ad un alfabeto di $N$ simboli. In ricezione giunge in generale una sequenza di bit a cui sono associati $M$ simboli. In un canale di comunicazione ideale l'informazione viene trasmessa senza errori di trasmissione pertanto non è possibile scambiare un simbolo per un altro ($N=M$) per cui
 \[\begin{cases}
 p(a_{i_R}|a_{i_T})=1 \\ p(a_{j_R}|a_{i_T})=0 \quad i\neq j
 \end{cases}\]
@@ -25,7 +25,7 @@ q_1=P(1_R|1_T)& \text{prob. trasmissione corretta simbolo 1}\\ p_1=P(0_R|1_T)& \
 
 Si ha un \textsc{canale binario simmetrico} quando la probabilità di errore o \textsc{Bit Error Rate} non distingue i due simboli  $p_0=p_1=\text{BER}$
 
-La probabilità di errore per trasmissione su un canale binario 
+La probabilità di errore per trasmissione su un canale binario
 \[ P(E)=P(E\cap 0_T)+P(E\cap 1_T)=P(1_R|0_T)P(0_T)+P(0_R|1_T)P(1_T)=p_0 P_0+p_1 P_1 \]
 
 Se il canale è binario simmetrico
@@ -66,7 +66,7 @@ La codifica di canale è la parte del sistema che trasforma la sequenza di bit i
 In ricezione si eseguono le operazioni contrarie per riottenere l'informazione trasmessa.
 
 \subsection{Codice a ripetizione}
-Una codifica di sorgente è il \keyword[codifica di sorgente!codice a ripetizione]{codice a ripetizione} per un canale binario simmetrico. Ogni bit generato dalla sorgente viene ripetuto $2n+1$ volte, il che riduce la velocità di trasmissione (\emph{bit rate}) dello stesso fattore. Il ricevitore interpreta la sequenza di $2n+1$ bit come il bit che si è presentato in maggioranza. Questo consente in ricezione di rilevare e correggere fino a $n$ errori. La sequenza è interpretata erroneamente se sono errati la maggioranza dei bit, ovvero almeno $n+1$. 
+Una codifica di sorgente è il \keyword[codifica di sorgente!codice a ripetizione]{codice a ripetizione} per un canale binario simmetrico. Ogni bit generato dalla sorgente viene ripetuto $2n+1$ volte, il che riduce la velocità di trasmissione (\emph{bit rate}) dello stesso fattore. Il ricevitore interpreta la sequenza di $2n+1$ bit come il bit che si è presentato in maggioranza. Questo consente in ricezione di rilevare e correggere fino a $n$ errori. La sequenza è interpretata erroneamente se sono errati la maggioranza dei bit, ovvero almeno $n+1$.
 
 La sequenza di bit in ricezione può essere assimilata ad un processo di Bernoulli, con due simboli che arrivano indipendentemente l'uno dall'altro. La probabilità di errore è data da tutte le combinazioni che hanno tra $n+1$ e $2n+1$ bit errati, ovvero
 \[p(E)=\sum_{k=n+1}^{2n+1}\binom{2n+1}{k}p^k(1-p)^{2n+1-k}\]
@@ -116,7 +116,7 @@ Dato un canale di trasmissione binario con probabilità di errore sul bit $p=10^
 
 Si da una stima approssimata di errore non rilevato per il caso più probabile di doppio errore di trasmissione
 \[p(E_{NR})\cong\binom{n}{2}p^2(1-p)^2=\frac{n!}{2!(n-2)!}\cdot 10^{-6}\]
-Non è possibile ridurre il \emph{bit error rate} al di sotto di tale stima ed avere un $\text{BER}\leq 10^{-9}$ 
+Non è possibile ridurre il \emph{bit error rate} al di sotto di tale stima ed avere un $\text{BER}\leq 10^{-9}$
 \end{esempio}
 
 \section{Teoria dell'informazione}

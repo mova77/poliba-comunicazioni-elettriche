@@ -19,7 +19,7 @@ F_X(s)=P(X\leq x)
 \item $0\leq F_X(x)\leq 1$
 \item $\lim\limits_{x\to+\infty}F_X(x)=1$
 \item $\lim\limits_{x\to-\infty}F_X(x)=0$
-\item $F_X$ è monotona non decrescente: \[x_1<x_2\implies F_X(x_1)\leq F_X(x_2)\] 
+\item $F_X$ è monotona non decrescente: \[x_1<x_2\implies F_X(x_1)\leq F_X(x_2)\]
 \item $F_X$ è continua a destra: \[\lim\limits_{h\to 0^+}{F_X(x+h)}=F_X(x)\]
 \item se $F_X$ presenta discontinuità di prima specie in $\bar{x}$ la probabilità dell'evento $X=\bar{x}$ è pari alla differenza tra limite destro e sinistro \[P(X=\bar{x})=\lim\limits_{h\to 0^+}{F_X(x+h)} - \lim\limits_{h\to 0^-}{F_X(x+h)}\]
 \item la probabilità dell'evento $a < X \leq b$:
@@ -30,7 +30,7 @@ Le variabili aleatorie possono essere \emph{continue}, \emph{discrete} o \emph{m
 
 Una variabile aleatoria discreta ha la funzione di distribuzione di probabilità continua a tratti: $F_X(x)=\sum_k P(X=x_k)\step{(x-x_k)}$, la probabilità è concentrata in “masse” di probabilità $p_k=P(X=x_k)$ in corrispondenza dei punti di discontinuità $x_k$.
 
-Una variabile aleatoria continua ha la funzione distribuzione di probabilità continua, ovvero la probabilità che la variabile aleatoria assuma un particolare valore $P(X=\bar{x})$ è un infinitesimo. 
+Una variabile aleatoria continua ha la funzione distribuzione di probabilità continua, ovvero la probabilità che la variabile aleatoria assuma un particolare valore $P(X=\bar{x})$ è un infinitesimo.
 
 \section{Funzione densità di probabilità}
 Si può dare una definizione alternativa di variabile aleatoria legata alla \keyword[variabile aleatoria!funzione densità di probabilità]{funzione densità di probabilità}
@@ -95,7 +95,7 @@ Per variabile aleatoria discreta si ha $f_X(x)=\sum_k p_k\delta(x-x_k)$, il valo
 \end{equation}
 che nel caso della media assume la semplice relazione $\mu_X=\E{X}$.
 
-L'operatore valor medio gode della proprietà di linearità, data dall'integrale, per cui 
+L'operatore valor medio gode della proprietà di linearità, data dall'integrale, per cui
 \begin{equation}\E{a\cdot g(X)+b\cdot h(X)}=a \E{g(X)}+b \E{h(X)}\end{equation}
 
 Per variabile aleatoria $Y=g(X)$ ottenuta da trasformazione si ha la notevole semplificazione di non dover calcolare la funzione densità di probabilità $f_Y$ nota $f_X$.
@@ -403,7 +403,7 @@ Si ha così la variabile aleatoria trasformata $V(X)=V_i(1-\e{-\frac{x}{\alpha}}
 Per il teorema fondamentale della trasformazione di variabile aleatoria la funzione densità di probabilità si calcola come
 \[f_V(x)=\restrict{\frac{f_X(x)}{\abs{g'(x)}}}{x=g^{-1}(v)}\]
 dove $g(x)=v=V_i(1-\e{\frac{x}{\alpha}})$, $g'(x)=\frac{V_i}{\alpha}\e{-\frac{x}{\alpha}}$ e $x=g^{-1}(v)=-\alpha\f{\ln}{1-\frac{v}{V_i}}$, sostituendo la $f_X(x)$ si ha
-\[f_V(v)=\restrict{\frac{\frac{1}{2\alpha}\e{-\frac{x}{2\alpha}}}{\abs{\frac{V_i}{\alpha}\e{-\frac{x}{\alpha}}}}}{x=g^{-1}(v)}= 
+\[f_V(v)=\restrict{\frac{\frac{1}{2\alpha}\e{-\frac{x}{2\alpha}}}{\abs{\frac{V_i}{\alpha}\e{-\frac{x}{\alpha}}}}}{x=g^{-1}(v)}=
 \frac{\frac{1}{2\alpha}\e{-\frac{-\alpha\f{\ln}{1-\frac{v}{V_i}}}{2\alpha}}}{\frac{V_i}{\alpha}\e{-\frac{-\alpha\f{\ln}{1-\frac{v}{V_i}}}{\alpha}}}=
 \frac{1}{2 V_I}\frac{\e{\ln\sqrt{\left(1-\frac{v}{V_i}\right)}}}{\e{\f{\ln}{1-\frac{v}{V_i}}}}=
 \frac{1}{2 V_i}\frac{1}{\sqrt{\left(1-\frac{v}{V_i}\right)}}
@@ -452,11 +452,11 @@ f_X(x)=\frac{1}{\sigma_X}\f{f_{X_N}}{\frac{x-\mu_X}{\sigma_X}}=\frac{1}{\sqrt{2\
 \centering
 \begin{tikzpicture}
 \begin{axis}[axis x line=middle, axis y line=left,no markers,enlargelimits,xscale=2,xtick={-3,-2,-1,0,1,2,3},xticklabels={$\mu-3\sigma$,$\mu-2\sigma$,$\mu-\sigma$,$\mu$,$\mu+\sigma$,$\mu+2\sigma$,$\mu+3\sigma$},ytick={0.3989},yticklabels={$\frac{1}{\sqrt{2\pi\sigma^2}}$},xlabel=$x$,
-after end axis/.code={\draw [thick,decoration={brace,mirror,raise=17pt},decorate] 
+after end axis/.code={\draw [thick,decoration={brace,mirror,raise=17pt},decorate]
 	(axis cs:-1,0) -- node[below=17pt] {$68,3\%$} (axis cs:1,0);
-	\draw [thick,decoration={brace,mirror,raise=35pt,amplitude=5pt},decorate] 
+	\draw [thick,decoration={brace,mirror,raise=35pt,amplitude=5pt},decorate]
 	(axis cs:-2,0) -- node[below=37pt] {$95,4\%$} (axis cs:2,0);
-	\draw [thick,decoration={brace,mirror,raise=52pt,,amplitude=10pt},decorate] 
+	\draw [thick,decoration={brace,mirror,raise=52pt,,amplitude=10pt},decorate]
 	(axis cs:-3,0) -- node[below=60pt] {$99,74\%$} (axis cs:3,0);
 }
 ]
@@ -510,7 +510,7 @@ Q(x)=\frac{1}{2}\erfc{\frac{x}{\sqrt{2}}}
 
 Si dimostra che l'integrale della funzione densità di probabilità \[S=\intinf{f_X(x)}{x}=1\]
 \begin{proof}[Dim.]
-Non avendo $\int\e{-z^2}\diff z$ soluzioni in forma chiusa, si considera che $S^2=1$ e si ha l'integrale doppio 
+Non avendo $\int\e{-z^2}\diff z$ soluzioni in forma chiusa, si considera che $S^2=1$ e si ha l'integrale doppio
 \[S^2=\intinf{f_X(x)}{x}\intinf{f_Y(y)}{y}=\intinf{\intinf{\frac{1}{2\pi\sigma^2}\e{-\tfrac{(x-\mu)^2(y-\mu)^2}{2\sigma^2}}}{y}}{x}\]
 Per risolvere l'integrale si applica la trasformazione da variabili cartesiane a variabili polari
 \[\begin{split}\frac{x-\mu}{\sigma}=\rho\cos{\theta}&\qquad\frac{y-\mu}{\sigma}=\rho\sen{\theta}\\
@@ -519,7 +519,7 @@ Per risolvere l'integrale si applica la trasformazione da variabili cartesiane a
 \diff x\diff y=\abs{J(\rho,\theta)}\diff\rho\diff\theta
 \end{split}\]
 dove $J(\rho,\theta)$ è la matrice jacobiana della trasformazione che ha determinante
-\[\abs{J(\rho,\theta)}=\abs{\begin{array}{cc} \sigma\cos{\theta}&-\sigma\rho\sen{\theta} \\ 
+\[\abs{J(\rho,\theta)}=\abs{\begin{array}{cc} \sigma\cos{\theta}&-\sigma\rho\sen{\theta} \\
 \sigma\sen{\theta}&\sigma\rho\cos{\theta}\end{array}}=\sigma^2\rho\Cos^2{\theta}+\sigma^2\rho\Sen^2{\theta}=\sigma^2\rho\]
 \[S^2=\intd{0}{2\pi}{\intd{0}{+\infty}{\frac{1}{2\pi\sigma^2}\e{-\tfrac{\rho^2}{2}}\sigma^2\rho}{\rho}}{\theta}=\frac{1}{2\pi}\intd{0}{+\infty}{\rho\e{-\tfrac{\rho^2}{2}}}{\rho}\intd{0}{2\pi}{}{\theta}=\bound{0}{+\infty}{-\e{-\tfrac{\rho^2}{2}}}=1\]
 \end{proof}
@@ -533,7 +533,7 @@ Dimostriamo che la variabile aleatoria gaussiana ha media $\mu_X$ e varianza $\s
 dove l'esponente si è calcolato con i passaggi
 \[t(x-\mu_X)-\frac{(x-\mu_X)^2}{2\sigma^2_X}=-\frac{(x-\mu_X)^2-2\sigma^2_X t(x-\mu_X)+\sigma^4_X t^2-\sigma^4_X t^2}{2\sigma^2_X}=\frac{\sigma^2_X t^2}{2}-\frac{(x-\mu_X-\sigma^2_X t)^2}{2\sigma^2_X}\]
 
-Il valor medio e la varianza della variabile aleatoria gaussiana calcolati dai momenti del primo e secondo ordine 
+Il valor medio e la varianza della variabile aleatoria gaussiana calcolati dai momenti del primo e secondo ordine
 \begin{equation}\begin{split}
 \E{X}&=\restrict{\deriv{G_X(t)}{t}}{t=0}=\restrict{\e{t\mu_X+\tfrac{\sigma^2_X t^2}{2}}(\mu_X+\sigma^2_X t)}{t=0}=\mu_X
 \\
@@ -545,7 +545,7 @@ Il valor medio e la varianza della variabile aleatoria gaussiana calcolati dai m
 
 \section{Variabili aleatorie condizionate}
 Data una variabile aleatoria X si ha la funzione distribuzione di probabilità, $F_X(x)=P(X\leq x)=P(A)$ che rappresenta la probabilità che si verifichi l'evento $A$ per cui la variabile aleatoria $X$ assuma valori minori o uguali a $x$.
-Se l'evento $A$ può essere influenzato dal verificarsi o meno di un altro evento $B$, avente probabilità non nulla $P(B)$, si ha una \textsc{variabile aleatoria condizionata}. 
+Se l'evento $A$ può essere influenzato dal verificarsi o meno di un altro evento $B$, avente probabilità non nulla $P(B)$, si ha una \textsc{variabile aleatoria condizionata}.
 La sua funzione di distribuzione di probabilità condizionata dall'evento $B$ si definisce
 \begin{equation}
 F_{X|B}(x)=\frac{P(A\cap B)}{P(B)}=\frac{P(\lbrace X\leq x\rbrace\cap B)}{P(B)}
@@ -575,7 +575,7 @@ Similmente si ha per $x=x_0$ fissato le stesse proprietà per $F_{XY}(x_0,y)$
 \[\begin{split}
 F_{XY}(-\infty,y)&=P(X\leq -\infty,Y\leq y)=0 \\
 F_{XY}(-\infty,y)&=P(X\leq x,Y\leq -\infty)=0 \\
-F_{XY}(-\infty,-\infty)&=P(X\leq -\infty,Y\leq -\infty)=0 
+F_{XY}(-\infty,-\infty)&=P(X\leq -\infty,Y\leq -\infty)=0
 \end{split}\]
 \item Le funzioni di distribuzione marginale $F_X(x)$ e $F_Y(y)$, nota $F_{XY}(x,y)$, si ricavano come
 \[\begin{split}
@@ -627,7 +627,7 @@ La \textsc{funzione densità di probabilità condizionata} della variabile aleat
 f_{Y|X}(y)=\pderiv{F_{Y|X}(y)}{y}=\frac{f_{XY}(x,y)}{f_X(x)}
 \end{equation}
 
-Se la densità di probabilità marginale $f_Y(y)$ della variabile aleatoria $Y$ coincide con la densità di probabilità condizionata $f_{Y|X}(y)$ il comportamento statistico della variabile $Y$ non è influenzato dal valore assunto dalla variabile $X$. 
+Se la densità di probabilità marginale $f_Y(y)$ della variabile aleatoria $Y$ coincide con la densità di probabilità condizionata $f_{Y|X}(y)$ il comportamento statistico della variabile $Y$ non è influenzato dal valore assunto dalla variabile $X$.
 
 In tal caso $f_Y(y)=f_{Y|X}(y)$, le variabili aleatorie X e Y si dicono indipendenti e la densità di probabilità congiunta $f_{XY}(x,y)$ può essere espressa come prodotto delle probabilità marginali:
 \begin{equation}\label{eq:funz_dens_prob_cong_var_indip}
@@ -668,7 +668,7 @@ La \keyword[covarianza]{covarianza} $c_{XY}$ tra le variabili aleatorie $X$ e $Y
 \begin{equation}\label{eq:v_a_covarianza}
 c_{XY}=\E{(X-\mu_X)(Y-\mu_Y)}=\intinf{\intinf{(x-\mu_X)(y-\mu_Y)f_{XY}(x,y)}{x}}{y}
 \end{equation}
-Essendo l'aspettazione un operatore lineare si ha che 
+Essendo l'aspettazione un operatore lineare si ha che
 \begin{equation}\begin{split}
 c_{XY}&=\E{(X-\mu_X)(Y-\mu_Y)}=\E{x y-\mu_X\cdot y-\mu_Y\cdot x+\mu_X\mu_y}=\\
 &=\E{x y}-\mu_X \E{y}-\mu_Y \E{x}+\mu_X\mu_Y=\\&=r_{XY}-\mu_X\mu_Y\end{split}\end{equation}
@@ -699,7 +699,7 @@ ovvero come ci si attendeva $Y$ è completamente correlata ad $X$ linearmente. I
 \begin{esempio}
 Si suppone di avere una variabile aleatoria $Y=a X+b+Z$, un modello di dipendenza lineare dubbia per la presenza della v.a. $Z$. La soluzione lineare si ottiene imponendo che la media $\mu_Z=0$ e la varianza $\sigma^2_Z$ sia minima. Cerco $a,b$ tali da soddisfare le condizioni.
 Ho che $\mu_Y=a\mu_X+b+\mu_Z$ quindi \[\mu_Z=\mu_Y-a\mu_X-b=0\iff b=\mu_Y-a\mu_X\]
-e la varianza 
+e la varianza
 \[\begin{split}\sigma^2_Z&=\E{Z^2}=\E{(Y-a X-b)^2}=\E{(Y-a X-\mu_X+a\mu_Y)^2}=\\&=\E{(Y-\mu_Y)^2}+a^2 \E{(X-\mu_X)^2}-2a \E{(Y-\mu_Y)(X-\mu_X)}=\sigma^2_Y+a^2\sigma^2_X-2a c_{XY}\end{split}\]
 il minimo si ha annullando la derivata rispetto al parametro $a$
 \[\deriv{\sigma^2_Z}{a}=2a\sigma^2_X-2c_{XY}=0 \implies a=\frac{c_{XY}}{\sigma^2_X}\]
@@ -723,16 +723,16 @@ Per $X$ e $Y$ variabili aleatorie indipendenti la correlazione $r_{XY}=\E{X\cdot
 \begin{esempio}
 Si hanno due variabili aleatorie indipendenti con distribuzione di probabilità gaussiana normale a media nulla e varianza $\sigma^2$: $X,Y\sim\mathcal{N}(0,\sigma^2)$
 Si vuole trovare la media e la varianza della variabile aleatoria $Z=\sqrt{X^2+Y^2}$ che ha funzione densità di probabilità congiunta $f_{XY}(x,y)=f_X(x)\cdot f_Y(y)$ e funzione di distribuzione di probabilità $F_Z(z)=P(Z\leq z)=\iint\limits_{R(z)}{f_{XY}(x,y)\,\diff x\,\diff y}$
-con $R(z)=\{(x,y):\sqrt{x^2+y^2}\leq z\}$ il cerchio di centro nell'origine e raggio $z$. 
+con $R(z)=\{(x,y):\sqrt{x^2+y^2}\leq z\}$ il cerchio di centro nell'origine e raggio $z$.
 
 Si	 passa a coordinate polari per semplificare l'integrale doppio, cambiando le variabili $(x,y)$ in $\rho,\theta$, con la trasformazione \[\begin{cases}
 x = \rho\cos{\theta}\\y = \rho\sen{\theta}
 \end{cases}\]
 lo jacobiano della trasformazione è il determinante della matrice \[\abs{J}=\begin{array}{|cc|}
-\pderiv{x}{\rho}&\pderiv{x}{\theta}  \\ 
+\pderiv{x}{\rho}&\pderiv{x}{\theta}  \\
 \pderiv{y}{\rho}&\pderiv{y}{\theta}  \\ \end{array}=\begin{array}{|cc|}
-\cos{\theta}&-\rho\sen{\theta}  \\ 
-\sen{\theta}&\rho\cos{\theta}  \\ 
+\cos{\theta}&-\rho\sen{\theta}  \\
+\sen{\theta}&\rho\cos{\theta}  \\
 \end{array}=\rho\Cos^2\theta+\rho\Sen^2\theta=\rho\]
 
 La funzione distribuzione di probabilità in coordinate polari
@@ -810,7 +810,7 @@ I valori sulla diagonale di $R_\vect{X}$ sono i valori quadratici medii delle si
 
 I valori sulla diagonale di $C_\vect{X}$ sono i valori delle varianze delle singole variabili aleatorie $X_i$ (eq.\ref{eq:v_a_varianza}): $c_{X_i,X_i}=\E{(X_i-\mu_{X_i})^2}=\sigma^2_{X_i}$.
 
-Si ottiene un vettore aleatorio $\vect{Y}=g(\vect{X})$ applicando una funzione vettoriale $g(\cdot,\cdot,\dots,\cdot)$ che trasforma le $n$ variabili aleatorie di $\vect{X}$. Data la funzione densità di probabilità congiunta $f_\vect{X}$ si può calcolare con il teorema fondamentale generalizzato la 
+Si ottiene un vettore aleatorio $\vect{Y}=g(\vect{X})$ applicando una funzione vettoriale $g(\cdot,\cdot,\dots,\cdot)$ che trasforma le $n$ variabili aleatorie di $\vect{X}$. Data la funzione densità di probabilità congiunta $f_\vect{X}$ si può calcolare con il teorema fondamentale generalizzato la
 \begin{equation}
 f_\vect{Y}(\bar{y})=\sum_{i}\restrict{\frac{f_\vect{X}(x)}{\abs{\det J(\bar{x})}}}{x=\bar{x}_i}
 \end{equation}
@@ -845,7 +845,7 @@ Se le variabili aleatorie sono indipendenti tra loro la funzione densità di pro
 f_\vect{X}(\bar{x})=\prod_{i=1}^{n}f_{X_i}(x_i)
 \end{equation}
 dove le densità di probabilità delle gaussiane
-$f_{X_i}(x)=\frac{1}{\sqrt{2\pi\sigma^2_{X_i}}}\;\e{-\tfrac{(x-\mu_{X_i})^2}{2\sigma^2_{X_i}}}$ quindi 
+$f_{X_i}(x)=\frac{1}{\sqrt{2\pi\sigma^2_{X_i}}}\;\e{-\tfrac{(x-\mu_{X_i})^2}{2\sigma^2_{X_i}}}$ quindi
 \[f_\vect{X}(\bar{x})=\frac{1}{\sqrt{(2\pi)^n\prod_{i=1}^{n}\sigma^2_{X_i}}}\;\e{-\frac{1}{2}\sum_{i=1}^{n}\tfrac{(x-\mu_{X_i})^2}{2\sigma^2_{X_i}}}\]
 che può essere riscritta tenendo conto del vettore dei valori medii $\mu_\vect{X}$ e che per l'indipendenza delle variabili il determinante della matrice di covarianza $\det C_\vect{X}=\prod_{i=1}^{n}c_{X_i}$
 \[f_\vect{X}(\bar{x})=\frac{1}{\sqrt{(2\pi)^n\det\abs{ C_\vect{X}}}}\;\e{-\frac{1}{2}\trasp{(\vect{x}-\mu_\vect{X})}C^{-1}_\vect{X}(\vect{x}-\mu_\vect{X})}\]

@@ -80,14 +80,14 @@ Nella modulazione angolare si riceve pertanto la somma dei segnali esprimibili i
 \section{Spettro di una sinusoide modulata angolarmente}
 La non linearità della modulazione angolare non consente il calcolo dello spettro della portante modulata per un segnale qualsiasi. La banda del segnale modulato angolarmente in frequenza si può determinare nei due casi:
 \begin{description}
-\item[I caso] \[\abs{\phi(t)}\ll 1\] 
+\item[I caso] \[\abs{\phi(t)}\ll 1\]
 Il segnale modulante $A\cos{\omega_0 t+\phi(t)}$ modulato angolarmente per piccolo indice di modulazione tende ad un segnale trasmesso modulato in ampiezza con portante trasmessa
 \[s_T(t)=\frac{A}{2}\cos{\omega_0 t}\cos{\phi(t)}-\frac{A}{2}\sen{\omega_0 t}\sen{\phi(t)}\cong \underbrace{\frac{A}{2}\cos{\omega_0 t}}_{\parbox[c]{2cm}{portante\\trasmessa}}-\underbrace{\phi(t)\frac{A}{2}\sen{\omega_0 t}}_{\parbox[c]{3cm}{segnale modulato\\in ampiezza}}\]
 La banda minima occupata da una sinusoide modulata angolarmente non può essere inferiore alla modulazione di ampiezza in doppia banda laterale \ac{DSB-SC}.
 
 La potenza media del segnale portante $A\cos{\omega_0 t}$ è $\frac{A^2}{2}$ essendo \[\frac{1}{T}\intd{0}{T}{[A\cos{\omega_0 t}]^2}{t}=\frac{A^2}{2}\bound{0}{T}{\sen[2]{\omega_0 t}}\]
 
-\item[II caso] \[\abs{\phi(t)}\nless 1\] 
+\item[II caso] \[\abs{\phi(t)}\nless 1\]
 Non è calcolabile lo spettro per un qualunque segnale modulante non potendosi semplificare $\sen{\phi(t)}\cong\phi(t)$ e $\cos{\phi(t)}\cong 1$
 
 Nel caso di segnale modulante di natura sinusoidale con pulsazione $\omega_s$ con battimenti con la portante di pulsazione $\omega_0$:
@@ -143,7 +143,7 @@ N(t)=\rho(t)\cos{\omega_0 t+\phi_N(t)}\quad\begin{cases}
 
 Essendo le componenti del rumore $n_I$ e $n_Q$ due gaussiane ho che l'ampiezza del rumore $\rho(t)$ è descritto da una variabile aleatoria di Rayleigh.
 Si ha inoltre che il rumore sulla fase $\phi_N(t)$ è una variabile aleatoria con distribuzione continua uniforme costante in $[0,2\pi]$.
- 
+
 Il segnale ricevuto si può esprimere pertanto come somma dei contributi
 \begin{equation}
 s_R(t)=\Re{A\e{\jmath\omega_0 t}\e{\jmath\phi (t)}+\rho(t)\e{\jmath\phi_N(t)}\e{\jmath\omega_0 t}}=\Re{R\e{\jmath(\omega_0 t+\phi (t)+\beta(t))}}

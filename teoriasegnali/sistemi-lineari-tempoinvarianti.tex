@@ -178,7 +178,7 @@ si calcola sulla potenza del segnale, ovvero alla sua risposta in ampiezza al qu
 \[\abs{H(f)}^2=\frac{1}{1+(2\pi f R C)^2}\]
 calcolata rispetto al riferimento $f_0=0$ per cui $\abs{H(f_0)}^2=1$
 
-Alla frequenza di taglio $f_T=\frac{1}{2\pi R C}$ si dimezza il modulo quadro ovvero si ha una attenuazione pari a 
+Alla frequenza di taglio $f_T=\frac{1}{2\pi R C}$ si dimezza il modulo quadro ovvero si ha una attenuazione pari a
 \[\abs{H\left(f_T\right)}_\text{dB}=10\Log\frac{1}{2}=-3\text{dB}\]
 
 \begin{figure}[!ht]
@@ -210,7 +210,7 @@ R_x(\tau)=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{\tau}
 \[R_x(0)=\intinf{x^2(t)}{t}=E_x\]
 \item La funzione di autocorrelazione è una funzione pari
 \[R_x(\tau)=R_\conj{x}(-\tau)\]
-\emph{Dim.} Facilmente dimostrabile in frequenza 
+\emph{Dim.} Facilmente dimostrabile in frequenza
 \[\begin{split}R_x(\tau)&=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{\tau}\\
 R_x(-\tau)&=\intinf{\abs{X(f)}^2\e{-\imath 2\pi f\tau}}{\tau}\\
 R_\conj{x}(-\tau)&=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{\tau}\end{split}\]
@@ -231,12 +231,12 @@ Due segnali si dicono \keyword[segnali!ortogonali]{ortogonali} se sono incorrela
 
 \section{Autocorrelazione per segnali a potenza finita}
 Per i segnali a potenza finita si è definita la potenza (eq.\ref{eq:segnale_potenza}) come \[P_s=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{\abs{s(t)}^2}{t}}\]
-Tale quantità si può definire anche nel dominio delle frequenze, come integrale della densità spettrale di potenza del segnale. Estraendo una limitazione del segnale $s_T(t)=s(t)\rect{\frac{t}{2T}}$ ristretta all'intervallo $[-T,T]$ essa ha sicuramente energia finita, pertanto se ne potrà esprimere la trasformata di Fourier, $s_T(t)\overset{\Fourier}{\to}S_T(f)$. Per il teorema di Parseval (eq.\ref{eq:parseval}) l'energia è distribuita nello spettro 
+Tale quantità si può definire anche nel dominio delle frequenze, come integrale della densità spettrale di potenza del segnale. Estraendo una limitazione del segnale $s_T(t)=s(t)\rect{\frac{t}{2T}}$ ristretta all'intervallo $[-T,T]$ essa ha sicuramente energia finita, pertanto se ne potrà esprimere la trasformata di Fourier, $s_T(t)\overset{\Fourier}{\to}S_T(f)$. Per il teorema di Parseval (eq.\ref{eq:parseval}) l'energia è distribuita nello spettro
 \[E_{s_T}=\intinf{\abs{s_T(t)}^2}{t}=\intinf{\abs{S_T(f)}^2}{f}\]
 
 Si può quindi definire la potenza come limite dell'energia della limitazione $s_T(t)$ rapportata al periodo, al tendere dell'intervallo della limitazione all'infinito
 \[P_s=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{\abs{s_T(t)}^2}{t}}=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intinf{\abs{S_T(f)}^2}{f}}\]
-Scambiando il limite con l'integrale si ha 
+Scambiando il limite con l'integrale si ha
 \[P_s=\intinf{\lim\limits_{T\to+\infty}\frac{1}{2T}\abs{S_T(f)}^2}{f}\]
 la funzione integranda che si definisce \keyword[densità spettrale di potenza]{densità spettrale di potenza} o \textsc{spettro di potenza}
 \begin{equation}
@@ -245,7 +245,7 @@ S_P(f)=\lim\limits_{T\to+\infty}{\frac{1}{2T}\abs{S_T(f)}^2}=\lim\limits_{T\to+\
 La densità spettrale di potenza gode di proprietà simili a quelle della densità spettrale di energia, ovvero è una funzione pari per segnali reali, è sempre non negativa e il suo integrale su tutte le frequenze restituisce la potenza complessiva del segnale.
 Inoltre come per i segnali ad energia finita, il passaggio di un segnale a potenza finita attraverso un sistema lineare tempo invariante restituisce in uscita un segnale sempre a potenza finita, la cui densità spettrale risulterà $S_{P_y}(f)=S_{P_x}(f)\cdot\abs{H(f)}^2$
 
-Antitrasformando la funzione densità spettrale di potenza si ottiene 
+Antitrasformando la funzione densità spettrale di potenza si ottiene
 \[\Fourier^{-1}\left\lbrace{S_P(f)}\right\rbrace=\lim\limits_{T\to+\infty}{\frac{1}{2T}\;s_T(\tau)\ast s_\conj{T}(-\tau)}=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{s_T(t)s_\conj{T}(t-\tau)}{t}}\]
 che è la funzione di \textsc{autocorrelazione} per segnali di potenza finita
 \begin{equation}R_s(\tau)=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{s(t)\conj{s}(t-\tau)}{t}}\end{equation}

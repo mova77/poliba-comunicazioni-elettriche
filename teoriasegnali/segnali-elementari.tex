@@ -133,13 +133,13 @@ Il segnale rettangolare $\frac{1}{T} \rect{\frac{1}{T}}$ di base T e altezza 1/T
 \begin{align*}
  s(t)\impulse(t-\tau)=s(\tau)\impulse(t-\tau) &\implies \\ & \intinf{s(t)\impulse(t-\tau)}{t} =\intinf{s(\tau)\impulse(t-\tau)}{t} = s(\tau)\intinf{\impulse(t-\tau)}{t} = s(\tau)
  \end{align*}
- 
+
 \item rappresentazione di un segnale come somma di infiniti impulsi
 \[s(t)=\intinf{s(\tau)\impulse(t-\tau)}{\tau}=s(t)\ast\impulse(t)\]
 \item derivata dell'impulso (\textsc{doppietto}) $\impulse'(t)$
 \[ \intinf{s(t)\impulse'(t-\tau)}{t}=-s'(\tau) \]
 \begin{proof}[Dim.]
-applico l'integrazione per parti $\int{u \diff v}=u v-\int{v\diff u}$ con $u=s(t) ,\, \diff u=s'(t)\diff t ,\, \diff v=\impulse'(t-\tau)\diff t ,\, v=\impulse(t-\tau)$  a 
+applico l'integrazione per parti $\int{u \diff v}=u v-\int{v\diff u}$ con $u=s(t) ,\, \diff u=s'(t)\diff t ,\, \diff v=\impulse'(t-\tau)\diff t ,\, v=\impulse(t-\tau)$  a
 \[\intinf{s(t)\impulse'(t-\tau)}{t}= \restrict{s(t)\impulse(t-\tau)}{-\infty}^{+\infty} -\intinf{\impulse(t-\tau)s'(t)}{t}=-s'(\tau)  \]
 \end{proof}
 \item impulso è derivata del gradino
@@ -157,7 +157,7 @@ applicando le sostituzioni $\begin{cases}x=a t+b \\ t=\frac{x-b}{a}\end{cases}$
 Il segnale sinusoidale di ampiezza $A$, pulsazione angolare $\omega=2\pi f$, periodo $T=\frac{2\pi}{\omega}$, frequenza $f=\frac{1}{T}$, fase iniziale $\phi$
 \[s(t)=A\sen{2\pi f t+\phi} \]
 
-Potenza media 
+Potenza media
 \[P_m=\frac{1}{T}\intd{-T/2}{T/2}{A^2\Sen^2(2\pi f t+\phi)}{t}= \frac{A^2}{2}\]
 
 infatti essendo $\Sen^2(x)=\frac{1}{2}-\frac{1}{2}\cos{2x}$

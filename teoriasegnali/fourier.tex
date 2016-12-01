@@ -13,7 +13,7 @@ Le sinusoidi pesate sono espresse in forma di esponenziali complessi ricordando 
 \begin{equation}\e{\imath x}=\cos{x}+\imath\sen{x}\qquad\cos{x}=\frac{\e{\imath x}+\e{-\imath x}}{2}\qquad\sen{x}=\frac{\e{\imath x}-\e{-\imath x}}{2\imath}\end{equation}
 I coefficienti $c_k$ costituiscono il peso o contributo della sinusoide a frequenza $f_k$ e si calcolano come
 \begin{equation}\label{eq:serie_fourier_coef}\index{serie!di Fourier!coefficienti}
-c_k=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\e{-\imath 2\pi k f_0 t}}{t} 
+c_k=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\e{-\imath 2\pi k f_0 t}}{t}
 \end{equation}
 Si può verificare sostituendo $s(t)$
 \[c_k=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{ \left[\sum_{n=-\infty}^{+\infty} c_n \e{\imath 2\pi n f_0 t}\right] \e{-\imath 2\pi k f_0 t}}{t} = \frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{ \sum_{n=-\infty}^{+\infty} c_n \e{\imath 2\pi (n-k) f_0 t} }{t} \]
@@ -22,7 +22,7 @@ ipotizzando la convergenza della serie $s(t)$ ed essendo gli operatori $\sum$ e 
 =\frac{1}{T}\sum_{n=-\infty}^{+\infty} c_n \bound{-\frac{T}{2}}{\frac{T}{2}}{\frac{\e{\imath 2\pi(n-k)\frac{1}{T}t}}{\imath 2\pi(n-k)\frac{1}{T} }}\\
 =&\frac{1}{T}\sum_{n=-\infty}^{+\infty} c_n T \frac{\e{\imath \pi(n-k)}-\e{-\imath\pi(n-k)}}{2\imath\pi(n-k)}
 =\sum_{n=-\infty}^{+\infty} c_n \frac{\sen{\pi(n-k)}}{\pi(n-k)}
-=\sum_{n=-\infty}^{+\infty} c_n \sinc{n-k} = c_k 
+=\sum_{n=-\infty}^{+\infty} c_n \sinc{n-k} = c_k
 \end{split}\]
 essendo definito il $\sinc{x}=\frac{\sen{\pi x}}{\pi x}$, si ha che sinusoidi a frequenza diversa risultano ortogonali tra loro ovvero $\sinc{n-k}=\begin{cases}
 1 & n=k \\ 0 & n\neq k\end{cases}$, l'integrale sul periodo del prodotto da contributo nullo e la sommatoria per $n$ si riduce al solo contributo per $n=k$.
@@ -48,7 +48,7 @@ Lo sviluppo in serie di Fourier può essere espresso come serie somma di seni e 
 \[\begin{split} s(t)&=\sum_{k=0}^{+\infty}\left[ a_k \sen{2\pi\frac{k}{T}t} + b_k \cos{2\pi\frac{k}{T}t}\right] \\
 &=\sum_{k=0}^{+\infty}A_k\left[\sen{2\pi\frac{k}{T}t+\phi_k}\right] =\sum_{k=0}^{+\infty}A_k\left[\sen{2\pi\frac{k}{T}t}\Cos\phi_k +\cos{2\pi\frac{k}{T}t}\Sen\phi_k \right]
 \end{split}\]
-dove $a_k,b_k \in\R,\,\begin{cases}a_k=A_k\Cos\phi_k \\b_k=A_k\Sen\phi_k \end{cases}\implies\begin{cases}A_k^2=a_k^2+b_k^2\\ \tg\phi_k=\frac{b_k}{a_k} \end{cases}\implies\begin{cases}A_k=\sqrt{a_k^2+b_k^2}\\ \phi_k=\arctg\frac{b_k}{a_k} (+\pi\text{ se }a_k<0) \end{cases}$ 
+dove $a_k,b_k \in\R,\,\begin{cases}a_k=A_k\Cos\phi_k \\b_k=A_k\Sen\phi_k \end{cases}\implies\begin{cases}A_k^2=a_k^2+b_k^2\\ \tg\phi_k=\frac{b_k}{a_k} \end{cases}\implies\begin{cases}A_k=\sqrt{a_k^2+b_k^2}\\ \phi_k=\arctg\frac{b_k}{a_k} (+\pi\text{ se }a_k<0) \end{cases}$
 
 I coefficienti $a_k$ e $b_k$ si calcolano come
 \[a_k=\frac{2}{T}\intd{-\frac{T}{2}}{+\frac{T}{2}}{s(t)\sen{2\pi\frac{k}{T}t}}{t} \qquad b_k=\frac{2}{T}\intd{-\frac{T}{2}}{+\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}\]
@@ -58,7 +58,7 @@ che per $k=0$ si semplificano nei coefficienti $a_0=0 \quad b_0=\frac{1}{T}\intd
 Si dimostra che le serie di Fourier espresse come somma di esponenziali complessi e come somma di sinusoidi sono equivalenti.
 
 \begin{proof}[Dim.]
-\[s(t)=\sum_{k=-\infty}^{+\infty} c_k \e{\imath 2\pi\frac{k}{T}t} = \sum_{k=0}^{+\infty}\left[ a_k \sen{2\pi\frac{k}{T}t} + b_k \cos{2\pi\frac{k}{T}t}\right] 
+\[s(t)=\sum_{k=-\infty}^{+\infty} c_k \e{\imath 2\pi\frac{k}{T}t} = \sum_{k=0}^{+\infty}\left[ a_k \sen{2\pi\frac{k}{T}t} + b_k \cos{2\pi\frac{k}{T}t}\right]
 \]
 
 Si vede che $\qquad b_0=c_0 \qquad b_k=c_k+c_{-k} \qquad a_k=\imath (c_k-c_{-k})$
@@ -78,13 +78,13 @@ Infatti si può scrivere
 \end{nota}
 
 \section{Simmetrie coefficienti}
-Per un segnale reale $s(t)\in\R$ la parte immaginaria deve essere nulla ovvero i termini $c_k=\Re c_k + \imath \Im c_k$ devono essere tali che $c_k \e{\imath 2\pi\frac{k}{T}t}+ c_{-k}\e{-\imath 2\pi\frac{k}{T}t}\in\R,\forall k$ 
+Per un segnale reale $s(t)\in\R$ la parte immaginaria deve essere nulla ovvero i termini $c_k=\Re c_k + \imath \Im c_k$ devono essere tali che $c_k \e{\imath 2\pi\frac{k}{T}t}+ c_{-k}\e{-\imath 2\pi\frac{k}{T}t}\in\R,\forall k$
 \[c_k+c_{-k}\in\R \implies \Im c_k+\Im c_{-k}=0 \implies \Im c_k=-\Im c_{-k}\]
 \[c_k-c_{-k} \text{ immaginario puro } \implies \Re c_k -\Re c_{-k}=0 \implies \Re c_k=\Re c_{-k} \]
 
 Per un segnale reale quindi i coefficienti sono complessi e coniugati $c_k=\conj{c_{-k}}$ (\textsc{simmetria Hermitiana})
 
-Per un segnale reale e pari si ha $a_k=0\,\forall k \implies c_k=c_{-k}$ 
+Per un segnale reale e pari si ha $a_k=0\,\forall k \implies c_k=c_{-k}$
 
 Per un segnale reale e dispari si ha $b_k=0\,\forall k \implies c_k=-c_{-k}$
 
@@ -106,9 +106,9 @@ Il segnale è reale pari ($c_k=c_{-k}$), i coefficienti della serie di Fourier s
 \[\begin{split}c_k&=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\e{-\imath 2\pi\frac{k}{T}t}}{t}
 =\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\e{-\imath 2\pi\frac{k}{T}t}}{t}
 =\frac{1}{T}\bound{-\frac{\tau}{2}}{\frac{\tau}{2}}{ \frac{\e{-\imath 2\pi\frac{k}{T}t}}{-\imath 2\pi\frac{k}{T}}}=\\
-&=\frac{1}{\pi k} \frac{-\e{-\imath 2\pi\frac{k}{T}\frac{\tau}{2}}+\e{\imath 2\pi\frac{k}{T}\frac{\tau}{2}}}{\imath 2} 
+&=\frac{1}{\pi k} \frac{-\e{-\imath 2\pi\frac{k}{T}\frac{\tau}{2}}+\e{\imath 2\pi\frac{k}{T}\frac{\tau}{2}}}{\imath 2}
 =\frac{\sen{\pi \tau \frac{k}{T}}}{\pi k}
-=\frac{\tau}{T}\frac{\sen{\pi k \frac{\tau}{T}}}{\pi k \frac{\tau}{T}} 
+=\frac{\tau}{T}\frac{\sen{\pi k \frac{\tau}{T}}}{\pi k \frac{\tau}{T}}
 =\frac{\tau}{T}\sinc{k \frac{\tau}{T}}
 \end{split}\]
 
@@ -127,7 +127,7 @@ Il segnale è reale pari ($c_k=c_{-k}$), i coefficienti della serie di Fourier s
 
 \section{Proprietà della serie di Fourier}
 \subsection{Linearità}L'integrale è un operatore lineare pertanto una combinazione lineare di segnali trasforma linearmente i coefficienti della serie
-\[ y(t)=a s_1(t)+ b s_2(t)\]  
+\[ y(t)=a s_1(t)+ b s_2(t)\]
 \[ c_{y k}= a c_{1 k} + b c_{2 k} \]
 
 \subsection{Traslazione nel tempo}
@@ -205,7 +205,7 @@ Il segnale aperiodico di durata limitata $\tau$ ha trasformata di Fourier
 \[\begin{split}S(f)&=\intinf{s(t)\e{-\imath 2\pi f t}}{t}
 =\intd{-\frac{\tau}{2}}{\frac{\tau}{2}}{1\cdot\e{-\imath 2\pi f t}}{t}
 =\bound{-\frac{\tau}{2}}{\frac{\tau}{2}}{\frac{\e{-\imath 2\pi f t}}{-\imath 2\pi f}}=\\
-&=\frac{-\e{-\imath 2\pi f\frac{\tau}{2}}+\e{\imath 2\pi f\frac{\tau}{2}}}{\imath 2\pi f} 
+&=\frac{-\e{-\imath 2\pi f\frac{\tau}{2}}+\e{\imath 2\pi f\frac{\tau}{2}}}{\imath 2\pi f}
 =\tau\frac{\sen{\pi f\tau}}{\pi f\tau}
 =\tau\sinc{f\tau}
 \end{split}\]
@@ -264,7 +264,7 @@ La trasformata di Fourier di un segnale compresso o dilatato nella scala dei tem
 \end{proof}
 
 \subsection{Derivazione}
-La trasformata di Fourier della derivata di un segnale 
+La trasformata di Fourier della derivata di un segnale
 \begin{equation}
 \fourier{s'(t)}=\imath 2\pi f\,S(f)
 \end{equation}
@@ -282,7 +282,7 @@ La trasformata di Fourier del prodotto di convoluzione di due segnali
 \label{eq:trasf_Fourier_conv}
 \end{equation}
 \begin{proof}[Dim.] Applicando la trasformata di Fourier al prodotto di convoluzione e l'eq.\ref{eq:trasf_Fourier_trasl}
-\[\begin{split}& \intinf{ \left[\intinf{x(\tau)h(t-\tau)}{\tau}\right] \e{-\imath 2\pi f t}}{t} = 
+\[\begin{split}& \intinf{ \left[\intinf{x(\tau)h(t-\tau)}{\tau}\right] \e{-\imath 2\pi f t}}{t} =
 \intinf{ x(\tau) \left[\intinf{h(t-\tau)\e{-\imath 2\pi f t}}{t}\right]}{\tau}=\\
 =& \intinf{ x(\tau) H(f)\e{-\imath 2\pi f \tau}}{\tau} = X(f) H(f) \end{split}\]
 \end{proof}
@@ -364,7 +364,7 @@ z(t) = x(t) y(t) &\overset{\Fourier}{\rightarrow} Z(f) = X(f)\ast Y(f)
 \end{proof}
 
 \begin{nota}
-Dato un segnale generico è possibile estrarre una finestra di durata limitata moltiplicando il segnale per un $\Rect$. Per la proprietà della trasformata del prodotto risulta che un segnale di durata limitata ha sempre banda a tutte le frequenze perché il $\Rect$ ha spettro infinito. 
+Dato un segnale generico è possibile estrarre una finestra di durata limitata moltiplicando il segnale per un $\Rect$. Per la proprietà della trasformata del prodotto risulta che un segnale di durata limitata ha sempre banda a tutte le frequenze perché il $\Rect$ ha spettro infinito.
 \end{nota}
 
 \subsection{Teorema di Parseval}
@@ -394,7 +394,7 @@ Da questo risultato per la funzione generalizzata e per il teorema di dualità �
 
 \subsection{Trasformata funzione generalizzata $\step(t)$}
 La trasformata di Fourier della funzione gradino unitario ideale $\step(t)$ non esiste. Bisogna far ricorso alla trasformata con le funzioni generalizzate, definendo il gradino come
-\[\step(t)=\frac{1}{2}+\frac{1}{2}\sgn(t)\] 
+\[\step(t)=\frac{1}{2}+\frac{1}{2}\sgn(t)\]
 \begin{equation}
 \fourier{\step(t)}=\frac{1}{2}\delta(f)+\frac{1}{\imath 2\pi f}
 \end{equation}
@@ -413,16 +413,16 @@ La trasformata della funzione $\sgn(t)$ si ottiene per dualità della trasformat
 \[\begin{split}&\fourier{\frac{1}{t}}=\intinf{\frac{1}{t}\e{-\imath 2\pi f t}}{t}= \underbrace{\intinf{\frac{1}{t}\cos{2\pi f t}}{t}}_{\stackrel{=0}{1/t \text{ dispari}}} -\imath\intinf{\frac{1}{t}=\sen{2\pi f t}}{t}=\\
 &=-\imath 2\pi f\intinf{\frac{\sen{2\pi f t}}{2\pi f t}}{t}=-\imath 2\pi f\intinf{\sinc{2 f t}}{t}= -\imath\frac{2\pi f}{2\abs{f}} = -\imath\pi\sgn(f)
 \end{split} \]
-L'integrale nel tempo da $-\infty$ a $+\infty$ di un segnale è pari alla trasformata del segnale calcolata per $f=0$. La trasformata del $\sinc{t}\overset{\Fourier}{\to}\rect{f}$ per la prop. di dualità, la trasformata di $\sinc{2\alpha t}\overset{\Fourier}{\to}\frac{1}{2\abs{\alpha}}\rect{\frac{f}{2\alpha}}$ per la prop. di scala, calcolata per $f=0$ il $\rect{0}=1$, da cui 
+L'integrale nel tempo da $-\infty$ a $+\infty$ di un segnale è pari alla trasformata del segnale calcolata per $f=0$. La trasformata del $\sinc{t}\overset{\Fourier}{\to}\rect{f}$ per la prop. di dualità, la trasformata di $\sinc{2\alpha t}\overset{\Fourier}{\to}\frac{1}{2\abs{\alpha}}\rect{\frac{f}{2\alpha}}$ per la prop. di scala, calcolata per $f=0$ il $\rect{0}=1$, da cui
 $\intinf{\sinc{2 f t}}{t}=\frac{1}{2\abs{f}}$.
 
 Da $s(t)=\frac{1}{t}\overset{\Fourier}{\to} -\imath\pi\sgn(f)$, per dualità $S(t)\overset{\Fourier}{\to} s(-f)$ da cui \[\fourier{\sgn(t)}=\frac{1}{-\imath\pi}\frac{1}{-f}=\frac{1}{\imath\pi f}\] da cui il risultato per la trasformata generalizzata del gradino \[\fourier{\step(t)}]=\fourier{\frac{1}{2}+\frac{1}{2}\sgn(t)}=\frac{1}{2}\delta(f)+\frac{1}{\imath 2\pi f}\]
 \end{proof}
 
 \subsection{Teorema integrazione completo}\index{Teorema!integrazione completo}
-Per un segnale definito come integrale di convoluzione con un gradino 
-\[y(t)=\intd{-\infty}{t}{x(\tau)}{\tau}=\intinf{x(\tau)\step(t-\tau)}{\tau}=x(t)\ast\step(t)\] 
-si può determinare la trasformata generalizzata 
+Per un segnale definito come integrale di convoluzione con un gradino
+\[y(t)=\intd{-\infty}{t}{x(\tau)}{\tau}=\intinf{x(\tau)\step(t-\tau)}{\tau}=x(t)\ast\step(t)\]
+si può determinare la trasformata generalizzata
 \begin{equation}
 Y(f)=X(f) U(f)=\frac{1}{2} X(0) \delta(f) + \frac{X(f)}{\imath 2\pi f}
 \end{equation}
@@ -465,7 +465,7 @@ Si ha infatti \[\fourier{s(t)\cos{2\pi f_0 t}}=S(f)\ast\frac{1}{2}\left[\delta(f
 \end{figure}
 
 \subsection{Trasformata segnali periodici}
-Un segnale periodico $s(t)$ è la somma di infinite repliche di un segnale ristretto $s_T(t)$ ad un periodo $\left[-\frac{T}{2},\frac{T}{2}\right]$ e per la definizione di serie di Fourier somma di esponenziali complessi pesati da coefficienti 
+Un segnale periodico $s(t)$ è la somma di infinite repliche di un segnale ristretto $s_T(t)$ ad un periodo $\left[-\frac{T}{2},\frac{T}{2}\right]$ e per la definizione di serie di Fourier somma di esponenziali complessi pesati da coefficienti
 \begin{equation}
 s(t)=\sum_{n=-\infty}^{+\infty}{s_T(t-n T)}=\sum_{k=-\infty}^{+\infty}{c_k\e{\imath 2\pi\frac{k}{T}t}}
 \end{equation}
@@ -492,10 +492,10 @@ Esempio importante per digitalizzazione e campionamento (par.\ref{sec:campioname
 \subfloat[][$s(t)$]{\begin{tikzpicture}
 	\draw [-latex] (-4,0)--(4,0);
 	\draw [-latex] (0,0)--(0,2);
-	\foreach \i in {-3,...,3} 
-		\draw [very thick,-latex] (\i,0)--(\i,1); 
-	\foreach \i in {-3,...,3} 
-		\draw (\i,0)--(\i,-1mm); 
+	\foreach \i in {-3,...,3}
+		\draw [very thick,-latex] (\i,0)--(\i,1);
+	\foreach \i in {-3,...,3}
+		\draw (\i,0)--(\i,-1mm);
 	\node at(-3,0) [below] {$-3T$};
 	\node at(-2,0) [below] {$-2T$};
 	\node at(-1,0) [below] {$-T$};
@@ -507,8 +507,8 @@ Esempio importante per digitalizzazione e campionamento (par.\ref{sec:campioname
 }\qquad\subfloat[][$S(f)$]{\begin{tikzpicture}
 \draw [-latex] (-3,0)--(3,0);
 \draw [-latex] (0,0)--(0,2);
-\foreach \i in {-5,...,-1} \draw [very thick,-latex] (\i/2,0)--(\i/2,1); 
-\foreach \i in {1,...,5} \draw [very thick,-latex] (\i/2,0)--(\i/2,1); 
+\foreach \i in {-5,...,-1} \draw [very thick,-latex] (\i/2,0)--(\i/2,1);
+\foreach \i in {1,...,5} \draw [very thick,-latex] (\i/2,0)--(\i/2,1);
 \foreach \i in {-5,...,-1} \draw (\i/2,0)--(\i/2,-1mm);
 \foreach \i in {1,...,5} \draw (\i/2,0)--(\i/2,-1mm);
 \node at(-1.5,0) [below] {$-\frac{3}{T}$};
@@ -537,7 +537,7 @@ Determinare la serie di Fourier del segnale onda triangolare in figura
 
 \[s(t)=\sum_{k=-\infty}^{+\infty}{c_k \e{\imath 2\pi\frac{k}{T}t}} =c_0+\sum_{k=1}^{+\infty}{a_k\sen{2\pi\frac{k}{T}t}+b_k\cos{2\pi\frac{k}{T}t}}\]
 
-Il segnale ha media nulla $c_0=0$. Il segnale è pari $a_k=0$. 
+Il segnale ha media nulla $c_0=0$. Il segnale è pari $a_k=0$.
 \[\begin{split}b_k&=\frac{2}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}=\frac{4}{T}\intd{0}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}=\\
 &=\frac{4}{T}\intd{0}{\frac{T}{2}}{\left(A-\frac{2 A}{T/2}\right)\cos{2\pi\frac{k}{T}t}}{t}=\\
 &=\frac{4A}{T}\bound{0}{\frac{T}{2}}{\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}} -\frac{16A}{T^2}\intd{0}{\frac{T}{2}}{t\cos{2\pi\frac{k}{T}t}}{t}=\\

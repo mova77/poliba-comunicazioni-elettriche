@@ -1,5 +1,5 @@
 \chapter{Sistemi di trasmissione numerica}
-Un \keyword[sistema di trasmissione!numerico]{sistema di trasmissione numerico} può essere utilizzato per trasmettere qualunque tipo di informazione codificata in una stringa di simboli numerici binari $1$ e $0$. Tali simboli generati da una sorgente con una certa velocità o \keyword[bit rate]{bitrate} in $\si{\bit\per\second}$, vengono trasformati a livello fisico in forme d'onda analogiche, e, affette da disturbi e rumore del canale di trasmissione, giungono al ricevitore. 
+Un \keyword[sistema di trasmissione!numerico]{sistema di trasmissione numerico} può essere utilizzato per trasmettere qualunque tipo di informazione codificata in una stringa di simboli numerici binari $1$ e $0$. Tali simboli generati da una sorgente con una certa velocità o \keyword[bit rate]{bitrate} in $\si{\bit\per\second}$, vengono trasformati a livello fisico in forme d'onda analogiche, e, affette da disturbi e rumore del canale di trasmissione, giungono al ricevitore.
 
 Al ricevitore non interessa ricostruire fedelmente le forme d'onda trasmesse ma è necessario elaborare e campionare il segnale per decidere in ogni intervallo di tempo quale simbolo si è ricevuto e poter ricostruire, con una certa probabilità di errore, la sequenza numerica dei simboli trasmessi.
 
@@ -96,12 +96,12 @@ In alternativa si può ottimizzare la potenza trasmessa facendo in modo che quan
 
 
 \section{Pulse Amplitude Modulation}
-Le forme d'onda che rappresentano i simboli binari di una trasmissione numerica possono essere segnali impulsivi modulati in ampiezza, o \ac{PAM}, scelti con codifica ortogonale o antipodale 
+Le forme d'onda che rappresentano i simboli binari di una trasmissione numerica possono essere segnali impulsivi modulati in ampiezza, o \ac{PAM}, scelti con codifica ortogonale o antipodale
 \[\begin{cases}0 \to n(t) \\ 1 \to s_1(t)+n(t)\end{cases} \quad \begin{cases}0 \to s_0(t)+n(t) \\ 1 \to s_1(t)+n(t)\end{cases} \]
 
 Gli impulsi rettangolari sono la forma d'onda di base più semplice, con ampiezza costante di valore $s_0(t)=v_0$ o nullo per codificare uno “0” e valore $s_1(t)=v_1$ per codificare “1”.
 
-Il segnale ricevuto affetto da rumore viene campionato ad intervalli regolari. Il ricevitore opera il campionamento utilizzando un segnale di sincronismo che indichi gli istanti in cui il segnale all'uscita del filtro adattato ha valore massimo. 
+Il segnale ricevuto affetto da rumore viene campionato ad intervalli regolari. Il ricevitore opera il campionamento utilizzando un segnale di sincronismo che indichi gli istanti in cui il segnale all'uscita del filtro adattato ha valore massimo.
 
 \`{E} possibile utilizzare un circuito integratore con azzeramento al campionatore per determinare il valore del campione alla fine di ogni periodo (tratteggiato in fig.\ref{fig:modulazione_numerica_PAM_ortogonale}c e \ref{fig:modulazione_numerica_PAM_antipodale}c).
 
@@ -148,7 +148,7 @@ Il segnale ricevuto affetto da rumore viene campionato ad intervalli regolari. I
 	\label{fig:modulazione_numerica_PAM_antipodale}
 \end{figure}
 
-Le sequenze di simboli numerici “0” e “1” possono essere associati a treni di impulsi rettangolari. 
+Le sequenze di simboli numerici “0” e “1” possono essere associati a treni di impulsi rettangolari.
 
 Ogni simbolo binario viene codificato al trasmettitore con un impulso rettangolare $p_\text{O}(t)$ di durata $T$, che determina la frequenza di cifra $f_S=1/T$.
 
@@ -177,24 +177,25 @@ s_\text{B}(i T)=\sum_{k=-\infty}^{+\infty}{a_k\,p_\text{B}[(i-k)T]}=a_i\,p_\text
 in cui al valore del segnale in un istante $t=i T$ concorrono le forme d'onda relative a simboli successivi e precedenti, causando il fenomeno di \keyword{interferenza intersimbolica}.
 
 \section{Interferenza intersimbolica}
-Un sistema di trasmissione numerica deve utilizzare forme d'onda che non siano affette da \keyword{interferenza intersimbolica}\index{interferenza intersimbolica}, ovvero avere contributi indesiderati dalla trasmissione di simboli precedenti. 
+Un sistema di trasmissione numerica deve utilizzare forme d'onda che non siano affette da \keyword{interferenza intersimbolica}\index{interferenza intersimbolica}, ovvero avere contributi indesiderati dalla trasmissione di simboli precedenti.
 
-Essendo impredicibile la combinazione di simboli trasmessi è necessario scegliere forme d'onda che all'uscita del filtro di ricezione assumano il massimo dell'energia trasmessa per il simbolo trasmesso e che si annullino negli istanti di campionamento relativi agli altri simboli, ovvero forme d'onda a zeri equidistanti. 
+Essendo impredicibile la combinazione di simboli trasmessi è necessario scegliere forme d'onda che all'uscita del filtro di ricezione assumano il massimo dell'energia trasmessa per il simbolo trasmesso e che si annullino negli istanti di campionamento relativi agli altri simboli, ovvero forme d'onda a zeri equidistanti.
 
 Una funzione a zeri equidistanti a distanza $T$ ha lo spettro che periodicizzato a passo $1/T$ risulta in una costante. Un esempio di tale funzione è il $\sinc{t/T}$ avente spettro rettangolare. Nel tempo è una forma d'onda di durata infinita, che decade a zero lentamente come $1/t$.
 
 \begin{figure}[ht!]\centering
 \subfloat[Funzione impulsiva $\sinc{t/T}$]{%
-	\begin{tikzpicture}          
+	\begin{tikzpicture}
 	\begin{axis}[xlabel=$t$,ylabel=$p_\text{B}(t)$,xtick={1,2,3,4},xticklabels={$T$,$2T$,$3T$,$4T$},samples=300]
 	\addplot[black] {sinc(x,1)+sinc(x-1,1)-sinc(x-2,1)+sinc(x-3,1)};
 	\addplot[gray,dashed] {sinc(x,1)};
 	\addplot[gray,dashed] {sinc(x-1,1)};
 	\addplot[gray,dashed] {-sinc(x-2,1)};
-	\addplot[gray,dashed] {sinc(x-3,1)};	\end{axis}                   
+	\addplot[gray,dashed] {sinc(x-3,1)};
+	\end{axis}
 	\end{tikzpicture}}%
 \quad\subfloat[Errori di campionamento funzione $\sinc{\frac{i t+\Delta}{T}}$]{%
-	\begin{tikzpicture}          
+	\begin{tikzpicture}
 	\begin{axis}[xlabel=$t$,ylabel=$p_\text{B}(t)$,xtick={1,2,3,4},xticklabels={$T$,$2T$,$3T$,$4T$},samples=150]
 	\addplot[black] {sinc(x,1)+sinc(x-1,1)-sinc(x-2,1)+sinc(x-3,1)};
 	\addplot[blue,only marks,mark=*,samples at={0.0001,1.0001,2.0001,3.0001,4.0001}] {sinc(x,1)+sinc(x-1,1)-sinc(x-2,1)+sinc(x-3,1)};
@@ -212,8 +213,8 @@ A causa di errori nel passo di campionamento, ad esempio un ritardato sincronism
 
 Per ottenere la convergenza della serie nell'eq.~\ref{eq:interferenza_intersimbolica} è necessaria una funzione che decada nel tempo come $1/t^2$.
 
-\section{Forme d'onda di Nyquist} 
-Le \keyword{forme d'onda di Nyquist}\index{forme d'onda!di Nyquist} sono una famiglia di curve a zeri equidistanti con inviluppo che decade almeno come $1/t^2$. L'ampiezza nello spettro di frequenze varia gradualmente dal valore unitario al valore nullo, nella banda monolatera che si estende in proporzione al coefficiente di roll-off $\delta$ secondo la legge: 
+\section{Forme d'onda di Nyquist}
+Le \keyword{forme d'onda di Nyquist}\index{forme d'onda!di Nyquist} sono una famiglia di curve a zeri equidistanti con inviluppo che decade almeno come $1/t^2$. L'ampiezza nello spettro di frequenze varia gradualmente dal valore unitario al valore nullo, nella banda monolatera che si estende in proporzione al coefficiente di roll-off $\delta$ secondo la legge:
 \begin{equation}
 B=\frac{1+\delta}{2T}=(1+\delta)\frac{f_s}{2}
 \label{eq:banda_nyquist}
@@ -275,7 +276,7 @@ p(\epsilon|1_T)&=\intd{-\infty}{\frac{S-v_1}{\sigma_n}}{\frac{1}{\sqrt{2\pi}}\,\
 \end{split}
 \end{equation}
 
-Ponendo la soglia $s=\frac{v_0+v_1}{2}$ pari al valor medio delle tensioni corrispondenti ai picchi del segnale all'uscita dei filtri adattati si ha che le due probabilità condizionate sono 
+Ponendo la soglia $s=\frac{v_0+v_1}{2}$ pari al valor medio delle tensioni corrispondenti ai picchi del segnale all'uscita dei filtri adattati si ha che le due probabilità condizionate sono
 \begin{equation}p(\epsilon|0_\text{T})=p(\epsilon|1_\text{T})=\f{Q}{\frac{v_1-v_0}{2\sigma_n}}\end{equation}
 
 Si ha pertanto che la probabilità di errore $p(\epsilon)=\f{Q}{\gamma}$ è funzione di $\gamma=\frac{v_1-v_0}{2\sigma_n}$, ovvero proporzionale alla distanza picco picco tra i segnali di uscita dei filtri adattati e inversamente proporzionale alla deviazione standard del rumore. La funzione $\f{Q}{x}$ è l'integrale rappresentativo dell'area della coda di una gaussiana di valor medio nullo e varianza unitaria.
@@ -289,15 +290,15 @@ La funzione di autocorrelazione del processo rumore campionato è
 \begin{equation}
 R_n^\text{C}(k T)=\E{n^\text{C}(i T)\cdot n^\text{C}(i T+k T)}
 \end{equation}
-Essendo il processo stazionario si ha quindi 
+Essendo il processo stazionario si ha quindi
 \begin{equation}
 R_n^\text{C}(k T)=R_n^\text{B}(k T)
 \end{equation}
-che la funzione di autocorrelazione dei campione di rumore all'uscita del campionatore è numericamente uguale al valore della funzione di autocorrelazione del rumore prima del campionamento, presa negli istanti di tempo multipli del periodo di campionamento. Pertanto per la stazionarietà del processo rumore la varianza del rumore in uscita del campionatore è 
+che la funzione di autocorrelazione dei campione di rumore all'uscita del campionatore è numericamente uguale al valore della funzione di autocorrelazione del rumore prima del campionamento, presa negli istanti di tempo multipli del periodo di campionamento. Pertanto per la stazionarietà del processo rumore la varianza del rumore in uscita del campionatore è
 \begin{equation}
 \restrict{\sigma^2_n}{\text{C}}=R_n^\text{C}(0)=R_n^\text{B}(0)
 \end{equation}
-Per la ergodicità del processo si ha anche che la varianza è pari alla potenza media del rumore all'uscita del filtro di ricezione 
+Per la ergodicità del processo si ha anche che la varianza è pari alla potenza media del rumore all'uscita del filtro di ricezione
 \begin{equation}
 \restrict{\sigma^2_n}{\text{C}}=P_{n \text{medio}}^\text{B}
 \end{equation}
@@ -315,7 +316,7 @@ Il massimo rapporto segnale rumore all'uscita del filtro adattato è esprimibile
 
 Si ottiene che il rapporto segnale rumore è al numeratore la potenza media del segnale ricevuto, a denominatore la potenza media del rumore all'ingresso misurata rapportata alla banda $f_\text{S}/2$.
 
-Nell'ipotesi di \keyword[codifica!ortogonale]{codifica ortogonale} si ha a valle del campionatore l'uscita dei filtri adattati con la distanza tra le tensioni $v_0=0$ e $v_1=+a$ con la soglia posta a $s=a/2$ e il valore $\gamma=a/2\sigma$. 
+Nell'ipotesi di \keyword[codifica!ortogonale]{codifica ortogonale} si ha a valle del campionatore l'uscita dei filtri adattati con la distanza tra le tensioni $v_0=0$ e $v_1=+a$ con la soglia posta a $s=a/2$ e il valore $\gamma=a/2\sigma$.
 \begin{equation}
 \restrict{\frac{S}{N}}{B}=\gamma^2=\frac{a^2}{4\sigma_n^2}=\frac{P_\text{S picco}^\text{B}}{4 P_\text{N media}^\text{B}}=\frac{E_\text{R}}{4 h_n^\text{A}/2}=\frac{E_\text{R}/T}{2 h_n^\text{A}\cdot f_\text{S}}=\frac{P_\text{S media}^\text{A}}{h_n^\text{A} f_\text{S}}
 \end{equation}
@@ -331,7 +332,7 @@ Dal confronto tra i rapporti segnale rumore della codifica ortogonale e codifica
 
 Nell'ipotesi di codifica antipodale il rapporto all'uscita del filtro di ricezione della potenza di picco del segnale e la potenza media di rumore
 \[\gamma^2=\frac{P_\text{S picco}^\text{B}}{P_\text{N media}^\text{B}}=\SI{14.5}{\decibel}\]
-Nell'ipotesi di utilizzare un filtro adattato, sempre in codifica antipodale, si ha che il rapporto segnale rumore risulta pari a 
+Nell'ipotesi di utilizzare un filtro adattato, sempre in codifica antipodale, si ha che il rapporto segnale rumore risulta pari a
 \[\frac{P_\text{S media}^\text{A}}{\frac{h_n^\text{A}}{2} f_\text{S}}=\SI{14.5}{\decibel}\]
 
 Nota la rumorosità delle apparecchiature riceventi, per ipotesi un fattore di rumore $F=\SI{10}{\decibel}$, si può valutare la minima potenza media necessaria in ricezione per rispettare i requisiti di progetto (espressa in $\si{\dBm}$):
@@ -346,7 +347,7 @@ Ipotizzando che ogni trasmettitore abbia una potenza massima di trasmissione par
 
 L'attenuazione sulla singola tratta sarà $\alpha_\text{tot}/n$, mentre il rumore risulta moltiplicato per $n$: il rumore della prima tratta viene amplificato/attenuato e iniettato nella seconda tratta, e così via.
 
-Sempre in ipotesi di codifica antipodale si ha che il rapporto segnale rumore è pari a 
+Sempre in ipotesi di codifica antipodale si ha che il rapporto segnale rumore è pari a
 \[\gamma^2=\frac{P_\text{S medio}^\text{B}}{P_\text{N}^\text{B}}=\frac{P_T\cdot\alpha_\text{tot}/n}{n\cdot\frac{h_n}{2}f_s}\]
 
 \[\restrict{\gamma^2}{\si{\decibel}}\leq \restrict{P_T}{\si{\dBm}} - \restrict{\frac{\alpha_\text{tot}}{n}}{\si{\decibel}}-10\Log{n}-\restrict{F\frac{h_n f_s}{2}}{\si{\dBm}}\]
@@ -521,7 +522,7 @@ Una alternativa alla codifica con ritorno a zero che causa una perdita di energi
 \end{figure}
 
 \subsection{Codice \ac{HDB-3}}
-Per risolvere l'analogo problema relativo alla trasmissione di più simboli “0” consecutivi si introduce il codice \ac{HDB-3} come evoluzione del codice \ac{AMI}: per evitare che non arrivino impulsi al circuito di estrazione del timing per più di 3 periodi di cifra in corrispondenza di un quarto zero consecutivo si invia un impulso rettangolare con la stessa tensione dell'“1” precedente. Violando l'alternanza del codice \ac{AMI} il simbolo sarà interpretato non come un “1” ma come uno “0”. 
+Per risolvere l'analogo problema relativo alla trasmissione di più simboli “0” consecutivi si introduce il codice \ac{HDB-3} come evoluzione del codice \ac{AMI}: per evitare che non arrivino impulsi al circuito di estrazione del timing per più di 3 periodi di cifra in corrispondenza di un quarto zero consecutivo si invia un impulso rettangolare con la stessa tensione dell'“1” precedente. Violando l'alternanza del codice \ac{AMI} il simbolo sarà interpretato non come un “1” ma come uno “0”.
 
 \begin{figure}[ht!]\centering
 	\subfloat[Codifica \ac{HDB-3}]{
@@ -565,7 +566,7 @@ Il \keyword[codice di linea!Manchester]{codice Manchester} garantisce per entram
 Il dimensionamento di un sistema di trasmissione numerico deve massimizzare il rapporto segnale rumore al campionatore a parità di potenza media ricevuta
 \[\restrict{\frac{S}{N}}{C}=\frac{E_R}{h_n/2}\]
 
-La progettazione di un sistema di trasmissione numerica basato su forme d'onda di Nyquist e filtro adattato massimizza il rapporto segnale rumore al campionatore perché si campiona il segnale nel suo picco ottenuto con un integratore ad azzeramento. La potenza di picco è proporzionale al quadrato dell'ampiezza massima del segnale campionato. Per la necessità di avere forme d'onda ad intersimbolo nullo all'uscita del filtro si scelgono segnali della famiglia di Nyquist, e il modulo dello spettro del segnale è legato al coefficiente di roll-off. La fase viene scelta in modo tale da ovviare alle limitazioni sulla potenza di picco dovute ai limiti di saturazione degli amplificatori. 
+La progettazione di un sistema di trasmissione numerica basato su forme d'onda di Nyquist e filtro adattato massimizza il rapporto segnale rumore al campionatore perché si campiona il segnale nel suo picco ottenuto con un integratore ad azzeramento. La potenza di picco è proporzionale al quadrato dell'ampiezza massima del segnale campionato. Per la necessità di avere forme d'onda ad intersimbolo nullo all'uscita del filtro si scelgono segnali della famiglia di Nyquist, e il modulo dello spettro del segnale è legato al coefficiente di roll-off. La fase viene scelta in modo tale da ovviare alle limitazioni sulla potenza di picco dovute ai limiti di saturazione degli amplificatori.
 Un sistema di trasmissione basato su filtro adattato è fortemente vulnerabile ad ogni distorsione delle forme d'onda produce una riduzione del rapporto segnale rumore $\restrict{S/N}{C}$.
 
 \begin{figure}[!ht]
@@ -591,7 +592,7 @@ Un sistema di trasmissione basato su filtro adattato è fortemente vulnerabile a
 	\label{fig:schema_filtro_ricezione}
 \end{figure}
 
-Per superare i limiti di tale sistema di trasmissione si rinuncia al filtro adattato che vincola la potenza media trasmessa e si ottimizzano le prestazioni utilizzando forme d'onda rettangolari in trasmissione che presentano la massima efficienza avendo la potenza media pari alla potenza di picco. 
+Per superare i limiti di tale sistema di trasmissione si rinuncia al filtro adattato che vincola la potenza media trasmessa e si ottimizzano le prestazioni utilizzando forme d'onda rettangolari in trasmissione che presentano la massima efficienza avendo la potenza media pari alla potenza di picco.
 
 Impulsi rettangolari di ampiezza $a$ e durata $\tau\leq T$ (con $\tau<T$ si ha codifica con ritorno a zero per facilitare il sincronismo) hanno espressione nel tempo e in frequenza, al trasmettitore:
 \begin{equation}
@@ -601,7 +602,7 @@ S_T^\text{O}(f)&=a\tau\frac{\sen{\pi f\tau}}{\pi f\tau}
 \end{split}
 \end{equation}
 
-Si valuta il rapporto segnale rumore al campionatore del segnale ricevuto 
+Si valuta il rapporto segnale rumore al campionatore del segnale ricevuto
 \begin{equation}
 \restrict{\frac{S}{N}}{C}=\frac{P_\text{S picco}}{P_\text{N media}}
 \end{equation}
@@ -620,7 +621,7 @@ Date le funzioni di trasferimento del canale $H_T(f)$, del filtro generico $H_R(
 Si ottiene che il rapporto segnale rumore al campionatore è proporzionale alla potenza di picco del segnale trasmesso, dove essendo $a^2$ il quadrato dell'ampiezza del rettangolo trasmesso, affetto da una attenuazione esponenziale equivalente pari al rapporto adimensionale tra gli integrali. Tale rapporto dipende dalla forma d'onda trasmessa, dato dalla durata del rettangolo $\tau$ rispetto al periodo di cifra $T$, dal roll-off se tale forma d'onda appartiene alla famiglia di Nyquist, e dalle caratteristiche del mezzo trasmissivo.
 
 Per confrontare il risultato con il rapporto segnale rumore ottenuto con filtro adattato che è pari a \[\restrict{\frac{S}{N}}{C}=\frac{P_\text{R media}}{\frac{h_n}{2}f_s}\]
-è necessario valutare l'espressione dell'attenuazione equivalente essendo, nel caso di codifica \ac{NRZ}, con $\tau=T$ la potenza di picco pari alla potenza media trasmessa. 
+è necessario valutare l'espressione dell'attenuazione equivalente essendo, nel caso di codifica \ac{NRZ}, con $\tau=T$ la potenza di picco pari alla potenza media trasmessa.
 
 Si deve progettare il filtro ipotizzando di dover equalizzare gli effetti di attenuazione di un mezzo di trasmissione ideale, con funzione di trasferimento $H_T(f)=\e{-\alpha_T}$, con $\alpha_T$ costante, e imponendo che l'impulso rettangolare in ricezione all'uscita del filtro abbia una forma d'onda di Nyquist per ottenere l'intersimbolo nullo:
 \begin{equation}
@@ -645,7 +646,7 @@ Per codifiche di non ritorno a zero con $\tau=T$ si la potenza di picco in ricez
 \begin{equation}
 \restrict{\frac{S}{N}}{C}=\frac{P_\text{R media}^\text{A}}{\frac{h_n}{2}f_s}\e{-2\alpha_F}
 \end{equation}
-La formula con il filtro adattato ha rapporto segnale rumore 
+La formula con il filtro adattato ha rapporto segnale rumore
 \begin{equation}
 \restrict{\frac{S}{N}}{C}=\frac{P_\text{R media}^\text{A}}{\frac{h_n}{2}f_s}
 \end{equation}
@@ -654,11 +655,11 @@ In un bilancio di potenze l'entità dell'attenuazione data dal fattore di forma 
 
 Tale risultato continua a valere anche nel caso di mezzo trasmissivo non ideale: è necessario che l'attenuazione $\alpha_T$ sia costante solo nella banda di frequenze dello spettro del segnale all'uscita del filtro di ricezione ovvero delle forme d'onda di Nyquist, per le quali la frequenza massima è data da eq.\ref{eq:banda_nyquist} $B=(1+\delta)f_s/2$.
 
-Nel dimensionamento di un sistema di trasmissione numerico con filtro generico, data una probabilità di errore tollerabile, si vuole determinare l'ampiezza del segnale rettangolare da trasmettere, ricordando che $\gamma=a/\sigma$ per codifica antipodale e $\gamma=a/2\sigma$ per codifica ortogonale, si impone che 
+Nel dimensionamento di un sistema di trasmissione numerico con filtro generico, data una probabilità di errore tollerabile, si vuole determinare l'ampiezza del segnale rettangolare da trasmettere, ricordando che $\gamma=a/\sigma$ per codifica antipodale e $\gamma=a/2\sigma$ per codifica ortogonale, si impone che
 \begin{equation}
 \frac{P_\text{T picco}^\text{A}}{\frac{h_n}{2}f_s}=\gamma^2\e{2\alpha_e}
 \end{equation}
-L'attenuazione equivalente $\alpha_e$ può essere calcolata integrando numericamente la funzione di trasferimento del mezzo trasmissivo. Nel caso di mezzo trasmissivo ideale con attenuazione costante $\alpha_T$ almeno nella banda delle forme d'onda di Nyquist, si impone che 
+L'attenuazione equivalente $\alpha_e$ può essere calcolata integrando numericamente la funzione di trasferimento del mezzo trasmissivo. Nel caso di mezzo trasmissivo ideale con attenuazione costante $\alpha_T$ almeno nella banda delle forme d'onda di Nyquist, si impone che
 \begin{equation}
 \frac{P_\text{R media}^\text{A}}{\frac{h_n}{2}f_s}=\gamma^2\e{2\alpha_F}
 \end{equation}
@@ -738,7 +739,7 @@ p(\epsilon)=\intd{}{}{p(\epsilon|d)f_d(v)}{v}
 \section{Sistema di trasmissione multilivello}
 \`{E} possibile aumentare la velocità di trasmissione di un sistema di trasmissione numerica, a parità di frequenza di cifra e banda passante, incrementando la potenza del segnale trasmesso in codifica \acf{PAM} in modo tale da poter distinguere più livelli di ampiezza di una stessa forma d'onda. Ciascun livello rappresenta un simbolo a cui sono associate più cifre binarie: con un numero di livelli $M=2^n$ è possibile associare $n$ bit ad ogni simbolo.
 
-Si ottiene a parità di frequenza di trasmissione dei simboli, \keyword[baud rate]{baud-rate}, un maggiore \keyword[bit rate]{bit-rate} pari al \keyword{baud-rate} moltiplicato per il numero di bit $n$ convogliati da ciascun simbolo. 
+Si ottiene a parità di frequenza di trasmissione dei simboli, \keyword[baud rate]{baud-rate}, un maggiore \keyword[bit rate]{bit-rate} pari al \keyword{baud-rate} moltiplicato per il numero di bit $n$ convogliati da ciascun simbolo.
 
 \begin{figure}[ht!]
 \centering
@@ -750,7 +751,7 @@ Si ottiene a parità di frequenza di trasmissione dei simboli, \keyword[baud rat
 \caption{Trasmissione multilivello quadripodale}
 \end{figure}
 
-La maggiore potenza disponibile consente in un sistema binario antipodale di distanziare le gaussiane in uscita dal filtro di ricezione tanto da diminuire di ordini di grandezza la probabilità di errore. Essendo la probabilità di errore legata alla varianza del rumore e alla distanza tra i livelli, avendo potenza in esubero è possibile inserire altri livelli a spaziatura tale da rispettare i limiti di probabilità d'errore e aumentare il numero di bit trasmessi da ciascun simbolo.\footnote{I livelli sono equispaziati in quanto la varianza del rumore non varia con la forma d'onda del simbolo trasmesso.} 
+La maggiore potenza disponibile consente in un sistema binario antipodale di distanziare le gaussiane in uscita dal filtro di ricezione tanto da diminuire di ordini di grandezza la probabilità di errore. Essendo la probabilità di errore legata alla varianza del rumore e alla distanza tra i livelli, avendo potenza in esubero è possibile inserire altri livelli a spaziatura tale da rispettare i limiti di probabilità d'errore e aumentare il numero di bit trasmessi da ciascun simbolo.\footnote{I livelli sono equispaziati in quanto la varianza del rumore non varia con la forma d'onda del simbolo trasmesso.}
 
 \begin{figure}[ht!]\centering
 	\def\var{.707}
@@ -789,7 +790,7 @@ Nell'ipotesi di associare a ciascuna forma d'onda una configurazione binaria sec
 \text{BER}=\frac{p(\epsilon)}{\log_2{M}}=2p\frac{M-1}{M\log_2{M}}
 \end{equation}
 
-Confrontando le prestazioni di un sistema di trasmissione binario antipodale ($M=2$)  con i sistemi multilivello si ha che al costo di una maggiore potenza di trasmissione \footnote{si passa da una potenza di trasmissione $P_B$ ad una potenza di picco $P_M^p=(M-1)^2 P_B$ e una potenza media $P_M^m=\frac{M^2-1}{3}P_B$} si ottiene un minore \keyword{bit error rate} e una velocità di trasmissione $\log_2{M}$ superiore. La maggiore potenza di trasmissione rende i sistemi multilivello sensibili all'interferenza degli echi riflessi che possono avere potenza comparabile a quella dei livelli interni.
+Confrontando le prestazioni di un sistema di trasmissione binario antipodale ($M=2$) con i sistemi multilivello si ha che al costo di una maggiore potenza di trasmissione \footnote{si passa da una potenza di trasmissione $P_B$ ad una potenza di picco $P_M^p=(M-1)^2 P_B$ e una potenza media $P_M^m=\frac{M^2-1}{3}P_B$} si ottiene un minore \keyword{bit error rate} e una velocità di trasmissione $\log_2{M}$ superiore. La maggiore potenza di trasmissione rende i sistemi multilivello sensibili all'interferenza degli echi riflessi che possono avere potenza comparabile a quella dei livelli interni.
 \begin{table}[ht]
 \centering
 \begin{tabular}{ccc}
@@ -811,7 +812,7 @@ Nell'ipotesi che i bit prodotti dalla sorgente dell'informazione non siano equip
 		$0 \oplus 0 = 0$ \\
 		$0 \oplus 1 = 1$ \\
 		$1 \oplus 0 = 1$ \\
-		$1 \oplus 1 = 0$ 
+		$1 \oplus 1 = 0$
 	\end{tabular}
 	\caption{Tabella di verità dell'operatore logico \keyword[operatore logico!XOR]{XOR}}
 \end{table}
