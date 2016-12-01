@@ -157,7 +157,7 @@ Si definiscono i momenti di ordine $k$ come derivata della funzione generatrice 
 \end{description}
 
 \section{Variabile aleatoria uniforme}
-La \textsc{variabile aleatoria uniforme} presenta una densità di probabilità costante nell'intervallo $[a,b]$ e zero altrove. Dovendo sottendere un'area unitaria si ha un rettangolo di altezza costante $1/(b-a)$, base $(b-a)$ centrato in $(b+a)/2$
+La \keyword[variabile aleatoria!uniforme]{variabile aleatoria uniforme} presenta una densità di probabilità costante nell'intervallo $[a,b]$ e zero altrove. Dovendo sottendere un'area unitaria si ha un rettangolo di altezza costante $1/(b-a)$, base $(b-a)$ centrato in $(b+a)/2$
 \begin{equation}f_X(x)=\begin{cases}0&x\leq a\\ \frac{1}{b-a}&a<x\leq b\\0&x>b\end{cases}\quad f_X(x)=\frac{1}{b-a}\rect{\frac{x-\frac{b+a}{2}}{b-a}}\end{equation}
 La funzione distribuzione essendone l'integrale ha la definizione di una rampa
 \begin{equation}F_X(x)=\begin{cases}
@@ -188,7 +188,7 @@ La funzione distribuzione essendone l'integrale ha la definizione di una rampa
 \end{description}
 
 \section{Variabile aleatoria esponenziale}
-La \textsc{variabile aleatoria continua esponenziale} unilatera con parametro $\lambda>0$ ha una funzione densità di probabilità che parte con una discontinuità in $x=0$ e decresce esponenzialmente a zero. Utile a modellare i tempi di intercorrenza tra richieste di un servizio, problemi di affidabilità e calcolo del rischio. La coda indica eventi rari trascurabili, caratteristica che aiuta a dimensionare i sistemi.
+La \keyword[variabile aleatoria!esponenziale]{variabile aleatoria continua esponenziale} unilatera con parametro $\lambda>0$ ha una funzione densità di probabilità che parte con una discontinuità in $x=0$ e decresce esponenzialmente a zero. Utile a modellare i tempi di intercorrenza tra richieste di un servizio, problemi di affidabilità e calcolo del rischio. La coda indica eventi rari trascurabili, caratteristica che aiuta a dimensionare i sistemi.
 \begin{equation}
 f_X(x)=\lambda\e{-\lambda x}\step(x)
 \end{equation}
@@ -230,7 +230,7 @@ F_X(x)=\intd{-\infty}{x}{f_X(\alpha)}{\alpha}=\intd{-\infty}{x}{\lambda\e{-\lamb
 \end{description}
 
 \section{Variabile aleatoria discreta di Poisson}
-La \textsc{variabile aleatoria discreta di Poisson} modella le richieste di servizio o il conteggio per arrivi indipendenti in un intervallo di tempo $T$ e con un parametro di intensità $\Lambda>0$ in istanti di tempo discreti (valori interi non negativi). La funzione densità di probabilità (di massa) $f_X(x)=\sum_k p_k \delta(x-k)$ ha espressione
+La \keyword[variabile aleatoria!di Poisson]{variabile aleatoria discreta di Poisson} modella le richieste di servizio o il conteggio per arrivi indipendenti in un intervallo di tempo $T$ e con un parametro di intensità $\Lambda>0$ in istanti di tempo discreti (valori interi non negativi). La funzione densità di probabilità (di massa) $f_X(x)=\sum_k p_k \delta(x-k)$ ha espressione
 \begin{equation}
 f_X(x)=\sum_{k=0}^{+\infty}{\frac{(\Lambda T)^k}{k!}\e{-\Lambda T}\delta(x-k)}
 \end{equation}
@@ -277,7 +277,7 @@ Gli stessi indici possono essere calcolati più agevolmente con la funzione gene
 \end{description}
 
 \section{Variabile aleatoria binomiale o di Bernoulli}
-Variabile aleatoria discreta applicata ad esperimenti ripetuti di Bernoulli, indipendenti tra loro, che possono dare due soli possibili risultati, successo con probabilità $p$ e insuccesso con probabilità $1-p$. La variabile binomiale conta il numero di successi.
+Variabile aleatoria discreta applicata ad esperimenti ripetuti di \keyword[variabile aleatoria!di Bernoulli]{Bernoulli}, indipendenti tra loro, che possono dare due soli possibili risultati, successo con probabilità $p$ e insuccesso con probabilità $1-p$. La variabile binomiale conta il numero di successi.
 La funzione densità di probabilità (di massa) $f_X(x)=\sum_k p_k \impulse(x-k)$ e la funzione distribuzione di probabilità (di massa) $F_X(x)=\sum_k p_k \step(x-k)$ hanno massa di probabilità data dalla formula binomiale di Bernoulli:
 \begin{equation}
 P(X=k)=\binom{n}{k} p^k (1-p)^{n-k}\quad k=0,\dots,n
@@ -307,7 +307,7 @@ Calcolo degli indici statistici utilizzando la funzione generatrice dei momenti.
 \end{description}
 
 \section{Variabile aleatoria geometrica}
-In esperimenti indipendenti e ripetuti di Bernoulli si vuole calcolare la probabilità di osservare $k$ successi prima di ottenere il primo insuccesso. La variabile aleatoria \textsc{geometrica} ha pertanto massa di probabilità
+In esperimenti indipendenti e ripetuti di Bernoulli si vuole calcolare la probabilità di osservare $k$ successi prima di ottenere il primo insuccesso. La variabile aleatoria \keyword[variabile aleatoria!geometrica]{geometrica} ha pertanto massa di probabilità
 \begin{equation}
 P(X=k)=p^k(1-p)\quad k=0,\dots,\infty
 \end{equation}
@@ -342,7 +342,7 @@ dove la serie geometrica $\sum_{k=0}^{\infty}{(p\e{t})^k}$ converge in un intorn
 \end{description}
 
 \section{Derivazione variabile aleatoria di Poisson}
-La variabile aleatoria esponenziale e quella discreta di Poisson modellano esperimenti di richieste di servizio o attesa di eventi indipendenti tra loro. Nell'intervallo di tempo fissato $T$ si vuole calcolare la probabilità che si verifichino un certo numero di eventi, quale sia il tempo di interarrivo, il tempo che intercorre tra due eventi successivi, e il tempo di attesa affinché si verifichi il primo evento a partire da un istante iniziale di riferimento.
+La variabile aleatoria esponenziale e quella discreta di \keyword[variabile aleatoria!di Poisson]{Poisson} modellano esperimenti di richieste di servizio o attesa di eventi indipendenti tra loro. Nell'intervallo di tempo fissato $T$ si vuole calcolare la probabilità che si verifichino un certo numero di eventi, quale sia il tempo di interarrivo, il tempo che intercorre tra due eventi successivi, e il tempo di attesa affinché si verifichi il primo evento a partire da un istante iniziale di riferimento.
 
 \`{E} possibile derivare la distribuzione di probabilità della v.a. di Poisson studiando il fenomeno sotto alcune ipotesi.
 
@@ -430,7 +430,7 @@ dove $g(x)=v=V_i(1-\e{\frac{x}{\alpha}})$, $g'(x)=\frac{V_i}{\alpha}\e{-\frac{x}
 \end{esempio}
 
 \section{Variabile aleatoria gaussiana o normale}
-La \textsc{variabile aleatoria gaussiana} $X\in\mathcal{N}(\mu_X,\sigma^2_X)$ ha funzione densità di probabilità
+La \keyword[variabile aleatoria!gaussiana]{variabile aleatoria gaussiana} $X\in\mathcal{N}(\mu_X,\sigma^2_X)$ ha funzione densità di probabilità
 \begin{equation}\label{eq:densita_gaussiana}
 f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2_X}}\;\e{-\tfrac{(x-\mu_X)^2}{2\sigma^2_X}}
 \end{equation}
@@ -545,12 +545,12 @@ Il valor medio e la varianza della variabile aleatoria gaussiana calcolati dai m
 
 % La VA paretiana è stata introdotta nell'A.A. 16/17
 \section{Variabile aleatoria di Pareto (di tipo 1)}
-La \textsc{variabile aleatoria di pareto} (o \emph{paretiana}) ha funzione distribuzione
+La \keyword[variabile aleatoria!di Pareto]{variabile aleatoria di Pareto} (o \emph{paretiana}) ha funzione distribuzione
 di probabilità
 \begin{equation}
 	F_X(x) =
 	\begin{cases}
-		1-\Bigl(\frac{x_m}{x}\Bigr)^\alpha & x > x_m \\
+		1-\left(\frac{x_m}{x}\right)^\alpha & x > x_m \\
 		0 & \text{altrove}
 	\end{cases}
 \end{equation}
@@ -610,7 +610,7 @@ dove \(0 < x_m \leq x < +\infty\) e \(\alpha > 0\).
 \paragraph{Varianza}
 \begin{equation}\begin{split}
 	\sigma_X^2 = \E{X^2} - \Esp^2[X] &=
-		\frac{\alpha}{\alpha -2} x_m^2 - \Bigl(\frac{\alpha}{\alpha -1} x_m\Bigr)^2 =
+		\frac{\alpha}{\alpha -2} x_m^2 - \left((\frac{\alpha}{\alpha -1} x_m \right)^2 =
 		\frac{\alpha}{\alpha -2} x_m^2 - \frac{\alpha^2}{(\alpha - 1)^2} x_m^2 = \\
 	&= \frac{(\alpha -1)^2 - (\alpha -2)\alpha}{(\alpha -2)(\alpha -1)^2}(\alpha x_m)^2 =
 		\frac{\alpha^2 +1 -2\alpha -\alpha^2 +2\alpha}{(\alpha -2)(\alpha -1)^2} (\alpha x_m^2) = \\
@@ -624,7 +624,7 @@ dove \(0 < x_m \leq x < +\infty\) e \(\alpha > 0\).
 
 % La VA Zeta è stata introdotta nell'A.A. 16/17
 \section{Variabile aleatoria Zeta}
-Una variabile aleatoria ha una distribuzione di probabilità \textsc{Zeta}
+Una variabile aleatoria ha una distribuzione di probabilità \keyword[variabile aleatoria!Zeta]{Zeta}
 (talvolta detta di \emph{Zipf}) se la sua densità discreta è data da
 \begin{equation}
 	P(X = k) = \frac{C}{k^{\alpha+1}},
@@ -633,12 +633,12 @@ Una variabile aleatoria ha una distribuzione di probabilità \textsc{Zeta}
 per qualche valore \(\alpha > 0\). Poiché la somma delle precedenti probabilità
 deve essere uguale a \(1\), segue che
 \begin{equation}
-	C = \Bigl[ \frac{1}{\sum_{k=1}^{\infty} k^{-(\alpha+1)}} \Bigr]
+	C = \left[ \frac{1}{\sum_{k=1}^{\infty} k^{-(\alpha+1)}} \right]
 \end{equation}
 
 La distribuzione Zeta deve il suo nome al fatto che la funzione
 \[
-	\zeta(\alpha) = 1 + \Bigl(\frac{1}{2}\Bigr)^\alpha + \Bigl(\frac{1}{3}\Bigr)^\alpha + \dots + \Bigl(\frac{1}{k}\Bigr)^\alpha + \dots
+	\zeta(\alpha) = 1 + \left(\frac{1}{2}\right)^\alpha + \left(\frac{1}{3}\right)^\alpha + \dots + \left(\frac{1}{k}\right)^\alpha + \dots
 \]
 è nota in matematica come la \emph{funzione Zeta di Riemann}.
 
