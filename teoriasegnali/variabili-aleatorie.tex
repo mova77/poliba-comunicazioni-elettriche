@@ -904,6 +904,86 @@ Il valor medio e la varianza pari a $1/\lambda$ sono
 \[\mu_W=2\sigma^2\qquad\sigma^2_W=2\sigma^2\]
 \end{esempio}
 
+\begin{esempio}
+Sia data la densità di probabilità
+\[
+	f_{(X,Y)} (x,y) = \begin{cases}
+		2e^{-(x+y)}, & 0 \leq x \leq y,\, y \geq 0 \\
+		0, & \text{altrove}
+	\end{cases}
+\]
+\begin{center}\begin{tikzpicture}[scale=.7]
+		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=1.2,xtick={0},ytick={0},,xlabel={$x$},ylabel={$y$}]
+			\addplot [very thick,samples=200, domain=-2:2] {x};
+			\addplot [pattern=north west lines,draw=none] coordinates {(0,0) (0,2) (2,2)};
+		\end{axis}
+\end{tikzpicture}\end{center}
+dove l'area tratteggiata indica la regione del piano dove la densità non è nulla.
+
+\paragraph{Calcolo la densità marginale in $x$ e $y$}
+\begin{align*}
+	f_X (x) &= \intd{0}{+\infty}{f_{XY} (x,y)}{y} =
+		\intd{x}{+\infty}{2 \e{-x} \e{-y}}{y} =
+		2\e{-x} \bound{x}{+\infty}{-\e{-y}} =
+		2\e{-2x} u(x) \\
+	f_Y (y) &= \intd{0}{+\infty}{f_{XY} (x,y)}{x} =
+		\intd{0}{y}{2 \e{-y} \e{-x}}{x} =
+		2\e{-y} \bound{0}{y}{-\e{-x}} =
+		2\e{-y} \bigl(1 - \e{-y}\bigr) u(y)
+\end{align*}
+$f_{(X,Y)}(x,y) \neq f_X (x) f_Y (y) \implies X$ e $Y$ non sono indipendenti.
+
+\paragraph{Calcolo il coefficiente di correlazione}
+\[
+	\rho_{XY} = \frac{r_{XY} - \mu_X \mu_Y}{\sigma_X \sigma_Y}
+\]
+Al fine di calcolare il coefficiente di correlazione, calcolo la correlazione
+$r_{XY}$, le medie $\mu_X$ e $\mu_Y$ e le deviazioni standard $\sigma_X$ e $\sigma_Y$
+\begin{align*}
+	r_{XY} &= \intinf{\intinf{xy f_{XY} (x,y)}{x}}{y} =
+	\intd{0}{+\infty}{\intd{0}{y}{xy 2\e{-(x+y)}}{x}}{y} =
+	\intd{0}{+\infty}{2y \e{-y} \intd{0}{y}{x \e{-y}}{x}}{y} = \\
+	&= \intd{0}{+\infty}{2y\e{-y} \Biggl( \bound{0}{y}{-\e{-x}x} + \intd{0}{y}{\e{-x}}{x} \Biggr)}{y} =
+	\intd{0}{+\infty}{2y\e{-y} \bigl(-\e{-y}y -\e{-y} +1\bigr)}{y} = \\
+	&= 2\intd{0}{+\infty}{\underbrace{-y^2\e{-2y}-y\e{-2y}}_{- 1/2} + \underbrace{y\e{-y}}_1}{y} = 1
+\end{align*}
+Infatti, spezzando l'integrale in 2 integrali più semplici, risulta:
+\[
+	\intd{0}{+\infty}{y\e{-y}}{y} =
+	\underbrace{\bound{0}{+\infty}{-y\e{-y}}}_0 + \intd{0}{+\infty}{\e{-y}}{y} =
+	\bound{0}{+\infty}{-\e{-y}} = 1
+\]
+\begin{align*}
+	\intd{0}{+\infty}{-y^2\e{-2y} -y\e{-2y}}{y} &= -\intd{0}{+\infty}{\underbrace{(y^2+y)}_{\text{fatt. diff.}} \underbrace{(\e{-2y})}_{\text{fatt. finito}}}{y} = \\
+	&= \underbrace{\bound{0}{+\infty}{-\frac{1}{2}(y^2 +y)\e{-2y}}}_0 + \intd{0}{+\infty}{\frac{1}{2}\e{-2y}(2y+1)}{y} = \\
+	&= -\frac{1}{2} \underbrace{\bound{0}{+\infty}{-\frac{1}{2}\e{-2y}(2y+1)}}_{1/2} + \intd{0}{+\infty}{\frac{1}{2}\e{-2y}(2)}{y} = \\
+	&= -\frac{1}{2} \Biggl( \frac{1}{2} + \bound{0}{+\infty}{-\frac{1}{2}\e{-2y}} \Biggr) = -\frac{1}{2} \Bigl(\frac{1}{2} + \frac{1}{2}\Bigr) = -\frac{1}{2}
+\end{align*}
+
+\paragraph{Calcolo media e potenza sfruttando le funzioni generatrici dei momenti}
+\begin{align*}
+	G_X (t) &= \E{\e{tX}} = \intd{0}{+\infty}{\e{tx} 2 \e{-2x}}{x} = 2\intd{0}{+\infty}{\e{(t-2)x}}{x} = \frac{2}{t-2} \bound{0}{+\infty}{\e{(t-2)x}} = \frac{2}{2-t} \\
+	G_Y (t) &= \E{\e{tY}} = \intd{0}{+\infty}{\e{ty} 2 \e{-y} \bigl(1 - \e{-y}\bigr)}{y} = 2\Biggl( \intd{0}{+\infty}{\e{y(t-1)}}{y} - \intd{0}{+\infty}{\e{y(t-2)}}{y} \Biggr) = \\
+		&= -\frac{2}{t-1} + \frac{2}{t-2} = 2(t-2)^{-1} -2(t-1)^{-1} \\
+	G'_X(t) &= -2\restrict{(2-t)^2}{t=0} = -\frac{1}{2} = \mu_X \\
+	G''_X(t)&= 4\restrict{(2-t)^{-3}}{t=0} = \frac{1}{2} = m^2_X \\
+	G'_Y(t) &= \restrict{-2(t-2)^{-2} - 2(t-2)^{-2}}{t=0} = \frac{3}{2} = \mu_Y \\
+	G''_Y(t)&= -\frac{1}{2} + 4 = \frac{7}{2} = m^2_Y
+\end{align*}
+
+\paragraph{Calcolo varianza e deviazione standard}
+\begin{align*}
+	\sigma^2_X &= m^2_X - \mu^2_X = \frac{1}{2} - \frac{1}{4} = \frac{1}{4} \implies \sigma_X = \frac{1}{2} \\
+	\sigma^2_Y &= m^2_Y - \mu^2_Y = \frac{7}{2} - \frac{9}{4} = \frac{5}{4} \implies \sigma_Y = \frac{\sqrt{5}}{2}
+\end{align*}
+
+Quindi il coefficiente di correlazione risulta essere
+\[
+	\rho_{XY} = \frac{r_{XY} - \mu_X \mu_Y}{\sigma_X \sigma_Y} =
+	\frac{1 - \frac{1}{2} \frac{3}{2}}{\frac{1}{2} \frac{\sqrt{5}}{2}} = \frac{\sqrt{5}}{5}
+\]
+\end{esempio}
+
 \section{Vettori di variabili aleatorie}
 \`{E} possibile generalizzare lo studio a sistemi di $n$ variabili aleatorie $X_1, X_2,\dots,X_n$ che saranno indicati con notazione vettoriale
 \begin{equation}\vect{X}=\begin{bmatrix}X_1\\X_2\\\dots\\X_n\end{bmatrix}=\trasp{\begin{bmatrix}X_1&X_2&\dots&X_n\end{bmatrix}} \end{equation}
