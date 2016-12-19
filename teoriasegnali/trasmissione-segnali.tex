@@ -73,8 +73,7 @@ Dato un segnale analogico l'operazione di campionamento estrae i valori del segn
 \begin{figure}[!ht]
 	\centering
 	\begin{tikzpicture}
-	\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={},ytick={},xlabel=$x$,
-	]
+	\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={},ytick={},xlabel=$x$]
 	\addplot+[quiver={u=0,v=-y},latex-,black,thick,samples=25,domain=-4:4] {sin(2*x)-cos(pi*x)};
 	\addplot[very thick,samples=200,smooth,domain=-4:4] {sin(2*x)-cos(pi*x)};
 	\end{axis}\end{tikzpicture}
@@ -107,10 +106,11 @@ S_C(f)=S(f)\ast\fourier{\sum_{n=-\infty}^{+\infty}{\impulse(t-n T)}}=S(f)\ast\fr
 		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=1.8,xtick={-3,-1,1,2,3,4},ytick={1},xticklabels={$-f_S$,$-B$,$B$,$f_S\!-\!B$,$f_S$,$f_S\!+\!B$},yticklabels={$\frac{1}{T}$},xlabel={$f$}]
 		\addplot [very thick]coordinates {(-5,0)(-4,0)(-3,1)(-2,0)(-1,0)(0,1)(1,0)(2,0)(3,1)(4,0)(5,0)};
 		\addplot [dashed] coordinates{(-1,0)(-1,1)(1,1)(1,0)};
-		\end{axis}\end{tikzpicture}	
+		\end{axis}\end{tikzpicture}
 	}
 	\caption{Esempio campionamento con $f_S\geq 2 B$}
-\end{figure}\label{fig:campionamento}
+\label{fig:campionamento}
+\end{figure}
 
 Per poter ricostruire il segnale è necessario che le repliche spettrali del segnale campionato non si sovrappongano al segnale in banda base, fenomeno detto \textsc{aliasing}. Deve essere $f_S-B\geq B$ ovvero la frequenza di campionamento deve essere almeno il doppio della banda unilatera del segnale
 \begin{equation}
@@ -123,9 +123,10 @@ o, equivalentemente, definita \textsc{frequenza di Nyquist} $f_N=f_S / 2$, il se
 \begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=1.8,xtick={-1,.5,1,1.5,2.5},ytick={1},xticklabels={$-B$,$f_S\!-\!B$,$B$,$f_S$,$f_S\!+\!B$},yticklabels={$\frac{1}{T}$},xlabel={$f$}]
 \addplot [very thick]coordinates {(-3,0)(-1,0)(0,1)(1,0)(3,0)};
 \addplot [very thick,dashed]coordinates {(-3.5,0)(-2.5,0)(-1.5,1)(-.5,0)(.5,0)(1.5,1)(2.5,0)(3.5,0)};
-\end{axis}\end{tikzpicture}	
+\end{axis}\end{tikzpicture}
 \caption{Esempio aliasing, campionamento con $f_S<2 B$}
-\end{figure}\label{fig:aliasing}
+\label{fig:aliasing}
+\end{figure}
 \end{proof}
 \begin{esempio}
 Un segnale audio con una banda $B=\SI{20}{\kilo\hertz}$ nella \textsc{Pulse Code Modulation (PCM)} viene campionato alle frequenze di $\SI{40}{\kilo\hertz}$ o $\SI{48}{\kilo\hertz}$.
@@ -165,6 +166,52 @@ Se il segnale è passa banda, il teorema del campionamento continua a valere ma 
 \begin{nota}
 Un campionamento perfetto dovrebbe estrarre l'informazione del segnale istantaneamente, mentre in realtà è necessario periodo di osservazione seppur breve. Un campionatore reale effettua la convoluzione del segnale con un rettangolo molto stretto, $s(t)\ast\rect{\frac{t}{\tau}}$ con un duty cycle molto piccolo, la cui trasformata risulta essere un $\Sinc$ molto ampio ($\frac{1}{\tau}\gg B$). Se in ricezione è richiesta alta fedeltà al segnale originale è sempre possibile equalizzare per compensare l'effetto sagomatore del filtro.
 \end{nota}
+
+\section{Campionamento di un processo aleatorio}
+Sia il segnale analogico $x(t)$ membro di un processo aleatorio SSL. In queste condizioni è facile determinare il legame tra i momenti del primo e secondo ordine prima e dopo il campionamento del segnale. Infatti risulta
+\[\E{X(t)} = \E{X(nT)} = \mu\]
+Inoltre, per la funzione di autocorrelazione, si ha
+\begin{align*}
+R_X (\tau) &= \E{X(t)X(t-\tau)} \\
+ R_{X_n} &= \E{X(nT)X\left((n-m)T\right)} = R_X(mT)
+\end{align*}
+Quindi per il campionamento di processi aleatori il valor medio della serie aleatoria $X(nT)$ coincide col valor medio del processo aleatorio tempo-continuo dal quale la serie è stata ottenuta per campionamento, mentre la funzione di autocorrelazione della serie aleatoria si ottiene mediante campionamento della funzione di autocorrelazione del processo aleatorio tempo-continuo.
+
+\begin{figure}[!h]
+	\centering
+	\subfloat
+	{
+		\begin{tikzpicture}[>=latex']
+		\node [block,node distance=1cm] (f) {campionamento};
+		\node [left of= f,node distance=3cm](input) {$X(t)$};
+		\node [right of= f,node distance=3cm] (output) {$X(nT)$};
+		\node [below of= f,node distance=1.5cm] (t) {$T$};
+		\draw [->] (input) -- (f);
+		\draw [->] (f) -- (output);
+		\draw [->] (t) -- (f);
+		\end{tikzpicture}
+	}
+	\subfloat
+	{
+		\begin{tikzpicture}[>=latex']
+		\node [block,node distance=1cm] (f) {campionamento};
+		\node [left of= f,node distance=3cm](input) {$R_X(\tau)$};
+		\node [right of= f,node distance=3cm] (output) {$R_X(mT)$};
+		\node [below of= f,node distance=1.5cm] (t) {$T$};
+		\draw [->] (input) -- (f);
+		\draw [->] (f) -- (output);
+		\draw [->] (t) -- (f);
+		\end{tikzpicture}
+	}
+\caption{Campionamento di un processo aleatorio}
+\label{fig:campionamento_processo_aleatorio}
+\end{figure}
+
+Inoltre, mediante trasformata di Fourier, il legame tra le funzioni di autocorrelazione si trasporta sulle rispettive densità spettrali di potenza (figure \ref{fig:campionamento} e \ref{fig:aliasing}):
+\[
+\fourier{R_X(\tau)} = \fourier{R_X(mT)} \implies S_{X}(f) =  S_{X_n}(f)
+\]
+
 
 \section{Quantizzazione}
 L'operazione di \textsc{quantizzazione} trasforma i valori continui dei campioni del segnale appartenenti ad un intervallo $[-a,a]$ in valori discreti  dell'intervallo diviso in $Q$ livelli distinti di ampiezza $\Delta=\frac{2a}{Q}$.
@@ -207,4 +254,3 @@ Per un numero di intervalli potenza di due si ha $\frac{S_x}{N_q}=2^{2n}$ che es
 ovvero si quadruplica il rapporto segnale rumore per ogni bit di quantizzazione in più.
 
 Tale rapporto segnale rumore è stato calcolato per un processo con densità di probabilità uniforme, ma in generale la quantizzazione può essere non lineare, ad esempio per un processo gaussiano le cui realizzazioni si concentrano attorno al valor medio nullo e con varianza molto piccola. Per ottimizzare il rapporto segnale rumore di quantizzazione è necessaria una suddivisione più fine in livelli dove il segnale è più probabile, descrivendo i campioni con maggiore precisione.
-
