@@ -104,7 +104,7 @@ Segnale onda quadra di periodo T durata $\tau$ in fig.\ref*{fig:onda_quadra} \[s
 \end{figure}
 Il segnale è reale pari ($c_k=c_{-k}$), i coefficienti della serie di Fourier si calcolano applicando la formula \ref{eq:serie_fourier_coef}:
 \[\begin{split}c_k&=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\e{-\imath 2\pi\frac{k}{T}t}}{t}
-=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\e{-\imath 2\pi\frac{k}{T}t}}{t}
+=\frac{1}{T}\intd{-\frac{\tau}{2}}{\frac{\tau}{2}}{\e{-\imath 2\pi\frac{k}{T}t}}{t}
 =\frac{1}{T}\bound{-\frac{\tau}{2}}{\frac{\tau}{2}}{ \frac{\e{-\imath 2\pi\frac{k}{T}t}}{-\imath 2\pi\frac{k}{T}}}=\\
 &=\frac{1}{\pi k} \frac{-\e{-\imath 2\pi\frac{k}{T}\frac{\tau}{2}}+\e{\imath 2\pi\frac{k}{T}\frac{\tau}{2}}}{\imath 2}
 =\frac{\sen{\pi \tau \frac{k}{T}}}{\pi k}
