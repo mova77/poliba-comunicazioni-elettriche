@@ -166,7 +166,6 @@ Se il segnale è passa banda, il teorema del campionamento continua a valere ma 
 Un campionamento perfetto dovrebbe estrarre l'informazione del segnale istantaneamente, mentre in realtà è necessario periodo di osservazione seppur breve. Un campionatore reale effettua la convoluzione del segnale con un rettangolo molto stretto, $s(t)\ast\rect{\frac{t}{\tau}}$ con un duty cycle molto piccolo, la cui trasformata risulta essere un $\Sinc$ molto ampio ($\frac{1}{\tau}\gg B$). Se in ricezione è richiesta alta fedeltà al segnale originale è sempre possibile equalizzare per compensare l'effetto sagomatore del filtro.
 \end{nota}
 
-
 \section{Quantizzazione}
 L'operazione di \textsc{quantizzazione} trasforma i valori continui dei campioni del segnale appartenenti ad un intervallo $[-a,a]$ in valori discreti  dell'intervallo diviso in $Q$ livelli distinti di ampiezza $\Delta=\frac{2a}{Q}$.
 
@@ -251,7 +250,7 @@ positiva e moltiplicare per 2:
 	    &= \frac{\Delta^3}{6a} \biggl(Q+\frac{1}{2}-\Bigl(Q+1-\frac{1}{2}-\frac{Q}{4}\Bigr)\biggr) =
 	    	\frac{\Delta^3}{6a} \Bigl(\frac{Q}{4}\Bigr) = \frac{\Delta^3}{24} \cdot \frac{2}{\Delta} = \frac{\Delta^2}{12}
 \end{split}\]
-Calcolo lo spettro di potenza del segnale:
+Calcolo la potenza del segnale:
 \[\begin{split}
 	S_X &= \intd{-a}{a}{x^2f_X(x)}{x} =
 		\frac{2}{a} \intd{0}{a}{x^2\Bigl(1-\frac{x}{a}\Bigr)}{x} =
