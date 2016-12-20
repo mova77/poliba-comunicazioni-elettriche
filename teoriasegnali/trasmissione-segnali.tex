@@ -251,10 +251,10 @@ Si ha il \textsc{rapporto segnale rumore di quantizzazione}
 che migliora aumentando il numero di livelli di quantizzazione.
 Inoltre notiamo che
 \[N_q = \frac{4a^2}{12\cdot2^{2n}} = \frac{a^2}{3\cdot2^{2n}}\]
-quindi in senso pratico operiamo su $n$ per far sì che $N_q < 4k_BTB$, ovvero
-cerchiamo di rendere il rumore di quantizzazione minore del rumore termico.
+quindi in senso pratico operiamo su $n$ per far sì che $N_q < 4k_BTB$, ovvero cerchiamo di rendere il rumore di quantizzazione minore del rumore termico.
 
-Per un numero di intervalli potenza di due si ha $\frac{S_x}{N_q}=2^{2n}$ che espresso in decibel \[\restrict{\frac{S_x}{N_q}}{\text{dB}}=10\Log 2^{2n}\cong n\cdot\SI{6}{\decibel}\]
+Per un numero di intervalli potenza di due si ha $\frac{S_x}{N_q}=2^{2n}$ che espresso in decibel
+\[\restrict{\frac{S_x}{N_q}}{\text{dB}}=10\Log 2^{2n}\cong n\cdot\SI{6}{\decibel}\]
 ovvero si quadruplica il rapporto segnale rumore per ogni bit di quantizzazione in più.
 
 Tale rapporto segnale rumore è stato calcolato per un processo con densità di probabilità uniforme, ma in generale la quantizzazione può essere non lineare, ad esempio per un processo gaussiano le cui realizzazioni si concentrano attorno al valor medio nullo e con varianza molto piccola. Per ottimizzare il rapporto segnale rumore di quantizzazione è necessaria una suddivisione più fine in livelli dove il segnale è più probabile, descrivendo i campioni con maggiore precisione.
@@ -280,29 +280,28 @@ Calcoliamo il rapporto segnale rumore di quantizzazione per un segnale $f_x$ a d
 \[
 	N_q = \E{(x-x_q)^2} = \intd{-a}{a}{(x-x_q)^2f_X(x)}{x}
 \]
-Essendo le funzioni $f_X(x)$ e $(x-x_q)^2$ pari, è possibile integrare sulla parte
-positiva e moltiplicare per 2:
+Essendo le funzioni $f_X(x)$ e $(x-x_q)^2$ pari, è possibile integrare sulla parte positiva e moltiplicare per 2:
 \[\begin{split}
-	N_q &= \frac{2}{a} \intd{0}{a}{(x-x_q)^2 \Bigl(1-\frac{x}{a}\Bigr)}{x} =
-		\frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \intd{x_{i-1}}{x_i}{(x-x_q)^2\Bigl(1-\frac{x}{a}\Bigr)}{x} = \\
-	    &= \frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \intd{x_{i-1}}{x_i}{\Bigl(x+a+\frac{\Delta}{2}-i\Delta\Bigr)^2 \Bigl(1-\frac{x}{a}\Bigr)}{x} =
+	N_q &= \frac{2}{a} \intd{0}{a}{(x-x_q)^2 \left(1-\frac{x}{a}\right)}{x} =
+		\frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \intd{x_{i-1}}{x_i}{(x-x_q)^2\left(1-\frac{x}{a}\right)}{x} = \\
+	    &= \frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \intd{x_{i-1}}{x_i}{\left(x+a+\frac{\Delta}{2}-i\Delta\right)^2 \left(1-\frac{x}{a}\right)}{x} =
 	    \intertext{ponendo $y = x+a+\frac{\Delta}{2}-i\Delta$:}
-	    &= \frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \intd{-\frac{\Delta}{2}}{\frac{\Delta}{2}}{y^2\Bigl(1-\frac{y-a+i\Delta-\frac{\Delta}{2}}{a}\Bigr)}{y} =
+	    &= \frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \intd{-\frac{\Delta}{2}}{\frac{\Delta}{2}}{y^2\left(1-\frac{y-a+i\Delta-\frac{\Delta}{2}}{a}\right)}{y} =
 	    	\frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \bound{-\frac{\Delta}{2}}{\frac{\Delta}{2}}{\frac{y^3}{3}-\frac{y^4}{4a}+\frac{y^3}{3}-\frac{i\Delta y^3}{3a}+\frac{\Delta}{6a}y^3} = \\
-	    &= \frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \Biggl(\frac{\Delta^3}{12}\Bigl(2+\frac{\Delta}{2a}-\frac{i\Delta}{a}\Bigr)\Biggr) =
-	    	\frac{2}{a} \frac{\Delta^3}{12} \Biggl(\Bigl(2+\frac{\Delta}{2a}\Bigr)\frac{a}{2} -\frac{\Delta}{a}\sum_{i = \frac{Q}{2}+1}^Q i\Biggr) = \\
-	    &= \frac{\Delta^3}{6a} \Biggl(\Bigl(2+\frac{1}{Q}\frac{Q}{2} -\frac{2}{a}\sum_{i = \frac{Q}{2}+1}^Q i\Bigr)\Biggr) =
-	    	\frac{\Delta^3}{6a} \Biggl(Q+\frac{1}{2}-\frac{2}{Q}\biggl(\frac{Q(Q+1)}{2}-\frac{\frac{Q}{2}\Bigl(1+\frac{Q}{2}\Bigr)}{2}\biggr)\Biggr) = \\
-	    &= \frac{\Delta^3}{6a} \biggl(Q+\frac{1}{2}-\Bigl(Q+1-\frac{1}{2}-\frac{Q}{4}\Bigr)\biggr) =
-	    	\frac{\Delta^3}{6a} \Bigl(\frac{Q}{4}\Bigr) = \frac{\Delta^3}{24} \cdot \frac{2}{\Delta} = \frac{\Delta^2}{12}
+	    &= \frac{2}{a} \sum_{i = \frac{Q}{2}+1}^Q \left(\frac{\Delta^3}{12}\left(2+\frac{\Delta}{2a}-\frac{i\Delta}{a}\right)\right) =
+	    	\frac{2}{a} \frac{\Delta^3}{12} \left(\left(2+\frac{\Delta}{2a}\right)\frac{a}{2} -\frac{\Delta}{a}\sum_{i = \frac{Q}{2}+1}^Q i\right) = \\
+	    &= \frac{\Delta^3}{6a} \left(\left(2+\frac{1}{Q}\frac{Q}{2} -\frac{2}{a}\sum_{i = \frac{Q}{2}+1}^Q i\right)\right) =
+	    	\frac{\Delta^3}{6a} \left(Q+\frac{1}{2}-\frac{2}{Q}\left(\frac{Q(Q+1)}{2}-\frac{\frac{Q}{2}\left(1+\frac{Q}{2}\right)}{2}\right)\right) = \\
+	    &= \frac{\Delta^3}{6a} \left(Q+\frac{1}{2}-\left(Q+1-\frac{1}{2}-\frac{Q}{4}\right)\right) =
+	    	\frac{\Delta^3}{6a} \left(\frac{Q}{4}\right) = \frac{\Delta^3}{24} \cdot \frac{2}{\Delta} = \frac{\Delta^2}{12}
 \end{split}\]
 Calcolo la potenza del segnale:
 \[\begin{split}
 	S_X &= \intd{-a}{a}{x^2f_X(x)}{x} =
-		\frac{2}{a} \intd{0}{a}{x^2\Bigl(1-\frac{x}{a}\Bigr)}{x} =
+		\frac{2}{a} \intd{0}{a}{x^2\left(1-\frac{x}{a}\right)}{x} =
 		\frac{2}{a} \bound{0}{a}{\frac{x^3}{3}-\frac{x^4}{4a}} =
-		\frac{2}{a} \Bigl(\frac{a^3}{3}-\frac{a^4}{4a}\Bigr) = \\
-	    &= \frac{2}{a} \Bigl(\frac{a^3}{3}-\frac{a^3}{4}\Bigl) =
+		\frac{2}{a} \left(\frac{a^3}{3}-\frac{a^4}{4a}\right) = \\
+	    &= \frac{2}{a} \left(\frac{a^3}{3}-\frac{a^3}{4}\right) =
 		\frac{2}{a} \cdot \frac{a^3}{12} =
 		\frac{a^2}{6}
 \end{split}\]
@@ -315,15 +314,10 @@ che espresso in decibel risulta:
 	\restrict{\frac{S_x}{N_q}}{\text{dB}} = 10\Log 2^{2n-1} \cong 6n-\SI{3}{\decibel}
 \]
 
-Si nota che rispetto all'esercizio precedente il rapporto segnale rumore di
-quantizzazione è inferiore di $\SI{3}{\decibel}$.
+Si nota che rispetto all'esercizio precedente il rapporto segnale rumore di quantizzazione è inferiore di $\SI{3}{\decibel}$.
 
 \begin{nota}
-Prendendo in considerazione intervalli di uguale ampiezza, si ha pari probabilità
-di commettere l'errore in ciascun intervallo: sia in quelli estremi dove conta meno
-che in quelli centrali dove conta maggiormente. Per questo motivo, al fine di
-ottimare le prestazioni, conviene allargare gli intervalli agli estremi e infittire
-quelli al centro.
+Prendendo in considerazione intervalli di uguale ampiezza, si ha pari probabilità di commettere l'errore in ciascun intervallo: sia in quelli estremi dove conta meno che in quelli centrali dove conta maggiormente. Per questo motivo, al fine di ottimare le prestazioni, conviene allargare gli intervalli agli estremi e infittire quelli al centro.
 
 \begin{figure}[ht]
 	\centering
