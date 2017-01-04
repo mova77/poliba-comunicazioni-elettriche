@@ -49,7 +49,32 @@ La convoluzione di due segnali, definita come
 $x(t)\ast h(t)=\intinf{x(\tau)h(t-\tau)}{\tau}=\intinf{-x(t-\alpha)h(\alpha)}{\alpha}=h(t)\ast x(t)$ dove si è effettuata la sostituzione $\alpha=t-\tau$, $\diff\tau=-\diff\alpha$
 \end{proof}
 \subsubsection{Proprietà associativa $[x(t)\ast y(t)]\ast h(t)= x(t)\ast [h(t)\ast y(t)]$}
+\begin{proof}[Dim.]
+\begin{align*}
+	\bigl[x(t) \ast y(t)\bigr] \ast h(t)
+	&= \intinf{\bound{t=q}{}{\intinf{x(\tau)y(t-\tau)}{\tau}}h(t-q)}{q} = \\
+	&= \intinf{\Biggl[\intinf{x(\tau)y(q-\tau)}{\tau}\Biggr]h(t-q)}{q} = \\
+	&= \intinf{\intinf{x(\tau)y(q-\tau)h(t-q)}{\tau}}{q}
+\end{align*}
+Si osserva che anche con \(x(t) \ast \bigl[y(t) \ast h(t)\bigr]\):
+\begin{align*}
+	x(t) \ast \bigl[y(t) \ast h(t)\bigr]
+	&= \intinf{x(\tau)\Biggl[\intinf{y(q)h(t-\tau-q)}{q}\Biggr]}{\tau} \\
+	\xrightarrow[\mathrm{d}q=\mathrm{d}\alpha]{q=\alpha-\tau}
+	& \intinf{x(\tau)\Biggl[\intinf{y(\alpha-\tau)h(t-\alpha)}{\alpha}\Biggr]}{\tau} = \\
+	&= \intinf{\intinf{x(\tau)y(\alpha-\tau)h(t-\alpha)}{\alpha}}{\tau}
+\end{align*}
+Si nota che gli integrali concidono.
+\end{proof}
 \subsubsection{Prop. distributiva rispetto alla somma $[x(t)+y(t)]\ast h(t)= x(t)\ast h(t)+y(t)\ast h(t)$}
+\begin{proof}[Dim.]
+\begin{align*}
+	\bigl[x(t) \ast y(t)\bigr] \ast h(t)
+	&= \intinf{\bigl[x(\tau) + y(\tau)\bigr]h(t-\tau)}{\tau} = \\
+	&= \intinf{\bigl[x(\tau)h(t-\tau)+y(\tau)h(t-\tau)]}{\tau}
+	\qedhere
+\end{align*}
+\end{proof}
 
 \section{Segnali elementari}
 
