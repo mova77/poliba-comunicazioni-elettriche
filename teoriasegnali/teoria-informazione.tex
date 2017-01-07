@@ -46,13 +46,13 @@ Le probabilità di ricevere i due simboli
 		\node [block, right=of c,text width=2cm] (dc) {decodifica canale};
 		\node [draw, dashed, fit=(cc)(c)(dc), rounded corners, inner sep=2mm] {};
 		\node [block, right=of dc,text width=2cm] (ds) {decodifica sorgente};
-		\node [draw,circle,right=of ds] (R) {R};		
+		\node [draw,circle,right=of ds] (R) {R};
 		\draw [-latex] (S) -- (cs);
 		\draw [-latex] (cs) -- (cc);
 		\draw [-latex] (cc) -- (c);
 		\draw [-latex] (c) -- (dc);
 		\draw [-latex] (dc) -- (ds);
-		\draw [-latex] (ds) -- (R);		
+		\draw [-latex] (ds) -- (R);
 		\end{tikzpicture}
 	\end{center}
 \caption{Schema a blocchi di trasmissione numerica}
@@ -118,6 +118,37 @@ Si da una stima approssimata di errore non rilevato per il caso più probabile d
 \[p(E_{NR})\cong\binom{n}{2}p^2(1-p)^2=\frac{n!}{2!(n-2)!}\cdot 10^{-6}\]
 Non è possibile ridurre il \emph{bit error rate} al di sotto di tale stima ed avere un $\text{BER}\leq 10^{-9}$
 \end{esempio}
+
+\begin{esercizio}
+Dato un canale di banda $B = \SI{40}{\kHz}$ e un rapporto segnale rumore di quantizzazione $\frac{S}{N_q} = \SI{40}{\decibel}$ calcolare il \emph{bitrate}.
+
+Sapendo che il rapporto segnale rumore è espesso in decibel, vale la relazione $6n \geq \SI{40}{\decibel} \implies n \geq 7$, essendo $n$ il numero di bit, quindi necessariamente intero. Dovendo essere la \emph{frequenza di campionamento} almeno il doppio della banda, risulta $f_s \geq \SI{80}{\kHz}$. Questo implica che il \emph{bitrate} deve essere almeno $$R \geq f_s \cdot N = \SI{560}{\kilo\bit\per\second}$$
+
+Si vuole adesso calcolare la memoria minima per registrare $t_R = \SI{15}{\minute}$ di questo segnale. La memoria deve essere $$M \geq R \cdot t_R = \SI{560}{\kilo\bit\per\second} \cdot \SI{900}{\second} = \SI{504}{\mega\bit} = \SI{63}{\mega\byte}$$
+
+Si osserva che, se si riduce il canale di un fattore $10$, anche la memoria minima necessaria si riduce di un fattore analogo: $$B=\SI{4}{\kHz} \qquad M\geq\SI{6,3}{\mega\byte}$$
+
+Si vuole adesso ripetere lo stesso esercizio considerando una \emph{quantizzazione uniforme su distribuzione triangolare}. Da cui risulta che il rapporto segnale rumore $\frac{S}{N_q} = 6n-\SI{3}{\decibel}$. Risolvendo l'esercizio in maniera analoga a quello precedente perveniamo a $$R \geq \SI{640}{\kilo\bit\per\second} \qquad M \geq \SI{72}{\mega\byte}$$
+\end{esercizio}
+
+\begin{esercizio}
+Si consideri un processo aleatorio $W = N+\mu$ con $N$ processo aleatorio SSL con $\mu_N = 0$. Si calcoli la potenza del segnale $W$.
+
+A tal fine notiamo che $\mu_W = \mu_N + \mu = \mu$ e che l'autocorrelazione vale:
+\begin{align*}
+	R_W(t,t-\tau) &= \E{W(t)W(t-\tau)} = \E{(N(t)+\mu)(N(t-\tau)+\mu)} = \\
+	&= \E{N(t)N(t-\tau)} +\mu\E{N(t)} +\mu\E{N(t-\tau)} +\E{\mu^2} = \\
+	&= R_N(\tau) +\mu^2
+\end{align*}
+
+Quindi la potenza del segnale è $$S_W(f) = S_N(f)+\mu^2\delta(f)$$
+Inoltre se $N$ è bianco: $S_W(f) = N_0 +\mu^2\delta(f)$.
+
+\begin{center}\begin{tikzpicture}[scale=.7]\begin{axis}[axis equal, axis lines=middle,no markers,xtick={0},xlabel=$f$,ytick={0,.5,1},yticklabels={0,$N_0$,$\mu^2\delta(f)$},ylabel=$S_W (f)$]
+	\addplot [domain=-1:1] {.5};
+	\draw [very thick, ->] (axis cs:0,0) -- (axis cs:0,1);
+\end{axis}\end{tikzpicture}\end{center}
+\end{esercizio}
 
 \section{Teoria dell'informazione}
 Dato un canale di comunicazione basato su un sistema di trasmissione è importante quantificare il limite teorico di informazione trasmissibile (\textsc{Shannon}, 1948). \`{E} fondamentale poter confrontare i sistemi reali affetti da rumore gaussiano rispetto ad un sistema teorico, che astrae i dettagli implementativi e fissa un limite teorico di efficienza del sistema di trasmissione.
