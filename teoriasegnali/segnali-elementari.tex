@@ -5,7 +5,7 @@ Si definisce \keyword[segnale]{segnale} una grandezza fisica variabile cui è as
 
 Un segnale è definito matematicamente tramite una funzione $s$ ed in base alle proprietà di $s$ è possibile individuare differenti tipologie di segnali:
 \begin{description}
-	\item[Segnale continuo] il dominio di $s$ è continuo. Esempio: segnale tracciato di un elettrocardiografo. 
+	\item[Segnale continuo] il dominio di $s$ è continuo. Esempio: segnale tracciato di un elettrocardiografo.
 	\item[Segnale discreto] il dominio di $s$ è discreto. Esempio: segnale temperatura rilevata alle ore 10:00 di ogni giorno in una data località.
 	\item[Segnale ad ampiezza continua] il co-dominio di $s$ è continuo. Esempio: segnale tensione elettrica ai capi di un condensatore.
 	\item[Segnale ad ampiezza discreta] il co-dominio di $s$ è discreto: Esempio: segnale audio digitalizzato MP3.
@@ -16,14 +16,14 @@ Un segnale è definito matematicamente tramite una funzione $s$ ed in base alle 
 	\item[Segnale pari] se $s(t)=s(-t)$.
 	\item[Segnale dispari] se $s(t)=-s(-t)$.
 	\item[Segnale complesso] $s$ assume valori complessi. In tal caso, possiamo esprimere il segnale $s$ esplicitando parte reale e parte immaginaria: $s=s_R+\imath s_I$.
-	\item[Segnale reale] $s$ assume valori reali. 
-\end{description} 
+	\item[Segnale reale] $s$ assume valori reali.
+\end{description}
 
 \subsection{Energia di un segnale}
 Per caratterizzare un segnale $s$ è utile definire il concetto di energia $E_s$:
 
 \begin{equation}\label{eq:segnale_energia}
-E_s=\intinf{\abs{s(t)}^2}{t} \qquad E_s=\sum_{n=-\infty}^{+\infty}\abs{s(n)}^2 
+E_s=\intinf{\abs{s(t)}^2}{t} \qquad E_s=\sum_{n=-\infty}^{+\infty}\abs{s(n)}^2
 \end{equation}
 
 Se $E_s < \infty$, $s$  si definisce segnale ad \textsc{energia finita} o \keyword[segnale!energia]{segnale di energia}.
@@ -31,10 +31,10 @@ Se $E_s < \infty$, $s$  si definisce segnale ad \textsc{energia finita} o \keywo
 Un segnale periodico è un esempio di segnale che non ha energia finita infatti anche se l'energia nel periodo è finita $\intd{-T/2}{T/2}{\abs{s(t)}^2}{t}<+\infty$ non è finito l'integrale su $\R$.
 
 \subsection{Potenza di un segnale}
-Avendo definito l'energia di un segnale $s$, è possibile definire anche la potenza $P_s$: 
+Avendo definito l'energia di un segnale $s$, è possibile definire anche la potenza $P_s$:
 
 \begin{equation}\label{eq:segnale_potenza}
-P_s=\lim\limits_{T\to+\infty}{\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\abs{s(t)}^2}{t}} \qquad 
+P_s=\lim\limits_{T\to+\infty}{\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\abs{s(t)}^2}{t}} \qquad
 P_s=\lim\limits_{N\to+\infty}{\frac{1}{2N+1}\sum_{n=-N}^{N}{\abs{s(n)}^2}}
 \end{equation}
 
@@ -44,7 +44,7 @@ Per i segnali ad energia finita la potenza è nulla. Per i segnali periodici il 
 
 \section{Operazioni sui segnali}
 \subsection{Traslazione}
-La traslazione di $t_0$ di un segnale $s(t)$ è un'operazione che anticipa e ritarda il segnale stesso: 
+La traslazione di $t_0$ di un segnale $s(t)$ è un'operazione che anticipa e ritarda il segnale stesso:
 $s(t) \to s(t-t_0)$. Se $t_0>0$ il segnale sarà ritardato, se $t_0<0$ il segnale sarà anticipato.
 \subsection{Ribaltamento}
 Il ribaltamento di un segnale $s(t)$ implica un cambiamento di segno della variabile indipendente: $s(t) \to s(-t)$.
@@ -64,7 +64,7 @@ y(t)=x(t)\ast  h(t)=\intinf{x(\tau)h(t-\tau)}{\tau}
 x(t)\ast h(t)= h(t)\ast x(t)
 \end{equation}
 \begin{proof}[Dim.]
-	\[x(t)\ast h(t)=\intinf{x(\tau)h(t-\tau)}{\tau}=\intinf{-x(t-\alpha)h(\alpha)}{\alpha}=h(t)\ast x(t)\]
+	\[x(t)\ast h(t)=\intinf{x(\tau)h(t-\tau)}{\tau}=\intinf{x(t-\alpha)h(\alpha)}{\alpha}=h(t)\ast x(t)\]
 	dove si è effettuata la sostituzione $\alpha=t-\tau$, $\diff\tau=-\diff\alpha$
 \end{proof}
 \subsubsection{Proprietà associativa}
@@ -158,7 +158,7 @@ Partendo dal segnale rettangolare, si costruisce il segnale onda quadra, periodi
 \mathrm{sq}(t)=\sum_{n=-\infty}^{+\infty} \rect{\frac{t-n T}{\tau}},\;T>\tau
 \end{equation}
 
-Se $\tau=\frac{T}{2}$ il tempo in cui il segnale è diverso da zero, ovvero il \emph{duty cycle} $t/\tau$  è del 50\%, con un valor medio $1/2$. In generale il valor medio è $\frac{1}{T}\intd{-T/2}{T/2}{sq(\xi)}{\xi}=\frac{\tau}{T}$
+Se $\tau=\frac{T}{2}$ il tempo in cui il segnale è diverso da zero, ovvero il \emph{duty cycle} $\tau/T$  è del 50\%, con un valor medio $1/2$. In generale il valor medio è $\frac{1}{T}\intd{-T/2}{T/2}{sq(\xi)}{\xi}=\frac{\tau}{T}$
 \begin{figure}
 	\centering
 	\begin{tikzpicture}[xscale=.7,yscale=.5]
@@ -182,7 +182,7 @@ Se $\tau=\frac{T}{2}$ il tempo in cui il segnale è diverso da zero, ovvero il \
 \end{figure}
 
 \subsection{Delta di Dirac}\index{segnale!impulso}
-Il segnale rettangolare $\frac{1}{T} \rect{\frac{1}{T}}$ di base T e altezza 1/T ha area unitaria. Portando al limite $T\to 0$ il rettangolo diventa un impulso. Non è una funzione in senso proprio ma una distribuzione integrabile chiamata \textsc{delta di Dirac}:
+Il segnale rettangolare $\frac{1}{T} \rect{\frac{t}{T}}$ di base T e altezza 1/T ha area unitaria. Portando al limite $T\to 0$ il rettangolo diventa un impulso. Non è una funzione in senso proprio ma una distribuzione integrabile chiamata \textsc{delta di Dirac}:
 \begin{equation}
 \delta(t)=\lim\limits_{T\to 0}\frac{1}{T}\rect{\frac{t}{T}}
 \end{equation}
@@ -193,7 +193,7 @@ Il segnale rettangolare $\frac{1}{T} \rect{\frac{1}{T}}$ di base T e altezza 1/T
 	\begin{equation}
 	\intinf{\impulse(t)}{t}=1
 	\end{equation}
-	\item Il segnale impulso è funzione pari 
+	\item Il segnale impulso è funzione pari
 	\begin{equation}
 	\impulse(t)=\impulse(-t)
 	\end{equation}
@@ -201,32 +201,32 @@ Il segnale rettangolare $\frac{1}{T} \rect{\frac{1}{T}}$ di base T e altezza 1/T
 	\begin{equation}
 	\intinf{s(t)\impulse(t-\tau)}{t}=s(\tau)
 	\end{equation}
-	
+
 	$s(t)\impulse(t-\tau)=s(\tau)\impulse(t-\tau)$ è equivalente ad un impulso in $\tau$ di area $s(\tau)$:
 	\begin{align*}
-	s(t)\impulse(t-\tau)=s(\tau)\impulse(t-\tau) &\implies \\ 
+	s(t)\impulse(t-\tau)=s(\tau)\impulse(t-\tau) &\implies \\
 	& \intinf{s(t)\impulse(t-\tau)}{t} =\intinf{s(\tau)\impulse(t-\tau)}{t} = s(\tau)\intinf{\impulse(t-\tau)}{t} = s(\tau)
 	\end{align*}
-	
+
 	\item Rappresentazione di un segnale come somma di infiniti impulsi:
 	\begin{equation}
 	s(t)=\intinf{s(\tau)\impulse(t-\tau)}{\tau}=s(t)\ast\impulse(t)
 	\end{equation}
-	
+
 	\item La derivata del segnale impulso è il \textsc{doppietto} $\impulse'(t)$:
 	\begin{equation}
 	\intinf{s(t)\impulse'(t-\tau)}{t}=-s'(\tau)
 	\end{equation}
-	
+
 	\begin{proof}[Dim.]
-		Applico l'integrazione per parti $\int{u\diff v}=u v-\int{v\diff u}$ con $u=s(t) ,\, \diff u=s'(t)\diff t ,\, \diff v=\impulse'(t-\tau)\diff t ,\, v=\impulse(t-\tau)$  a 
+		Applico l'integrazione per parti $\int{u\diff v}=u v-\int{v\diff u}$ con $u=s(t) ,\, \diff u=s'(t)\diff t ,\, \diff v=\impulse'(t-\tau)\diff t ,\, v=\impulse(t-\tau)$  a
 		\[\intinf{s(t)\impulse'(t-\tau)}{t}= \restrict{\bigl[ s(t)\impulse(t-\tau)\bigr]}{-\infty}^{+\infty} -\intinf{\impulse(t-\tau)s'(t)}{t}=-s'(\tau)\]
 	\end{proof}
 	\item L'impulso è la derivata del gradino:
 	\begin{equation}
 	\intd{-\infty}{t}{\impulse(\tau)}{\tau}=\step(t) \to \impulse(t)=\deriv{\step(t)}{t}
 	\end{equation}
-	
+
 	%\item scala
 	%\[\impulse(a t+b)=\intinf{s(t)\impulse(a t+b)}{t}\]
 	%applicando le sostituzioni $\begin{cases}x=a t+b \\ t=\frac{x-b}{a}\end{cases}$
