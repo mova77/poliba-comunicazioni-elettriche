@@ -15,8 +15,8 @@ Un segnale è definito matematicamente tramite una funzione $s$ ed in base alle 
 	\item[Segnale multidimensionale] $s$ è funzione di due o più variabili. Esempio: segnale nel dominio dello spazio $s(x,y,z)$.
 	\item[Segnale pari] se $s(t)=s(-t)$.
 	\item[Segnale dispari] se $s(t)=-s(-t)$.
-	\item[Segnale complesso] $s$ assume valori complessi. In tal caso, possiamo esprimere il segnale $s$ esplicitando parte reale e parte immaginaria: $s=s_R+\imath s_I$.
-	\item[Segnale reale] $s$ assume valori reali. 
+	\item[Segnale complesso] $s(t)$ assume valori complessi. In tal caso, possiamo esprimere il segnale $s$ esplicitando parte reale e parte immaginaria: $s=s_R+\imath s_I$.
+	\item[Segnale reale] $s(t)$ assume valori reali.
 \end{description}
 
 \subsection{Energia di un segnale}
@@ -44,7 +44,7 @@ Per i segnali ad energia finita la potenza è nulla. Per i segnali periodici il 
 
 \section{Operazioni sui segnali}
 \subsection{Traslazione}
-La traslazione di $t_0$ di un segnale $s(t)$ è un'operazione che anticipa e ritarda il segnale stesso: 
+La traslazione di $t_0$ di un segnale $s(t)$ è un'operazione che anticipa e ritarda il segnale stesso:
 $s(t) \to s(t-t_0)$. Se $t_0>0$ il segnale sarà ritardato, se $t_0<0$ il segnale sarà anticipato.
 \subsection{Ribaltamento}
 Il ribaltamento di un segnale $s(t)$ implica un cambiamento di segno della variabile indipendente: $s(t) \to s(-t)$.
@@ -64,7 +64,7 @@ y(t)=x(t)\ast  h(t)=\intinf{x(\tau)h(t-\tau)}{\tau}
 x(t)\ast h(t)= h(t)\ast x(t)
 \end{equation}
 \begin{proof}[Dim.]
-	\[x(t)\ast h(t)=\intinf{x(\tau)h(t-\tau)}{\tau}=\intinf{-x(t-\alpha)h(\alpha)}{\alpha}=h(t)\ast x(t)\]
+	\[x(t)\ast h(t)=\intinf{x(\tau)h(t-\tau)}{\tau}=\intinf{x(t-\alpha)h(\alpha)}{\alpha}=h(t)\ast x(t)\]
 	dove si è effettuata la sostituzione $\alpha=t-\tau$, $\diff\tau=-\diff\alpha$
 \end{proof}
 \subsubsection{Proprietà associativa}
@@ -158,7 +158,7 @@ Partendo dal segnale rettangolare, si costruisce il segnale onda quadra, periodi
 \mathrm{sq}(t)=\sum_{n=-\infty}^{+\infty} \rect{\frac{t-n T}{\tau}},\;T>\tau
 \end{equation}
 
-Se $\tau=\frac{T}{2}$ il tempo in cui il segnale è diverso da zero, ovvero il \emph{duty cycle} $t/\tau$  è del 50\%, con un valor medio $1/2$. In generale il valor medio è $\frac{1}{T}\intd{-T/2}{T/2}{sq(\xi)}{\xi}=\frac{\tau}{T}$
+Se $\tau=\frac{T}{2}$ il tempo in cui il segnale è diverso da zero, ovvero il \emph{duty cycle} $\tau/T$  è del 50\%, con un valor medio $1/2$. In generale il valor medio è $\frac{1}{T}\intd{-T/2}{T/2}{sq(\xi)}{\xi}=\frac{\tau}{T}$
 \begin{figure}
 	\centering
 	\begin{tikzpicture}[xscale=.7,yscale=.5]
@@ -182,7 +182,7 @@ Se $\tau=\frac{T}{2}$ il tempo in cui il segnale è diverso da zero, ovvero il \
 \end{figure}
 
 \subsection{Delta di Dirac}\index{segnale!impulso}
-Il segnale rettangolare $\frac{1}{T} \rect{\frac{1}{T}}$ di base T e altezza 1/T ha area unitaria. Portando al limite $T\to 0$ il rettangolo diventa un impulso. Non è una funzione in senso proprio ma una distribuzione integrabile chiamata \textsc{delta di Dirac}:
+Il segnale rettangolare $\frac{1}{T} \rect{\frac{t}{T}}$ di base T e altezza 1/T ha area unitaria. Portando al limite $T\to 0$ il rettangolo diventa un impulso. Non è una funzione in senso proprio ma una distribuzione integrabile chiamata \textsc{delta di Dirac}:
 \begin{equation}
 \delta(t)=\lim\limits_{T\to 0}\frac{1}{T}\rect{\frac{t}{T}}
 \end{equation}
