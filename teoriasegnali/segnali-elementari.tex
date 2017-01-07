@@ -15,8 +15,8 @@ Un segnale è definito matematicamente tramite una funzione $s$ ed in base alle 
 	\item[Segnale multidimensionale] $s$ è funzione di due o più variabili. Esempio: segnale nel dominio dello spazio $s(x,y,z)$.
 	\item[Segnale pari] se $s(t)=s(-t)$.
 	\item[Segnale dispari] se $s(t)=-s(-t)$.
-	\item[Segnale complesso] $s$ assume valori complessi. In tal caso, possiamo esprimere il segnale $s$ esplicitando parte reale e parte immaginaria: $s=s_R+\imath s_I$.
-	\item[Segnale reale] $s$ assume valori reali.
+	\item[Segnale complesso] $s(t)$ assume valori complessi. In tal caso, possiamo esprimere il segnale $s$ esplicitando parte reale e parte immaginaria: $s=s_R+\imath s_I$.
+	\item[Segnale reale] $s(t)$ assume valori reali.
 \end{description}
 
 \subsection{Energia di un segnale}
@@ -34,7 +34,7 @@ Un segnale periodico è un esempio di segnale che non ha energia finita infatti 
 Avendo definito l'energia di un segnale $s$, è possibile definire anche la potenza $P_s$:
 
 \begin{equation}\label{eq:segnale_potenza}
-P_s=\lim\limits_{T\to+\infty}{\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\abs{s(t)}^2}{t}} \qquad
+P_s=\lim\limits_{T\to+\infty}{\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\abs{s(t)}^2}{t}}\qquad
 P_s=\lim\limits_{N\to+\infty}{\frac{1}{2N+1}\sum_{n=-N}^{N}{\abs{s(n)}^2}}
 \end{equation}
 
@@ -237,13 +237,6 @@ Il segnale rettangolare $\frac{1}{T} \rect{\frac{t}{T}}$ di base T e altezza 1/T
 
 \subsection{Segnale sinusoidale}\index{segnale!sinusoidale}
 Il segnale sinusoidale di ampiezza $A$, pulsazione angolare $\omega=2\pi f$, periodo $T=\frac{2\pi}{\omega}$, frequenza $f=\frac{1}{T}$, fase iniziale $\phi$ è definito come
-%\begin{itemize}
-% \item ampiezza $A$
-% \item pulsazione angolare $\omega=2\pi f$
-% \item periodo $T=\frac{2\pi}{\omega}$
-% \item frequenza $f=\frac{1}{T}$
-% \item fase $\phi$
-%\end{itemize}
 \begin{equation}
 s(t)=A\sen{2\pi f t+\phi}
 \end{equation}
