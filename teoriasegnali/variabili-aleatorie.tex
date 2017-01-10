@@ -1,20 +1,70 @@
 \chapter{Variabili aleatorie continue e discrete}
 \section{Variabili aleatorie}
-Si consideri un esperimento aleatorio avente spazio campione $\Omega$, classe degli eventi $S$, legge di probabilità $P(\cdot)$, si definisce una corrispondenza $X(\omega_i)$ che associ a ciascun evento $\omega_i\in\Omega$ un unico numero reale $a\in\R$.
+Si consideri un esperimento aleatorio avente spazio campione $\Omega$, una classe degli eventi $S$ e una legge di probabilità $P(\cdot)$. Si definisce la corrispondenza $X(\omega_i)$ che associa a ciascun risultato $\omega_i\in\Omega$ un unico numero reale $a\in\R$.
 
 Se l'insieme dei risultati di un esperimento aleatorio per i quali è verificata la disuguaglianza $X(\omega)\leq a$ è un evento, $\forall a\in\R$, si dice che $X$ è una \keyword[variabile aleatoria]{variabile aleatoria}.
 
-Tale definizione di variabile aleatoria modella un esperimento che ha un risultato numerico non prevedibile a priori derivato da una operazione di misura. Ripetendo un esperimento si otterrà un insieme di misure che rappresenta la variabile aleatoria.\\
+Tale definizione di variabile aleatoria modella un esperimento che ha un risultato numerico non prevedibile a priori ed è derivato da una operazione di misura. Ripetendo l'esperimento si otterrà un insieme di valori che rappresenta la variabile aleatoria.\\
+
+\begin{figure}[ht]
+	\centering
+	\subfloat[]{\begin{tikzpicture}[scale=.7]\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0},ytick={0},xlabel=\(x\),ylabel=\(F_X(x)\)]
+		\addplot [very thick] gnuplot [raw gnuplot] {
+			% from http://tex.stackexchange.com/a/341886
+			set samples 50;
+			cdfn(x,mu,sd) = 0.5 * ( 1 + erf( (x-mu)/sd/sqrt(2)) );
+			pdfn(x,mu,sd) = 1/(sd*sqrt(2*pi)) * exp( -(x-mu)**2 / (2*sd**2) );
+			tpdfn(x,mu,sd,a,b) = pdfn(x,mu,sd) / ( cdfn(b,mu,sd) - cdfn(a,mu,sd) );
+			plot [x=-15:9] tpdfn(x,9,10,-10,10)
+		};
+	\end{axis}\end{tikzpicture}} \qquad
+	\subfloat[]{\begin{tikzpicture}[scale=.7]\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0},ytick={0},xlabel=\(x\),ylabel=\(f_X(x)\)]
+		\addplot [very thick,samples=200,domain=-3:6] {1/(1*sqrt(2*pi))*exp(-((x-2)^2)/(2*1^2))};
+	\end{axis}\end{tikzpicture}} \\
+	\subfloat[]{\begin{tikzpicture}[scale=.7]\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0},ytick={0},xlabel=\(x\),ylabel=\(F_X(x)\)]
+		\addplot [very thick] coordinates {(0,0) (1,0) (1,.1) (2,.1) (2,.2) (3,.2) (3,.4) (4,.4) (4,.7) (5,.7) (5,.8) (6,.8) (6,.9) (7,.9) (7,.95) (8,.95) (8,.97) (9,.97) (9,1) (10,1)};
+	\end{axis}\end{tikzpicture}} \qquad
+	\subfloat[]{\begin{tikzpicture}[scale=.7]\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0},ytick={0},xlabel=\(x\),ylabel=\(f_X(x)\)]
+		\addplot [very thick,->] coordinates {(0,0) (0,.02)};
+		\addplot [very thick,->] coordinates {(1,0) (1,.07)};
+		\addplot [very thick,->] coordinates {(2,0) (2,.15)};
+		\addplot [very thick,->] coordinates {(3,0) (3,.18)};
+		\addplot [very thick,->] coordinates {(4,0) (4,.19)};
+		\addplot [very thick,->] coordinates {(5,0) (5,.16)};
+		\addplot [very thick,->] coordinates {(6,0) (6,.12)};
+		\addplot [very thick,->] coordinates {(7,0) (7,.06)};
+		\addplot [very thick,->] coordinates {(8,0) (8,.04)};
+		\addplot [very thick,->] coordinates {(9,0) (9,.02)};
+		\addplot [very thick,->] coordinates {(10,0) (10,.01)};
+	\end{axis}\end{tikzpicture}} \\
+	\subfloat[]{\begin{tikzpicture}[scale=.7]\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0},xlabel=\(x\),ylabel=\(F_X(x)\)]
+		\addplot [very thick] gnuplot [raw gnuplot] {
+			% from http://tex.stackexchange.com/a/341886
+			set samples 50;
+			cdfn(x,mu,sd) = 0.5 * ( 1 + erf( (x-mu)/sd/sqrt(2)) );
+			pdfn(x,mu,sd) = 1/(sd*sqrt(2*pi)) * exp( -(x-mu)**2 / (2*sd**2) );
+			tpdfn(x,mu,sd,a,b) = pdfn(x,mu,sd) / ( cdfn(b,mu,sd) - cdfn(a,mu,sd) );
+			plot [x=-15:2] tpdfn(x,9,10,-10,10);
+			replot [x=2:9] tpdfn(x,9,10,-10,10)+0.05;
+		};
+		\addplot [very thick] coordinates {(2,0.092) (2,0.1425)};
+	\end{axis}\end{tikzpicture}} \qquad
+	\subfloat[]{\begin{tikzpicture}[scale=.7]\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={0},ytick={0},xlabel=\(x\),ylabel=\(f_X(x)\)]
+		\addplot [very thick,samples=200,domain=-3:6] {1/(1*sqrt(2*pi))*exp(-((x-2)^2)/(2*1^2))};
+		\addplot [very thick,->] coordinates {(2,0) (2,.42)};
+	\end{axis}\end{tikzpicture}}
+	\caption{Funzioni distribuzione e densità di probabilità per una variabile aleatoria continua, discreta e mista.}
+\end{figure}
 
 \section{Funzione distribuzione di probabilità}
 Si vuole ora stabilire come trasferire la legge di probabilità sugli eventi alle variabili aleatorie che vi associa numeri sull'asse reale.
 
-Si definisce \keyword[variabile aleatoria!funzione distribuzione di probabilità]{funzione distribuzione di probabilità} di una variabile aleatoria $X$ la funzione che associa per un fissato valore reale $x$ il valore della probabilità dell'evento $\lbrace X\leq x\rbrace$:
+Si definisce \keyword[variabile aleatoria!funzione distribuzione di probabilità]{funzione distribuzione di probabilità} di una variabile aleatoria $X$ la funzione che associa per un fissato valore reale $x$ il valore della probabilità dell'evento $\lbrace X\leq x\rbrace$, ovvero ne descrive il suo comportamento statistico:
 \begin{equation}
-F_X(s)=P(X\leq x)
+F_X(x)=P(X\leq x)
 \end{equation}\label{eq:funz_dist_prob}
 
-\textbf{Proprietà funzione distribuzione di probabilità}
+\paragraph{Proprietà funzione distribuzione di probabilità}
 \begin{enumerate}
 \item $0\leq F_X(x)\leq 1$
 \item $\lim\limits_{x\to+\infty}F_X(x)=1$
@@ -30,7 +80,7 @@ Le variabili aleatorie possono essere \emph{continue}, \emph{discrete} o \emph{m
 
 Una variabile aleatoria discreta ha la funzione di distribuzione di probabilità continua a tratti: $F_X(x)=\sum_k P(X=x_k)\step{(x-x_k)}$, la probabilità è concentrata in “masse” di probabilità $p_k=P(X=x_k)$ in corrispondenza dei punti di discontinuità $x_k$.
 
-Una variabile aleatoria continua ha la funzione distribuzione di probabilità continua, ovvero la probabilità che la variabile aleatoria assuma un particolare valore $P(X=\bar{x})$ è un infinitesimo.
+Una variabile aleatoria continua ha la funzione distribuzione di probabilità continua, ovvero la probabilità che la variabile aleatoria assuma un particolare valore $P(X=\bar{x})$ è infinitesima.
 
 \section{Funzione densità di probabilità}
 Si può dare una definizione alternativa di variabile aleatoria legata alla \keyword[variabile aleatoria!funzione densità di probabilità]{funzione densità di probabilità}
@@ -40,12 +90,12 @@ f_X(x)=\deriv{F_X(x)}{x}
 dove la funzione di distribuzione di probabilità è
 \begin{equation}F_X(x)=\intd{-\infty}{x}{f_X(\alpha)}{\alpha}\end{equation}
 
-\textbf{Proprietà funzione densità di probabilità}
+\paragraph{Proprietà funzione densità di probabilità}
 \begin{enumerate}
-\item $f_X(x)\geq 0$
+\item $f_X(x)\geq 0$ perché $F_X(x)$ è monotona crescente
 \item $P(a<X\leq b)=F_X(b)-F_X(a)=\intd{a}{b}{f_X(x)}{x}$
-\item $\lim\limits_{x\to+\infty}f_X(x)=0\qquad\lim\limits_{x\to-\infty}f_X(x)=0$
-\item $\intinf{f_X(x)}{x}=1$
+\item $\lim\limits_{x\to\pm\infty}f_X(x)=0$
+\item $\intinf{f_X(x)}{x}=1$ in quanto rappresenta la probabilità di un evento certo
 \item $P(x<X\leq x+\Delta x)=\intd{x}{x+\Delta x}{f_X(\alpha)}{\alpha}\cong f_X(x)\Delta x$
 \end{enumerate}
 
@@ -56,11 +106,11 @@ Se la variabile aleatoria è continua la densità di probabilità è distribuita
 Se la variabile aleatoria è mista la densità di probabilità è distribuita con continuità e in impulsi in cui sono concentrate masse di probabilità.
 
 \section{Operazioni su variabili aleatorie}
-Data una variabile aleatoria $X$ è possibile ottenere una nuova variabile aleatoria $Y=g(X)$ con funzione di distribuzione di probabilità
+Data una variabile aleatoria $X$ è possibile ottenere una nuova variabile aleatoria che apporti trasformazioni a $X$: $Y=g(X)$. Essa ha funzione distribuzione di probabilità
 \begin{equation}F_Y(y)=P(Y\leq y)=P(g(X)\leq y)\end{equation}
-Nel dominio $D_Y=\left\lbrace x\ni' g(x)\leq y\right\rbrace$ dei valori di $x$ per i quali $g(x)\leq y$ è possibile calcolare la funzione distribuzione di probabilità $F_Y(y)=\int_{D_Y}{f_X(x)\diff x}$ e la funzione densità di probabilità $f_Y(y)=\deriv{F_Y(y)}{y}$
+Nel dominio $D_Y=\left\lbrace x\mid g(x)\leq y\right\rbrace$ è possibile calcolare la funzione distribuzione di probabilità $F_Y(y)=\int_{D_Y}{f_X(x)\diff x}$ e la funzione densità di probabilità $f_Y(y)=\deriv{F_Y(y)}{y}$
 
-Nel caso particolare di funzione $g(\cdot)$ sia monotona strettamente crescente o strettamente decrescente è possibile definire la sua inversa $g^{-1}(\cdot)$ per cui nel primo caso
+Nel caso in cui la funzione $g(\cdot)$ sia monotona strettamente crescente o strettamente decrescente è possibile definire la sua inversa $g^{-1}(\cdot)$. Di conseguenza nel caso di $g(\cdot)$ strettamente crescente
 \[F_Y(y)=P(Y\leq y)=P(g(X)\leq y)=P(X\leq g^{-1}(y))=F_X(g^{-1}(y))\implies\]
 \begin{equation}
 f_Y(y)=f_X(g^{-1}(y))\cdot\deriv{g^{-1}(y)}{y}=\restrict{\frac{f_X(x)}{g'(x)}}{x=g^{-1}(y)}
@@ -70,11 +120,11 @@ Nel caso di funzione $g(\cdot)$ strettamente decrescente $g(x)\leq y\iff x>g^{-1
 \begin{equation}
 f_Y(y)=f_X(g^{-1}(y))\cdot-\deriv{g^{-1}(y)}{y}=\restrict{-\frac{f_X(x)}{g'(x)}}{x=g^{-1}(y)}
 \end{equation}
-In generale nel dominio di definizione $D_Y=\left\lbrace x\ni' g(x)\leq y\right\rbrace$
+In generale
 \begin{equation}
 F_Y(y)=\int\limits_{D_Y}{\frac{f_X(x)}{\abs{g'(x)}}\diff x}
 \end{equation}
-ponendo attenzione al caso $g'(x)=0$ da trattare con attenzione, anche $f_X(x)$ può annullarsi, ovvero essere costanti sia $F_X(x)$ che $g(x)$.
+Si osservi l'integrale per $g'(x)=0$ e anche per $f_X(x)=0$ quando sono costanti sia $F_X(x)$ che $g(x)$.
 
 \section{Indici statistici di variabile aleatoria}
 Il massimo di informazione che si può trarre da un esperimento aleatorio è la funzione densità di probabilità che caratterizza la variabile aleatoria.
@@ -745,6 +795,83 @@ P(A)=P(\{(X,Y)\in D\})=\iint\limits_{D}{f_{XY}(x,y)\diff x \diff y}\end{equation
 \begin{equation}
 F_{XY}(x,y)=\int\limits_{\alpha=-\infty}^{x}\int\limits_{\beta=-\infty}^{y}{f_{XY}(\alpha,\beta)}{\,\diff \alpha\,\diff \beta}\end{equation}
 \end{enumerate}
+
+% Helper per poter fare linee parallele con spazio variabile
+\pgfdeclarepatternformonly[\LineSpace]{custom ne lines}{\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{\LineSpace}{\LineSpace}}{\pgfqpoint{\LineSpace}{\LineSpace}}%
+{
+    \pgfsetlinewidth{0.4pt}
+    \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+    \pgfpathlineto{\pgfqpoint{\LineSpace + 0.1pt}{\LineSpace + 0.1pt}}
+    \pgfusepath{stroke}
+}
+\makeatother %new code
+\newdimen\LineSpace
+\tikzset{
+    line space/.code={\LineSpace=#1},
+    line space=3pt
+}
+% Helper per fare un pattern di puntini con spazio intermedio variabile
+\pgfdeclarepatternformonly{my crosshatch dots}{\pgfqpoint{-1pt}{-1pt}}{\pgfqpoint{5pt}{5pt}}{\pgfqpoint{6pt}{6pt}}%
+{
+    \pgfpathcircle{\pgfqpoint{0pt}{0pt}}{.5pt}
+    \pgfpathcircle{\pgfqpoint{3pt}{3pt}}{.5pt}
+    \pgfusepath{fill}
+}
+
+\begin{figure}[ht]
+	\centering
+	\subfloat[\(F_{XY}(x_2,y_2)\)]
+	{
+		\begin{tikzpicture}[scale=.6]
+			\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={1,4},xticklabels={\(x_1\),\(x_2\)},xlabel=\(x\),ytick={1,4},yticklabels={\(y_1\),\(y_2\)},ylabel=\(y\)]
+				\addplot [dashed,domain=0:4] {1};
+				\addplot [dashed,domain=0:4] {4};
+				\addplot [dashed] coordinates {(1,0) (1,4)};
+				\addplot [dashed] coordinates {(4,0) (4,4)};
+				\addplot [draw=none,pattern=custom ne lines,line space=10pt,samples=200]  coordinates {(-2,-2) (-2,4) (4,4) (4,-2)};
+			\end{axis}
+		\end{tikzpicture}
+	} \hspace{3em}
+	\subfloat[\(F_{XY}(x_2,y_2) - F_{XY}(x_1,y_2)\)]
+	{
+		\begin{tikzpicture}[scale=.6]
+			\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={1,4},xticklabels={\(x_1\),\(x_2\)},xlabel=\(x\),ytick={1,4},yticklabels={\(y_1\),\(y_2\)},ylabel=\(y\)]
+				\addplot [dashed,domain=0:4] {1};
+				\addplot [dashed,domain=0:4] {4};
+				\addplot [dashed] coordinates {(1,0) (1,4)};
+				\addplot [dashed] coordinates {(4,0) (4,4)};
+				\addplot [draw=none,pattern=custom ne lines,line space=10pt,samples=200]  coordinates {(1,-2) (1,4) (4,4) (4,-2)};
+			\end{axis}
+		\end{tikzpicture}
+	} \\
+	\subfloat[\(F_{XY}(x_2,y_2) - F_{XY}(x_1,y_2) - F_{XY}(x_2,y_1)\)]
+	{
+		\begin{tikzpicture}[scale=.6]
+			\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={1,4},xticklabels={\(x_1\),\(x_2\)},xlabel=\(x\),ytick={1,4},yticklabels={\(y_1\),\(y_2\)},ylabel=\(y\)]
+				\addplot [dashed,domain=0:4] {1};
+				\addplot [dashed,domain=0:4] {4};
+				\addplot [dashed] coordinates {(1,0) (1,4)};
+				\addplot [dashed] coordinates {(4,0) (4,4)};
+				\addplot [draw=none,pattern=custom ne lines,line space=10pt,samples=200]  coordinates {(1,1) (1,4) (4,4) (4,1)};
+				\addplot [draw=none,pattern=my crosshatch dots,samples=200]  coordinates {(-2,1) (1,1) (1,-2) (-2,-2)};
+				\node[right,label={[align=center]\\\(\leadsto\)~area cancellata\\2 volte}] at (2.3,-2) {};
+			\end{axis}
+		\end{tikzpicture}
+	} \hspace{3em}
+	\subfloat[\(F_{XY}(x_2,y_2) - F_{XY}(x_1,y_2) - F_{XY}(x_2,y_1) + F_{XY}(x_1,y_1)\)]
+	{
+		\begin{tikzpicture}[scale=.6]
+			\begin{axis}[axis lines=middle,no markers,enlargelimits,xtick={1,4},xticklabels={\(x_1\),\(x_2\)},xlabel=\(x\),ytick={1,4},yticklabels={\(y_1\),\(y_2\)},ylabel=\(y\)]
+				\addplot [dashed,domain=0:4] {1};
+				\addplot [dashed,domain=0:4] {4};
+				\addplot [dashed] coordinates {(1,0) (1,4)};
+				\addplot [dashed] coordinates {(4,0) (4,4)};
+				\addplot [draw=none,pattern=custom ne lines,line space=10pt,samples=200]  coordinates {(1,1) (1,4) (4,4) (4,1)};
+			\end{axis}
+		\end{tikzpicture}
+	}
+	\caption{Dimostrazione grafica della proprietà 6 della funzione distribuzione di probabilità congiunta}
+\end{figure}
 
 Per una coppia di variabili aleatorie $(X,Y)$ con densità di probabilità congiunta $f_{XY}(x,y)$, si può osservare che una variabile, ad esempio $X$, assume un particolare valore $x$; la distribuzione marginale dell'altra variabile viene modificata da questo \emph{condizionamento}.
 
