@@ -1,3 +1,4 @@
+%Il capitolo 2 è stato revisionato dal Prof. Grieco il 11/01/2017.
 \chapter{Serie e trasformata di Fourier}
 
 \section{Serie di Fourier esponenziale}
@@ -32,7 +33,7 @@ $\sinc{n-k}=\begin{cases} 1 & n=k \\ 0 & n\neq k\end{cases}$, l'integrale sul pe
 I coefficienti $c_k$ sono numeri complessi $c_k=\abs{c_k}\e{\imath\theta_k}$ con ampiezza e fase associati alla armonica di frequenza $f_k$.
 
 Il coefficiente $c_0$ corrispondente alla frequenza nulla definisce la \textsc{componente continua} del segnale ed è pari al valor medio del segnale periodico in un periodo:
-\begin{equation}c_0=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)}{t} \end{equation}
+\begin{equation}c_0=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)}{t}\end{equation}
 
 \begin{nota}Nei sistemi reali, al segnale $s(t)$ si sovrappone sempre un segnale di rumore $n(t)$ che modella disturbi impredicibili. Inoltre, tipicamente i coefficienti $c_k$ hanno ampiezze decrescenti con $k$. Per questi motivi, è possibile troncare lo sviluppo in serie di Fourier considerando solo i primi $N$ esponenziali complessi ($-N\leq k \leq +N$) che apportano un contributo al segnale significativamente più elevato del rumore $n(t)$.\end{nota}
 
@@ -186,9 +187,9 @@ Il modulo e la fase della grandezza complessa definiscono
 \subsection{Condizioni di esistenza di Dirichlet}
 I criteri di Dirichlet sono condizioni sufficienti per l'esistenza della trasformata di Fourier di un segnale $s(t)$:
 \begin{enumerate}
-\item $\intinf{\abs{s(t)}}{t}<\infty$ (assolutamente integrabile)
-\item numero finito di discontinuità (tutte di I specie)
-\item numero finito di max e min
+\item $\intinf{\abs{s(t)}}{t}<\infty$ (assolutamente integrabile);
+\item numero finito di discontinuità (tutte di I specie) in qualsiasi intervallo finito del dominio;
+\item numero finito di max e min in qualsiasi intervallo finito del dominio.
 \end{enumerate}
 \begin{nota}Le condizioni non sono necessarie: alcune funzioni pur non soddisfacendo le tre condizioni sono trasformabili.\end{nota}
 \begin{esempio}
@@ -228,7 +229,7 @@ La trasformata di un segnale reale $s(t)$ gode di simmetria hermitiana $\conj{S}
 \begin{equation}\conj{S}(f)=\intinf{s(t)\e{+\imath 2\pi f t}}{t}=S(-f)\end{equation}
 Questa proprietà si dimostra immediatamente esplicitando la parte reale e immaginaria di $S(f)$ e considerando che le funzioni coseno e seno sono, rispettivamente, pari e dispari: 
 \[S(f)=S_R(f)+\imath S_I(f)=\intinf{s(t)\cos{2\pi f t}}{t}+\imath\intinf{s(t)\sen{2\pi f t}}{t}\]
-Inoltre, si nota che  se $s(t)$ è reale e pari, la trasformata è reale e pari, essendo $S_I(f)=0$.
+Inoltre, si nota che se $s(t)$ è reale e pari, la trasformata è reale e pari, essendo $S_I(f)=0$.
 Analogamente, se $s(t)$ è reale e dispari, la trasformata è reale e immaginaria pura e dispari, essendo $S_R(f)=0$.
 
 \subsection{Linearità}
@@ -394,6 +395,9 @@ E_s=\intinf{\abs{s(t)}^2}{t}=\intinf{\abs{S(f)}^2}{f}
 \end{equation}
 che da indicazioni su come è distribuita l'energia del segnale alle varie frequenze. Per l'integrale di Fourier $s(t)=\intinf{S(f)\e{\imath 2\pi f t}}{t}$ il segnale $s(t)$ è la somma di infinite sinusoidi pesate da $S(f)$: che è anche l'integrale dei contributi infinitesimi di energia alle varie frequenze dello spettro.
 \begin{nota}
+	Per un segnale di energia $s(t)$, si definisce spettro di energia (o densità spettrale di energia) il modulo al quadrato della sua trasformata di Fourier: $|S(f)|^2$.
+\end{nota}
+\begin{nota}
 	\`E importante notare che per la trasformata di Fourier cambiare l'energia ad una frequenza $f_0$ non comporta cambiamenti ad altre frequenze.
 \end{nota}
 \begin{proof}[Dim.]
@@ -406,7 +410,10 @@ che da indicazioni su come è distribuita l'energia del segnale alle varie frequ
 \end{align*}
 \end{proof}
 
-\begin{nota}Tutte le proprietà della trasformata di Fourier valgono sotto le condizioni di Dirichlet. Tali condizioni sono molto stringenti ai fini pratici, anche segnali elementari come l'impulso e il gradino non ammettono trasformata di Fourier. Le condizioni sono soddisfatte applicando la trasformata a funzioni generalizzate.\end{nota}
+\begin{nota}
+	Tutte le proprietà della trasformata di Fourier valgono sotto le condizioni di Dirichlet. Tali condizioni sono molto stringenti ai fini pratici, anche segnali elementari come l'impulso e il gradino non ammettono trasformata di Fourier. Le condizioni saranno superate con la trasformata generalizzata. 
+%Le condizioni sono soddisfatte applicando la trasformata a funzioni generalizzate.
+\end{nota}
 
 \subsection{Trasformata funzione generalizzata \texorpdfstring{$\delta(t)$}{Delta di Dirac}}
 Per calcolare la trasformata di Fourier della funzione generalizzata delta di Dirac $\delta(t)$ si applica la definizione tenendo conto della proprietà campionatrice di $\delta(t)$
@@ -442,8 +449,8 @@ La trasformata della funzione $\sgn(t)$ si ottiene per dualità della trasformat
 \fourier{\frac{1}{t}}&=\intinf{\frac{1}{t}\e{-\imath 2\pi f t}}{t}= \underbrace{\intinf{\frac{1}{t}\cos{2\pi f t}}{t}}_{\stackrel{=0}{1/t \text{ dispari}}} -\imath\intinf{\frac{1}{t}=\sen{2\pi f t}}{t}=\\
 &=-\imath 2\pi f\intinf{\frac{\sen{2\pi f t}}{2\pi f t}}{t}=-\imath 2\pi f\intinf{\sinc{2 f t}}{t}= -\imath\frac{2\pi f}{2\abs{f}} = -\imath\pi\sgn(f)
 \end{align*}
-L'integrale nel tempo da $-\infty$ a $+\infty$ di un segnale è pari alla trasformata del segnale calcolata per $f=0$. La trasformata del $\sinc{t}\overset{\Fourier}{\to}\rect{f}$ per la prop. di dualità, la trasformata di $\sinc{2\alpha t}\overset{\Fourier}{\to}\frac{1}{2\abs{\alpha}}\rect{\frac{f}{2\alpha}}$ per la prop. di scala, calcolata per $f=0$ il $\rect{0}=1$, da cui
-$\intinf{\sinc{2 f t}}{t}=\frac{1}{2\abs{f}}$.
+L'integrale nel tempo da $-\infty$ a $+\infty$ di un segnale è pari alla trasformata del segnale calcolata per $f=0$. 
+La trasformata del $\sinc{t}\overset{\Fourier}{\to}\rect{f}$ per la prop. di dualità, la trasformata di $\sinc{2\alpha t}\overset{\Fourier}{\to}\frac{1}{2\abs{\alpha}}\rect{\frac{f}{2\alpha}}$ per la prop. di scala, calcolata per $f=0$ il $\rect{0}=1$, da cui $\intinf{\sinc{2 f t}}{t}=\frac{1}{2\abs{f}}$.
 
 Da $s(t)=\frac{1}{t}\overset{\Fourier}{\to} -\imath\pi\sgn(f)$, per dualità $S(t)\overset{\Fourier}{\to} s(-f)$ da cui \[\fourier{\sgn(t)}=\frac{1}{-\imath\pi}\frac{1}{-f}=\frac{1}{\imath\pi f}\] da cui il risultato per la trasformata generalizzata del gradino \[\fourier{\step(t)}]=\fourier{\frac{1}{2}+\frac{1}{2}\sgn(t)}=\frac{1}{2}\delta(f)+\frac{1}{\imath 2\pi f}\qedhere\]
 \end{proof}
@@ -457,7 +464,7 @@ Y(f)=X(f) U(f)=\frac{1}{2} X(0) \delta(f) + \frac{X(f)}{\imath 2\pi f}
 \end{equation}
 che tiene conto nel primo termine della componente continua del segnale.
 
-\subsection{Trasformate funzioni seno e coseno}
+\subsection{Trasformate generalizzate delle funzioni seno e coseno}
 Dalla funzione generalizzata $\delta(t)\overset{\Fourier}{\rightarrow}1$ si hanno per il teo. traslazione del tempo e per il teo. dualità le trasformate di Fourier delle funzioni seno e coseno
 \begin{align*}
 \delta(t-t_0)&\overset{\Fourier}{\to}\e{-\imath 2\pi f t_0}\\
@@ -507,7 +514,7 @@ quindi
 \begin{equation}
 S(f)=\frac{1}{T}\sum_{k=-\infty}^{+\infty}{\f{S_T}{\frac{k}{T}}\f{\delta}{f-\frac{k}{T}}}
 \end{equation}
-In conclusione la trasformata di Fourier di un segnale periodico è la somma di infiniti impulsi a frequenza multipla della fondamentale.
+La trasformata di Fourier di un segnale periodico è la somma di infiniti impulsi a frequenza multipla della fondamentale.
 
 \clearpage
 \section{Esempi ed esercizi}
@@ -584,7 +591,7 @@ b_k&=\frac{2}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}=
 \end{esercizio}
 
 \begin{esercizio}
-Calcolare energia e intensità spettrale di energia del segnale
+Calcolare energia e densità spettrale di energia del segnale
 \[x(t)=A\rect{\frac{t}{2T}}\]
 Il segnale ha trasformata 
 \[X(f)=A 2 T \sinc{2 f T}\]
@@ -595,7 +602,7 @@ Il segnale ha spettro di energia
 \end{esercizio}
 
 \begin{esercizio}
-Calcolare energia e intensità spettrale di energia del segnale
+Calcolare energia e densità spettrale di energia del segnale
 \[y(t)=D\e{-\alpha t}\step(t)\]
 Il segnale ha trasformata
 \begin{align*}
