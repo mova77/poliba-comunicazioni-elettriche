@@ -74,11 +74,11 @@ Infatti si può scrivere
 &= c_0 + \sum_{k=1}^{+\infty} {\left\lbrace c_k \left[\cos{2\pi\frac{k}{T}t}+\imath\sen{2\pi\frac{k}{T}t}\right]
 +c_{-k}\left[\cos{2\pi\frac{k}{T}t}-\imath\sen{2\pi\frac{k}{T}t}\right] \right\rbrace}=\\
 &= c_0 + \sum_{k=1}^{+\infty} {\left[(c_k+c_{-k}) \cos{2\pi\frac{k}{T}t}+
-(c_k-c_{-k})\imath\sen{2\pi\frac{k}{T}t}\right] }\qedhere\end{align*}
-\end{proof}
+(c_k-c_{-k})\imath\sen{2\pi\frac{k}{T}t}\right] }\end{align*}
 
 \[b_k=c_k+c_{-k}=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\left[\e{\imath 2\pi\frac{k}{T}t}+\e{-\imath 2\pi\frac{k}{T}t}\right]}{t}=\frac{2}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t} \]
-\[a_k=\imath(c_k-c_{-k})=\imath\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\left[\e{\imath 2\pi\frac{k}{T}t}-\e{-\imath 2\pi\frac{k}{T}t}\right]}{t}=\frac{2}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\sen{2\pi\frac{k}{T}t}}{t} \]
+\[a_k=\imath(c_k-c_{-k})=\imath\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\left[\e{\imath 2\pi\frac{k}{T}t}-\e{-\imath 2\pi\frac{k}{T}t}\right]}{t}=\frac{2}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\sen{2\pi\frac{k}{T}t}}{t}\]
+\end{proof}
 
 \begin{nota}L'informazione del segnale è contenuta nei pesi $c_k$ o equivalentemente $a_k$ e $b_k$.
 \end{nota}
@@ -88,7 +88,7 @@ Per un segnale reale $s(t)\in\R$ la parte immaginaria deve essere nulla ovvero i
 \[c_k+c_{-k}\in\R \implies \Im{c_k}+\Im{c_{-k}}=0 \implies \Im{c_k}=-\Im{c_{-k}}\]
 \[c_k-c_{-k} \text{ immaginario puro } \implies \Re{c_k} -\Re{c_{-k}}=0 \implies \Re{c_k}=\Re{c_{-k}} \]
 
-Per un segnale reale quindi i coefficienti sono complessi e coniugati $c_k=\conj{c_{-k}}$ (ovvero gode della \textsc{simmetria Hermitiana})
+Per un segnale reale quindi i coefficienti sono complessi e coniugati $c_k=\conj{c}_{-k}$ (ovvero gode della \textsc{simmetria Hermitiana})
 
 Per un segnale reale e pari si ha $a_k=0\;\forall k \implies c_k=c_{-k}$
 

@@ -1,5 +1,6 @@
+%Il capitolo 3 è stato revisionato dal Prof. Grieco il 12/01/2017.
 \chapter{Sistemi lineari tempo-invarianti}
-Un sistema fisico di elaborazione di un segnale può essere visto come una black box che riceve in ingresso uno o più segnali e restituisce in uscita uno o più segnali, in generale alterati in modo diverso a diverse frequenze.
+Un sistema fisico di elaborazione di un segnale può essere modellato come una black box che riceve in ingresso uno o più segnali e restituisce in uscita uno o più segnali.
 \begin{figure}[h]\centering
 \begin{tikzpicture}[node distance=2cm]
 \node [block] (system) at (0,0) {S};
@@ -12,32 +13,33 @@ Un sistema fisico di elaborazione di un segnale può essere visto come una black
 
 \section{Classificazione dei sistemi}
 Si classificano i sistemi per le seguenti proprietà:
+\begin{description}
+\item[Memoria:] Un sistema \emph{privo di memoria} ha uscita $r(t)=f[s(t)]$ che dipende solo dal valore di s in $t$ altrimenti è \emph{dotato di memoria}.
 
-\textbf{Memoria}: Un sistema \emph{privo di memoria} ha uscita $r(t)=f[s(t)]$ che dipende solo dal valore di s in $t$ altrimenti è \emph{dotato di memoria}.
+\item[Causalità:] Un sistema è causale se l'uscita $r(t_0)$ dipende dai valori assunti da $s(t)$ per $t\leq t_0$, \emph{anti-causale}, l'uscita è influenzata da valori futuri dell'ingresso.
 
-\textbf{Causalità}: Un sistema è causale se l'uscita $r(t_0)$ dipende dai valori assunti da $s(t)$ per $t\leq t_0$, \emph{anti-causale}, l'uscita è influenzata da valori futuri dell'ingresso.
-
-\textbf{Tempo invarianza}: Un sistema tempo-invariante presenta lo stesso segnale di uscita in risposta ad un ingresso ritardato
+\item[Tempo invarianza:] Un sistema tempo-invariante presenta lo stesso segnale di uscita in risposta ad un ingresso ritardato
 \[\begin{split}s(t)&\to r(t)\\s(t-\tau)&\to r(t-\tau)\end{split}\]
 
-\textbf{Invertibilità}: Un sistema inverso può riportare la risposta $r(t)$ di un sistema al segnale originale $s(t)$
+\item[Invertibilità] Un sistema inverso può riportare la risposta $r(t)$ di un sistema al segnale originale $s(t)$
 \begin{figure}[!ht]
-	\begin{center}\begin{tikzpicture}[node distance=2cm]
+	\centering
+	\begin{tikzpicture}[node distance=2cm,>=latex']
 		\node [block,node distance=3cm] (system) at (0,0) {S};
 		\node [left of=system](input) {$s(t)$};
 		\node [block, right of=system, node distance=3cm] (inverse) {$S^{-1}$};
 		\node [right of=inverse] (output) {$s(t)$};
-		\draw [-latex] (input) -- (system);
-		\draw [-latex] (system) -- (inverse) node[pos=.5,below] {$r(t)$};
-		\draw [-latex] (inverse) -- (output);
-		\end{tikzpicture}
-	\end{center}
+		\draw [->] (input) -- (system);
+		\draw [->] (system) -- (inverse) node[pos=.5,below] {$r(t)$};
+		\draw [->] (inverse) -- (output);
+	\end{tikzpicture}
 \end{figure}
 
-\textbf{Linearità} Un sistema per cui vale il principio di sovrapposizione degli effetti, per cui dati $s_1(t)\to r_1(t)$ e $s_2(t)\to r_2(t)$, alla combinazione lineare degli effetti corrisponde la combinazione lineare delle uscite \[a\cdot s_1(t)+ b\cdot  s_2(t)\to a\cdot r_1(t)+b\cdot r_2(t)\]
+\item[Linearità:] Un sistema per cui vale il principio di sovrapposizione degli effetti, per cui dati $s_1(t)\to r_1(t)$ e $s_2(t)\to r_2(t)$, alla combinazione lineare degli effetti corrisponde la combinazione lineare delle uscite \[a\cdot s_1(t)+ b\cdot  s_2(t)\to a\cdot r_1(t)+b\cdot r_2(t)\]
 
-\textbf{Stabilità} Un sistema \textsc{BIBO}-stabile ha una uscita limitata in risposta ad un ingresso limitato
+\item[Stabilità:] Un sistema \textsc{BIBO}-stabile ha una uscita limitata in risposta ad un ingresso limitato
 \[\abs{s(t)}<\infty\ \exists R_\text{max}<\infty\ni'\forall t\abs{r(t)}<R_\text{max}\]
+\end{description}
 
 \section{Risposta all'impulso}
 In un sistema lineare vale il principio di sovrapposizione degli effetti. Qualunque segnale in ingresso  si può rappresentare come somma di infiniti impulsi $s(t)=s(t)\ast\delta(t)=\intinf{s(\tau)\delta(t-\tau)}{\tau}$
@@ -46,14 +48,14 @@ Si può calcolare la risposta del sistema a qualunque ingresso $s(t)$ conoscendo
 \[r(t)=\intinf{s(\tau)h(t,\tau)}{\tau}\]
 
 \begin{figure}[!ht]
-	\begin{center}\begin{tikzpicture}[node distance=2cm]
+	\centering
+	\begin{tikzpicture}[node distance=2cm,>=latex']
 		\node [block] (system) at (0,0) {S};
 		\node [left of=system](input) {$\delta(t-\tau)$};
 		\node [right of=system] (output) {$h(t,\tau)$};
-		\draw [-latex] (input) -- (system);
-		\draw [-latex] (system) -- (output);
-		\end{tikzpicture}
-	\end{center}
+		\draw [->] (input) -- (system);
+		\draw [->] (system) -- (output);
+	\end{tikzpicture}
 \end{figure}
 
 Se il sistema è \textsc{LTI} lineare tempo invariante $h(t,\tau)=h(t-\tau)$, per cui si ha il risultato notevole che qualunque risposta del sistema si ottiene come convoluzione del segnale di ingresso con la risposta all'impulso del sistema
@@ -84,12 +86,13 @@ Un sistema LTI con in ingresso un segnale di energia ha in uscita un segnale di 
 \subsection{Filtro passa basso ideale}\index{filtro!passa basso}
 Il filtro passa basso ideale elimina tutte le frequenze non comprese nella banda passante $f\in[-B,B]$.
 \begin{figure}[!ht]
-\centering\begin{tikzpicture}[scale=.8]
-\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-.5,0,.5},xticklabels={$-B$,$0$,$B$},ytick={0,1},xlabel=$f$,ylabel=$H_\text{LP}(f)$]
-\addplot [very thick,samples=100,domain=-1:1]  {abs(x)<.5?1:0};
-\addplot [dashed,samples=11,domain=-1:1]  {abs(x)<.5?1:0};
-\end{axis}
-\end{tikzpicture}
+	\centering
+	\begin{tikzpicture}[scale=.8]
+		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-.5,0,.5},xticklabels={$-B$,$0$,$B$},ytick={0,1},xlabel=$f$,ylabel=$H_\text{LP}(f)$]
+		\addplot [very thick,samples=100,domain=-1:1]  {abs(x)<.5?1:0};
+		\addplot [dashed,samples=11,domain=-1:1]  {abs(x)<.5?1:0};
+		\end{axis}
+	\end{tikzpicture}
 \end{figure}
 \begin{equation}
 H_\text{LP}(f)=\rect{\frac{f}{2B}}\qquad h_\text{LP}(t)=2B\sinc{2 B t}
@@ -101,13 +104,14 @@ H_\text{LP}(f)=\rect{\frac{f}{2B}}\qquad h_\text{LP}(t)=2B\sinc{2 B t}
 \subsection{Filtro passa alto ideale}\index{filtro!passa alto}
 Il filtro passa alto ideale fa passare tutte le frequenze al di fuori dell'intervallo $[-B,B]$. \`{E} ideale perché non è possibile avere una risposta all'impulso, che ha energia finita, che abbia energia infinita. Il filtro reale si attenua alle più alte frequenze.
 \begin{figure}[!ht]
-	\centering\begin{tikzpicture}[scale=.8]
-	\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-.5,0,.5},xticklabels={$-B$,$0$,$B$},ytick={0,1},xlabel=$f$,ylabel=$H_\text{LP}(f)$]
-	\addplot [very thick,samples=100,domain=-1.5:1.5]  {abs(x)>.5?1:0};
-	\addplot [dashed,samples=11,domain=-1:1] {abs(x)>.5?1:0};
-	\addplot [dashed,samples=11,domain=-2:-1] {x+2};
-	\addplot [dashed,samples=11,domain=1:2] {-x+2};
-	\end{axis}
+	\centering
+	\begin{tikzpicture}[scale=.8]
+		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-.5,0,.5},xticklabels={$-B$,$0$,$B$},ytick={0,1},xlabel=$f$,ylabel=$H_\text{LP}(f)$]
+		\addplot [very thick,samples=100,domain=-1.5:1.5]  {abs(x)>.5?1:0};
+		\addplot [dashed,samples=11,domain=-1:1] {abs(x)>.5?1:0};
+		\addplot [dashed,samples=11,domain=-2:-1] {x+2};
+		\addplot [dashed,samples=11,domain=1:2] {-x+2};
+		\end{axis}
 	\end{tikzpicture}
 \end{figure}
 \begin{equation}
@@ -118,13 +122,14 @@ H_\text{HP}(f)=1-H_\text{LP}(f)\qquad h_\text{HP}(t)=\delta(t)-2B\sinc(2 B t)
 Il filtro passa banda ideale fa passare le frequenze attorno a $f_0$ tra $f_L$ e $f_H$ e attorno a $-f_0$ tra $-f_H$ e $-f_L$ con banda $B=f_H-f_L$.
 
 \begin{figure}[!ht]
-	\centering\begin{tikzpicture}[scale=.8]
-	\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-1.5,-1,-.5,0,.5,1,1.5},xticklabels={$-f_h$,$-f_0$,$-f_L$,$0$,$f_L$,$f_0$,$f_H$},ytick={0,1},xlabel=$f$,ylabel=$H_\text{BP}(f)$]
-	\addplot [very thick,samples=100,domain=-2:0]  {abs(x+1)<.5?1:0};
-	\addplot [very thick,samples=100,domain=0:2]  {abs(x-1)<.5?1:0};
-	\addplot [dashed,samples=11,domain=-2:0]  {abs(x+1)<.5?1:0};
-	\addplot [dashed,samples=11,domain=0:2]  {abs(x-1)<.5?1:0};
-	\end{axis}
+	\centering
+	\begin{tikzpicture}[scale=.8]
+		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-1.5,-1,-.5,0,.5,1,1.5},xticklabels={$-f_h$,$-f_0$,$-f_L$,$0$,$f_L$,$f_0$,$f_H$},ytick={0,1},xlabel=$f$,ylabel=$H_\text{BP}(f)$]
+		\addplot [very thick,samples=100,domain=-2:0]  {abs(x+1)<.5?1:0};
+		\addplot [very thick,samples=100,domain=0:2]  {abs(x-1)<.5?1:0};
+		\addplot [dashed,samples=11,domain=-2:0]  {abs(x+1)<.5?1:0};
+		\addplot [dashed,samples=11,domain=0:2]  {abs(x-1)<.5?1:0};
+		\end{axis}
 	\end{tikzpicture}
 \end{figure}
 
@@ -133,24 +138,29 @@ Si definisce il \textsc{fattore di qualità} $Q=\frac{f_0}{B}$, che risulta tant
 \[h_\text{BP}(t)=B\sinc{B t}\e{\imath 2\pi f_0 t}+B\sinc{B t}\e{-\imath 2\pi f_0 t}=2 B\sinc{B t}\cos{2\pi f_0 t}\]
 
 \begin{figure}[!ht]
-\centering\begin{tikzpicture}
-\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-9.424,-6.283,-3.141,0,3.141,6.283,9.424},ytick={0,2},xticklabels={$-\frac{3}{B}$,$-\frac{2}{B}$,$-\frac{1}{B}$,$0$,$\frac{1}{B}$,$\frac{2}{B}$,$\frac{3}{B}$},yticklabels={$0$,$2B$},ylabel={$h_\text{BP}(t)$}]
-\addplot [thick,domain=-3.5*pi:3.5*pi,samples=300] { (2*sin(x)/x)*cos(8*x) };
-\addplot [dashed,domain=-3.5*pi:3.5*pi,samples=100] { (2*sin(x)/x) };
-\end{axis}\end{tikzpicture}\caption{Filtro passa banda ideale}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-9.424,-6.283,-3.141,0,3.141,6.283,9.424},ytick={0,2},xticklabels={$-\frac{3}{B}$,$-\frac{2}{B}$,$-\frac{1}{B}$,$0$,$\frac{1}{B}$,$\frac{2}{B}$,$\frac{3}{B}$},yticklabels={$0$,$2B$},ylabel={$h_\text{BP}(t)$}]
+		\addplot [thick,domain=-3.5*pi:3.5*pi,samples=300] { (2*sin(x)/x)*cos(8*x) };
+		\addplot [dashed,domain=-3.5*pi:3.5*pi,samples=100] { (2*sin(x)/x) };
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Risposta all'impulso del filtro passa banda ideale}
 \end{figure}
 
 \begin{esempio}
 Esempio di filtro passa basso realizzato con circuito \textsc{RC}.
 \begin{figure*}[h]
-\centering\begin{circuitikz}
-\draw (0,0)	to[open,v^>=${V_i(t)}$] (0,3)
-	to[R, l=${R}$, *-] (3,3)
-	to[C, l=${C}$,i>_=${i(t)}$] (3,0) to[short,-*] (0,0)
-	(3,0) -- (4,0) to[open,v>=${V_u(t)}$, *-*] (4,3) -- (3,3)
-	(1.5,1.5) node[scale=3]{$\circlearrowright$}
-	(1.5,1.5) node{$i(t)$};
-\end{circuitikz}\caption{Filtro passa basso realizzato con circuito RC}
+	\centering
+	\begin{circuitikz}
+		\draw (0,0)	to[open,v^>=${V_i(t)}$] (0,3)
+			to[R, l=${R}$, *-] (3,3)
+			to[C, l=${C}$,i>_=${i(t)}$] (3,0) to[short,-*] (0,0)
+			(3,0) -- (4,0) to[open,v>=${V_u(t)}$, *-*] (4,3) -- (3,3)
+			(1.5,1.5) node[scale=3]{$\circlearrowright$}
+			(1.5,1.5) node{$i(t)$};
+	\end{circuitikz}
+	\caption{Filtro passa basso realizzato con circuito RC}
 \end{figure*}
 La tensione sul condensatore $v_c$ pari alla tensione di uscita $v_u$
 \[v_u(t)=\frac{q(t)}{C}\]
@@ -163,13 +173,14 @@ Funzione di trasferimento ingresso-uscita
 \[H(f)=\frac{V_i(f)}{V_u(f)}=\frac{1}{1+\imath 2\pi f R C}\]
 dove $f_T=\frac{1}{2\pi R C}$ rappresenta la frequenza di taglio.
 \begin{figure}[!ht]
-\centering\begin{tikzpicture}[scale=.8]
-\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=1.5,xtick={.159},xticklabels={$f_T$},ytick={0,1},xlabel=$f$,ylabel=$\abs{H(f)}$]
-\addplot [very thick,samples=200,domain=-1:1]  {1/(sqrt(1+(2*pi*x)^2))};
-\addplot [dashed] coordinates {(-.159,.707)(.159,.707)(.159,0)};
-\end{axis}
-\end{tikzpicture}
-\caption{Modulo della funzione di trasferimento}
+	\centering
+	\begin{tikzpicture}[scale=.8]
+		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=1.5,xtick={.159},xticklabels={$f_T$},ytick={0,1},xlabel=$f$,ylabel=$\abs{H(f)}$]
+		\addplot [very thick,samples=200,domain=-1:1]  {1/(sqrt(1+(2*pi*x)^2))};
+		\addplot [dashed] coordinates {(-.159,.707)(.159,.707)(.159,0)};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Modulo della funzione di trasferimento}
 \end{figure}
 
 La risposta in ampiezza espressa in decibel, come confronto tra potenze relative ad un riferimento
@@ -182,11 +193,12 @@ Alla frequenza di taglio $f_T=\frac{1}{2\pi R C}$ si dimezza il modulo quadro ov
 \[\abs{H\left(f_T\right)}_\text{dB}=10\Log\frac{1}{2}=-3\text{dB}\]
 
 \begin{figure}[!ht]
-	\centering\begin{tikzpicture}[scale=.8]
-	\begin{axis}[xmode=log,axis lines=middle,no markers,enlargelimits,xlabel=$f$,ylabel=$\abs{H(f)}_\text{dB}$]
-	\addplot [very thick,samples=200,domain=.01:100]  {-10*log10( 1+(2*pi*x*.1)^2)};
-	\addplot [dashed] coordinates{(.01,-3)(100,-3)};
-	\end{axis}
+	\centering
+	\begin{tikzpicture}[scale=.8]
+		\begin{axis}[xmode=log,axis lines=middle,no markers,enlargelimits,xlabel=$f$,ylabel=$\abs{H(f)}_\text{dB}$]
+		\addplot [very thick,samples=200,domain=.01:100]  {-10*log10( 1+(2*pi*x*.1)^2)};
+		\addplot [dashed] coordinates{(.01,-3)(100,-3)};
+		\end{axis}
 	\end{tikzpicture}
 	\caption{Modulo in decibel della funzione di trasferimento}
 \end{figure}
@@ -201,37 +213,51 @@ La trasformata di Fourier del prodotto di convoluzione \footnote{essendo $x(-t)\
 
 La funzione di autocorrelazione è anche l'antitrasformata di Fourier dello spettro di energia del segnale
 \begin{equation}
-R_x(\tau)=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{\tau}
+R_x(\tau)=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{f}
 \end{equation}
 
 \textbf{Proprietà}
 \begin{enumerate}
 \item La funzione di autocorrelazione calcolata per $\tau=0$ coincide con l'energia del segnale
 \[R_x(0)=\intinf{x^2(t)}{t}=E_x\]
+
 \item La funzione di autocorrelazione è una funzione pari
 \[R_x(\tau)=R_\conj{x}(-\tau)\]
-\emph{Dim.} Facilmente dimostrabile in frequenza
-\[\begin{split}R_x(\tau)&=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{\tau}\\
-R_x(-\tau)&=\intinf{\abs{X(f)}^2\e{-\imath 2\pi f\tau}}{\tau}\\
-R_\conj{x}(-\tau)&=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{\tau}\end{split}\]
+\begin{proof}[Dim.]
+Facilmente dimostrabile in frequenza
+\begin{align*}
+R_x(\tau)&=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{f}\\
+R_x(-\tau)&=\intinf{\abs{X(f)}^2\e{-\imath 2\pi f\tau}}{f}\\
+R_\conj{x}(-\tau)&=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{f}
+\qedhere
+\end{align*}
+\end{proof}
+
 \item Il massimo della funzione di autocorrelazione si ha per $\tau=0$
 \[\abs{R_x(\tau)}\leq R_x(0)\]
-\emph{Dim.}
-\[\begin{split}\abs{R_x(\tau)}^2=\abs{\intinf{x(t)x(t-\tau)}{t}}^2&\leq\intinf{\abs{x(t)}^2\abs{x(t-\tau)}^2}{t}\leq\\\leq&\intinf{\abs{x(t)}^2}{t}\cdot\intinf{\abs{x(t-\tau)}^2}{t}=R_x^2(0)\end{split}\]
+\begin{proof}[Dim.]
+Applicando la diseguaglianza di Schwarz:
+\[\abs{R_x(\tau)}^2=\abs{\intinf{x(t)x(t-\tau)}{t}}^2\leq\intinf{\abs{x(t)}^2}{t}\cdot\intinf{\abs{x(t-\tau)}^2}{t}=R_x^2(0)\qedhere\]
+\end{proof}
 \end{enumerate}
 
-\section{Cross correlazione}
+\begin{nota}Se un segnale ad energia finita $x(t)$ viene applicato a un sistema LTI BIBO stabile allora anche l'uscita $y(t)$ è un segnale ad energia finita con spettro di energia $\abs{Y(f)}^2=\abs{H(f)}^2\abs{X(f)}^2$. Si noti inoltre che l'energia delle componenti di $y$ alle varie frequenze si ottiene sagomando l'energia delle componenti di $x$ attraverso $\abs{H(f)}^2$.\end{nota}
+
+\section{Cross correlazione per segnali ad energia finita}
 Si definisce la \keyword[segnali!cross-correlazione]{cross-correlazione} tra due segnali $x(t)$ e $y(t)$ la misura della somiglianza tra due segnali tra cui intercorre un ritardo di un tempo $\tau$
 \begin{equation}R_{xy}(\tau)=\intinf{x(t)\conj{y}(t-\tau)}{t}=x(\tau)\ast \conj{y}(-\tau)\end{equation}
 \begin{equation}R_{yx}(\tau)=\intinf{y(t)\conj{x}(t-\tau)}{t}=y(\tau)\ast \conj{x}(-\tau)\end{equation}
-Si può dimostrare che \[R_{xy}(\tau)=R_\conj{yx}(-\tau)\] infatti se $R_{yx}(\tau)=y(\tau)\ast \conj{x}(-\tau)\implies R_\conj{yx}(\tau)=\conj{y}(\tau)\ast x(-\tau)\implies
-R_\conj{yx}(-\tau)=\conj{y}(-\tau)\ast x(\tau)=R_{xy}$.
+Si può dimostrare che 
+\[R_{xy}(\tau)=R_\conj{yx}(-\tau)\]
+infatti se $R_{yx}(\tau)=y(\tau)\ast \conj{x}(-\tau)\implies R_\conj{yx}(\tau)=\conj{y}(\tau)\ast x(-\tau)\implies R_\conj{yx}(-\tau)=\conj{y}(-\tau)\ast x(\tau)=R_{xy}$.
 
-Due segnali si dicono \keyword[segnali!ortogonali]{ortogonali} se sono incorrelati qualunque sia il ritardo $\tau$ \[R_{xy}(\tau)=0\;\forall\tau\]
+Due segnali si dicono \keyword[segnali!ortogonali]{ortogonali} se sono incorrelati qualunque sia il ritardo $\tau$
+\[R_{xy}(\tau)=0\;\forall\tau\]
 
 \section{Autocorrelazione per segnali a potenza finita}
-Per i segnali a potenza finita si è definita la potenza (eq.\ref{eq:segnale_potenza}) come \[P_s=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{\abs{s(t)}^2}{t}}\]
-Tale quantità si può definire anche nel dominio delle frequenze, come integrale della densità spettrale di potenza del segnale. Estraendo una limitazione del segnale $s_T(t)=s(t)\rect{\frac{t}{2T}}$ ristretta all'intervallo $[-T,T]$ essa ha sicuramente energia finita, pertanto se ne potrà esprimere la trasformata di Fourier, $s_T(t)\overset{\Fourier}{\to}S_T(f)$. Per il teorema di Parseval (eq.\ref{eq:parseval}) l'energia è distribuita nello spettro
+Per i segnali a potenza finita si è definita la potenza (eq.\ref{eq:segnale_potenza}) come
+\[P_s=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{\abs{s(t)}^2}{t}}\]
+Tale quantità si può definire anche nel dominio delle frequenze, come integrale della densità spettrale di potenza del segnale. Estraendo una ristretta del segnale $s_T(t)=s(t)\rect{\frac{t}{2T}}$ all'intervallo $[-T,T]$ essa ha sicuramente energia finita, pertanto se ne potrà esprimere la trasformata di Fourier, $s_T(t)\overset{\Fourier}{\to}S_T(f)$. Per il teorema di Parseval (eq.\ref{eq:parseval}) l'energia è distribuita nello spettro
 \[E_{s_T}=\intinf{\abs{s_T(t)}^2}{t}=\intinf{\abs{S_T(f)}^2}{f}\]
 
 Si può quindi definire la potenza come limite dell'energia della limitazione $s_T(t)$ rapportata al periodo, al tendere dell'intervallo della limitazione all'infinito
@@ -247,6 +273,7 @@ Inoltre come per i segnali ad energia finita, il passaggio di un segnale a poten
 
 Antitrasformando la funzione densità spettrale di potenza si ottiene
 \[\Fourier^{-1}\left\lbrace{S_P(f)}\right\rbrace=\lim\limits_{T\to+\infty}{\frac{1}{2T}\;s_T(\tau)\ast s_\conj{T}(-\tau)}=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{s_T(t)s_\conj{T}(t-\tau)}{t}}\]
-che è la funzione di \textsc{autocorrelazione} per segnali di potenza finita
-\begin{equation}R_s(\tau)=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{s(t)\conj{s}(t-\tau)}{t}}\end{equation}
-
+che è la funzione di \keyword[segnale!autocorrelazione]{autocorrelazione} per segnali di potenza finita
+\begin{equation}
+R_s(\tau)=\lim\limits_{T\to+\infty}{\frac{1}{2T}\intd{-T}{T}{s(t)\conj{s}(t-\tau)}{t}}
+\end{equation}
