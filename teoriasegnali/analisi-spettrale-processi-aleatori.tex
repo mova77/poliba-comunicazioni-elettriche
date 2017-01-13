@@ -1,4 +1,6 @@
-\chapter{Analisi spettrale dei processi aleatori}\index{processo aleatorio!analisi spettrale}
+\chapter{Analisi spettrale dei processi aleatori}
+\label{ch:teoriasegnali-capitolo7}
+\index{processo!stocastico!analisi spettrale}
 Si è data una descrizione del problema del filtraggio di un processo aleatorio, e il calcolo delle statistiche di primo e secondo ordine, per un sistema lineare stazionario in ambito temporale.
 
 Ha senso analizzare in frequenza la risposta di un sistema lineare tempo invariante ad un processo aleatorio $X(t,\omega)$ e ad una analisi di Fourier delle realizzazioni, i segnali $x(t)$ estratti dal processo.
@@ -11,45 +13,51 @@ In generale le funzioni campione di un processo stazionario sono segnali a poten
 
 La funzione densità spettrale di potenza di un processo aleatorio è la media delle funzioni densità spettrale di potenza ottenute per le realizzazioni
 \begin{equation}
-S_X(f,\omega)=\E{S_X(f;\omega)}
+	S_X(f,\omega)=\E{S_X(f;\omega)}
 \end{equation}
 
 Lo spettro di potenza del processo come valor medio dello spettro di potenza delle funzioni campione
-\begin{equation}\label{eq:densita_spettrale_processo_aleatorio}S_X(f)=\E{\lim\limits_{t\to+\infty}\frac{X_T(f)^2}{T}}=\E{\lim\limits_{t\to+\infty}\frac{\abs{\fourier{x_T(t;\omega)}}^2}{T}}\end{equation}
+\begin{equation}
+\label{eq:densita_spettrale_processo_aleatorio}
+	S_X(f)=\E{\lim\limits_{t\to+\infty}\frac{X_T(f)^2}{T}}=\E{\lim\limits_{t\to+\infty}\frac{\abs{\fourier{x_T(t;\omega)}}^2}{T}}
+\end{equation}
 dove la trasformata di Fourier si applica al segnale $x(t)$ troncato all'intervallo $[-\frac{T}{2},\frac{T}{2}]$.
 Questa definizione, valida anche per processi non stazionari, è molto difficile da utilizzare.
 
-\section{Teorema di Wiener-Kintchine}\index{Teorema!di Wiener-Kintchine}
+\section{Teorema di Wiener-Kintchine}
+\index{Teorema!di Wiener-Kintchine}
 La densità spettrale di potenza dei processi stazionari in senso lato è calcolabile come trasformata di Fourier della funzione di autocorrelazione
 \begin{equation}
-S_X(f)=\fourier{R_X(\tau)}=\intinf{R_X(\tau)\e{-\imath 2\pi f\tau}}{\tau}
+	S_X(f)=\fourier{R_X(\tau)}=\intinf{R_X(\tau)\e{-\imath 2\pi f\tau}}{\tau}
 \end{equation}
 Proprietà:
 \begin{enumerate}
-\item La densità spettrale è non negativa per definizione eq.\ref{eq:densita_spettrale_processo_aleatorio}: $S_X(f)\geq 0$
-\item La densità spettrale di potenza di un processo aleatorio stazionario in senso lato è una funzione reale e pari.
+	\item La densità spettrale è non negativa per definizione eq.\ref{eq:densita_spettrale_processo_aleatorio}: $S_X(f)\geq 0$
+	\item La densità spettrale di potenza di un processo aleatorio stazionario in senso lato è una funzione reale e pari.
 \begin{proof}[Dim.]
 Si ricorda che $R_X(\tau)=R_X(-\tau)$ è pari pertanto posso sommare i contributi nell'integrale
-\[\intinf{R_X(\tau)\e{-\imath 2\pi f\tau}}{\tau}=\intd{0}{\infty}{R_X(\tau)\e{-\imath 2\pi f\tau}+R_X(-\tau)\e{+\imath 2\pi f\tau}}{\tau}=\intd{0}{\infty}{R_X(\tau)2\cos{2\pi f\tau}}{\tau}\]
+\[
+	\intinf{R_X(\tau)\e{-\imath 2\pi f\tau}}{\tau}=\intd{0}{\infty}{R_X(\tau)\e{-\imath 2\pi f\tau}+R_X(-\tau)\e{+\imath 2\pi f\tau}}{\tau}=\intd{0}{\infty}{R_X(\tau)2\cos{2\pi f\tau}}{\tau}
+\]
 \end{proof}
 \item La potenza media statistica del processo, costante per processo stazionario, è pari all'integrale della densità spettrale di frequenza
 \begin{equation}
-P_X=R_X(0)=\E{X^2(t)}=\intinf{S_X(f)}{f}
+	P_X=R_X(0)=\E{X^2(t)}=\intinf{S_X(f)}{f}
 \end{equation}
 \end{enumerate}
 
-\section{Filtraggio processo stazionario}\index{processo!stazionario!filtraggio}
+\section{Filtraggio processo stazionario}\index{processo stazionario!filtraggio}
 Si può caratterizzare la densità spettrale del processo in uscita ad un sistema lineare tempo invariante nota la densità spettrale del processo in ingresso.
-\`{E} noto che se il processo in ingresso è stazionario in senso lato lo è anche il processo in uscita.
+\`E noto che se il processo in ingresso è stazionario in senso lato lo è anche il processo in uscita.
 
 La densità spettrale del processo in uscita
 \begin{equation}
-S_Y(f)=\fourier{R_X(\tau)\ast h(\tau)\ast h(-\tau)}=S_X(f)\cdot H(f)\cdot H(-f)
+	S_Y(f)=\fourier{R_X(\tau)\ast h(\tau)\ast h(-\tau)}=S_X(f)\cdot H(f)\cdot H(-f)
 \end{equation}
 
 Per sistemi reali la risposta all'impulso è una funzione reale, $H(-f)=\conj{H}(f)$
 \begin{equation}
-S_Y(f)=S_X(f)\cdot\abs{H(f)}^2
+	S_Y(f)=S_X(f)\cdot\abs{H(f)}^2
 \end{equation}
 che è la stessa relazione che vale per gli spettri di potenza dei segnali deterministici.
 La risposta in fase del sistema non influenza la densità spettrale del processo in uscita.
@@ -57,61 +65,88 @@ La risposta in fase del sistema non influenza la densità spettrale del processo
 Nella densità spettrale di potenza sono contenute tutte le informazioni spettrali del processo, ovvero come è distribuita la potenza alla varie frequenze. Il significato di densità spettrale di potenza è lo stesso per segnali deterministici e per processi aleatori.
 
 \begin{esempio}
-Si calcoli la densità spettrale di potenza del processo aleatorio stazionario \[X(t)=a\sen{2\pi f_0 t+\theta}\] con $\theta$ v.a. uniformemente distribuita in $[0,2\pi[$. Si è calcolata la funzione di autocorrelazione
-\[R_X(\tau)=\frac{a^2}{2}\cos{2\pi f_0\tau}\]
+Si calcoli la densità spettrale di potenza del processo aleatorio stazionario 
+\[
+	X(t)=a\sen{2\pi f_0 t+\theta}
+\]
+con $\theta$ v.a. uniformemente distribuita in $[0,2\pi[$. Si è calcolata la funzione di autocorrelazione
+\[
+	R_X(\tau)=\frac{a^2}{2}\cos{2\pi f_0\tau}
+\]
 Secondo la definizione di Wiener-Kintchine si può calcolare la densità spettrale può essere calcolata come
-\[S_X(f)=\fourier{R_X(\tau)}=\frac{a^2}{4}[\impulse(f-f_0)+\impulse(f+f_0)]\]
-\begin{figure}[h!]
-	\centering\begin{tikzpicture}
-	\draw [-latex] (-3,0)--(3,0) node[below] {$f$};
-	\draw [-latex] (0,0)--(0,1.5) node[right] {$S_X(f)$};;
-	\draw [very thick,-latex] (-2,0)--(-2,1);
-	\draw [very thick,-latex] (2,0)--(2,1);
-	\draw (-2,0) -- (-2,-1mm) node [below] {$-f_0$};
-	\draw (0,0) -- (0,-1mm) node [below] {$0$};
-	\draw (2,0) -- (2,-1mm) node [below] {$f_0$};
+\[
+	S_X(f)=\fourier{R_X(\tau)}=\frac{a^2}{4}[\impulse(f-f_0)+\impulse(f+f_0)]
+\]
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\draw [-latex] (-3,0)--(3,0) node[below] {$f$};
+		\draw [-latex] (0,0)--(0,1.5) node[right] {$S_X(f)$};;
+		\draw [very thick,-latex] (-2,0)--(-2,1);
+		\draw [very thick,-latex] (2,0)--(2,1);
+		\draw (-2,0) -- (-2,-1mm) node [below] {$-f_0$};
+		\draw (0,0) -- (0,-1mm) node [below] {$0$};
+		\draw (2,0) -- (2,-1mm) node [below] {$f_0$};
 	\end{tikzpicture}
 \end{figure}
 \end{esempio}
 
 \begin{nota}
-Poiché la densità spettrale di potenza è la trasformata di Fourier della funzione di autocorrelazione per processi stazionari si ha che tanto più rapidamente variano le singole realizzazioni di un processo, tanto più larga è la banda passante della densità spettrale di potenza. In altre parole a variazioni rapide corrispondono termini spettrali a potenza non nulla a frequenze più alte.\end{nota}
+	Poiché la densità spettrale di potenza è la trasformata di Fourier della funzione di autocorrelazione per processi stazionari si ha che tanto più rapidamente variano le singole realizzazioni di un processo, tanto più larga è la banda passante della densità spettrale di potenza. In altre parole a variazioni rapide corrispondono termini spettrali a potenza non nulla a frequenze più alte.
+\end{nota}
 
-\section{Processo stocastico gaussiano}\index{processo!stocastico!gaussiano}
+\section{Processo stocastico gaussiano}
+\index{processo!stocastico!gaussiano}
 Un processo aleatorio $X(t)$ è gaussiano se, presi $n$ istanti di tempo distinti, le variabili aleatorie $X_1(t),X_2(t),\dots,X_n(t)$ risultano congiuntamente gaussiane.
 $X(t)$ è gaussiano se la densità di probabilità congiunta del vettore delle variabili aleatorie ha la forma
 \begin{equation}
-f_\vect{X}(x_1,\dots,x_n;t_1,\dots,t_n)=\frac{1}{\sqrt{(2\pi)^n\det\abs{ C_\vect{X}}}}\;\e{-\frac{1}{2}\trasp{(\vect{x}-\mu_\vect{X})}C^{-1}_\vect{X}(\vect{x}-\mu_\vect{X})}
+	f_\vect{X}(x_1,\dots,x_n;t_1,\dots,t_n)=\frac{1}{\sqrt{(2\pi)^n\det\abs{ C_\vect{X}}}}\;\e{-\frac{1}{2}\trasp{(\vect{x}-\mu_\vect{X})}C^{-1}_\vect{X}(\vect{x}-\mu_\vect{X})}
 \end{equation}
 Per la conoscenza completa della funzione di densità di probabilità congiunta, e quindi dell'intero processo, è necessario conoscere la funzione valor medio del vettore $\vect{X}$, $\mu_\vect{X}(t)$, e la funzione di autocovarianza, la matrice $C_\vect{X}$ (si veda es.\ref{es:v_a_congiuntamente_gaussiane}) per ogni $n$-pla di istanti di tempo $(t_1,t_2,\dots,t_n)$. Si ricorda che la funzione valor medio del vettore delle variabili aleatorie è
-\[\mu_\vect{X}(t)=\trasp{[\mu_X(t_1),\mu_X(t_2),\dots,\mu_X(t_n)]}\]
+\[
+	\mu_\vect{X}(t)=\trasp{[\mu_X(t_1),\mu_X(t_2),\dots,\mu_X(t_n)]}
+\]
 e gli elementi della matrice di covarianza si calcolano come
-\[c_{ij}=\E{(X(t_i)-\mu_X(t_i))\cdot (X(t_j)-\mu_X(t_j))}=C_X(t_i,t_j)=R_X(t_i,t_j)-\mu_X(t_i)\mu_X(t_j)\]
+\[
+	c_{ij}=\E{(X(t_i)-\mu_X(t_i))\cdot (X(t_j)-\mu_X(t_j))}=C_X(t_i,t_j)=R_X(t_i,t_j)-\mu_X(t_i)\mu_X(t_j)
+\]
 
 Per i processi gaussiani si ha la notevole proprietà per cui la stazionarietà in senso lato implica la stazionarietà in senso stretto. Questo perché la funzione densità di probabilità congiunta del processo dipende dalla funzione valor medio, che è costante, e dalla funzione di autocorrelazione, che dipende solo dalla differenza tra gli istanti di tempo ($\mu_X(t)=\mu_X$ e $R_X(t_1,t_2)=R_X(\tau)$), e quindi la stessa funzione di autocovarianza.
 
 I processi gaussiani in ingresso a sistemi lineari tempo invarianti vengono filtrati e risultano ancora processi gaussiani in uscita.
 \begin{proof}[Dim.]
-\[Y(t)=X(t)\ast h(t)=\intinf{x(\alpha)h(t-\alpha)}{\alpha}\]
+\[
+	Y(t)=X(t)\ast h(t)=\intinf{x(\alpha)h(t-\alpha)}{\alpha}
+\]
 L'operazione di integrale si può pensare come somma di infiniti termini $X(k\Delta\alpha)h(t-k\Delta\alpha)\Delta\alpha$. Il processo in uscita risulta una combinazione lineare di tanti processi in ingresso tutti gaussiani pertanto è esso stesso gaussiano.
 \end{proof}
 
-\section{Processo aleatorio bianco}\index{processo!stocastico!bianco}
+\section{Processo aleatorio bianco}
+\index{processo!stocastico!bianco}
 Si supponga un modello teorico di un processo con densità spettrale di potenza la cui banda tende a crescere illimitatamente, mantenendo il valore presente in $f=0$. La densità spettrale di potenza del processo $X(t)$ tende a diventare costante a tutte le frequenze
-\[S_X(f)=\xi\]
+\[
+	S_X(f)=\xi
+\]
 Il tempo di correlazione tende a ridursi fino ad arrivare al limite ad una funzione di autocorrelazione impulsiva
-\[R_X(\tau)=\xi\impulse(\tau)\]
+\[
+	R_X(\tau)=\xi\impulse(\tau)
+\]
 Il valore medio
-\[\mu_X(t)=\lim\limits_{\tau\to +\infty}R_X(\tau)=\mu^2_X=0\]
+\[
+	\mu_X(t)=\lim\limits_{\tau\to +\infty}R_X(\tau)=\mu^2_X=0
+\]
 
-\begin{nota}Il processo aleatorio bianco è solo una astrazione matematica: uno spettro reale non potrà mai avere potenza a tutte le frequenze, avrebbe potenza infinita.\end{nota}
+\begin{nota}
+	Il processo aleatorio bianco è solo una astrazione matematica: uno spettro reale non potrà mai avere potenza a tutte le frequenze, avrebbe potenza infinita.
+\end{nota}
 
 \subsection{Esempio resistore con rumore termico}
 \begin{esempio}
 L'agitazione termica degli elettroni in un resistore causa una tensione di rumore a vuoto proporzionale alla temperatura del componente. Rispetto al modello ideale si ha quindi un resistore con in serie un generatore di tensione pari a quella prodotta dal rumore termico. Quest'ultimo può essere modellato come un processo aleatorio stazionario.
 
 \begin{figure*}[h]
-	\centering\begin{circuitikz}[american voltages]
+	\centering
+	\begin{circuitikz}[american voltages]
 		\draw (0,0)	to[V,v^>=${N(t)}$] (0,3)
 		to[R,l=${R}$] (2,3)
 		to[open,*-*] (2,0) -- (0,0);
@@ -121,46 +156,59 @@ L'agitazione termica degli elettroni in un resistore causa una tensione di rumor
 La descrizione del fenomeno del rumore termico coinvolge considerazioni di meccanica quantistica che portano a determinare l'espressione della densità spettrale di potenza della tensione di rumore (formula di Nyquist)
 
 \begin{equation}
-S_N(f)=2 R \frac{\frac{\abs{f}}{f_0}}{\e{\frac{\abs{f}}{f_0}-1}}
-=2 R \frac{\hbar\abs{f}}{\e{\frac{\hbar\abs{f}}{k_B T_R}-1}} \quad[\si{\volt\squared\per\hertz}]
+	S_N(f)=2 R \frac{\frac{\abs{f}}{f_0}}{\e{\frac{\abs{f}}{f_0}-1}}
+	=2 R \frac{\hbar\abs{f}}{\e{\frac{\hbar\abs{f}}{k_B T_R}-1}} \quad[\si{\volt\squared\per\hertz}]
 \end{equation}
 
 dove $f_0=\frac{k_B T_R}{\hbar}$, con la costante di Boltzmann $k_B=\SI{1.38e-23}{\joule\per\kelvin}$, la costante di Planck $\hbar=\SI{6.63e-34}{\joule\second}$, la temperatura ambiente $T_R=\SI{293}{\kelvin}$.
 A temperatura ambiente la frequenza $f_0\cong\SI{6}{\tera\hertz}$
 
 A frequenze $f\ll f_0$ posso approssimare
-\[\e{\frac{\hbar\abs{f}}{k_B T_R}}-1\cong\frac{\hbar\abs{f}}{k_B T_R}\]
+\[
+	\e{\frac{\hbar\abs{f}}{k_B T_R}}-1\cong\frac{\hbar\abs{f}}{k_B T_R}
+\]
 essendo $\e{x}=1+x+\frac{x^2}{2}+\dots$ la serie per $x\to 0$ si approssima $\e{x}\cong 1+x\implies\e{x}-1\cong x$.
-\[S_N(f)= 2 R k_B T_R\]
+\[
+	S_N(f)= 2 R k_B T_R
+\]
 
 La tensione quadratica media misurata con un voltmetro di banda $B$ è pari alla densita spettrale di potenza monolatera
-\[S_N^m(f)=4 R K_B T_R\]
+\[
+	S_N^m(f)=4 R K_B T_R
+\]
 
 Il modello del rumore bianco pertanto è utile: per calcolare gli effetti del rumore termico sull'uscita di un sistema filtrante si può sostituire la densità di potenza del rumore termico $S_N(f)$ con il suo modello semplificato di valore costante.
 \end{esempio}
 
-\begin{nota}Nel dimensionamento dei sistemi di telecomunicazione è importante la potenza trasmessa alla quale si somma la potenza del rumore. Si progettano i sistemi in modo da massimizzare la potenza trasmessa utile.
+\begin{nota}
+	Nel dimensionamento dei sistemi di telecomunicazione è importante la potenza trasmessa alla quale si somma la potenza del rumore. Si progettano i sistemi in modo da massimizzare la potenza trasmessa utile.
 \end{nota}
+
 \begin{figure*}[h]
-\centering
-\begin{circuitikz}[american voltages]
-	\draw (0,0)	to[V,v^>=${v_n(t)}$] (0,3)
-	to[R,l=${R}$,-*] (3,3)--(4,3)
-	to[R,l=${R_L}$,v=${v_L(t)}$] (4,0) to[short,-*] (3,0)--(0,0);
-	\draw node at(7,1.5) {$v_L(t)=\frac{R_L}{R+R_L}v_N(t)$};
-\end{circuitikz}
+	\centering
+	\begin{circuitikz}[american voltages]
+		\draw (0,0)	to[V,v^>=${v_n(t)}$] (0,3)
+		to[R,l=${R}$,-*] (3,3)--(4,3)
+		to[R,l=${R_L}$,v=${v_L(t)}$] (4,0) to[short,-*] (3,0)--(0,0);
+		\draw node at(7,1.5) {$v_L(t)=\frac{R_L}{R+R_L}v_N(t)$};
+	\end{circuitikz}
 \end{figure*}
 La massima potenza in uscita $P(t)$ misurata in $\si{\watt}$ si ha quando il carico (\emph{Load}) è adattato, ovvero per $R_L=R$
-\[P(t)=v_L(t)\cdot i(t)=v_L(t)\frac{v_N(t)}{R+R_L}=\frac{R_L}{R+R_L}v_N(t)\frac{v_N(t)}{R+R_L}\overset{R_L=R}{=}\frac{1}{2}\frac{v^2_N(t)}{2 R}\]
+\[
+	P(t)=v_L(t)\cdot i(t)=v_L(t)\frac{v_N(t)}{R+R_L}=\frac{R_L}{R+R_L}v_N(t)\frac{v_N(t)}{R+R_L}\overset{R_L=R}{=}\frac{1}{2}\frac{v^2_N(t)}{2 R}
+\]
 La densità spettrale monolatera di rumore disponibile in uscita in una banda $B$
-\[\E{\frac{v^2_N(t)}{4 R}}=\frac{1}{4 R}\E{v^2_N(t)}=\frac{1}{4 R}4 R k_B T B=k_B T B \si{\watt\per\hertz}\]
+\[
+	\E{\frac{v^2_N(t)}{4 R}}=\frac{1}{4 R}\E{v^2_N(t)}=\frac{1}{4 R}4 R k_B T B=k_B T B \si{\watt\per\hertz}
+\]
 
 \section{Esempio filtro passa basso con rumore termico}
 \begin{esempio}
 Esempio filtro passa basso con rumore termico.
 
 \begin{figure*}[h]
-	\centering\begin{circuitikz}[american voltages]
+	\centering
+	\begin{circuitikz}[american voltages]
 		\draw (0,0)	to[V,v^>=${V_S(t)}$] (0,3)
 		to[R,l=${R}$,-*] (3,3)--(4,3)
 		to[C,l=${C}$,v=${v_c(t)}$] (4,0) to[short,-*] (3,0)--(0,0);
@@ -168,18 +216,29 @@ Esempio filtro passa basso con rumore termico.
 \end{figure*}
 
 Trasformata della risposta all'impulso del sistema passa basso:
-\[H(f)=\frac{V_c(f)}{V_n(f)}=\frac{1}{1+\imath 2\pi R C f}\]
-La frequenza di taglio \[f_0=\frac{1}{2\pi R C}\]
+\[
+	H(f)=\frac{V_c(f)}{V_n(f)}=\frac{1}{1+\imath 2\pi R C f}
+\]
+La frequenza di taglio \[
+	f_0=\frac{1}{2\pi R C}
+\]
 Potenza media di rumore sulla resistenza
-\[P_n(f)=2 R k_B T [\si{\volt\squared\per\hertz}]\]
+\[
+	P_n(f)=2 R k_B T [\si{\volt\squared\per\hertz}]
+\]
 Potenza media di rumore sul condensatore
-\[P_{V_c}(f)=2 R k_B T \frac{1}{1+4\pi^2 R^2 C^2 f^2} [\si{\volt\squared\per\hertz}]\]
+\[
+	P_{V_c}(f)=2 R k_B T \frac{1}{1+4\pi^2 R^2 C^2 f^2} [\si{\volt\squared\per\hertz}]
+\]
 
 Calcolo la potenza media bilatera
-\[\begin{split}\E{V_c^2}&=\intd{0}{+\infty}{\frac{4 R k_B T}{1+4\pi^2 R^2 C^2 f^2}}{f}=\\
+\[
+	\begin{split}
+		\E{V_c^2}&=\intd{0}{+\infty}{\frac{4 R k_B T}{1+4\pi^2 R^2 C^2 f^2}}{f}=\\
 \intertext{cambio variabile $\alpha=2\pi R C f$, $\diff\alpha=2\pi R C\diff f$}
-&=\intd{0}{+\infty}{\frac{4 R k_B T}{2\pi R C}\frac{1}{1+\alpha^2}}{\alpha}=\bound{0}{+\infty}{\frac{4 k_B T}{2\pi C}\arctg\alpha}=\frac{4 k_B T}{2\pi C}\frac{\pi}{2}=\frac{k_B T}{C}
-\end{split}\]
+		&=\intd{0}{+\infty}{\frac{4 R k_B T}{2\pi R C}\frac{1}{1+\alpha^2}}{\alpha}=\bound{0}{+\infty}{\frac{4 k_B T}{2\pi C}\arctg\alpha}=\frac{4 k_B T}{2\pi C}\frac{\pi}{2}=\frac{k_B T}{C}
+	\end{split}
+\]
 \end{esempio}
 
 \begin{esempio}
@@ -196,19 +255,28 @@ Si hanno due resistenze in serie a diverse temperature.
 \end{figure*}
 
 La tensione di uscita è pari alle tensioni di rumore
-\[v_n(t)=v_{n_1}(t)+v_{n_2}(t)\]
+\[
+	v_n(t)=v_{n_1}(t)+v_{n_2}(t)
+\]
 
 Sono tensioni a media nulla quindi posso sommare media e varianza.
-
-\[\E{V^2_n}=\E{V^2_{n_1}}+\E{V^2_{n_2}}=\intinf{P_{n_1}(f)}{f}+\intinf{P_{n_2}(f)}{f}=\intinf{P_n(f)}{f}\]
+\[
+	\E{V^2_n}=\E{V^2_{n_1}}+\E{V^2_{n_2}}=\intinf{P_{n_1}(f)}{f}+\intinf{P_{n_2}(f)}{f}=\intinf{P_n(f)}{f}
+\]
 
 La densità di potenza monolatera
-\[P_n(f)=2 R_1 k_B T_1 + 2 R_2 k_B T_2\]
+\[
+	P_n(f)=2 R_1 k_B T_1 + 2 R_2 k_B T_2
+\]
 
 La densità di potenza bilatera
-\[P_n^m(f)=4 R_1 k_B T_1 + 4 R_2 k_B T_2 = 4 R_\text{eq} k_B T_\text{eq}\]
+\[
+	P_n^m(f)=4 R_1 k_B T_1 + 4 R_2 k_B T_2 = 4 R_\text{eq} k_B T_\text{eq}
+\]
 dove la resistenza equivalente alla serie è $R_\text{eq}=R_1+R_2$ e la temperatura equivalente è data da
-\[T_\text{eq}=\frac{T_1 R_1+T_2 R_2}{R_1+R_2}\]
+\[
+	T_\text{eq}=\frac{T_1 R_1+T_2 R_2}{R_1+R_2}
+\]
 \end{esempio}
 
 \section{Rumore passa banda o a banda stretta}
@@ -217,7 +285,9 @@ Si suppone un processo aleatorio stazionario $X(t)=\mu_X(t)+N(t)$ somma di un se
 Il rumore ha le seguenti proprietà:
 \begin{enumerate}
 \item Il rumore gaussiano bianco può essere rappresentato nelle sue componenti
-\[N(t)=N_I(t)\cos{2\pi f_0 t}-N_Q(t)\sen{2\pi f_0 t}\]
+\[
+	N(t)=N_I(t)\cos{2\pi f_0 t}-N_Q(t)\sen{2\pi f_0 t}
+\]
 dove $N_I(t)$ è la componente in fase del rumore e $N_Q(t)$ è la componente in quadratura.
 
 \item $N_I(t)$ e $N_Q(t)$ sono processi aleatori passa basso $\abs{f}\leq B$
@@ -231,25 +301,32 @@ dove $N_I(t)$ è la componente in fase del rumore e $N_Q(t)$ è la componente in
 \item Se $N(t)$ è stazionario anche le componenti $N_I$ e $N_Q$ sono stazionarie.
 
 \item La densità spettrale di potenza delle componenti in uscita è
-\[S_{N_I}(f)=S_{N_Q}(f)=\begin{cases}S(f-f_0)+S(f+f_0)&\abs{f}<B\\0&\text{altrimenti}\end{cases}\]
+\[
+	S_{N_I}(f)=S_{N_Q}(f)=
+	\begin{cases}
+		S(f-f_0)+S(f+f_0)&\abs{f}<B\\
+		0&\text{altrimenti}
+	\end{cases}
+\]
 
 \item La varianza $\sigma^2_{N_I}=\sigma^2_{N_Q}=\sigma^2_N$
 \end{enumerate}
 
 \section{Sistema di filtraggio di rumore bianco su portante aleatoria}
-\begin{figure}[h]\centering
-	\begin{tikzpicture}[node distance=2cm]
-	\node [block] (integrator) at (0,0) {$g(t)$};
-	\node [left of=integrator](input) {$N(t)$};
-	\node [sum,cross,right of=integrator,node distance=3cm] (mult) {};
-	\node [below of=mult](modulator) {$p(t)$};
-	\node [block,right = of mult] (filter) {$H(f)$};
-	\node [right of=filter] (output) {$Z(t)$};
-	\draw [-latex] (input) -- (integrator);
-	\draw [-latex] (integrator) -- (mult) node[pos=.5,above]{$X(t)$};
-	\draw [-latex] (modulator) -- (mult);
-	\draw [-latex] (mult) -- (filter) node[pos=.5,above]{$Y(t)$};
-	\draw [-latex] (filter) -- (output);
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance=2cm,>=latex']
+		\node [block] (integrator) at (0,0) {$g(t)$};
+		\node [left of=integrator](input) {$N(t)$};
+		\node [sum,cross,right of=integrator,node distance=3cm] (mult) {};
+		\node [below of=mult](modulator) {$p(t)$};
+		\node [block,right = of mult] (filter) {$H(f)$};
+		\node [right of=filter] (output) {$Z(t)$};
+		\draw [->] (input) -- (integrator);
+		\draw [->] (integrator) -- (mult) node[pos=.5,above]{$X(t)$};
+		\draw [->] (modulator) -- (mult);
+		\draw [->] (mult) -- (filter) node[pos=.5,above]{$Y(t)$};
+		\draw [->] (filter) -- (output);
 	\end{tikzpicture}
 \end{figure}
 
@@ -257,9 +334,13 @@ Nel sistema illustrato si ha
 \begin{itemize}
 \item il processo aleatorio $N(t)$ stazionario in senso lato con densità spettrale costante di rumore bianco $S_n(f)=n$
 \item filtro integratore a finestra mobile
-\[g(t)=\frac{1}{T}\rect{\frac{t-\frac{T}{2}}{T}}\]
+\[
+	g(t)=\frac{1}{T}\rect{\frac{t-\frac{T}{2}}{T}}
+\]
 \item è un segnale portante
-\[p(t)=2\cos{2\pi f_0+\theta}\]
+\[
+	p(t)=2\cos{2\pi f_0+\theta}
+\]
 con fase $\theta$ variabile aleatoria uniformemente distribuita in $[0,2\pi[$
 \item filtro passa banda ideale $H(f)$
 \end{itemize}
@@ -268,42 +349,68 @@ Il processo $X(t)$ è stazionario in senso lato perché risulta il filtraggio di
 
 La funzione valor medio $\mu_X(t)$ ha valore nullo perché la funzione valor medio $\mu_N(t)=0$ è identicamente nulla (rumore bianco).
 
-La funzione di autocorrelazione \[R_X(\tau)=R_N(\tau)\ast g(\tau)\ast g(-\tau)=n\impulse(\tau)\ast R_g(\tau)= \frac{n}{T}\left(1-\frac{\abs{\tau}}{T}\right)\rect{\frac{\tau}{2T}}\]
+La funzione di autocorrelazione
+\[
+	R_X(\tau)=R_N(\tau)\ast g(\tau)\ast g(-\tau)=n\impulse(\tau)\ast R_g(\tau)= \frac{n}{T}\left(1-\frac{\abs{\tau}}{T}\right)\rect{\frac{\tau}{2T}}
+\]
 che è l'espressione di un triangolo di altezza $\frac{1}{T}$ base $2T$ e pendenza $\frac{\abs{\tau}}{T}$
 
 La densità spettrale di potenza
-\[S_X(f)=n \abs{\fourier{g(t)}}^2=n\abs{G(f)}^2=n\Sinc^2(T f)\]
+\[
+	S_X(f)=n \abs{\fourier{g(t)}}^2=n\abs{G(f)}^2=n\Sinc^2(T f)
+\]
 
 La portante è un processo aleatorio stazionario in senso lato (oscillatore es.\ref{es:oscillatore_stazionario_senso_lato}) con valor medio $\mu_p(t)=0$ e funzione di autocorrelazione
-\[R_X(\tau)=2\cos{2\pi f_0(\tau)}\]
+\[
+	R_X(\tau)=2\cos{2\pi f_0(\tau)}
+\]
 
 Il processo prodotto $Y(t)$ avrà ancora valor medio nullo
-\[\mu_Y(t)=\E{Y(t)}=\E{X(t)P(t)}=2 \E{X(t)\cos(2\pi f_0 t+\theta)}\]
+\[
+	\mu_Y(t)=\E{Y(t)}=\E{X(t)P(t)}=2 \E{X(t)\cos(2\pi f_0 t+\theta)}
+\]
 la variabile aleatoria $\theta$ è indipendente dal processo $N(t)$, e quindi da $X(t)$, pertanto
-\[\mu_Y(t)=\E{X(t)}\E{P(t)}=0\]
+\[
+	\mu_Y(t)=\E{X(t)}\E{P(t)}=0
+\]
 La funzione autocorrelazione di $Y(t)$
-\[\begin{split}R_Y(\tau)&=\E{Y(t)Y(t-\tau)}=\\&=\E{X(t)2\cos{2\pi f_0 t+\theta} X(t-\tau)2\cos{2\pi f_0 (t-\tau)+\theta}}=\\
-&=2 R_X(\tau)\cos{2\pi f_0\tau}\end{split}\]
+\[
+	\begin{split}
+		R_Y(\tau)&=\E{Y(t)Y(t-\tau)}=\\
+		&=\E{X(t)2\cos{2\pi f_0 t+\theta} X(t-\tau)2\cos{2\pi f_0 (t-\tau)+\theta}}=\\
+		&=2 R_X(\tau)\cos{2\pi f_0\tau}
+	\end{split}
+\]
 
 Risulta quindi che il processo $Y(t)$ è stazionario in senso lato avendo valor medio nullo e funzione di autocorrelazione che non dipende da $t$ ma da $\tau$.
 
 La densità spettrale di potenza di $Y(t)$
-\[\begin{split}S_Y(f)&=\fourier{R_Y(\tau)}=S_X(f-f_0)+S_X(f+f_0)=\\&=n\left\lbrace\Sinc^2[(f-f_0)T]+\Sinc^2[(f+f_0)T]\right\rbrace\end{split}\]
+\[
+	\begin{split}
+		S_Y(f)&=\fourier{R_Y(\tau)}=S_X(f-f_0)+S_X(f+f_0)=\\
+		&=n\left\lbrace\Sinc^2[(f-f_0)T]+\Sinc^2[(f+f_0)T]\right\rbrace
+	\end{split}
+\]
 Se $f_0\gg\frac{1}{T}$ le due repliche di $S_X(f)$ centrate in $\pm f_0$ si possono considerare non sovrapposte, ovvero le code dei $\Sinc^2(\cdot)$ essersi smorzate completamente.
 
 Infine si ha il filtro passa banda $H(f)$ che mi da garanzia del filtraggio delle frequenze. Per il teorema fondamentale del filtraggio si ha che la densità spettrale di potenza
-\[S_Z(f)\cong S_Y(f)\abs{H(f)}^2=n\left\lbrace\Sinc^2[(f-f_0)T]\rect{\frac{f-f_0}{2/T}}+\Sinc^2[(f+f_0)T]\rect{\frac{f+f_0}{2/T}}\right\rbrace\]
+\[
+	S_Z(f)\cong S_Y(f)\abs{H(f)}^2=n\left\lbrace\Sinc^2[(f-f_0)T]\rect{\frac{f-f_0}{2/T}}+\Sinc^2[(f+f_0)T]\rect{\frac{f+f_0}{2/T}}\right\rbrace
+\]
 
-\begin{figure}[h!]
-	\centering\begin{tikzpicture}
-	\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-10,-5,0,5,10},ytick={1}]
-	\addplot [thick,domain=-10:10,samples=200] { (sin(x-5)/(x-5))^2+(sin(x+5)/(x+5))^2 };
-	\addplot [very thick,dashed,samples=100,domain=-10:0]  {abs( (x+5)/5 )<.5?1:0};
-	\addplot [very thick,dashed,samples=100,domain=0:10]  {abs( (x-5)/5 )<.5?1:0};
-	\end{axis}\end{tikzpicture}
+\begin{figure}[!ht]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=2,xtick={-10,-5,0,5,10},ytick={1}]
+		\addplot [thick,domain=-10:10,samples=200] {(sin(x-5)/(x-5))^2+(sin(x+5)/(x+5))^2};
+		\addplot [very thick,dashed,samples=100,domain=-10:0] {abs((x+5)/5)<.5?1:0};
+		\addplot [very thick,dashed,samples=100,domain=0:10] {abs((x-5)/5)<.5?1:0};
+		\end{axis}
+	\end{tikzpicture}
 \end{figure}
 
-\section{Processi ergodici}\index{processo!stocastico!ergodico}
+\section{Processi ergodici}
+\index{processo!stocastico!ergodico}
 I parametri statistici di un processo aleatorio sono misure effettuate sull'insieme delle funzioni campione o realizzazioni del processo. La funzione valor medio, ad esempio, determina per un dato istante $t$, la media della funzione densità di probabilità di primo ordine calcolata nell'istante $t$. Questa operazione teorica richiede di saper scrivere in forma chiusa ogni possibile realizzazione con la funzione densità di probabilità di primo ordine (o superiore per le altre statistiche).
 
 Se la funzione densità di probabilità non è nota, è possibile fare ipotesi sul comportamento statistico di un processo dalle misure effettuate da una singola realizzazione?
@@ -312,7 +419,7 @@ In generale nulla si può dire tranne che per processi ergodici stazionari in me
 \begin{definizione}
 Un processo aleatorio stazionario in media ($\mu_X(t)=\mu_X \;\text{cost}$) si dice \textsc{ergodico in media} se
 \begin{equation}
-P\Bigg( \E{X(t)}=\lim\limits_{T\to\infty}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t)}{t}\Bigg)=1
+	P\Bigg( \E{X(t)}=\lim\limits_{T\to\infty}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t)}{t}\Bigg)=1
 \end{equation}
 ovvero se con probabilità che tende a 1 la media d'insieme coincide con la media temporale su una sola realizzazione.
 \end{definizione}
@@ -324,74 +431,100 @@ Affinché un processo sia ergodico è innanzitutto necessario che sia stazionari
 Inoltre l'uguaglianza tra variabili aleatorie può essere espressa sono in termini probabilistici, affermando cioè che il valor medio temporale coincida con la media d'insieme e la varianza sia nulla.
 
 Non potendo osservare il processo per un tempo illimitato si considera la funzione ristretta all'intervallo limitato $[-T/2,T/2]$, la media temporale è il suo limite per $T\to\infty$
-\[X_T=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t)}{t}\qquad X_m=\lim\limits_{T\to +\infty}X_T\]
+\[
+	X_T=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t)}{t}\qquad X_m=\lim\limits_{T\to +\infty}X_T
+\]
 si deve dimostrare che la media e la varianza della media temporale
-\[\mu_{X_m}=\lim\limits_{T\to\infty}\mu_{X_T}\qquad\sigma^2_{X_m}=\lim\limits_{T\to\infty}\sigma^2_{X_T}=0\]
+\[
+	\mu_{X_m}=\lim\limits_{T\to\infty}\mu_{X_T}\qquad\sigma^2_{X_m}=\lim\limits_{T\to\infty}\sigma^2_{X_T}=0
+\]
 
 Dato il sistema in figura \ref{fig:sistema_processo_ergodico} si considera il caso di filtraggio di un processo stazionario in senso lato (v.\ref{sec:filtraggio_processo_SSL}). Il filtro è un integratore a finestra mobile su un intervallo di ampiezza $T$ la cui risposta all'impulso $h(t)=\frac{1}{T}\rect{\frac{t-T/2}{T}}$
-\[\begin{cases}
-\mu_Y(t)=\mu_X\cdot H(0)\\R_Y(\tau)=R_X(\tau)\ast h(\tau)\ast h(-\tau)
-\end{cases}\]
+\[
+	\begin{cases}
+		\mu_Y(t)&=\mu_X\cdot H(0)\\
+		R_Y(\tau)&=R_X(\tau)\ast h(\tau)\ast h(-\tau)
+	\end{cases}
+\]
 
-\begin{figure}[h]\centering
+\begin{figure}[h]
+	\centering
 	\begin{tikzpicture}
-	\node [block] (integrator) at (0,0) {\begin{tikzpicture}[scale=.8]
-		\draw [-latex] (-1,-1.1)--(-1,.7) node[left]{$\frac{1}{T}$} --(-1,1) node[right]{$h(t)$};
-		\draw [-latex] (-1.1,-1)--(1,-1)node[below]{$T$}--(1.4,-1);
-		\draw (-1,-1) rectangle (1,.7);
-		\end{tikzpicture}};
-	\node [left = of integrator](input) {$X(t)$};
-	\node [right = of integrator](switch) {};
-	\node [right = of switch] (output) {};
-	\draw [-latex] (input) -- (integrator);
-	\draw [-latex] (integrator) -- node[pos=.5,above]{$Y(t)$}  (switch);
-	\draw [-latex] (switch) to[cspst] node[pos=0,above]{$t=\frac{T}{2}$} (output) node[right]{$X_T$};
+		\node [block] (integrator) at (0,0) {
+			\begin{tikzpicture}[scale=.8]
+				\draw [-latex] (-1,-1.1)--(-1,.7) node[left]{$\frac{1}{T}$} --(-1,1) node[right]{$h(t)$};
+				\draw [-latex] (-1.1,-1)--(1,-1)node[below]{$T$}--(1.4,-1);
+				\draw (-1,-1) rectangle (1,.7);
+			\end{tikzpicture}};
+		\node [left = of integrator](input) {$X(t)$};
+		\node [right = of integrator](switch) {};
+		\node [right = of switch] (output) {};
+		\draw [-latex] (input) -- (integrator);
+		\draw [-latex] (integrator) -- node[pos=.5,above]{$Y(t)$} (switch);
+		\draw [-latex] (switch) to[cspst] node[pos=0,above]{$t=\frac{T}{2}$} (output) node[right]{$X_T$};
 	\end{tikzpicture}
-\caption{Variabile aleatoria valor medio temporale delle funzioni campione di un processo}
-\label{fig:sistema_processo_ergodico}
+	\caption{Variabile aleatoria valor medio temporale delle funzioni campione di un processo}
+	\label{fig:sistema_processo_ergodico}
 \end{figure}
 
 \begin{proof}[Dim. Media $\mu_{X_m}$]
 Il processo SSL in uscita ha media pari al valore
-\[\mu_{X_T}=\mu_Y\left(\frac{T}{2}\right)=\mu_Y=\mu_X \cdot H(0)\]
+\[
+	\mu_{X_T}=\mu_Y\left(\frac{T}{2}\right)=\mu_Y=\mu_X \cdot H(0)
+\]
 
-\[H(f)=\sinc{f T}\implies H(0)=1\implies \mu_{X_T}=\mu_X \implies \mu_{X_m}=\mu_X \]
+\[
+	H(f)=\sinc{f T}\implies H(0)=1\implies \mu_{X_T}=\mu_X \implies \mu_{X_m}=\mu_X 
+\]
 Si ha un processo stazionario in media con funzione valor medio in uscita uguale al valor medio in ingresso costante.
 \end{proof}
+
 \begin{proof}[Dim. Varianza $\sigma^2_{X_m}$]
 Devo dimostrare che $\sigma^2_{X_m}=0$
-
-\[\sigma^2_{X_T}=\sigma^2_{Y}=C_Y(0)\]
-
+\[
+	\sigma^2_{X_T}=\sigma^2_{Y}=C_Y(0)
+\]
 ipotizzando un processo $X(t)$ stazionario in senso lato
-\[R_Y(\tau)=R_X(\tau)\ast h(\tau)\ast h(-\tau)\]
-\[C_Y(\tau)=R_Y(\tau)-\mu^2=C_X(\tau)\ast h(\tau)\ast h(-\tau) \]
-\[C_Y(\tau)=\E{(Y(t)-\mu)(Y(t-\tau)-\mu)}\]
+\[
+	R_Y(\tau)=R_X(\tau)\ast h(\tau)\ast h(-\tau)
+\]
+\[
+	C_Y(\tau)=R_Y(\tau)-\mu^2=C_X(\tau)\ast h(\tau)\ast h(-\tau) 
+\]
+\[
+	C_Y(\tau)=\E{(Y(t)-\mu)(Y(t-\tau)-\mu)}
+\]
 per $\tau=0$ si ha l'espressione della varianza $\sigma^2_Y=C_Y(0)$.
 La convoluzione dei due $h(t)=\frac{1}{T}\rect{\frac{t-T/2}{T}}$ da il triangolo
-\[\begin{split}
-C_Y(\tau)&=C_X(\tau)\ast \frac{1}{T}\left(1-\frac{\abs{\tau}}{T}\right)\rect{\frac{\tau}{2 T}}=\\
-&=\intinf{C_X(\alpha)\; \frac{1}{T}\left(1-\frac{\abs{\tau-\alpha}}{T}\right)\rect{\frac{\tau-\alpha}{2 T}}}{\alpha}\end{split}\]
+\[
+	\begin{split}
+		C_Y(\tau)&=C_X(\tau)\ast \frac{1}{T}\left(1-\frac{\abs{\tau}}{T}\right)\rect{\frac{\tau}{2 T}}=\\
+		&=\intinf{C_X(\alpha)\;\frac{1}{T}\left(1-\frac{\abs{\tau-\alpha}}{T}\right)\rect{\frac{\tau-\alpha}{2 T}}}{\alpha}
+	\end{split}
+\]
 
 Per $\tau=0$, considerando la parità del rect e del valore assoluto,
-\[\sigma^2_{X_T}=\sigma^2_{Y}=C_Y(0)=\frac{1}{T}\intinf{C_X(\alpha)\; \left(1-\frac{\abs{\alpha}}{T}\right)\rect{\frac{\alpha}{2 T}}}{\alpha}=\frac{1}{T}\intd{-T}{T}{C_X(\alpha)\; \left(1-\frac{\abs{\alpha}}{T}\right)}{\alpha}
+\[
+	\sigma^2_{X_T}=\sigma^2_{Y}=C_Y(0)=\frac{1}{T}\intinf{C_X(\alpha)\;\left(1-\frac{\abs{\alpha}}{T}\right)\rect{\frac{\alpha}{2 T}}}{\alpha}=\frac{1}{T}\intd{-T}{T}{C_X(\alpha)\; \left(1-\frac{\abs{\alpha}}{T}\right)}{\alpha}
 \]
 
 Per avere ergodicità si deve avere
-\[\sigma^2_{X_m}=\lim\limits_{T\to\infty}\sigma^2_{X_T}=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-T}{T}{C_X(\alpha)\left(1-\frac{\abs{\alpha}}{T}\right)}{\alpha}=0\]
+\[
+	\sigma^2_{X_m}=\lim\limits_{T\to\infty}\sigma^2_{X_T}=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-T}{T}{C_X(\alpha)\left(1-\frac{\abs{\alpha}}{T}\right)}{\alpha}=0
+\]
 
 L'ergodicità del valor medio (statistica del primo ordine) è subordinata alla autocovarianza (statistica del secondo ordine).
 \end{proof}
 
 L'operatore media temporale può essere utilizzato per definire l'autocorrelazione di un segnale deterministico a potenza finita
 \begin{equation}
-\langle x(t)x(t-\tau)\rangle=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t) x(t-\tau)}{\tau}
+	\langle x(t)x(t-\tau)\rangle=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t) x(t-\tau)}{\tau}
 \end{equation}
 
 \begin{definizione}
-Un processo aleatorio stazionario in senso lato è \keyword[processo!stocastico!ergodico!in autocorrelazione]{ergodico in autocorrelazione} se con probabilità pari ad uno risulta vera
+Un processo aleatorio stazionario in senso lato è \textsc{ergodico in autocorrelazione}\index{processo!stocastico!ergodico!in autocorrelazione} se con probabilità pari ad uno risulta vera
 \begin{equation}
-R_X(\tau)=\E{X(t)X(t-\tau)}=\langle x(t)x(t-\tau)\rangle=\lim\limits_{T\to\infty}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t)x(t-\tau)}{t}
+	R_X(\tau)=\E{X(t)X(t-\tau)}=\langle x(t)x(t-\tau)\rangle=\lim\limits_{T\to\infty}\intd{-\frac{T}{2}}{\frac{T}{2}}{x(t)x(t-\tau)}{t}
 \end{equation}
 \end{definizione}
 L'ipotesi di stazionarietà è importante per avere una funzione di autocorrelazione d'insieme dipendente da una sola variabile, come l'autocorrelazione temporale.
@@ -399,34 +532,41 @@ L'ipotesi di stazionarietà è importante per avere una funzione di autocorrelaz
 L'ergodicità in autocorrelazione è importante perché consente di determinare la funzione di autocorrelazione mediante l'osservazione di una singola realizzazione. Da cui è possibile calcolare la densità spettrale di potenza del processo ergodico.
 
 \begin{definizione}
-Un processo ergodico in valor medio e in autocorrelazione si dice \keyword[processo!stocastico!ergodico!in senso lato]{ergodico in senso lato}.
+Un processo ergodico in valor medio e in autocorrelazione si dice \textsc{ergodico in senso lato}\index{processo!stocastico!ergodico!in senso lato}.
 \end{definizione}
-
 
 \begin{definizione}
-Un processo ergodico si dice \keyword[processo!stocastico!ergodico!in senso stretto]{ergodico in senso stretto} se la proprietà di ergodicità vale per qualunque grandezza statistica di qualunque ordine venga estratta dal processo.
-\[\E{g(X(t),X(t-\tau_1),\dots,X(t-\tau_{n-1}))}=\langle g(X(t),X(t-\tau_1),\dots,X(t-\tau_{n-1}))\rangle\]
+Un processo ergodico si dice \textsc{ergodico in senso stretto}\index{processo!stocastico!ergodico!in senso stretto} se la proprietà di ergodicità vale per qualunque grandezza statistica di qualunque ordine venga estratta dal processo.
+\[
+	\E{g(X(t),X(t-\tau_1),\dots,X(t-\tau_{n-1}))}=\langle g(X(t),X(t-\tau_1),\dots,X(t-\tau_{n-1}))\rangle
+\]
 \end{definizione}
 
-\begin{esempio}Abbiamo visto all'esempio
-\ref{es:oscillatore_stazionario_senso_lato}
-che il processo aleatorio
-\[X(t)=a\cos{2\pi f_0 t+\theta}\]
-con frequenza e ampiezza noti e fase $\theta$ variabile aleatoria a distribuzione uniforme in $[0,2\pi[$ è un processo stazionario in senso lato, ovvero ha funzione valor medio costante, $\mu_X(t)=0$,  e funzione di autocorrelazione $R_X(\tau)=\frac{a^2}{2}\cos{2\pi f_0 \tau}$ dipendente da $\tau=t_1-t_2$.
+\begin{esempio}
+Abbiamo visto nell'esempio \ref{es:oscillatore_stazionario_senso_lato} che il processo aleatorio
+\[
+	X(t)=a\cos{2\pi f_0 t+\theta}
+\]
+con frequenza e ampiezza noti e fase $\theta$ variabile aleatoria a distribuzione uniforme in $[0,2\pi[$ è un processo stazionario in senso lato, ovvero ha funzione valor medio costante, $\mu_X(t)=0$, e funzione di autocorrelazione $R_X(\tau)=\frac{a^2}{2}\cos{2\pi f_0 \tau}$ dipendente da $\tau=t_1-t_2$.
 
 Si dimostra che tale oscillatore è anche un processo ergodico in senso lato.
 \begin{proof}[Dim. ergodicità in media]
 Si ha che la media temporale del segnale periodico risulti nulla indipendentemente dalla v.a. $\theta$
-\[\langle x(t)\rangle=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{a\cos{2\pi f_0 t+\theta}}{t}=0\]
+\[
+	\langle x(t)\rangle=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{a\cos{2\pi f_0 t+\theta}}{t}=0
+\]
 \end{proof}
+
 \begin{proof}[Dim. ergodicità in autocorrelazione]
-\[\begin{split}\langle x(t)x(t-\tau)\rangle&=R_X(\tau)=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{a\cos{2\pi f_0 t+\theta}a\cos{2\pi f_0 (t-\tau)+\theta}}{t}=\\
-&=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{a\cos{2\pi f_0 t+\theta}a\cos{2\pi f_0 (t-\tau)+\theta}}{t}=\\
-\intertext{applicando la formula di Werner $\cos\alpha\cos\beta=\frac{\cos{\alpha+\beta}+\cos{\alpha-\beta}}{2}$}
-&=\lim\limits_{T\to\infty}\frac{1}{T}\frac{a^2}{2}\intd{-\frac{T}{2}}{\frac{T}{2}}{[\cos{4\pi f_0 t+2\theta-2\pi f_0\tau}+\cos{2\pi f_0\tau}]}{t}=\\
-&=\lim\limits_{T\to\infty}\frac{a^2}{2 T}\Bigg[\underbrace{\intd{-\frac{T}{2}}{\frac{T}{2}}{\cos{4\pi f_0 t+2\theta-2\pi f_0\tau}}{t}}_{=0}+\intd{-\frac{T}{2}}{\frac{T}{2}}{\cos{2\pi f_0\tau}}{t}\Bigg]=\\
-&=\lim\limits_{T\to\infty}\frac{a^2}{2 T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\cos{2\pi f_0\tau}}{t}=\lim\limits_{T\to\infty}\frac{a^2}{2 T}T\cos{2\pi f_0\tau}=R_X(\tau)
-\end{split}\]
+\[
+	\begin{split}\langle x(t)x(t-\tau)\rangle&=R_X(\tau)=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{a\cos{2\pi f_0 t+\theta}a\cos{2\pi f_0 (t-\tau)+\theta}}{t}=\\
+	&=\lim\limits_{T\to\infty}\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{a\cos{2\pi f_0 t+\theta}a\cos{2\pi f_0 (t-\tau)+\theta}}{t}=\\
+	\intertext{applicando la formula di Werner $\cos\alpha\cos\beta=\frac{\cos{\alpha+\beta}+\cos{\alpha-\beta}}{2}$}
+	&=\lim\limits_{T\to\infty}\frac{1}{T}\frac{a^2}{2}\intd{-\frac{T}{2}}{\frac{T}{2}}{[\cos{4\pi f_0 t+2\theta-2\pi f_0\tau}+\cos{2\pi f_0\tau}]}{t}=\\
+	&=\lim\limits_{T\to\infty}\frac{a^2}{2 T}\Bigg[\underbrace{\intd{-\frac{T}{2}}{\frac{T}{2}}{\cos{4\pi f_0 t+2\theta-2\pi f_0\tau}}{t}}_{=0}+\intd{-\frac{T}{2}}{\frac{T}{2}}{\cos{2\pi f_0\tau}}{t}\Bigg]=\\
+	&=\lim\limits_{T\to\infty}\frac{a^2}{2 T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\cos{2\pi f_0\tau}}{t}=\lim\limits_{T\to\infty}\frac{a^2}{2 T}T\cos{2\pi f_0\tau}=R_X(\tau)
+\end{split}
+\]
 pertanto la funzione autocorrelazione è funzione solo di $\tau$.
 \end{proof}
 Si è dimostrato quindi che il processo oscillatorio stazionario in senso lato è ergodico in valor medio e in autocorrelazione quindi lo è in senso lato.

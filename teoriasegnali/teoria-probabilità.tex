@@ -1,7 +1,8 @@
+%il Capitolo 4 è stato revisionato dal Prof. Grieco il 12/1/2017
 \chapter{Teoria della probabilità}
-
+\label{ch:teoriasegnali-capitolo4}
 \section{Concetti di base}
-Si definisce \textsc{spazio campione $\Omega$} l'insieme di tutti i possibili risultati di un esperimento o eventi. Un \textsc{evento} è un qualsiasi sotto insieme di possibili risultati di un esperimento, sottoinsieme di $\Omega$.
+Si definisce \textsc{spazio campione}\index{spazio campione} $\Omega$ l'insieme di tutti i possibili risultati di un esperimento o eventi. Un \textsc{evento}\index{evento} è un qualsiasi sotto insieme di possibili risultati di un esperimento, sottoinsieme di $\Omega$.
 
 Dato $A$, un evento, si definisce il suo complemento $\bar{A}$, ovvero tutto lo spazio campione meno A, $\bar{A}=\Omega\setminus A$
 
@@ -16,80 +17,107 @@ $A\cap\bar{A}=\emptyset$ l'intersezione tra eventi complementari è l'insieme vu
 \section{Spazio di probabilità}
 Una definizione assiomatica di uno spazio di probabilità per \textsc{esperimenti aleatori} è caratterizzata da
 \begin{itemize}
-\item uno spazio campione $\Omega$
-\item un insieme $S$ degli eventi di interesse (non necessariamente $\Omega$)
-\item una legge di probabilità $P(.)$ secondo Kolmogorov
+	\item uno spazio campione $\Omega$
+	\item un insieme $S$ degli eventi di interesse (non necessariamente $\Omega$)
+	\item una legge di probabilità $P(.)$ secondo Kolmogorov
 \end{itemize}
 
 \section{Legge di probabilità}
-Una \textsc{legge di probabilità} secondo Kolmogorov mette in corrispondenza un evento $A\in S$ con un numero reale tale che
-\begin{equation}P(A)\geq 0\end{equation}
-\begin{equation}P(\Omega)=1\end{equation}
-eventi mutualmente esclusivi \begin{equation}A\cap B=0\implies P(A\cup B)=P(A)+P(B)\end{equation}
+Una \index{legge di probabilità}\textsc{legge di probabilità} secondo Kolmogorov mette in corrispondenza un evento $A\in S$ con un numero reale tale che
+\begin{equation}
+	P(A)\geq 0
+\end{equation}
+\begin{equation}
+	P(\Omega)=1
+\end{equation}
+eventi mutualmente esclusivi
+\begin{equation}
+	A\cap B=0\implies P(A\cup B)=P(A)+P(B)
+\end{equation}
 
 \section{Modelli alternativi}
 Modelli matematici alternativi di probabilità sono la definizione di Laplace secondo cui, per uno spazio campione finito e un esperimento simmetrico (esempio: lancio di un dado non truccato), la probabilità è calcolata come numero di eventi favorevoli fratto il numero di eventi possibili
 \begin{equation}
-P(A)=\frac{N_F(A)}{N_P(A)}
+	P(A)=\frac{N_F(A)}{N_P(A)}
 \end{equation}
 
-Definizione di Van Mises o \emph{frequentista} per cui ripetendo $N$
-volte un esperimento e contando il numero $N_A$ di volte in cui si verifica l'evento A, si ha che la \textsc{frequenza relativa} $\frac{N_A}{N}$ si approssima al valore della probabilità di A
-\begin{equation}P(A)=\lim\limits_{N\to\infty}\frac{N_A}{N}
+Definizione di Van Mises o \emph{frequentista} per cui ripetendo $N$ volte un esperimento e contando il numero $N_A$ di volte in cui si verifica l'evento A, si ha che la \textsc{frequenza relativa} $\frac{N_A}{N}$ si approssima al valore della probabilità di A
+\begin{equation}
+	P(A)=\lim\limits_{N\to\infty}\frac{N_A}{N}
 \end{equation}
 
-La definizione frequentista rientra nella teoria assiomatica infatti
-$P(A)=\frac{N_A}{N}\geq 0$, se $A=\Omega\implies N_A=N\implies P(A)=1$, inoltre
-e $A\cap B=\emptyset$ allora $N_{A\cup B}=N_A+N_B\implies P(A\cup B)= \lim\limits_{N\to\infty}\frac{N_{A\cup B}}{N}=\lim\limits_{N\to\infty}\frac{N_A+N_B}{N}=P(A)+P(B)$
+La definizione frequentista rientra nella teoria assiomatica infatti $P(A)=\frac{N_A}{N}\geq 0$, se $A=\Omega\implies N_A=N\implies P(A)=1$, inoltre e $A\cap B=\emptyset$ allora $N_{A\cup B}=N_A+N_B\implies P(A\cup B)= \lim\limits_{N\to\infty}\frac{N_{A\cup B}}{N}=\lim\limits_{N\to\infty}\frac{N_A+N_B}{N}=P(A)+P(B)$
 
 \section{Teoremi}
 A partire da tali assiomi si derivano i seguenti teoremi
-\begin{equation}P(\bar{A})=1-P(A)\end{equation}
+\begin{equation}
+	P(\bar{A})=1-P(A)
+\end{equation}
 
-\begin{proof}[Dim.] $A\cup\bar{A}=\Omega\implies P(A\cup\bar{A})=1$
+\begin{proof}[Dim.]
+$A\cup\bar{A}=\Omega\implies P(A\cup\bar{A})=1$
 
 $A\cap\bar{A}=0\implies P(A\cup\bar{A})=P(A)+P(\bar{A})$
 \end{proof}
 
-\begin{equation}P(\emptyset)=0\end{equation}
-
-\begin{proof}[Dim.] $\bar{\Omega}=\emptyset\implies P(\emptyset)=P(\bar{\Omega})=1-P(\Omega)=0$
-\end{proof}
-
-\begin{equation}0\leq P(A)\leq 1\end{equation}
-
-\begin{proof}[Dim.] Per il primo assioma $P(A)\geq 0$ e $P(\bar{A})\geq 0$ ma è anche $P(A)=1-P(\bar{A})$
-\end{proof}
-
-\subsection{Teorema probabilità congiunte}\index{Teorema!probabilità congiunte}
-\begin{equation}P(A\cup B)=P(A)+P(B)-P(A\cap B)\end{equation}
+\begin{equation}
+	P(\emptyset)=0
+\end{equation}
 
 \begin{proof}[Dim.]
-\[A\cup B=A\cup(B\cap\bar{A})\implies P(A\cup B)=P(A)+P(B\cap\bar{A})\]
+$\bar{\Omega}=\emptyset\implies P(\emptyset)=P(\bar{\Omega})=1-P(\Omega)=0$
+\end{proof}
 
-\[B=B\cap(A\cup\bar{A})=(B\cap A)\cup(B\cap\bar{A})\implies P(B)=P(B\cap A)+P(B\cap\bar{A})\]
+\begin{equation}
+0\leq P(A)\leq 1
+\end{equation}
+
+\begin{proof}[Dim.]
+Per il primo assioma $P(A)\geq 0$ e $P(\bar{A})\geq 0$ ma è anche $P(A)=1-P(\bar{A})$
+\end{proof}
+
+\subsection{Teorema probabilità congiunte}
+\index{Teorema!probabilità congiunte}
+\begin{equation}
+	P(A\cup B)=P(A)+P(B)-P(A\cap B)
+\end{equation}
+
+\begin{proof}[Dim.]
+\[
+	A\cup B=A\cup(B\cap\bar{A})\implies P(A\cup B)=P(A)+P(B\cap\bar{A})
+\]
+
+\[
+	B=B\cap(A\cup\bar{A})=(B\cap A)\cup(B\cap\bar{A})\implies P(B)=P(B\cap A)+P(B\cap\bar{A})
+\]
 insieme $\implies P(A\cup B)=P(A)+P(B)-P(B\cap A)$
 \end{proof}
 
-\subsection{Teorema probabilità condizionata}\index{Teorema!probabilità condizionata}
+\subsection{Teorema probabilità condizionata}
+\index{Teorema!probabilità condizionata}
 $P(A)$ è la probabilità che si verifichi l'evento A a priori.
 $P(A|B)$ è la probabilità che si verifichi l'evento A dato che si sia verificato l'evento B, la prob. di A a posteriori:
 \begin{equation}
-P(A|B)=\frac{P(A\cap B)}{P(B)}
+	P(A|B)=\frac{P(A\cap B)}{P(B)}
 \end{equation}
 
-Nel caso particolare che A e B siano \textsc{eventi indipendenti}, la probabilità che si verifichi A non è influenzata da B, pertanto \[P(A|B)=P(A)\qquad P(A\cap B)=P(A)P(B)\]
+Nel caso particolare che A e B siano \textsc{eventi indipendenti}\index{eventi indipendenti}, la probabilità che si verifichi A non è influenzata da B, pertanto
+\[
+	P(A|B)=P(A)\qquad P(A\cap B)=P(A)P(B)
+\]
 
-\subsection{Teorema di Bayes}\index{Teorema!di Bayes}
+\subsection{Teorema di Bayes}
+\index{Teorema!di Bayes}
 \begin{equation}
-P(A|B)=\frac{P(B|A)P(A)}{P(B)}
+	P(A|B)=\frac{P(B|A)P(A)}{P(B)}
 \end{equation}
 che si può verificare facilmente sostituendo alla prob. condizionata $P(B|A)=\frac{P(A\cap B)}{P(A)}$
 
-\subsection{Teorema delle Probabilità Totali (Bayes)}\index{Teorema!delle Probabilità Totali (Bayes)}
+\subsection{Teorema delle Probabilità Totali (Bayes)}
+\index{Teorema!delle Probabilità Totali (Bayes)}
 Data una partizione dello spazio campione $\bigcup_i B_i=\Omega, B_i\cap B_j=\emptyset \;\forall i\neq j$
 \begin{equation}
-P(A)=\sum_i P(A|B_i)P(B_i)
+	P(A)=\sum_i P(A|B_i)P(B_i)
 \end{equation}
 
 \begin{proof}[Dim.]
@@ -113,11 +141,13 @@ Si definisce l'evento $A=\lbrace\omega_0$ si presenta $k$ volte in $n$ esperimen
 
 La \textsc{formula binomiale di Bernoulli} esprime la probabilità dell'evento A:
 \begin{equation}
-P(A)=\binom{n}{k} p^k (1-p)^{n-k}
+	P(A)=\binom{n}{k} p^k (1-p)^{n-k}
 \end{equation}
 
 Il coefficiente binomiale
-\begin{equation}\binom{n}{k}=\frac{n!}{k!(n-k)!}\end{equation}
+\begin{equation}
+	\binom{n}{k}=\frac{n!}{k!(n-k)!}
+\end{equation}
 tiene conto delle possibili \textsc{combinazioni} in cui $k$ elementi possono essere disposti in $n$ posizioni non distinguendoli per l'ordine. Si ottiene dal numero di \textsc{disposizioni} possibili di $k$ oggetti in $n$ posizioni distinguendo le posizioni $D_{n,k}=n\cdot(n-1)\dots(n-k+1)=\frac{n!}{(n-k)!}$ diviso il numero delle \textsc{permutazioni} $P_{n,k}=k!$ di $k$ oggetti in $n$ posizioni.
 
 \section{Esempi esperimenti aleatori}
@@ -129,37 +159,53 @@ Esperimento di estrazione di palline bianche e nere da 5 urne di 3 tipi:
 	\item $A_3$: 2 urne con 3 palline bianche 1 nera
 \end{itemize}
 Evento $E_1=\lbrace$ pallina estratta da urna a caso è bianca $\rbrace$
-\[E_1=(A_1\cap W)\cup(A_2\cap W)\cup(A_3\cap W)\]
+\[
+	E_1=(A_1\cap W)\cup(A_2\cap W)\cup(A_3\cap W)
+\]
 Per il teorema delle probabilità totali
-\[P(E_1)=P(A_1\cap W)+P(A_2\cap W)+P(A_3\cap W)=\frac{4}{15}+0+\frac{3}{10}\]
+\[
+	P(E_1)=P(A_1\cap W)+P(A_2\cap W)+P(A_3\cap W)=\frac{4}{15}+0+\frac{3}{10}
+\]
 dove per il teorema delle probabilità condizionate
-\[\begin{split}P(A_1\cap W)&=P(W|A_1) P(A_1)=\frac{2}{3}\cdot\frac{2}{5}=\frac{4}{15}\\
-P(A_2\cap W)&=P(W|A_2) P(A_2)=0\cdot\frac{1}{5}=0\\
-P(A_3\cap W)&=P(W|A_3) P(A_3)=\frac{3}{4}\cdot\frac{2}{5}=\frac{3}{10}\end{split}\]
+\[
+\begin{split}
+	P(A_1\cap W)&=P(W|A_1) P(A_1)=\frac{2}{3}\cdot\frac{2}{5}=\frac{4}{15}\\
+	P(A_2\cap W)&=P(W|A_2) P(A_2)=0\cdot\frac{1}{5}=0\\
+	P(A_3\cap W)&=P(W|A_3) P(A_3)=\frac{3}{4}\cdot\frac{2}{5}=\frac{3}{10}
+\end{split}
+\]
 
 Evento $E_2=\lbrace$ pallina estratta a caso sia bianca da urna di tipo 3 $\rbrace$
-\[E_2=(A_1\cap W)\cup(A_2\cap W)\cup(A_3\cap W)\]
+\[
+	E_2=(A_1\cap W)\cup(A_2\cap W)\cup(A_3\cap W)
+\]
 
 Per il teorema di Bayes la probabilità condizionata è
-\[P(E_2)=P(A_3|W)=\frac{P(W|A_3)P(A_3)}{P(W)}=\frac{\frac{3}{4}\cdot\frac{2}{5}}{\frac{17}{30}}=\frac{3}{4}\cdot\frac{2}{5}\cdot\frac{30}{17}=\frac{9}{17}\cong 0,529\]
+\[
+	P(E_2)=P(A_3|W)=\frac{P(W|A_3)P(A_3)}{P(W)}=\frac{\frac{3}{4}\cdot\frac{2}{5}}{\frac{17}{30}}=\frac{3}{4}\cdot\frac{2}{5}\cdot\frac{30}{17}=\frac{9}{17}\cong 0,529
+\]
 \end{esempio}
 
 \begin{esempio}
 Esperimento aleatorio composto
 \begin{itemize}
-\item 1 scatola con 2000 articoli di cui 5\% grandi
-\item 1 scatola con 500 articoli di cui 40\% grandi
-\item 1 scatola con 1000 articoli di cui 10\% grandi
-\item 1 scatola con 1000 articoli di cui 10\% grandi
+	\item 1 scatola con 2000 articoli di cui 5\% grandi
+	\item 1 scatola con 500 articoli di cui 40\% grandi
+	\item 1 scatola con 1000 articoli di cui 10\% grandi
+	\item 1 scatola con 1000 articoli di cui 10\% grandi
 \end{itemize}
 Si scelga una scatola a caso e si estragga un articolo a caso e si valuti la probabilità $P(G)$ che sia estratto un articolo grande.
 
 Per il teorema delle probabilità totali ho
-\[P(G)=\sum_{i=1}^{4}P(G|S_i)P(S_i)\]
+\[
+	P(G)=\sum_{i=1}^{4}P(G|S_i)P(S_i)
+\]
 
 $P(S_i)=\frac{1}{4}$, $P(G|S_1)=0.05$, $P(G|S_2)=0.4$, $P(G|S_3)=0.1$, $P(G|S_4)=0.1$
 
-\[P(G)=\frac{1}{4}(0.05+0.4+0.1+0.1)=\frac{1}{4}\cdot 0.65=0.1625\]
+\[
+	P(G)=\frac{1}{4}(0.05+0.4+0.1+0.1)=\frac{1}{4}\cdot 0.65=0.1625
+\]
 Nel caso sia estratto un articolo grande, quale è la probabilità che sia dalla scatola 3?
 
 Per il teorema di Bayes
@@ -180,19 +226,29 @@ Ad ogni estrazione la pallina viene rimessa nella scatola.
 Qual è la probabilità dell'evento $E=\lbrace 2B+1N \rbrace$ ?
 
 Si può scomporre l'evento in eventi disgiunti ed applicare il teorema delle probabilità totali
-\[P(E)=\sum_{i=1}^{3}P(E|A_i)P(A_i)\]
+\[
+	P(E)=\sum_{i=1}^{3}P(E|A_i)P(A_i)
+\]
 dove data la ripartizione delle scatole $P(A_1)=\frac{1}{6}, P(A_2)=\frac{2}{6}=\frac{1}{3}, P(A_3)=\frac{3}{6}=\frac{1}{2}$
 Le probabilità condizionate si calcolano come prove ripetute di Bernoulli binarie indipendenti sull'evento E:
-\[\begin{split}
-P(E|A_1)&=\binom{3}{2}P(B|A_1)^2 P(N|A_1)=3\left(\frac{7}{12}\right)^2\frac{5}{12}=\frac{5}{4}\left(\frac{7}{12}\right)^2\\
-P(E|A_2)&=\binom{3}{2}P(B|A_2)^2 P(N|A_2)=3\left(\frac{5}{12}\right)^2\frac{7}{12}=\frac{7}{4}\left(\frac{5}{12}\right)^2\\
-P(E|A_3)&=\binom{3}{2}P(B|A_3)^2 P(N|A_3)=3\left(\frac{4}{12}\right)^2\frac{8}{12}=\frac{2}{9}
-\end{split}\]
+\[
+\begin{split}
+	P(E|A_1)&=\binom{3}{2}P(B|A_1)^2 P(N|A_1)=3\left(\frac{7}{12}\right)^2\frac{5}{12}=\frac{5}{4}\left(\frac{7}{12}\right)^2\\
+	P(E|A_2)&=\binom{3}{2}P(B|A_2)^2 P(N|A_2)=3\left(\frac{5}{12}\right)^2\frac{7}{12}=\frac{7}{4}\left(\frac{5}{12}\right)^2\\
+	P(E|A_3)&=\binom{3}{2}P(B|A_3)^2 P(N|A_3)=3\left(\frac{4}{12}\right)^2\frac{8}{12}=\frac{2}{9}
+\end{split}
+\]
 
-\[\begin{split}P(E)&=P(E|A_1)P(A_1)+P(E|A_2)P(A_2)+P(E|A_3)P(A_3)=\\
-&=\frac{1}{6}\cdot\frac{5}{4}\left(\frac{7}{12}\right)^2+\frac{1}{3}\cdot\frac{7}{4}\left(\frac{5}{12}\right)^2+\frac{1}{2}\cdot\frac{2}{9}\cong 0.28\end{split}\]
+\[
+\begin{split}
+	P(E)&=P(E|A_1)P(A_1)+P(E|A_2)P(A_2)+P(E|A_3)P(A_3)=\\
+	&=\frac{1}{6}\cdot\frac{5}{4}\left(\frac{7}{12}\right)^2+\frac{1}{3}\cdot\frac{7}{4}\left(\frac{5}{12}\right)^2+\frac{1}{2}\cdot\frac{2}{9}\cong 0.28
+\end{split}
+\]
 
 Qual è la probabilità che si verifichi l'evento $E=\lbrace 2B+1N\rbrace$ da scatole del tipo $A_3$?
 Per il teorema di Bayes
-\[P(A_3|E)=\frac{P(E|A_3)P(A_3)}{P(E)}=\frac{2}{9}\cdot\frac{1}{2}\cdot\frac{1}{0.28}\cong 0,39\]
+\[
+	P(A_3|E)=\frac{P(E|A_3)P(A_3)}{P(E)}=\frac{2}{9}\cdot\frac{1}{2}\cdot\frac{1}{0.28}\cong 0,39
+\]
 \end{esempio}
