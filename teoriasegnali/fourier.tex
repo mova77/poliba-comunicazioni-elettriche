@@ -11,7 +11,7 @@ Dato il segnale periodico $s(t)=s(t+k T)$ si definisce la sua rappresentazione i
 	s(t)=\sum_{k=-\infty}^{+\infty} c_k \e{\imath 2\pi k f_0 t}
 \end{equation}
 \end{definizione}
-Le sinusoidi pesate sono espresse in forma di esponenziali complessi ricordando le formule di Eulero
+Attraverso le formule di Eulero, le sinusoidi pesate sono espresse in forma di esponenziali complessi:
 \begin{equation}
 	\e{\imath x}=\cos{x}+\imath\sen{x}\qquad\cos{x}=\frac{\e{\imath x}+\e{-\imath x}}{2}\qquad\sen{x}=\frac{\e{\imath x}-\e{-\imath x}}{2\imath}
 \end{equation}
@@ -20,7 +20,7 @@ I coefficienti\index{Fourier!coefficienti serie} $c_k$ costituiscono il peso o c
 	\label{eq:serie_fourier_coef}
 	c_k=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\e{-\imath 2\pi k f_0 t}}{t}
 \end{equation}
-Si può verificare sostituendo $s(t)$
+Si può verificare l'espressione dei coefficienti $c_k$ sostituendo la rappresentazione in serie di $s(t)$ nella formula $2.3$:
 \begin{align*}
 	c_k=&\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{ \left[\sum_{n=-\infty}^{+\infty} c_n \e{\imath 2\pi n f_0 t}\right] \e{-\imath 2\pi k f_0 t}}{t} 
 	=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{ \sum_{n=-\infty}^{+\infty} c_n \e{\imath 2\pi (n-k) f_0 t} }{t} \\
@@ -50,11 +50,11 @@ Il coefficiente $c_0$ corrispondente alla frequenza nulla definisce la \textsc{c
 
 \section{Condizioni di esistenza Dirichlet}
 \index{Fourier!serie!condizioni Dirichlet}
-Perché converga lo sviluppo in serie di Fourier del segnale $s(t)$ sono sufficienti le seguenti condizioni di esistenza:
+Affinchè il segnale $s(t)$ sia sviluppabile in serie di Fourier devono essere soddisfatte le seguenti condizioni di esistenza:
 \begin{enumerate}
-\item $s(t)$ sia assolutamente integrabile in un periodo: $\intd{0}{T}{\abs{(s(t)}}{t}<+\infty$
-\item $s(t)$ abbia nel periodo un numero finito di massimi e minimi
-\item $s(t)$ abbia nel periodo un numero finito di discontinuità di I specie
+\item $s(t)$ deve essere assolutamente integrabile nel periodo $T$: $\intd{0}{T}{\abs{(s(t)}}{t}<+\infty$
+\item $s(t)$ può avere nel periodo un numero finito di massimi e minimi
+\item $s(t)$ può avere nel periodo un numero finito di discontinuità di I specie
 \footnote{Esistono finiti $\lim\limits_{t\to t_0+}s(t)\neq\lim\limits_{t\to t_0-}s(t)$, discontinuità di I specie eliminabile $s(t_0)=\frac{s(t_0^+)-s(t_0^-)}{2}$}
 \end{enumerate}
 
