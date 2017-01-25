@@ -10,8 +10,8 @@ Un segnale è definito matematicamente tramite una funzione $s$ ed in base alle 
 	\item[Segnale discreto] il dominio di $s$ è discreto. Esempio: segnale temperatura rilevata alle ore 10:00 di ogni giorno in una data località.
 	\item[Segnale ad ampiezza continua] il codominio di $s$ è continuo. Esempio: segnale tensione elettrica ai capi di un condensatore.
 	\item[Segnale ad ampiezza discreta] il codominio di $s$ è discreto. Esempio: segnale audio digitalizzato MP3.
-%	\item[Segnale analogico] rappresentato da una funzione reale e continua: $s(t) \in \Re$, $t \in \Re$.
-%	\item[Segnale digitale o numerico] rappresentato da una funzione tempo-discreta definita in un insieme discreto: $s(n) \in Z$, $n \in Z$.
+	\item[Segnale analogico] rappresentato da una funzione reale e continua: $s(t)\in\mathbb{R}$, $t\in\mathbb{R}$
+	\item[Segnale digitale o numerico] rappresentato da una funzione tempo-discreta definita in un insieme discreto: $s(n)\in\mathbb{Z}$, $n\in\mathbb{Z}$
 	\item[Segnale periodico di periodo $T$] se $s(t+T)=s(t)$.
 	\item[Segnale aperiodico] segnale non periodico.
 	\item[Segnale monodimensionale] $s$ è funzione di una sola variabile. Esempio: segnale nel dominio del tempo $s(t)$.
@@ -29,10 +29,7 @@ Per caratterizzare un segnale $s$ è utile definire il concetto di energia $E_s$
 \label{eq:segnale_energia}
 	E_s=\intinf{\abs{s(t)}^2}{t} \qquad E_s=\sum_{n=-\infty}^{+\infty}\abs{s(n)}^2
 \end{equation}
-
-Se $E_s < \infty$, $s$  si definisce \textsc{segnale ad energia finita} o \textsc{segnale di energia}\index{segnale!di energia}.
-
-Un segnale periodico è un esempio di segnale che non ha energia finita infatti anche se l'energia nel periodo è finita $\intd{-T/2}{T/2}{\abs{s(t)}^2}{t}<+\infty$ non è finito l'integrale su $\R$.
+Se $E_s < \infty$, $s$ si definisce \textsc{segnale ad energia finita} o \textsc{segnale di energia}\index{segnale!di energia}. \newline Un segnale periodico è un esempio di segnale che non ha energia finita infatti anche se l'energia nel periodo è finita $\intd{-T/2}{T/2}{\abs{s(t)}^2}{t}<+\infty$ non è finito l'integrale su $\R$.
 
 \subsection{Potenza di un segnale}
 Avendo definito l'energia di un segnale $s$, è possibile definire anche la potenza $P_s$:
@@ -42,15 +39,12 @@ Avendo definito l'energia di un segnale $s$, è possibile definire anche la pote
 	P_s=\lim\limits_{T\to+\infty}{\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{\abs{s(t)}^2}{t}}\qquad
 	P_s=\lim\limits_{N\to+\infty}{\frac{1}{2N+1}\sum_{n=-N}^{N}{\abs{s(n)}^2}}
 \end{equation}
-
-Se $P_s<+\infty$, $s$ si definisce \textsc{segnale a potenza finita} oppure \textsc{segnale di potenza}\index{segnale!di potenza}.
-
-Per i segnali ad energia finita la potenza è nulla. I segnali periodici sono segnali di potenza e il calcolo della potenza si ottiene con riferimento ad un singolo periodo: $P_s=\frac{1}{T}\intd{-T/2}{T/2}{\abs{s(t)}^2}{t}<+\infty$.
+Se $P_s<+\infty$, $s$ si definisce \textsc{segnale a potenza finita} oppure \textsc{segnale di potenza}\index{segnale!di potenza}. \\ Per i segnali ad energia finita la potenza è nulla. \\ Per i segnali periodici il calcolo della potenza si ottiene con riferimento ad un singolo periodo: $P_s=\frac{1}{T}\intd{-T/2}{T/2}{\abs{s(t)}^2}{t}<+\infty$.
 
 \section{Operazioni sui segnali}
 \subsection{Traslazione}
-La traslazione di $t_0$ di un segnale $s(t)$ è un'operazione che anticipa o ritarda il segnale stesso: $s(t) \to s(t-t_0)$.
-% Se $t_0>0$ il segnale sarà ritardato, se $t_0<0$ il segnale sarà anticipato.
+La traslazione di $t_0$ di un segnale $s(t)$ è un'operazione che anticipa o ritarda il segnale stesso:
+$s(t) \to s(t-t_0)$. Se $t_0>0$ il segnale risulta ritardato, se $t_0<0$ il segnale risulta anticipato.
 
 \subsection{Ribaltamento}
 Il ribaltamento di un segnale $s(t)$ è un'operazione che consente di ribaltare il segnale rispetto all'asse della variabile dipendente e quindi implica un cambiamento di segno della variabile indipendente: $s(t) \to s(-t)$.
@@ -169,19 +163,16 @@ Si nota che gli integrali concidono.
 	\end{cases}
 \end{equation}
 
-\`E un segnale di energia finita pari a $\tau$.
-
-Il segnale è discontinuo in $\pm\frac{T}{2}$ ma si può estendere per continuità definendo
-$s(t_0)=\frac{1}{2}[s(t_0^-)+s(t_0^+)]$
+\`E un segnale di energia finita pari a $\tau$. Il segnale è discontinuo in $\pm\frac{T}{2}$ ma si può estendere per continuità definendo $s(t_0)=\frac{1}{2}[s(t_0^-)+s(t_0^+)]$.
 
 Partendo dal segnale rettangolare, si costruisce il segnale onda quadra, periodico di periodo $T$, come somma di infiniti segnali rettangolari traslati:
 \begin{equation}
 	\mathrm{sq}(t)=\sum_{n=-\infty}^{+\infty}\rect{\frac{t-n T}{\tau}},\;T>\tau
 \end{equation}
-
-$\tau=\frac{T}{2}$ corrsponde al tempo in cui il segnale è diverso da zero, inoltre il rapporto $\frac{\tau}{T}$ è chiamato \emph{duty cycle}.
-Se $\tau=\frac{T}{2}$ il \emph{duty cycle} $\frac{\tau}{T}$ è del 50\%, con un valor medio $1/2$.
+Il tempo in cui il segnale è diverso da zero vale $\tau$, inoltre il rapporto $\frac{\tau}{T}$ è chiamato \emph{duty cycle}. \\
+Se $\tau=\frac{T}{2}$ il \emph{duty cycle} è del 50\%, con un valor medio $1/2$. \\
 In generale il valor medio del segnale onda quadra coincide con il duty cycle: $\frac{1}{T}\intd{-T/2}{T/2}{sq(\xi)}{\xi}=\frac{\tau}{T}$
+
 \begin{figure}
 	\centering
 	\begin{tikzpicture}[xscale=.7,yscale=.5]
@@ -212,7 +203,7 @@ In generale il valor medio del segnale onda quadra coincide con il duty cycle: $
 
 \subsection{Delta di Dirac}
 \index{segnale elementare!impulso}\index{segnale elementare!delta di Dirac|see {segnale elementare!impulso}}
-Se consideriamo il segnale rettangolare $\frac{1}{T} \rect{\frac{t}{T}}$ di base T e altezza 1/T ha area unitaria, portando al limite $T\to 0$, il rettangolo diventa un impulso. L'impulso non è una funzione in senso proprio ma una distribuzione integrabile chiamata \textsc{delta di Dirac}:
+Consideriamo il segnale rettangolare $\frac{1}{T} \rect{\frac{t}{T}}$ di base T, altezza 1/T e area unitaria. Portando al limite $T\to 0$ il rettangolo diventa un impulso. L'impulso on è una funzione in senso proprio ma una distribuzione integrabile chiamata \textsc{delta di Dirac}:
 \begin{equation}
 	\delta(t)=\lim\limits_{T\to 0}\frac{1}{T}\rect{\frac{t}{T}}
 \end{equation}
@@ -227,12 +218,12 @@ Se consideriamo il segnale rettangolare $\frac{1}{T} \rect{\frac{t}{T}}$ di base
 	\begin{equation}
 		\impulse(t)=\impulse(-t)
 	\end{equation}
-	\item Prorietà di campionamento: estrazione di un campione da un segnale $s(t)$ con un impulso in $t=\tau$:
+	\item Proprietà di campionamento: estrazione di un campione da un segnale $s(t)$ con un impulso in $t=\tau$:
 	\begin{equation}
 		\intinf{s(t)\impulse(t-\tau)}{t}=s(\tau)
 	\end{equation}
 
-	$s(t)\impulse(t-\tau)$ è equivalente ad un impulso in $\tau$ di area $s(\tau)$:
+	$s(t)\impulse(t-\tau)=s(\tau)\impulse(t-\tau)$ è equivalente ad un impulso in $\tau$ di area $s(\tau)$:
 	\begin{align*}
 		s(t)\impulse(t-\tau)=s(\tau)\impulse(t-\tau) &\implies \\
 		& \intinf{s(t)\impulse(t-\tau)}{t} =\intinf{s(\tau)\impulse(t-\tau)}{t} = s(\tau)\intinf{\impulse(t-\tau)}{t} = s(\tau)
@@ -243,7 +234,7 @@ Se consideriamo il segnale rettangolare $\frac{1}{T} \rect{\frac{t}{T}}$ di base
 		s(t)=\intinf{s(\tau)\impulse(t-\tau)}{\tau}=s(t)\ast\impulse(t)
 	\end{equation}
 
-	\item La derivata del segnale impulso è chiamata \textsc{doppietto} $\impulse'(t)$:
+	\item La derivata del segnale impulso è il \textsc{doppietto} $\impulse'(t)$:
 	\begin{equation}
 		\intinf{s(t)\impulse'(t-\tau)}{t}=-s'(\tau)
 	\end{equation}
@@ -274,7 +265,7 @@ Il segnale sinusoidale di ampiezza $A$, pulsazione angolare $\omega=2\pi f$, per
 	s(t)=A\sen{2\pi f t+\phi}
 \end{equation}
 
-\subsection{Potenza media}
+Potenza media:
 \begin{equation}
 	P_m=\frac{1}{T}\intd{-T/2}{T/2}{A^2\Sen^2(2\pi f t+\phi)}{t}= \frac{A^2}{2}
 \end{equation}
@@ -287,13 +278,12 @@ infatti essendo $\Sen^2(x)=\frac{1}{2}-\frac{1}{2}\cos{2x}$
 	\end{split}
 \]
 
-\subsubsection{Potenza di picco}
+Potenza di picco:
 \begin{equation}
 	P_p=\max\limits_{t} A^2\Sen^2(2\pi f t+\phi)=A^2
 \end{equation}
 
-\subsection{Fattore di picco}
-Il fattore di picco è definito come il rapporto tra la potenza di picco e la potenza media:
+Fattore di picco:
 \begin{equation}
 	\frac{P_p}{P_m}=2
 \end{equation}
@@ -313,7 +303,7 @@ La funzione \textsc{seno cardinale}\index{segnale elementare!seno cardinale} è 
 \begin{equation}
 	\sinc{t}=\frac{\sen{\pi t}}{\pi t}
 \end{equation}
-Il seno cardinale è un segnale a zeri equidistanti.
+La funzione seno cardinale è una funzione a zeri equidistanti.
 
 \begin{figure}[h]
 	\centering

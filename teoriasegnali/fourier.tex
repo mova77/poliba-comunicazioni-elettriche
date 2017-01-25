@@ -24,7 +24,7 @@ Si può verificare l'espressione dei coefficienti $c_k$ sostituendo la rappresen
 \begin{align*}
 	c_k=&\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{ \left[\sum_{n=-\infty}^{+\infty} c_n \e{\imath 2\pi n f_0 t}\right] \e{-\imath 2\pi k f_0 t}}{t} 
 	=\frac{1}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{ \sum_{n=-\infty}^{+\infty} c_n \e{\imath 2\pi (n-k) f_0 t} }{t} \\
-\intertext{ipotizzando la convergenza della serie $s(t)$ ed essendo gli operatori $\sum$ e $\int$ lineari posso invertirne l'ordine} 
+\intertext{ipotizzando la convergenza della serie $s(t)$ ed essendo gli operatori $\sum$ e $\int$ lineari posso invertirne l'ordine:} 
 	=&\frac{1}{T}\sum_{n=-\infty}^{+\infty} c_n \intd{-\frac{T}{2}}{\frac{T}{2}}{\e{\imath 2\pi(n-k)f_0 t}}{t}
 	=\frac{1}{T}\sum_{n=-\infty}^{+\infty} c_n \bound{-\frac{T}{2}}{\frac{T}{2}}{\frac{\e{\imath 2\pi(n-k)\frac{1}{T}t}}{\imath 2\pi(n-k)\frac{1}{T} }}\\
 	=&\frac{1}{T}\sum_{n=-\infty}^{+\infty} c_n T \frac{\e{\imath \pi(n-k)}-\e{-\imath\pi(n-k)}}{2\imath\pi(n-k)}
@@ -114,20 +114,33 @@ Infatti si può scrivere
 	L'informazione del segnale è contenuta nei pesi $c_k$ o equivalentemente $a_k$ e $b_k$.
 \end{nota}
 
-\section{Simmetrie coefficienti}
-Per un segnale reale $s(t)\in\R$ la parte immaginaria deve essere nulla ovvero i termini $c_k=\Re{c_k}+\imath \Im{c_k}$ devono essere tali che $c_k\e{\imath 2\pi\frac{k}{T}t}+c_{-k}\e{-\imath 2\pi\frac{k}{T}t}\in\R,\forall k$
-\[
-	c_k+c_{-k}\in\R\implies\Im{c_k}+\Im{c_{-k}}=0\implies\Im{c_k}=-\Im{c_{-k}}
-\]
-\[
-	c_k-c_{-k}\text{ immaginario puro }\implies\Re{c_k}-\Re{c_{-k}}=0\implies\Re{c_k}=\Re{c_{-k}}
-\]
+\section{Simmetrie dei coefficienti}
+Per un segnale reale $s(t)\in\R$ la parte immaginaria deve essere nulla ovvero i termini $c_k=\Re{c_k}+\imath \Im{c_k}$ devono essere tali che 
+\begin{gather*}
+	c_k\e{\imath 2\pi\frac{k}{T}t}+c_{-k}\e{-\imath 2\pi\frac{k}{T}t}\in\R, \forall k \implies \\
+	c_k \left[\cos{2\pi\frac{k}{T}t}+\imath \sen{2\pi\frac{k}{T}t}\right]
+	+c_{-k}\left[\cos{2\pi\frac{k}{T}t}-\imath \sen{2\pi\frac{k}{T}t}\right] \in\R, \forall k \implies \\
+	(c_k+c_{-k}) \cos{2\pi\frac{k}{T}t}+\imath\,(c_k-c_{-k})\sen{2\pi\frac{k}{T}t} \in\R, \forall K \\
+	\text{Per ottenere una serie di funzioni reali è necessario che:} \\
+	\begin{cases}
+	c_k+c_{-k}\in\R \\
+	c_k+c_{-k}\text{ immaginario puro }
+	\end{cases}\implies\begin{cases}
+	\Im{c_k}+\Im{c_{-k}}=0 \\
+	\Re{c_k}-\Re{c_{-k}}=0
+	\end{cases}\implies\begin{cases}
+	\Im{c_k}=-\Im{c_{-k}} \\
+	\Re{c_k}=\Re{c_{-k}}
+	\end{cases}
+\end{gather*}
 
-Per un segnale reale quindi i coefficienti sono complessi e coniugati $c_k=\conj{c}_{-k}$ (ovvero gode della \textsc{simmetria Hermitiana})
+Per un segnale reale quindi i coefficienti sono complessi e coniugati $c_k=\conj{c}_{-k}$.
 
-Per un segnale reale e pari si ha $a_k=0\;\forall k \implies c_k=c_{-k}$
+Questa proprietà è chiamata \textsc{simmetria Hermitiana}.
 
-Per un segnale reale e dispari si ha $b_k=0\;\forall k \implies c_k=-c_{-k}$
+Per un segnale reale e pari si ha $a_k=0\;\forall k \implies \imath\,(c_k-c_{-k})=0 \implies c_k=c_{-k}$
+
+Per un segnale reale e dispari si ha $b_k=0\;\forall k \implies c_k+c_{-k}=0 \implies c_k=-c_{-k}$
 
 \section{Esempio serie di Fourier di un'onda quadra}
 \begin{esempio}
@@ -253,7 +266,7 @@ I criteri di Dirichlet sono condizioni sufficienti per l'esistenza della trasfor
 	Le condizioni non sono necessarie: alcune funzioni pur non soddisfacendo le tre condizioni sono trasformabili.
 \end{nota}
 \begin{esempio}
-Il segnale aperiodico di durata limitata $\tau$ ha trasformata di Fourier
+Il segnale rettangolo (aperiodico) di durata limitata $\tau$ ha trasformata di Fourier:
 \[
 	s(t)=\rect{\frac{t}{\tau}}\quad\fourier{\rect{\frac{t}{\tau}}}=\tau\sinc{f\tau}
 \]
@@ -296,17 +309,17 @@ Questa proprietà si dimostra immediatamente esplicitando la parte reale e immag
 	S(f)=S_R(f)+\imath S_I(f)=\intinf{s(t)\cos{2\pi f t}}{t}+\imath\intinf{s(t)\sen{2\pi f t}}{t}
 \]
 Inoltre, si nota che se $s(t)$ è reale e pari, la trasformata è reale e pari, essendo $S_I(f)=0$.
-Analogamente, se $s(t)$ è reale e dispari, la trasformata è reale e immaginaria pura e dispari, essendo $S_R(f)=0$.
+Analogamente, se $s(t)$ è reale e dispari, la trasformata è reale, immaginaria pura e dispari, essendo $S_R(f)=0$.
 
 \subsection{Linearità}
 \index{Fourier!trasformata!linearità}
-La trasformata di Fourier di combinazione lineare di segnali gode di linearità
+La trasformata di Fourier di una combinazione lineare di segnali è uguale alla combinazione lineare delle trasformate dei segnali ovvero la trasformata di Fourier soddisfa la proprietà di linearità:
 \begin{equation}
 	\fourier{a x(t)+b y(t)}= a X(f)+b Y(f)
 \end{equation}
 
 \begin{proof}[Dim.]
-Applicando la definizione di trasformata e per la linearità dell'operatore integrale
+Applicando la definizione di trasformata e per la linearità dell'operatore integrale si ha:
 \[
 	 \intinf{\left[a x(t)+b y(t)\right]\e{-\imath 2\pi f t}}{t}= a\intinf{x(t)\e{-\imath 2\pi f t}}{t}+b\intinf{y(t)\e{-\imath 2\pi f t}}{t}=a X(f)+b Y(f)
 \qedhere
@@ -314,7 +327,7 @@ Applicando la definizione di trasformata e per la linearità dell'operatore inte
 \end{proof}
 
 \subsection{Traslazione nel tempo}
-La trasformata di Fourier di un segnale anticipato o ritardato nel tempo modifica lo spettro di fase del segnale
+La trasformata di Fourier di un segnale anticipato o ritardato nel tempo modifica lo spettro di fase del segnale ovvero lo spettro di fase del segnale $s(t)$ viene anticipato o ritardato nel dominio della variabile $f$:
 \begin{equation}
 \label{eq:trasf_Fourier_trasl}
 	\fourier{s(t-\tau)}= S(f)\e{-\imath 2\pi f \tau}
@@ -327,6 +340,8 @@ Applicando un cambio di variabile $\alpha=t-\tau$ e la definizione di trasformat
 \qedhere
 \]
 \end{proof}
+
+È importante notare anche che lo spettro di ampiezza non viene modificato cioè \\ $\abs{\fourier{s(t)}}=\abs{\fourier{s(t\pm\tau)}}$
 
 \subsection{Ribaltamento}
 La trasformata di Fourier di un segnale invertito nel tempo ha lo spettro del segnale ribaltato nelle frequenze
@@ -358,7 +373,7 @@ Applicando un cambio di variabile $\alpha=a t, t=\frac{\alpha}{a}, \diff t=\frac
 \end{proof}
 
 \subsection{Derivazione}
-La trasformata di Fourier della derivata di un segnale
+La trasformata di Fourier della derivata di un segnale si ottiene moltiplicando lo spettro del segnale $s(t)$ per $\imath 2\pi f$:
 \begin{equation}
 	\fourier{s'(t)}=\imath 2\pi f\,S(f)
 \end{equation}
@@ -375,8 +390,8 @@ Si ha infatti che per un segnale derivabile $s(t)$
 	L'operatore derivata temporale di un segnale si comporta come un filtro passa alto perché nelle frequenze si ha il prodotto con il fattore $\imath 2\pi f$ che essendo proporzionale alla frequenza $f$ esalta in modulo le alte frequenze, mentre attenua le frequenze per $f\to 0$. La fase viene modificata di $\pm\frac{\pi}{2}$ a seconda del segno di $f$.
 \end{nota}
 
-\subsection{Convoluzione nel tempo}
-La trasformata di Fourier del prodotto di convoluzione di due segnali
+\subsection{Convoluzione nel tempo \texorpdfstring{$\to$}{come} prodotto in frequenza}
+La trasformata di Fourier del prodotto di convoluzione di due segnali è uguale al prodotto delle trasformate di Fourier dei due segnali:
 \begin{equation}
 \label{eq:trasf_Fourier_conv}
 	\fourier{x(t)\ast y(t)}=X(f)\cdot H(f)
@@ -392,7 +407,7 @@ Applicando la trasformata di Fourier al prodotto di convoluzione e l'eq.\ref{eq:
 \end{proof}
 
 \subsection{Dualità}
-Nota la trasformata di Fourier $S(f)$ di un segnale $s(t)$, si ha che la trasformata di Fourier del segnale temporale $S(t)$ è per dualità $s(-f)$
+Nota la trasformata di Fourier $S(f)$ di un segnale $s(t)$, si ha che la trasformata di Fourier del segnale temporale $S(t)$ è per dualità $s(-f)$:
 \begin{equation}
 	\begin{split}
 		s(t) &\overset{\Fourier}{\to} S(f) \\
@@ -469,7 +484,7 @@ Applicando l'anti-trasformata di Fourier (eq.~\ref{eq:antitrasformata_Fourier}) 
 \end{proof}
 
 \subsection{Prodotto nel tempo \texorpdfstring{$\to$}{come} convoluzione in frequenza}
-Dati due segnali $x(t)$ e $y(t)$ con le loro trasformate di Fourier $X(f)$ e $Y(f)$. La trasformata del segnale prodotto
+Dati due segnali $x(t)$ e $y(t)$ con le loro trasformate di Fourier $X(f)$ e $Y(f)$. La trasformata del prodotto tra i due segnali è uguale alla convoluzione tra le loro trasformate:
 \begin{equation}
 	z(t)=x(t) y(t)\quad\overset{\Fourier}{\rightarrow}\quad Z(f)=X(f)\ast Y(f)
 \end{equation}
@@ -492,12 +507,12 @@ Dati due segnali $x(t)$ e $y(t)$ con le loro trasformate di Fourier $X(f)$ e $Y(
 \end{nota}
 
 \subsection{Teorema di Parseval}
-Per i segnali di energia finita si può sempre calcolare la trasformata di Fourier. Per il teorema di Parseval
+Per i segnali di energia finita si può sempre calcolare la trasformata di Fourier. L'energia di un segnale di energia finita può essere calcolata grazie al teorema di Parseval attraverso lo spettro del segnale $s(t)$:
 \begin{equation}
 \label{eq:parseval}
 	E_s=\intinf{\abs{s(t)}^2}{t}=\intinf{\abs{S(f)}^2}{f}
 \end{equation}
-che da indicazioni su come è distribuita l'energia del segnale alle varie frequenze. Per l'integrale di Fourier $s(t)=\intinf{S(f)\e{\imath 2\pi f t}}{t}$ il segnale $s(t)$ è la somma di infinite sinusoidi pesate da $S(f)$: che è anche l'integrale dei contributi infinitesimi di energia alle varie frequenze dello spettro.
+Il teorema di Parseval fornisce indicazioni su come è distribuita l'energia del segnale alle varie frequenze. Per l'integrale di Fourier $s(t)=\intinf{S(f)\e{\imath 2\pi f t}}{t}$, il segnale $s(t)$ è la somma di infinite sinusoidi pesate da $S(f)$ quindi l'integrale che compare nel teorema di Parseval rappresenta la somma dei contributi infinitesimi di energia alle varie frequenze dello spettro.
 \begin{nota}
 	Per un segnale di energia $s(t)$, si definisce spettro di energia (o densità spettrale di energia) il modulo al quadrato della sua trasformata di Fourier: $\abs{S(f)}^2$.
 \end{nota}
@@ -524,7 +539,7 @@ Per calcolare la trasformata di Fourier della funzione generalizzata delta di Di
 \begin{equation}
 	\fourier{\delta(t)}=\intinf{\delta(t)\e{-\imath 2\pi f t}}{t}=\restrict{\e{-\imath 2\pi f t}}{t=0}=1
 \end{equation}
-Da questo risultato per la funzione generalizzata e per il teorema di dualità è possibile calcolare la trasformata di Fourier del segnale ad energia infinita come il segnale costante
+Da questo risultato per la funzione generalizzata e per il teorema di dualità è possibile calcolare la trasformata di Fourier del segnale costante che è un esempio di segnale ad energia infinita:
 \begin{equation}
 	\fourier{1}=\delta(-f)=\delta(f)
 \end{equation}
@@ -558,9 +573,14 @@ La trasformata della funzione $\sgn(t)$ si ottiene per dualità della trasformat
 	\fourier{\frac{1}{t}}&=\intinf{\frac{1}{t}\e{-\imath 2\pi f t}}{t}= \underbrace{\intinf{\frac{1}{t}\cos{2\pi f t}}{t}}_{\stackrel{=0}{1/t \text{ dispari}}}-\imath\intinf{\frac{1}{t}=\sen{2\pi f t}}{t}=\\
 	&=-\imath 2\pi f\intinf{\frac{\sen{2\pi f t}}{2\pi f t}}{t}=-\imath 2\pi f\intinf{\sinc{2 f t}}{t}=-\imath\frac{2\pi f}{2\abs{f}}=-\imath\pi\sgn(f)
 \end{align*}
-L'integrale nel tempo da $-\infty$ a $+\infty$ di un segnale è pari alla trasformata del segnale calcolata per $f=0$. 
-La trasformata del $\sinc{t}\overset{\Fourier}{\to}\rect{f}$ per la prop. di dualità, la trasformata di $\sinc{2\alpha t}\overset{\Fourier}{\to}\frac{1}{2\abs{\alpha}}\rect{\frac{f}{2\alpha}}$ per la prop. di scala, calcolata per $f=0$ il $\rect{0}=1$, da cui $\intinf{\sinc{2 f t}}{t}=\frac{1}{2\abs{f}}$.
-
+Applicando la proprietà di dualità e la proprità di scala si ha
+\begin{equation*}
+\fourier{\frac{\sen{2\pi f t}}{2\pi f t}}=\fourier{\sinc{2 f t}}=\frac{1}{2\abs{\alpha}}\rect{\frac{f}{2\alpha}}
+\end{equation*}
+inoltre dato che la trasformata di Fourier di un segnale calcolata per $f=0$ è uguale all'integrale nel tempo da $-\infty$ a $+\infty$ del segnale si ottiene
+\begin{equation*}
+\intinf{\frac{\sen{2\pi f t}}{2\pi f t}}{t}=\intinf{\sinc{2 f t}}{t}=\frac{1}{2\abs{\alpha}}\rect{0}=\frac{1}{2\abs{\alpha}}
+\end{equation*}
 Da $s(t)=\frac{1}{t}\overset{\Fourier}{\to}-\imath\pi\sgn(f)$, per dualità $S(t)\overset{\Fourier}{\to} s(-f)$ da cui
 \[
 	\fourier{\sgn(t)}=\frac{1}{-\imath\pi}\frac{1}{-f}=\frac{1}{\imath\pi f}
@@ -712,7 +732,7 @@ Determinare la serie di Fourier del segnale onda triangolare in figura
 \begin{figure}[!ht]
 	\centering
 	\begin{tikzpicture}
-		\begin{axis}[width=12cm, height=4cm, axis lines=middle,no markers,enlargelimits,xtick={-2,-1,0,1,2,3},xticklabels={$-T$,$-\frac{T}{2}$,$0$,$\frac{\tau}{2}$,$T$,$\frac{3}{2}T$},ytick={-1,0,1},yticklabels={$-A$,0,$A$}]
+		\begin{axis}[width=12cm, height=4cm, axis lines=middle,no markers,enlargelimits,xtick={-2,-1,0,1,2,3},xticklabels={$-T$,$-\frac{T}{2}$,$0$,$\frac{T}{2}$,$T$,$\frac{3}{2}T$},ytick={-1,0,1},yticklabels={$-A$,0,$A$}]
 		\addplot [very thick,domain=-2:2]coordinates {(-2,1)(-1,-1)(0,1)(1,-1)(2,1)(3,-1)};
 		\end{axis}
 	\end{tikzpicture}
@@ -724,18 +744,25 @@ Determinare la serie di Fourier del segnale onda triangolare in figura
 	s(t)=\sum_{k=-\infty}^{+\infty}{c_k \e{\imath 2\pi\frac{k}{T}t}} =c_0+\sum_{k=1}^{+\infty}{a_k\sen{2\pi\frac{k}{T}t}+b_k\cos{2\pi\frac{k}{T}t}}
 \]
 
-Il segnale ha media nulla: $c_0=0$. Il segnale è pari: $a_k=0$.
+Il segnale onda triangolare è un segnale periodico di periodo $T$ e si ottiene considerando l'estensione periodica del segnale
+\begin{equation*}
+s(t)=\begin{cases}
+	\frac{4 A}{T}t+A & \text{se t} \in \left[-\frac{T}{2},0\right] \\
+	-\frac{4 A}{T}t+A & \text{se t} \in \left[0,\frac{T}{2}\right]
+	\end{cases}
+\end{equation*}
+dunque dato che $s(t)$ è una funzione pari allora $a_k=0$ inoltre $s(t)$ ha valor medio nullo quindi $c_0=0$.
 \begin{align*}
 	b_k&=\frac{2}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}=\frac{4}{T}\intd{0}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}=\\
-	&=\frac{4}{T}\intd{0}{\frac{T}{2}}{\left(A-\frac{2 A}{T/2}\right)\cos{2\pi\frac{k}{T}t}}{t}=\\
+	&=\frac{4}{T}\intd{0}{\frac{T}{2}}{\left(A-\frac{4 A}{T}t\right)\cos{2\pi\frac{k}{T}t}}{t}=\\
 	&=\frac{4A}{T}\bound{0}{\frac{T}{2}}{\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}} -\frac{16A}{T^2}\intd{0}{\frac{T}{2}}{t\cos{2\pi\frac{k}{T}t}}{t}=\\
 	\intertext{per parti $\int u\diff v= u v-\int v\diff u$ con $u=t$, $\diff u=\diff t$, $\diff v=\cos{2\pi\frac{k}{T}t}\diff t$, $v=\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}$}
 	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace \bound{0}{\frac{T}{2}}{t\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}}-\intd{0}{\frac{T}{2}}{\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}}{t}\right\rbrace}=\\
-	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T}{2}\frac{\sen{\pi k}}{2\pi\frac{k}{T}}-\bound{0}{\frac{T}{2}}{\frac{\cos{2\pi\frac{k}{T}t}}{\left(2\pi\frac{k}{T}\right)^2}}\right\rbrace}=\\
-	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T^2}{4}\frac{\sen{\pi k}}{\pi k}-\frac{\cos{\pi k}}{\left(2\pi\frac{k}{T}\right)^2}-\frac{1}{\left(2\pi\frac{k}{T}\right)^2}\right\rbrace}=\\
-	&=2A \frac{\sen{\pi k}}{\pi k}-4A{\left\lbrace\frac{\sen{\pi k}}{\pi k}-\frac{\cos{\pi k}}{\left(\pi k\right)^2}-\frac{1}{\left(\pi k\right)^2}\right\rbrace}=\\
-	\intertext{dove $\sen{\pi k}=0$ per $k=1,\dots+\infty$, $\cos{\pi k}=+1$ per k dispari, $-1$ per k pari}
-	&=\frac{4A}{(\pi k)^2}\left[1-\cos{\pi k}\right] = \frac{4A}{(\pi k)^2}\left[1-(-1)^k\right]
+	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T}{2}\frac{\sen{\pi k}}{2\pi\frac{k}{T}}+\bound{0}{\frac{T}{2}}{\frac{\cos{2\pi\frac{k}{T}t}}{\left(2\pi\frac{k}{T}\right)^2}}\right\rbrace}=\\
+	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T^2}{4}\frac{\sen{\pi k}}{\pi k}+\frac{\cos{\pi k}}{\left(2\pi\frac{k}{T}\right)^2}-\frac{1}{\left(2\pi\frac{k}{T}\right)^2}\right\rbrace}=\\
+	&=2A \frac{\sen{\pi k}}{\pi k}-4A{\left\lbrace\frac{\sen{\pi k}}{\pi k}+\frac{\cos{\pi k}}{\left(\pi k\right)^2}-\frac{1}{\left(\pi k\right)^2}\right\rbrace}=\\
+	\intertext{dove $\sen{\pi k}=0$ per $k=1,\dots+\infty$, $\cos{\pi k}=-1$ per k dispari, $+1$ per k pari}
+	&=\frac{4A}{(\pi k)^2}\left[1-\cos{\pi k}\right]=\frac{4A}{(\pi k)^2}\left[1-(-1)^k\right]
 \end{align*}
 \end{esercizio}
 
