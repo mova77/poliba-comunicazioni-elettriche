@@ -91,7 +91,7 @@ Si definisce \textsc{funzione distribuzione di probabilità}\index{variabile ale
 
 Le variabili aleatorie possono essere \emph{continue}, \emph{discrete} o \emph{miste} in base alla continuità della funzione distribuzione di probabilità $F_X(x)$.
 
-Una variabile aleatoria discreta ha la funzione di distribuzione di probabilità continua a tratti: $F_X(x)=\sum_k P(X=x_k)\step{(x-x_k)}$, la probabilità è concentrata in “masse” di probabilità $p_k=P(X=x_k)$ in corrispondenza dei punti di discontinuità $x_k$.
+Per una variabile aleatoria discreta la funzione di distribuzione di probabilità è continua a tratti: $F_X(x)=\sum_k P(X=x_k)\step{(x-x_k)}$, infatti la probabilità è concentrata in “masse” di probabilità $p_k=P(X=x_k)$ in corrispondenza dei punti di discontinuità $x_k$.
 
 Una variabile aleatoria continua ha la funzione distribuzione di probabilità continua, ovvero la probabilità che la variabile aleatoria assuma un particolare valore $P(X=\bar{x})$ è infinitesima.
 
@@ -301,7 +301,7 @@ La funzione distribuzione essendone l'integrale ha la definizione di una rampa
 \end{description}
 
 \section{Variabile aleatoria esponenziale}
-La \index{variabile aleatoria!esponenziale}\textsc{variabile aleatoria continua esponenziale} unilatera con parametro $\lambda>0$ ha una funzione densità di probabilità che parte con una discontinuità in $x=0$ e decresce esponenzialmente a zero. Utile a modellare i tempi di intercorrenza tra richieste di un servizio, problemi di affidabilità e calcolo del rischio. La coda indica eventi rari trascurabili, caratteristica che aiuta a dimensionare i sistemi.
+La \index{variabile aleatoria!esponenziale}\textsc{variabile aleatoria continua esponenziale} unilatera con parametro $\lambda>0$ ha una funzione densità di probabilità che parte con una discontinuità in $x=0$ e decresce esponenzialmente a zero. Utile a modellare i tempi di intercorrenza tra richieste di un servizio, problemi di affidabilità e calcolo del rischio. La variabile aleatoria esponenziale è una variabile aleatoria a coda lunga, dove la coda indica eventi rari trascurabili, caratteristica che aiuta a dimensionare i sistemi.
 \begin{equation}
 	f_X(x)=\lambda\e{-\lambda x}\step(x)
 \end{equation}
@@ -326,13 +326,16 @@ La \index{variabile aleatoria!esponenziale}\textsc{variabile aleatoria continua 
 	\caption{Variabile aleatoria esponenziale}
 \end{figure}
 
+\begin{flushleft}
+Calcolo degli indici statistici:
+\end{flushleft}
 \begin{description}
 \item[Valor medio]
 \begin{equation}
 \begin{split}
 	\mu_X&=\intinf{x f_X(x)}{x}=\intd{0}{+\infty}{x \lambda\e{-\lambda x}}{x}=\\
 \intertext{integrando per parti $\int{u \diff v}=u v-\int{v\diff u}, u=\lambda x$, $\diff u=\lambda\diff x$, $\diff v=\e{-\lambda x}\diff x$, $v=-\frac{1}{\lambda}\e{-\lambda x}$}
-	&=\bound{0}{+\infty}{-x\e{-\lambda x}}+\intd{0}{+\infty}{\e{-\lambda x}}{x}=\frac{1}{\lambda} 	\qquad\text{essendo} \int\lambda\e{-\lambda x}\diff x=1
+	&=\bound{0}{+\infty}{-x\e{-\lambda x}}+\intd{0}{+\infty}{\e{-\lambda x}}{x}=\frac{1}{\lambda} 	\qquad\text{essendo} \intd{0}{+\infty}{\lambda\e{-\lambda x}}{x}=1
 \end{split}
 \end{equation}
 \item[Potenza]
@@ -340,7 +343,7 @@ La \index{variabile aleatoria!esponenziale}\textsc{variabile aleatoria continua 
 \begin{split}
 	\E{X^2}&=\intinf{x^2 f_X(x)}{x}=\intd{0}{+\infty}{\lambda x^2\e{-\lambda x}}{x}=\\
 \intertext{integrando per parti $u=x^2$, $\diff u=2x\diff x$, $\diff v=\lambda\e{-\lambda x}$, $v=-\e{-\lambda x}$}
-	&=\bound{0}{+\infty}{-x^2\e{-\lambda x}}+\frac{1}{\lambda}\intd{0}{+\infty}{2x \lambda\e{-\lambda x}}{x}=\frac{2}{\lambda^2}
+	&=\bound{0}{+\infty}{-x^2\e{-\lambda x}}+\frac{2}{\lambda}\underbrace{\intd{0}{+\infty}{x \lambda\e{-\lambda x}}{x}}_{{\mu_X}={\frac{1}{\lambda}}}=\frac{2}{\lambda^2}
 \end{split}
 \end{equation}
 \item[Varianza]
@@ -365,9 +368,11 @@ La funzione distribuzione di probabilità (di massa) $F_X(x)=\sum_k p_k \step(x-
 \begin{equation}
 	F_X(x)=\sum_{k=0}^{+\infty}{\frac{(\Lambda T)^k}{k!}\e{-\Lambda T}\step(x-k)}
 \end{equation}
-con massa di probabilità $p_k=\frac{(\Lambda T)^k}{k!}\e{-\Lambda T}$.
+con masse di probabilità $p_k=\frac{(\Lambda T)^k}{k!}\e{-\Lambda T}$.
 
-Calcolo indici statistici:
+\begin{flushleft}
+Calcolo degli indici statistici:
+\end{flushleft}
 \begin{description}
 \item[Valor medio]
 \begin{equation}
@@ -398,7 +403,7 @@ Gli stessi indici possono essere calcolati più agevolmente con la funzione gene
 \end{equation}
 
 \begin{description}
-\item[Valor medio (momento primo ordine)]
+\item[Valor medio (momento del primo ordine)]
 \begin{equation}
 \begin{split}
 	\mu_X&=\restrict{\deriv{G_X(t)}{t}}{t=0}=\restrict{\deriv{\e{-\Lambda T}\e{\Lambda T\e{t}}}{t}}{t=0}=\restrict{\e{-\Lambda T}{\Lambda T}\e{t}\e{\Lambda T\e{t}}}{t=0}=\Lambda T \e{-\Lambda T}\e{\Lambda T}=\\
@@ -406,7 +411,7 @@ Gli stessi indici possono essere calcolati più agevolmente con la funzione gene
 \end{split}
 \end{equation}
 
-\item[Potenza (momento secondo ordine)]
+\item[Potenza (momento del secondo ordine)]
 \begin{equation}
 \begin{split}
 	\E{X^2}&=\restrict{\deriv[2]{G_X(t)}{t}}{t=0}=
@@ -433,8 +438,9 @@ Funzione generatrice dei momenti
 	&=(p\e{t}+1-p)^n
 	\end{split}
 \end{equation}
-Calcolo degli indici statistici utilizzando la funzione generatrice dei momenti.\\
-
+\begin{flushleft}
+Calcolo degli indici statistici utilizzando la funzione generatrice dei momenti:
+\end{flushleft}
 \begin{description}
 \item[Valor medio]
 \begin{equation}
@@ -460,7 +466,8 @@ Calcolo degli indici statistici utilizzando la funzione generatrice dei momenti.
 \end{description}
 
 \section{Variabile aleatoria geometrica}
-In esperimenti indipendenti e ripetuti di Bernoulli si vuole calcolare la probabilità di osservare $k$ successi prima di ottenere il primo insuccesso. La variabile aleatoria \index{variabile aleatoria!geometrica}\textsc{geometrica} ha pertanto massa di probabilità
+La \index{variabile aleatoria!geometrica}\textsc{variabile aleatoria geometrica} è una variabile aleatoria discreta che consente di calcolare la probabilità di ottenere il primo insuccesso dopo aver ottenuto $k$ successi consecutivi quando si effettuano degli esperimenti indipendenti e ripetuti di Bernoulli.
+La variabile aleatoria geometrica ha pertanto masse di probabilità
 \begin{equation}
 	P(X=k)=p^k(1-p)\quad k=0,\dots,\infty
 \end{equation}
@@ -498,7 +505,7 @@ dove la serie geometrica $\sum_{k=0}^{\infty}{(p\e{t})^k}$ converge in un intorn
 \end{equation}
 \end{description}
 
-\section{Derivazione variabile aleatoria di Poisson}
+\section{Derivazione e significato delle variabili aleatorie esponenziale e di Poisson}
 La variabile aleatoria esponenziale e quella discreta di \index{variabile aleatoria!di Poisson}\textsc{Poisson} modellano esperimenti di richieste di servizio o attesa di eventi indipendenti tra loro. Nell'intervallo di tempo fissato $T$ si vuole calcolare la probabilità che si verifichino un certo numero di eventi, quale sia il tempo di interarrivo, il tempo che intercorre tra due eventi successivi, e il tempo di attesa affinché si verifichi il primo evento a partire da un istante iniziale di riferimento.
 
 \`E possibile derivare la distribuzione di probabilità della v.a. di Poisson studiando il fenomeno sotto alcune ipotesi.
@@ -764,7 +771,7 @@ dove $x_m$ è il valore minimo che può assumere la funzione.
 
 In teoria delle probabilità, la distribuzione paretiana è una distribuzione di probabilità continua, utilizzata in particolar modo per descrivere la distribuzione dei redditi.
 
-La variabile ha densità di probabilità
+La variabile aleatoria di Pareto è una è una variabile aleatoria a coda ‘‘pesante’’ (\textit{heavy tail}) ovvero la sua densità di probabilità è una funzione che tende a $0$ non in modo esponenziale ma come $\frac{1}{x^{\alpha}}$, infatti la sua densità di probabilità vale
 \begin{equation}
 	f_X(x) =
 	\begin{cases}
@@ -794,7 +801,9 @@ dove $0 < x_m \leq x < +\infty$ e $\alpha > 0$.
 	\end{tikzpicture}
 	\caption{Funzione distribuzione e densità di probabilità di una variabile aleatoria paretiana.}
 \end{figure}
-
+\begin{flushleft}
+Calcolo degli indici statistici:
+\end{flushleft}
 \begin{description}
 \item[Valor medio]
 \begin{equation}
@@ -885,6 +894,10 @@ Si calcolano gli indici statistici mediante la funzione generatrice dei momenti:
 	\frac{\zeta(\alpha-2)\zeta(\alpha)-\zeta(\alpha-1)^2}{\zeta(\alpha)^2},
 	\quad\text{ per }\alpha>3
 \end{equation}
+
+\begin{flushleft}
+Anche la variabile aleatoria Zeta è una variabile aleatoria a coda pesante, dunque nella progettazione di un sistema modellato da una variabile aleatoria di questo tipo bisogna sempre gestire il \textit{caso peggiore o worst case} poichè per le variabili aleatorie a coda pesante gli indici statistici possono assumere valori molto elevati.
+\end{flushleft}
 
 \section{Variabili aleatorie condizionate}
 Data una variabile aleatoria X si ha la funzione distribuzione di probabilità, $F_X(x)=P(X\leq x)=P(A)$ che rappresenta la probabilità che si verifichi l'evento $A$ per cui la variabile aleatoria $X$ assuma valori minori o uguali a $x$.
@@ -1514,7 +1527,7 @@ Calcolando l'aspettazione di ambo i membri si ha
 \]
 \end{proof}
 
-La disuguaglianza di Chebyshev rende rigorosa l'interpretazione intuitiva di varianza come misura di dispersione attorno alla media. Un piccolo valore di varianza vuol dire piccola probabilità che X prenda valori lontani dalla media.
+La disuguaglianza di Chebyshev è in grado di dare una misura quantitativa della dispersione, in termini di probabilità, di una variabile aleatoria attorno al suo valor medio attraverso la varianza; infatti questo teorema rende rigorosa l'interpretazione intuitiva di varianza come misura di dispersione attorno alla media. Un piccolo valore di varianza vuol dire piccola probabilità che X prenda valori lontani dalla media.
 Tale disuguaglianza è fondamentale per dimostrare la seguente legge dei grandi numeri.
 
 \section{Legge dei Grandi Numeri}
@@ -1525,7 +1538,7 @@ Si definisce la variabile aleatoria che rappresenta la media di $n$ misure
 	\hat{X}_n=\frac{1}{n}\sum_{i=1}^{n}X_i
 \]
 
-Si ha che, portando al limite $n\to\infty$, per la disuguaglianza di Chebyshev,
+Si ha che, considerando il limite per $n\to\infty$, per la disuguaglianza di Chebyshev,
 \begin{equation}
 \label{eq:legge_grandi_numeri}
 	\lim\limits_{n\to\infty} P\left(\abs{\hat{X}_n-\mu}\geq\eta\right)=0\quad\forall\eta
@@ -1548,12 +1561,12 @@ Si ha quindi che la disuguaglianza di Chebyshev è maggiorata da una quantità c
 \end{proof}
 
 \section{Teorema del Limite Centrale}
-Si considerino $n$ variabili aleatorie indipendenti $X_i$ tutte con la stessa funzione densità di probabilità $f_{X_i}(x)=f_X(x)$ e quindi con medesima media $\mu$ e varianza $\sigma^2$. Sappiamo che la somma delle v.a. $S_n=\sum_{i=1}^{n}X_i$ avrà media pari alla somma delle medie e varianza pari alla somma delle varianze, ovvero $\mu_n=n\mu$ e $\sigma^2_n=n\sigma^2$. Quantità che tendono a divergere al crescere di $n$.
+Si considerino $n$ variabili aleatorie indipendenti $X_i$ tutte con la stessa funzione densità di probabilità $f_{X_i}(x)=f_X(x)$ e quindi con medesima media $\mu$ e varianza $\sigma^2$. Sappiamo che la somma delle v.a. $S_n=\sum_{i=1}^{n}X_i$ avrà media pari alla somma delle medie e varianza pari alla somma delle varianze, ovvero $\mu_n=n\mu$ e $\sigma^2_n=n\sigma^2$, inoltre esse sono quantità che tendono a divergere al crescere di $n$.
 Si consideri quindi la variabile aleatoria normalizzata
 \[
 	Z_n=\frac{S_n-\mu_n}{\sigma_n}=\frac{S_n-n\mu}{\sqrt{n}\sigma}
 \]
-che, indipendentemente da $n$, ha valor medio nullo e varianza unitaria, ovvero una gaussiana standard.
+che, indipendentemente da $n$, ha valor medio nullo e varianza unitaria, e quind è una gaussiana standard.
 
 Il \textsc{teorema del limite centrale}\index{Teorema!del limite centrale} (di Lyapunov), ci dice quindi che la somma normalizzata di $n$ v.a. indipendenti con la stessa densità di probabilità, per $n$ che tende ad infinito, tende ad una gaussiana standard (a prescindere dalla distribuzione di ciascuna di esse)
 \begin{equation}
