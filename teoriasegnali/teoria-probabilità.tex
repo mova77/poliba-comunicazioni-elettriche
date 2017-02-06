@@ -30,13 +30,13 @@ Una \index{legge di probabilità}\textsc{legge di probabilità} secondo Kolmogor
 \begin{equation}
 	P(\Omega)=1
 \end{equation}
-eventi mutualmente esclusivi
+Dati due eventi $A$ e $B$ mutualmente esclusivi, la probabilità dell'evento intersezione $A\cap B$ vale
 \begin{equation}
 	A\cap B=0\implies P(A\cup B)=P(A)+P(B)
 \end{equation}
 
 \section{Modelli alternativi}
-Modelli matematici alternativi di probabilità sono la definizione di Laplace secondo cui, per uno spazio campione finito e un esperimento simmetrico (esempio: lancio di un dado non truccato), la probabilità è calcolata come numero di eventi favorevoli fratto il numero di eventi possibili
+Modelli matematici alternativi di probabilità sono la definizione di Laplace secondo cui, per uno spazio campione finito e un esperimento simmetrico ovvero un esperimento in cui tutti i risultati hanno pari probabilità di presentarsi (esempio: lancio di un dado non truccato), la probabilità è calcolata come il rapporto tra il numero di eventi favorevoli e il numero di eventi possibili
 \begin{equation}
 	P(A)=\frac{N_F(A)}{N_P(A)}
 \end{equation}
@@ -46,18 +46,26 @@ Definizione di Van Mises o \emph{frequentista} per cui ripetendo $N$ volte un es
 	P(A)=\lim\limits_{N\to\infty}\frac{N_A}{N}
 \end{equation}
 
-La definizione frequentista rientra nella teoria assiomatica infatti $P(A)=\frac{N_A}{N}\geq 0$, se $A=\Omega\implies N_A=N\implies P(A)=1$, inoltre e $A\cap B=\emptyset$ allora $N_{A\cup B}=N_A+N_B\implies P(A\cup B)= \lim\limits_{N\to\infty}\frac{N_{A\cup B}}{N}=\lim\limits_{N\to\infty}\frac{N_A+N_B}{N}=P(A)+P(B)$
+La definizione di probabilità secondo Von Mises soddisfa gli assiomi della teoria probabilistica di Kolmogorov infatti
+\begin{enumerate}
+\item $P(A)=\frac{N_A}{N}\geq 0$, 
+\item se $A=\Omega\implies N_A=N\implies P(A)=1$,
+\item $A\cap B=\emptyset$ allora $N_{A\cup B}=N_A+N_B\implies P(A\cup B)= \lim\limits_{N\to\infty}\frac{N_{A\cup B}}{N}=\lim\limits_{N\to\infty}\frac{N_A+N_B}{N}=P(A)+P(B)$
+\end{enumerate}
 
 \section{Teoremi}
-A partire da tali assiomi si derivano i seguenti teoremi
+A partire dagli assiomi della teoria di Kolmogorov si derivano i seguenti teoremi
 \begin{equation}
 	P(\bar{A})=1-P(A)
 \end{equation}
 
 \begin{proof}[Dim.]
-$A\cup\bar{A}=\Omega\implies P(A\cup\bar{A})=1$
-
-$A\cap\bar{A}=0\implies P(A\cup\bar{A})=P(A)+P(\bar{A})$
+\begin{gather*}
+\begin{cases}
+A\cup\bar{A}=\Omega & \implies P(A\cup\bar{A})=1 \\
+A\cap\bar{A}=0 & \implies P(A\cup\bar{A})=P(A)+P(\bar{A})=1
+\end{cases}\implies P(\bar{A})=1-P(A)
+\end{gather*}
 \end{proof}
 
 \begin{equation}
@@ -96,7 +104,7 @@ insieme $\implies P(A\cup B)=P(A)+P(B)-P(B\cap A)$
 \subsection{Teorema probabilità condizionata}
 \index{Teorema!probabilità condizionata}
 $P(A)$ è la probabilità che si verifichi l'evento A a priori.
-$P(A|B)$ è la probabilità che si verifichi l'evento A dato che si sia verificato l'evento B, la prob. di A a posteriori:
+$P(A|B)$ è la probabilità di A a posteriori ovvero la probabilità che si verifichi l'evento A dato che si sia verificato l'evento B:
 \begin{equation}
 	P(A|B)=\frac{P(A\cap B)}{P(B)}
 \end{equation}
@@ -133,9 +141,9 @@ Se i due esperimenti sono in qualche modo legati, si influenzano, sarà necessar
 
 Le medesime considerazioni fatte per due esperimenti si possono fare per la composizione di $N$ qualsiasi esperimenti o prove ripetute ed indipendenti in un esperimento composto.
 
-\subsection{Prove binarie di Bernoulli}
-Esperimento composto da $n$ prove ripetute di esperimenti uguali tra loro e indipendenti, ciascuno con due soli possibili esiti $\omega_0$ e $\omega_1$ con probabilità $P(\omega_0)=p$ e $P(\omega_1)=1-p$.
-Esempio classico il lancio di $n$ monete o il lancio ripetuto di una stessa moneta con risultato la sequenza di testa o croce.
+\subsection{Teorema delle prove (binarie) ripetute di Bernoulli}
+Consideriamo un esperimento composto da $n$ prove ripetute di esperimenti uguali tra loro e indipendenti, ciascuno con due soli possibili esiti $\omega_0$ e $\omega_1$ con probabilità $P(\omega_0)=p$ e $P(\omega_1)=1-p$.
+Un esempio classico è il lancio di $n$ monete o il lancio ripetuto di una stessa moneta con risultato la sequenza di testa o croce.
 
 Si definisce l'evento $A=\lbrace\omega_0$ si presenta $k$ volte in $n$ esperimenti$\rbrace$, $0\leq k\leq n$
 
@@ -164,7 +172,7 @@ Evento $E_1=\lbrace$ pallina estratta da urna a caso è bianca $\rbrace$
 \]
 Per il teorema delle probabilità totali
 \[
-	P(E_1)=P(A_1\cap W)+P(A_2\cap W)+P(A_3\cap W)=\frac{4}{15}+0+\frac{3}{10}
+	P(E_1)=P(A_1\cap W)+P(A_2\cap W)+P(A_3\cap W)=\frac{4}{15}+0+\frac{3}{10}=\frac{17}{30}
 \]
 dove per il teorema delle probabilità condizionate
 \[
@@ -189,10 +197,10 @@ Per il teorema di Bayes la probabilità condizionata è
 \begin{esempio}
 Esperimento aleatorio composto
 \begin{itemize}
-	\item 1 scatola con 2000 articoli di cui 5\% grandi
-	\item 1 scatola con 500 articoli di cui 40\% grandi
-	\item 1 scatola con 1000 articoli di cui 10\% grandi
-	\item 1 scatola con 1000 articoli di cui 10\% grandi
+	\item scatola $S_1$ con 2000 articoli di cui 5\% grandi
+	\item scatola $S_2$ con 500 articoli di cui 40\% grandi
+	\item scatola $S_3$ con 1000 articoli di cui 10\% grandi
+	\item scatola $S_4$ con 1000 articoli di cui 10\% grandi
 \end{itemize}
 Si scelga una scatola a caso e si estragga un articolo a caso e si valuti la probabilità $P(G)$ che sia estratto un articolo grande.
 
