@@ -30,6 +30,11 @@ La densità spettrale di potenza dei processi stazionari in senso lato è calcol
 \begin{equation}
 	S_X(f)=\fourier{R_X(\tau)}=\intinf{R_X(\tau)\e{-\imath 2\pi f\tau}}{\tau}
 \end{equation}
+dunque la funzione di autocorrelazione di un processo aleatorio è uguale all'antitrasformata di Fourier della densità spettrale di potenza del processo aleatorio
+\begin{equation}
+	R_X(\tau)=\fourier{S_X(f)}=\intinf{S_X(f)\e{\imath 2\pi f\tau}}{f}
+\end{equation}
+
 Proprietà:
 \begin{enumerate}
 	\item La densità spettrale è non negativa per definizione eq.\ref{eq:densita_spettrale_processo_aleatorio}: $S_X(f)\geq 0$
@@ -40,7 +45,7 @@ Si ricorda che $R_X(\tau)=R_X(-\tau)$ è pari pertanto posso sommare i contribut
 	\intinf{R_X(\tau)\e{-\imath 2\pi f\tau}}{\tau}=\intd{0}{\infty}{R_X(\tau)\e{-\imath 2\pi f\tau}+R_X(-\tau)\e{+\imath 2\pi f\tau}}{\tau}=\intd{0}{\infty}{R_X(\tau)2\cos{2\pi f\tau}}{\tau}
 \]
 \end{proof}
-\item La potenza media statistica del processo, costante per processo stazionario, è pari all'integrale della densità spettrale di frequenza
+\item La potenza media statistica del processo, costante per processo stazionario, è pari all'integrale della densità spettrale di potenza
 \begin{equation}
 	P_X=R_X(0)=\E{X^2(t)}=\intinf{S_X(f)}{f}
 \end{equation}
@@ -50,12 +55,12 @@ Si ricorda che $R_X(\tau)=R_X(-\tau)$ è pari pertanto posso sommare i contribut
 Si può caratterizzare la densità spettrale del processo in uscita ad un sistema lineare tempo invariante nota la densità spettrale del processo in ingresso.
 \`E noto che se il processo in ingresso è stazionario in senso lato lo è anche il processo in uscita.
 
-La densità spettrale del processo in uscita
+La densità spettrale del processo in uscita vale
 \begin{equation}
 	S_Y(f)=\fourier{R_X(\tau)\ast h(\tau)\ast h(-\tau)}=S_X(f)\cdot H(f)\cdot H(-f)
 \end{equation}
 
-Per sistemi reali la risposta all'impulso è una funzione reale, $H(-f)=\conj{H}(f)$
+Per sistemi reali la risposta all'impulso è una funzione reale quindi $H(-f)=\conj{H}(f)$
 \begin{equation}
 	S_Y(f)=S_X(f)\cdot\abs{H(f)}^2
 \end{equation}
@@ -65,7 +70,7 @@ La risposta in fase del sistema non influenza la densità spettrale del processo
 Nella densità spettrale di potenza sono contenute tutte le informazioni spettrali del processo, ovvero come è distribuita la potenza alla varie frequenze. Il significato di densità spettrale di potenza è lo stesso per segnali deterministici e per processi aleatori.
 
 \begin{esempio}
-Si calcoli la densità spettrale di potenza del processo aleatorio stazionario 
+Si calcoli la densità spettrale di potenza del processo aleatorio stazionario oscillatore a fase incerta
 \[
 	X(t)=a\sen{2\pi f_0 t+\theta}
 \]
@@ -73,7 +78,7 @@ con $\theta$ v.a. uniformemente distribuita in $[0,2\pi[$. Si è calcolata la fu
 \[
 	R_X(\tau)=\frac{a^2}{2}\cos{2\pi f_0\tau}
 \]
-Secondo la definizione di Wiener-Kintchine si può calcolare la densità spettrale può essere calcolata come
+Attraverso la definizione di Wiener-Kintchine si può calcolare la densità spettrale di potenza di $X(t)$ considerando che $\fourier{\cos{2\pi f_0\tau}}=\frac{1}{2}\left(\impulse(f-f_0)+\impulse(f+f_0)\right)$:
 \[
 	S_X(f)=\fourier{R_X(\tau)}=\frac{a^2}{4}[\impulse(f-f_0)+\impulse(f+f_0)]
 \]
@@ -92,7 +97,7 @@ Secondo la definizione di Wiener-Kintchine si può calcolare la densità spettra
 \end{esempio}
 
 \begin{nota}
-	Poiché la densità spettrale di potenza è la trasformata di Fourier della funzione di autocorrelazione per processi stazionari si ha che tanto più rapidamente variano le singole realizzazioni di un processo, tanto più larga è la banda passante della densità spettrale di potenza. In altre parole a variazioni rapide corrispondono termini spettrali a potenza non nulla a frequenze più alte.
+	Poiché la densità spettrale di potenza è la trasformata di Fourier della funzione di autocorrelazione, per processi stazionari si ha che tanto più rapidamente variano le singole realizzazioni di un processo, tanto più larga è la banda passante della densità spettrale di potenza. In altre parole a variazioni rapide corrispondono termini spettrali a potenza non nulla a frequenze più alte.
 \end{nota}
 
 \section{Processo stocastico gaussiano}
@@ -113,7 +118,7 @@ e gli elementi della matrice di covarianza si calcolano come
 
 Per i processi gaussiani si ha la notevole proprietà per cui la stazionarietà in senso lato implica la stazionarietà in senso stretto. Questo perché la funzione densità di probabilità congiunta del processo dipende dalla funzione valor medio, che è costante, e dalla funzione di autocorrelazione, che dipende solo dalla differenza tra gli istanti di tempo ($\mu_X(t)=\mu_X$ e $R_X(t_1,t_2)=R_X(\tau)$), e quindi la stessa funzione di autocovarianza.
 
-I processi gaussiani in ingresso a sistemi lineari tempo invarianti vengono filtrati e risultano ancora processi gaussiani in uscita.
+Quando un processo gaussiano viene filtrato attraverso un sistema lineare tempo-invariante, in uscita si ottiene un processo gaussiano:
 \begin{proof}[Dim.]
 \[
 	Y(t)=X(t)\ast h(t)=\intinf{x(\alpha)h(t-\alpha)}{\alpha}
@@ -135,6 +140,7 @@ Il valore medio
 \[
 	\mu_X(t)=\lim\limits_{\tau\to +\infty}R_X(\tau)=\mu^2_X=0
 \]
+Un processo stazionario ideale si definisce bianco se ha funzione valor medio nulla e funzione di autocorrelazione impulsiva e quindi esso ha densità spettrale di potenza costante.
 
 \begin{nota}
 	Il processo aleatorio bianco è solo una astrazione matematica: uno spettro reale non potrà mai avere potenza a tutte le frequenze, avrebbe potenza infinita.
@@ -142,7 +148,8 @@ Il valore medio
 
 \subsection{Esempio resistore con rumore termico}
 \begin{esempio}
-L'agitazione termica degli elettroni in un resistore causa una tensione di rumore a vuoto proporzionale alla temperatura del componente. Rispetto al modello ideale si ha quindi un resistore con in serie un generatore di tensione pari a quella prodotta dal rumore termico. Quest'ultimo può essere modellato come un processo aleatorio stazionario.
+Uno degli esempi più importanti di processi aleatori bianchi è il rumore termico. 
+L'agitazione termica degli elettroni in un resistore causa una tensione di rumore a vuoto proporzionale alla temperatura del componente. Rispetto al modello ideale si ha quindi un resistore con in serie un generatore di tensione pari a quella prodotta dal rumore termico. Quest'ultimo può essere modellato come un processo aleatorio stazionario ed è chiamato anche \textit{generatore di tensione di rumore}.
 
 \begin{figure*}[h]
 	\centering
@@ -159,32 +166,32 @@ La descrizione del fenomeno del rumore termico coinvolge considerazioni di mecca
 	S_N(f)=2 R \frac{\frac{\abs{f}}{f_0}}{\e{\frac{\abs{f}}{f_0}-1}}
 	=2 R \frac{\hbar\abs{f}}{\e{\frac{\hbar\abs{f}}{k_B T_R}-1}} \quad[\si{\volt\squared\per\hertz}]
 \end{equation}
-
-dove $f_0=\frac{k_B T_R}{\hbar}$, con la costante di Boltzmann $k_B=\SI{1.38e-23}{\joule\per\kelvin}$, la costante di Planck $\hbar=\SI{6.63e-34}{\joule\second}$, la temperatura ambiente $T_R=\SI{293}{\kelvin}$.
-A temperatura ambiente la frequenza $f_0\cong\SI{6}{\tera\hertz}$
-
-A frequenze $f\ll f_0$ posso approssimare
+\begin{flushleft}
+dove $f_0=\frac{k_B T_R}{\hbar}$, la costante di Boltzmann $k_B=\SI{1.38e-23}{\joule\per\kelvin}$, la costante di Planck $\hbar=\SI{6.63e-34}{\joule\second}$, la temperatura ambiente $T_R=\SI{293}{\kelvin}$. Dato che a temperatura ambiente si ha $f_0\cong\SI{6}{\tera\hertz}$, allora a frequenze $f\ll f_0$ posso approssimare
+\end{flushleft}
 \[
 	\e{\frac{\hbar\abs{f}}{k_B T_R}}-1\cong\frac{\hbar\abs{f}}{k_B T_R}
 \]
 essendo $\e{x}=1+x+\frac{x^2}{2}+\dots$ la serie per $x\to 0$ si approssima $\e{x}\cong 1+x\implies\e{x}-1\cong x$.
+Quindi la densità spettrale di potenza bilatera della tensione di rumore (a vuoto) è costante e vale
 \[
 	S_N(f)= 2 R k_B T_R
 \]
+dunque il processo aleatorio tensione di rumore termico è un processo aleatorio bianco.
 
 La tensione quadratica media misurata con un voltmetro di banda $B$ è pari alla densita spettrale di potenza monolatera
 \[
 	S_N^m(f)=4 R K_B T_R
 \]
 
-Il modello del rumore bianco pertanto è utile: per calcolare gli effetti del rumore termico sull'uscita di un sistema filtrante si può sostituire la densità di potenza del rumore termico $S_N(f)$ con il suo modello semplificato di valore costante.
+Il modello del rumore bianco pertanto è utile per calcolare gli effetti del rumore termico sull'uscita di un sistema filtrante sostituendo la densità spettrale di potenza del rumore termico $S_N(f)$ con il suo modello semplificato di valore costante.
 \end{esempio}
 
 \begin{nota}
 	Nel dimensionamento dei sistemi di telecomunicazione è importante la potenza trasmessa alla quale si somma la potenza del rumore. Si progettano i sistemi in modo da massimizzare la potenza trasmessa utile.
 \end{nota}
 
-\begin{figure*}[h]
+\begin{figure*}[ht]
 	\centering
 	\begin{circuitikz}[american voltages]
 		\draw (0,0)	to[V,v^>=${v_n(t)}$] (0,3)
@@ -195,18 +202,20 @@ Il modello del rumore bianco pertanto è utile: per calcolare gli effetti del ru
 \end{figure*}
 La massima potenza in uscita $P(t)$ misurata in $\si{\watt}$ si ha quando il carico (\emph{Load}) è adattato, ovvero per $R_L=R$
 \[
-	P(t)=v_L(t)\cdot i(t)=v_L(t)\frac{v_N(t)}{R+R_L}=\frac{R_L}{R+R_L}v_N(t)\frac{v_N(t)}{R+R_L}\overset{R_L=R}{=}\frac{1}{2}\frac{v^2_N(t)}{2 R}
+	P(t)=v_L(t)\cdot i(t)=v_L(t)\frac{v_N(t)}{R+R_L}=\frac{R_L}{R+R_L}v_N(t)\frac{v_N(t)}{R+R_L}\overset{R_L=R}{=}\frac{1}{2}\frac{v^2_N(t)}{2 R}=\frac{v^2_N(t)}{4 R}
 \]
-La densità spettrale monolatera di rumore disponibile in uscita in una banda $B$
+dove $P(t)$ è la potenza elettrica istantanea trasferita al resistore $R$
+
+La potenza media di rumore monolatera disponibile in uscita in una banda $B$ si ottiene considerando la relazione tra la potenza media e la densità spettrale di potenza $P_m(t)=\E{X^2(t)}=\intinf{S_X(f)}{f}$:
 \[
-	\E{\frac{v^2_N(t)}{4 R}}=\frac{1}{4 R}\E{v^2_N(t)}=\frac{1}{4 R}4 R k_B T B=k_B T B \si{\watt\per\hertz}
+	\E{\frac{v^2_N(t)}{4 R}}=\frac{1}{4 R}\E{v^2_N(t)}=\frac{1}{4 R}\intd{-B}{B}{4 R k_B T}{f}=\frac{1}{4 R}4 R k_B T B=k_B T B \quad \si{\watt\per\hertz}
 \]
 
 \section{Esempio filtro passa basso con rumore termico}
 \begin{esempio}
 Esempio filtro passa basso con rumore termico.
 
-\begin{figure*}[h]
+\begin{figure*}[ht]
 	\centering
 	\begin{circuitikz}[american voltages]
 		\draw (0,0)	to[V,v^>=${V_S(t)}$] (0,3)
@@ -214,24 +223,23 @@ Esempio filtro passa basso con rumore termico.
 		to[C,l=${C}$,v=${v_c(t)}$] (4,0) to[short,-*] (3,0)--(0,0);
 	\end{circuitikz}
 \end{figure*}
-
-Trasformata della risposta all'impulso del sistema passa basso:
+Trasformata della risposta all'impulso (funzione di autocorrelazione) del filtro passa basso:
 \[
 	H(f)=\frac{V_c(f)}{V_n(f)}=\frac{1}{1+\imath 2\pi R C f}
 \]
-La frequenza di taglio \[
+La frequenza di taglio vale 
+\[
 	f_0=\frac{1}{2\pi R C}
 \]
-Potenza media di rumore sulla resistenza
+Densità spettrale di potenza della tesione di rumore associata alla resistenza:
 \[
-	P_n(f)=2 R k_B T [\si{\volt\squared\per\hertz}]
+	S_n(f)=2 R k_B T \quad [\si{\volt\squared\per\hertz}]
 \]
-Potenza media di rumore sul condensatore
+Densità spettrale di potenza della tesione di rumore sul condensatore:
 \[
-	P_{V_c}(f)=2 R k_B T \frac{1}{1+4\pi^2 R^2 C^2 f^2} [\si{\volt\squared\per\hertz}]
+	S_{V_c}(f)=S_n(f)\cdot\abs{H(f)}^2=2 R k_B T \frac{1}{1+4\pi^2 R^2 C^2 f^2} \quad [\si{\volt\squared\per\hertz}]
 \]
-
-Calcolo la potenza media bilatera
+Potenza media di rumore monolatera fornita al condensatore:
 \[
 	\begin{split}
 		\E{V_c^2}&=\intd{0}{+\infty}{\frac{4 R k_B T}{1+4\pi^2 R^2 C^2 f^2}}{f}=\\
@@ -254,22 +262,23 @@ Si hanno due resistenze in serie a diverse temperature.
 	\end{circuitikz}
 \end{figure*}
 
-La tensione di uscita è pari alle tensioni di rumore
+La tensione di uscita è pari alla tensione di rumore della serie dei due resistori e quindi è uguale alla somma delle tensioni di rumore associate ai singoli resistori:
 \[
 	v_n(t)=v_{n_1}(t)+v_{n_2}(t)
 \]
 
-Sono tensioni a media nulla quindi posso sommare media e varianza.
-\[
-	\E{V^2_n}=\E{V^2_{n_1}}+\E{V^2_{n_2}}=\intinf{P_{n_1}(f)}{f}+\intinf{P_{n_2}(f)}{f}=\intinf{P_n(f)}{f}
-\]
+Entrambe le tensioni di rumore sono pocessi aleatori bianchi dunque hanno media nulla e allora la potenza elettrica di rumore media fornita alla serie dei due resistori vale
+\begin{align*}
+	\E{V^2_n} & = \E{(V_{n_1}+V_{n_2})^2}=\E{V^2_{n_1}}+\E{V^2_{n_2}}+\underbrace{\E{2V_{n_1}V_{n_2}}}_{{}=0}=\E{V^2_{n_1}}+\E{V^2_{n_2}} = \\
+	& = \intinf{P_{n_1}(f)}{f}+\intinf{P_{n_2}(f)}{f}=\intinf{P_n(f)}{f}
+\end{align*}
 
-La densità di potenza monolatera
+La densità spettrale di potenza bilatera associata alla serie dei due resistori vale
 \[
 	P_n(f)=2 R_1 k_B T_1 + 2 R_2 k_B T_2
 \]
 
-La densità di potenza bilatera
+La densità spettrale di potenza monolatera associata alla serie dei due resistori vale
 \[
 	P_n^m(f)=4 R_1 k_B T_1 + 4 R_2 k_B T_2 = 4 R_\text{eq} k_B T_\text{eq}
 \]
@@ -367,7 +376,7 @@ La portante è un processo aleatorio stazionario in senso lato (oscillatore es.\
 
 Il processo prodotto $Y(t)$ avrà ancora valor medio nullo
 \[
-	\mu_Y(t)=\E{Y(t)}=\E{X(t)P(t)}=2 \E{X(t)\cos(2\pi f_0 t+\theta)}
+	\mu_Y(t)=\E{Y(t)}=\E{X(t)P(t)}=2 \E{X(t)\cos{2\pi f_0 t+\theta}}
 \]
 la variabile aleatoria $\theta$ è indipendente dal processo $N(t)$, e quindi da $X(t)$, pertanto
 \[
