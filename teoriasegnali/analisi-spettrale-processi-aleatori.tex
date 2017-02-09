@@ -223,7 +223,7 @@ Esempio filtro passa basso con rumore termico.
 		to[C,l=${C}$,v=${v_c(t)}$] (4,0) to[short,-*] (3,0)--(0,0);
 	\end{circuitikz}
 \end{figure*}
-Trasformata della risposta all'impulso (funzione di autocorrelazione) del filtro passa basso:
+Trasformata della risposta all'impulso (funzione di trasferimento) del filtro passa basso:
 \[
 	H(f)=\frac{V_c(f)}{V_n(f)}=\frac{1}{1+\imath 2\pi R C f}
 \]
@@ -267,7 +267,7 @@ La tensione di uscita è pari alla tensione di rumore della serie dei due resist
 	v_n(t)=v_{n_1}(t)+v_{n_2}(t)
 \]
 
-Entrambe le tensioni di rumore sono pocessi aleatori bianchi dunque hanno media nulla e allora la potenza elettrica di rumore media fornita alla serie dei due resistori vale
+Entrambe le tensioni di rumore sono processi aleatori bianchi dunque hanno media nulla e allora la potenza elettrica di rumore media fornita alla serie dei due resistori vale
 \begin{align*}
 	\E{V^2_n} & = \E{(V_{n_1}+V_{n_2})^2}=\E{V^2_{n_1}}+\E{V^2_{n_2}}+\underbrace{\E{2V_{n_1}V_{n_2}}}_{{}=0}=\E{V^2_{n_1}}+\E{V^2_{n_2}} = \\
 	& = \intinf{P_{n_1}(f)}{f}+\intinf{P_{n_2}(f)}{f}=\intinf{P_n(f)}{f}
