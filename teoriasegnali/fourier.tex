@@ -712,7 +712,7 @@ Determinare la serie di Fourier del segnale onda triangolare in figura
 \begin{figure}[!ht]
 	\centering
 	\begin{tikzpicture}
-		\begin{axis}[width=12cm, height=4cm, axis lines=middle,no markers,enlargelimits,xtick={-2,-1,0,1,2,3},xticklabels={$-T$,$-\frac{T}{2}$,$0$,$\frac{\tau}{2}$,$T$,$\frac{3}{2}T$},ytick={-1,0,1},yticklabels={$-A$,0,$A$}]
+		\begin{axis}[width=12cm, height=4cm, axis lines=middle,no markers,enlargelimits,xtick={-2,-1,0,1,2,3},xticklabels={$-T$,$-\frac{T}{2}$,$0$,$\frac{T}{2}$,$T$,$\frac{3}{2}T$},ytick={-1,0,1},yticklabels={$-A$,0,$A$}]
 		\addplot [very thick,domain=-2:2]coordinates {(-2,1)(-1,-1)(0,1)(1,-1)(2,1)(3,-1)};
 		\end{axis}
 	\end{tikzpicture}
@@ -727,14 +727,14 @@ Determinare la serie di Fourier del segnale onda triangolare in figura
 Il segnale ha media nulla: $c_0=0$. Il segnale è pari: $a_k=0$.
 \begin{align*}
 	b_k&=\frac{2}{T}\intd{-\frac{T}{2}}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}=\frac{4}{T}\intd{0}{\frac{T}{2}}{s(t)\cos{2\pi\frac{k}{T}t}}{t}=\\
-	&=\frac{4}{T}\intd{0}{\frac{T}{2}}{\left(A-\frac{2 A}{T/2}\right)\cos{2\pi\frac{k}{T}t}}{t}=\\
+	&=\frac{4}{T}\intd{0}{\frac{T}{2}}{\left(A-\frac{2 A}{T/2}t\right)\cos{2\pi\frac{k}{T}t}}{t}=\\
 	&=\frac{4A}{T}\bound{0}{\frac{T}{2}}{\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}} -\frac{16A}{T^2}\intd{0}{\frac{T}{2}}{t\cos{2\pi\frac{k}{T}t}}{t}=\\
 	\intertext{per parti $\int u\diff v= u v-\int v\diff u$ con $u=t$, $\diff u=\diff t$, $\diff v=\cos{2\pi\frac{k}{T}t}\diff t$, $v=\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}$}
 	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace \bound{0}{\frac{T}{2}}{t\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}}-\intd{0}{\frac{T}{2}}{\frac{\sen{2\pi\frac{k}{T}t}}{2\pi\frac{k}{T}}}{t}\right\rbrace}=\\
-	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T}{2}\frac{\sen{\pi k}}{2\pi\frac{k}{T}}-\bound{0}{\frac{T}{2}}{\frac{\cos{2\pi\frac{k}{T}t}}{\left(2\pi\frac{k}{T}\right)^2}}\right\rbrace}=\\
-	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T^2}{4}\frac{\sen{\pi k}}{\pi k}-\frac{\cos{\pi k}}{\left(2\pi\frac{k}{T}\right)^2}-\frac{1}{\left(2\pi\frac{k}{T}\right)^2}\right\rbrace}=\\
-	&=2A \frac{\sen{\pi k}}{\pi k}-4A{\left\lbrace\frac{\sen{\pi k}}{\pi k}-\frac{\cos{\pi k}}{\left(\pi k\right)^2}-\frac{1}{\left(\pi k\right)^2}\right\rbrace}=\\
-	\intertext{dove $\sen{\pi k}=0$ per $k=1,\dots+\infty$, $\cos{\pi k}=+1$ per k dispari, $-1$ per k pari}
+	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T}{2}\frac{\sen{\pi k}}{2\pi\frac{k}{T}}+\bound{0}{\frac{T}{2}}{\frac{\cos{2\pi\frac{k}{T}t}}{\left(2\pi\frac{k}{T}\right)^2}}\right\rbrace}=\\
+	&=2A \frac{\sen{\pi k}}{\pi k}-\frac{16A}{T^2}{\left\lbrace\frac{T^2}{4}\frac{\sen{\pi k}}{\pi k}+\frac{\cos{\pi k}}{\left(2\pi\frac{k}{T}\right)^2}-\frac{1}{\left(2\pi\frac{k}{T}\right)^2}\right\rbrace}=\\
+	&=2A \frac{\sen{\pi k}}{\pi k}-4A{\left\lbrace\frac{\sen{\pi k}}{\pi k}+\frac{\cos{\pi k}}{\left(\pi k\right)^2}-\frac{1}{\left(\pi k\right)^2}\right\rbrace}=\\
+	\intertext{dove $\sen{\pi k}=0$ per $k=1,\dots+\infty$, $\cos{\pi k}=-1$ per k dispari, $+1$ per k pari}
 	&=\frac{4A}{(\pi k)^2}\left[1-\cos{\pi k}\right] = \frac{4A}{(\pi k)^2}\left[1-(-1)^k\right]
 \end{align*}
 \end{esercizio}
