@@ -152,7 +152,7 @@ Il filtro passa alto ideale fa passare tutte le frequenze al di fuori dell'inter
 	\end{tikzpicture}
 \end{figure}
 \begin{equation}
-	H_\text{HP}(f)=1-H_\text{LP}(f)\qquad h_\text{HP}(t)=\delta(t)-2B\sinc(2 B t)
+	H_\text{HP}(f)=1-H_\text{LP}(f)\qquad h_\text{HP}(t)=\delta(t)-2B\sinc{2 B t}
 \end{equation}
 
 \subsection{Filtro passa banda ideale}
@@ -213,7 +213,7 @@ La tensione sul condensatore $v_c$ pari alla tensione di uscita $v_u$
 \[
 	\deriv{v_u(t)}{t}=\frac{1}{C}i(t)
 \]
-L'equazione differenziale che descrive l'andamento delle tensioni
+Applicando la legge di Kirckoff delle tensioni si ottiene l'equazione differenziale che descrive l'andamento delle tensioni
 \[
 	v_i(t)=R i(t)+ v_u(t)=R C \deriv{v_u(t)}{t} + v_u(t)
 \]
@@ -223,7 +223,7 @@ Trasformata secondo Fourier
 \]
 Funzione di trasferimento ingresso-uscita
 \[
-	H(f)=\frac{V_i(f)}{V_u(f)}=\frac{1}{1+\imath 2\pi f R C}
+	H(f)=\frac{V_i(f)}{V_u(f)}=\frac{1}{1+\imath 2\pi f R C}=\frac{1}{1+\imath \frac{f}{f_T}}
 \]
 dove $f_T=\frac{1}{2\pi R C}$ rappresenta la frequenza di taglio.
 
@@ -238,17 +238,19 @@ dove $f_T=\frac{1}{2\pi R C}$ rappresenta la frequenza di taglio.
 	\caption{Modulo della funzione di trasferimento}
 \end{figure}
 
-La risposta in ampiezza espressa in decibel, come confronto tra potenze relative ad un riferimento
-\[
-	\abs{H(f)}_\text{dB}=10\Log\frac{\abs{H(f)}^2}{\abs{H(f_0)}^2}
-\]
-si calcola sulla potenza del segnale, ovvero alla sua risposta in ampiezza al quadrato
+La potenza del segnale, ovvero la sua risposta in ampiezza al quadrato vale
 \[
 	\abs{H(f)}^2=\frac{1}{1+(2\pi f R C)^2}
 \]
-calcolata rispetto al riferimento $f_0=0$ per cui $\abs{H(f_0)}^2=1$
 
-Alla frequenza di taglio $f_T=\frac{1}{2\pi R C}$ si dimezza il modulo quadro ovvero si ha una attenuazione pari a
+La risposta in ampiezza espressa in decibel, è ottenuta dal rapporto tra potenze relative ad una frequenza di riferimento $f_0$
+\[
+	\abs{H(f)}_\text{dB}=10\Log\frac{\abs{H(f)}^2}{\abs{H(f_0)}^2}
+\]
+
+Se $f_0=0$ si ha $\abs{H(f_0)}^2=1$ e quindi $\abs{H(f)}_\text{dB}=10\Log\abs{H(f)}^2$
+
+Alla frequenza di taglio $f_T=\frac{1}{2\pi R C}$ si dimezza la potenza del segnale ovvero si ha una attenuazione pari a $3$ decibel:
 \[
 	\abs{H\left(f_T\right)}_\text{dB}=10\Log\frac{1}{2}=-3\text{dB}
 \]
@@ -280,7 +282,12 @@ La funzione di autocorrelazione è anche l'antitrasformata di Fourier dello spet
 	R_x(\tau)=\intinf{\abs{X(f)}^2\e{\imath 2\pi f\tau}}{f}
 \end{equation}
 
-\textbf{Proprietà}
+quindi la densità spettrale di energia di un segnale corrisponde alla trasformata di Fourier della funzione di autocorrelazione
+\begin{equation}
+	\abs{X(f)}^2=\fourier{R_x(\tau)}=\intinf{R_x(\tau)\e{-\imath 2\pi f\tau}}{\tau}
+\end{equation}
+
+\textbf{Proprietà della funzione di autocorrelazione}
 \begin{enumerate}
 \item La funzione di autocorrelazione calcolata per $\tau=0$ coincide con l'energia del segnale
 \[
@@ -332,7 +339,7 @@ Si può dimostrare che
 \]
 infatti se $R_{yx}(\tau)=y(\tau)\ast \conj{x}(-\tau)\implies R_\conj{yx}(\tau)=\conj{y}(\tau)\ast x(-\tau)\implies R_\conj{yx}(-\tau)=\conj{y}(-\tau)\ast x(\tau)=R_{xy}$.
 
-Due segnali si dicono \textsc{ortogonali}\index{segnali!ortogonali} se sono incorrelati qualunque sia il ritardo $\tau$
+Due segnali si dicono \textsc{ortogonali}\index{segnali!ortogonali} se sono incorrelati ovvero se la cross correlazione tra i due segnali è nulla qualunque sia il ritardo $\tau$
 \[
 	R_{xy}(\tau)=0\;\forall\tau
 \]
