@@ -44,7 +44,7 @@ Si può omettere l'indicazione di $\omega$
 \[
 	X(t)=\e{-A t}\step(t)\quad A\sim\text{unif.dist.}[0,T]
 \]
-Ulteriore esempio, oscillatore reale a fase incerta
+Un ulteriore esempio è l'oscillatore reale a fase incerta
 \[
 	X(t)=A\sen{2\pi f_0 t+\phi}\quad \phi\sim\text{unif.dist.} [0,2\pi[
 \]
@@ -55,7 +55,7 @@ Per un fissato istante $t_0$, i valori che assumono tutte le realizzazioni di un
 	F_X(x;t_0)=P(X(t_0)\leq x)
 \end{equation}
 
-Per meglio caratterizzare un processo si può definire una \textsc{funzione di distribuzione di probabilità del secondo ordine o congiunta}\index{variabile aleatoria!funzione distribuzione di probabilità!del secondo ordine o congiunta} per una coppia di variabili aleatorie in due istanti di tempo differenti $t_1$ e $t_2$:
+Per meglio caratterizzare un processo si può definire una \textsc{funzione di distribuzione di probabilità del secondo ordine o congiunta}\index{variabile aleatoria!funzione distribuzione di probabilità!del secondo ordine o congiunta} per una coppia di variabili aleatorie considerando due istanti di tempo differenti $t_1$ e $t_2$:
 \begin{equation}
 	F_X(x_1,x_2;t_1,t_2)=P(X(t_1)\leq x_1,X(t_2)\leq x_2)
 \end{equation}
@@ -233,14 +233,14 @@ La funzione valor medio vale
 \begin{equation}
 	\mu_I(n)=\E{I_n}=p\cdot 0+(1-p)\cdot 1=1-p
 \end{equation}
-La varianza, calcolando il valore quadratico medio,
+Potenza e varianza valgono rispettivamente
 \[
 	\E{I^2_n}=p\cdot 0^2+(1-p)\cdot 1^2=1-p
 \]
 \begin{equation}
 	\sigma^2_I=\E{I^2_n}-\Esp^2[I_n]=(1-p)-(1-p)^2=p(1-p)
 \end{equation}
-La funzione di autocorrelazione, essendo le realizzazioni indipendenti:
+La funzione di autocorrelazione, essendo le realizzazioni indipendenti, vale
 \begin{equation}
 	R_I(n,m)=\E{I_n I_m}=\E{I_n}\E{I_m}=(1-p)^2
 \end{equation}
@@ -253,11 +253,11 @@ Si possono definire processi che sono trasformazioni del processo di Bernoulli, 
 \end{equation}
 La funzione valor medio vale
 \begin{equation}
-	\mu_D(n)=\E{D_n}=p\cdot -1+(1-p)\cdot 1=1-2p
+	\mu_D(n)=\E{D_n}=p\cdot (-1)+(1-p)\cdot 1=1-2p
 \end{equation}
 La varianza, calcolando il valore quadratico medio,
 \[
-	\E{D^2_n}=p\cdot -1^2+(1-p)\cdot 1^2=p+1-p=1
+	\E{D^2_n}=p\cdot (-1)^2+(1-p)\cdot (+1)^2=p+1-p=1
 \]
 \begin{equation}
 	\sigma^2_D=\E{D^2_n}-\Esp^2[D_n]=1-(1-2p)^2=1-1+4p-4p^2=4p(1-p)
@@ -297,7 +297,7 @@ Il range di valori che può assumere il processo è variabile con $n$. $S_n$ con
 \index{processo aleatorio!segnale telegrafico casuale}
 Una variante del processo di Bernoulli è il \textsc{segnale telegrafico casuale}. Le realizzazioni del processo sono funzioni continue che assumono solo valori discreti pari a $-1$ e $1$ e cambiano stato secondo il modello degli eventi aleatori o arrivi di un processo di Poisson con intensità $\alpha$. Inoltre si suppone che lo stato iniziale sia equiprobabile: $P(X(0)=1)=P(X(0)=-1)=\frac{1}{2}$
 
-\begin{figure}[!h]
+\begin{figure}[!htb]
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[axis lines=middle,no markers,enlargelimits,xscale=1.5,xtick={0},xlabel={$t$},ytick={-1,1}]
@@ -307,13 +307,16 @@ Una variante del processo di Bernoulli è il \textsc{segnale telegrafico casuale
 \end{figure}
 
 Si calcola la probabilità che ad un dato istante $t$ la singola realizzazione abbia uno dei due valori:
-\begin{equation}
-\begin{split}
-	P(X(t)=1)=&P(X(t)=1|X(0)=1)P(X(0)=1)+\\
-	&+P(X(t)=1|X(0)=-1)P(X(0)=-1)
-\end{split}
-\end{equation}
+\begin{gather*}
+	P(X(t)=1)=P(X(t)=1|X(0)=1)P(X(0)=1)+P(X(t)=1|X(0)=-1)P(X(0)=-1)
+\end{gather*}
 in cui la prima probabilità condizionata si ha per un numero di eventi pari di Poisson, mentre la seconda si ha per un numero di eventi dispari, ovvero
+\begin{gather*}
+\begin{cases}
+	P(X(t)=1|X(0)=1) \Rightarrow \text{Probabilità di avere un numero pari di arrivi} \\
+	P(X(t)=1|X(0)=-1) \Rightarrow \text{Probabilità di avere un numero dispari di arrivi}
+\end{cases}
+\end{gather*}
 \begin{equation}
 \begin{split}
 	P(X(t)=1|X(0)=1)&=\sum_{k=0}^{+\infty}{\frac{(\alpha t)^{2k}}{(2k)!}\e{-\alpha t}}=\\
@@ -339,7 +342,7 @@ Si calcola la funzione valor medio e la funzione varianza del processo:
 	\mu_X(t)=\E{X(t)}=\frac{1}{2}\cdot(-1)+\frac{1}{2}\cdot(+1)=0
 \end{equation}
 \begin{equation}
-	\sigma^2(t)=\E{X^2(t)}-0=\frac{1}{2}(-1)^2+\frac{1}{2}(+1)^2=1
+	\sigma^2(t)=\E{X^2(t)}-\mu_X(t)^{2}=\frac{1}{2}\cdot(-1)^2+\frac{1}{2}\cdot(+1)^2-0=1
 \end{equation}
 
 La funzione di autocorrelazione e la funzione di autocovarianza, data la funzione valor medio, sono
@@ -394,10 +397,11 @@ ovvero la funzione densità di probabilità congiunta non dipende dagli istanti 
 	f_X(x_1,x_2;t_1,t_2)=f_X(x_1,x_2;t_1-t_2)
 \end{equation}
 
-Di conseguenza tutti gli indici statistici del secondo ordine, funzione autocorrelazione e autocovarianza, dipendono non dagli istanti di tempo ma dalla differenza $t_1-t_2$:
+Di conseguenza tutti gli indici statistici del secondo ordine, funzione autocorrelazione e autocovarianza, dipendono non dai singoli istanti di tempo ma dalla differenza $t_1-t_2$:
 \[
 	R_X(t_1,t_2)=R_X(t_1-t_2)\quad C_X(t_1,t_2)=C_X(t_1-t_2)
 \]
+inoltre dato che la stazionarità in senso stretto del secondo ordine implica la stazionarità in senso stretto di ordine 1 tutti i parametri statistici del primo ordine sono costanti.
 
 In generale la densità di probabilità congiunta e tutte le statistiche di ordine $n$ di un processo stazionario in senso stretto dipenderanno solo dalle differenze $t_1-t_2, t_2-t_3, \dots, t_{n-1}-t_n$, che restano invariate in una traslazione rigida dei tempi.
 
@@ -406,13 +410,13 @@ In generale la densità di probabilità congiunta e tutte le statistiche di ordi
 \end{nota}
 
 \subsection{Processo stazionario in senso lato (SSL)}
-Una definizione di stazionarietà meno restrittiva e più semplice da verificare: un processo aleatorio $X(t)$ è \textsc{stazionario in senso lato}\index{processo stazionario!in senso lato} se
+Una definizione di stazionarietà meno restrittiva e più semplice da verificare: un processo aleatorio $X(t)$ è \textsc{stazionario in senso lato}\index{processo stazionario!in senso lato} se ha funzione valor medio nulla e funzione di autocorrelazione che dipende solo dalla differenza tra due generici istanti di tempo:
 \begin{equation}
 \label{eq:processo_stazionario_senso_lato}
 	\begin{cases}
 		\mu_X(t)=\mu_X\\
 		R_X(t_1,t_2)=R_X(t_1-t_2)
-	\end{cases}
+	\end{cases}\implies \text{X(t) è un processo SSL}
 \end{equation}
 La funzione di autocorrelazione si può scrivere, ponendo $t_1=t$ e $t_2=t-\tau$, come
 \begin{equation}
@@ -434,16 +438,16 @@ Si è visto un esempio di processo aleatorio non stazionario definito dall'oscil
 	X(t)=a\cos{2\pi f_0 t+\theta}
 \]
 con fase $\theta$ variabile aleatoria a distribuzione uniforme in $[0,\pi[$
-di cui si è calcolata la funzione valor medio funzione del tempo $t$ (eq.\ref{eq:esempio_processo_non_stazionario_valor_medio})
+di cui si è calcolata la funzione valor medio (eq. \ref{eq:esempio_processo_non_stazionario_valor_medio})
 \[
 	\mu_X(t)=-\frac{2a}{\pi}\sen{2\pi f_0 t}
 \]
-Il processo è non stazionario nonostante l'autocorrelazione (eq.\ref{eq:autocorrelazione_oscillatore_non_stazionario}) sia funzione di $t_1-t_2$.
+Nonostante l'autocorrelazione (eq.\ref{eq:autocorrelazione_oscillatore_non_stazionario}) sia funzione di $t_1-t_2$, il processo non è stazionario dato che la funzione valor medio non è costante ma dipende dal tempo $t$.
 \end{esempio}
 
 \begin{esempio}
 \label{es:oscillatore_stazionario_senso_lato}
-Esempio di processo aleatorio stazionario in senso lato è l'oscillatore
+Un esempio di processo aleatorio stazionario in senso lato è l'oscillatore
 \[
 	X(t)=a\cos{2\pi f_0 t+\theta}
 \]
@@ -456,7 +460,7 @@ che ha funzione valor medio funzione $\mu_X(t)=0$, quindi non dipende da $t$ e f
 
 \section{Processo telegrafico casuale: segnale dati}
 \index{processo aleatorio!segnale dati}
-Si supponga di avere un processo stocastico che modelli un segnale dati binario con frequenza di clock $\frac{1}{T}$ modello della trasmissione di bit tra due sistemi.
+Si supponga di avere un processo stocastico che modelli un segnale dati binario con frequenza di clock $\frac{1}{T}$ in modo da rappresentare la trasmissione di bit tra due sistemi.
 
 Le realizzazioni sono funzioni $V(t)$ che possano assumere solo due valori discreti $+1$ e $-1$ e i cambi di stato avvengono in istanti di tempo multipli interi di un periodo $T$.
 \begin{equation}
@@ -483,10 +487,15 @@ La funzione densità di probabilità del primo ordine non dipende dal tempo quin
 \label{eq:segnale_binario_media}
 	\mu_V(t)=\intinf{v f_V(v;t)}{v}=\intinf{\frac{1}{2}v\impulse(v-1)+\frac{1}{2}v\impulse(v+1)}{v}=\frac{1}{2}-\frac{1}{2}=0
 \end{equation}
-
-Il calcolo della funzione di autocorrelazione , indice statistico del secondo ordine, avviene per due istanti di tempo generici $t_1$ e $t_2$. Come si può vedere in figura nel grafico di una realizzazione i due istanti di tempo possono assumere gli stessi valori $V(t_1)=V(t_2)=V_n$ all'interno di uno stesso intervallo di tempo, per cui
+La funzione valor medio può essere calcolata anche applicando l'operatore di aspettazione:
 \begin{equation}
-	R_V(t_1,t_2)=\E{V(t_1)V(t_2)}=\E{V(t_1)}\E{V(t_2)}=\E{V_n^2}=1^2\cdot\frac{1}{2}+(-1)^2\cdot\frac{1}{2}=1
+	\E{V(t)}=\sum_{n=-\infty}^{\infty}{\E{V_n}\rect{\frac{t-n T-\frac{T}{2}}{T}}}=0
+\end{equation}
+infatti $\E{V_n}=\frac{1}{2}\cdot(+1)+\frac{1}{2}\cdot(-1)=0$
+
+Il calcolo della funzione di autocorrelazione, indice statistico del secondo ordine, avviene per due istanti di tempo generici $t_1$ e $t_2$. Come si può vedere in figura nel grafico di una realizzazione i due istanti di tempo possono assumere gli stessi valori $V(t_1)=V(t_2)=V_n$ all'interno di uno stesso intervallo di tempo, per cui
+\begin{equation}
+	R_V(t_1,t_2)=\E{V(t_1)V(t_2)}=\E{V(t_1)}\E{V(t_2)}=\E{V_n^2}=(+1)^2\cdot\frac{1}{2}+(-1)^2\cdot\frac{1}{2}=1
 \end{equation}
 
 In un'altra coppia di istanti di tempo è possibile trovarsi nella condizione $V(t'_1)\neq V(t'_2)$, ad esempio a cavallo di due intervalli in cui è avvenuto un cambio di stato, per i quali
@@ -527,7 +536,7 @@ dove si è posto $\alpha=t-\theta$, $\diff\alpha=-\diff\theta$, gli estremi di i
 
 L'integrale sulla funzione periodica su un intervallo di ampiezza $T$ non dipende dal valore $t$. Il valor medio statistico è pari al valor medio temporale della funzione $p(\alpha)$.
 
-La funzione autocorrelazione
+La funzione di autocorrelazione
 \begin{align*}
 	R_X(t_1,t_2)&=\E{p(t_1-\theta)p(t_2-\theta)}=\frac{1}{T}\intd{0}{T}{p(t_1-\theta)p(t_2-\theta)}{\theta}=\\
 \intertext{cambio di variabile pongo $\alpha=t_1-\alpha$, $\diff\alpha=-\diff\theta$}
@@ -552,7 +561,6 @@ Proprietà della funzione di autocorrelazione di un processo stazionario in sens
 \qedhere
 \]
 \end{proof}
-
 \item Il valore assunto da $R_X(\tau)$ nell'origine è pari alla potenza statistica del processo
 \[
 	R_X(0)=P_X=\E{X^2(t)}
@@ -560,12 +568,10 @@ Proprietà della funzione di autocorrelazione di un processo stazionario in sens
 \begin{nota}
 	I processi aleatori SSL sono sempre segnali di potenza perché le varie realizzazioni che si estraggono da un processo non possono essere tutte infinitesime.
 \end{nota}
-
 \item La funzione autocorrelazione è massima in modulo nell'origine
 \[
 	R_X(0)\geq\abs{R_X(\tau)}
 \]
-
 \begin{proof}[Dim.]
 \[
 	\E{(X(t)\pm X(t-\tau))^2}\geq 0
@@ -579,7 +585,6 @@ R_X(0)\geq\abs{R_X(\tau)}
 \qedhere
 \end{gather*}
 \end{proof}
-
 \item Se $R_X(\tau)$ non è periodica allora \begin{equation}
 	\lim\limits_{\tau\to\infty}R_X(\tau)=\mu^2_X
 \end{equation}
@@ -593,13 +598,13 @@ Si considera nuovamente il segnale dati (eq.\ref{eq:segnale_dati}) con riferimen
 \[
 	X(t)=V(t-\theta)=\sum_{n=-\infty}^{+\infty}V_n\rect{\frac{t-\theta-n T-T/2}{T}}
 \]
-Come abbiamo visto il segnale telegrafico casuale ha funzione valor medio costante $\mu_X(t)=\mu_X=0$ (eq.\ref{eq:segnale_binario_media}).
+Come abbiamo visto il segnale telegrafico casuale ha funzione valor medio costante e indenticamente nulla $\mu_X(t)=\mu_X=0$ (eq.\ref{eq:segnale_binario_media}).
 Inoltre la funzione di autocorrelazione
 \[
 \begin{split}
 	R_X(t_1,t_2)&=\E{X(t_1)X(t_2)}=\\
 	&=\E{\sum_{n=-\infty}^{+\infty}\sum_{m=-\infty}^{+\infty}V_n V_m\rect{\frac{t_1-\theta-n T-\frac{T}{2}}{T}}\rect{\frac{t_2-\theta-m T-\frac{T}{2}}{T}}}=\\
-\intertext{essendo $\E{V_nV_m}\neq 0$ solo se $n=m$ la doppia sommatoria si riduce ad un elemento}
+\intertext{essendo $\E{V_nV_m}\neq 0$ solo se $n=m$, la doppia sommatoria si riduce ad un elemento}
 	&=\sum_{n=-\infty}^{+\infty}\frac{1}{T}\intd{0}{T}{\rect{\frac{t_1-\theta-n T-T/2}{T}}\rect{\frac{t_2-\theta-m T-T/2}{T}}}{\theta}=\\
 \intertext{cambio di variabili $t_1=t, t_2=t-\tau, \alpha=t-\theta-n T,\diff\alpha=-\diff\theta, \theta=0\to\alpha=t-nT, \theta=T\to t-(n+1)T$, inverto gli estremi per il segno di $-\diff\theta$}
 	&=\frac{1}{T}\sum_{n=-\infty}^{+\infty}\intd{t-n T-T}{t-n T}{\rect{\frac{\alpha-T/2}{T}}\rect{\frac{\alpha-\tau-T/2}{T}}}{\alpha}=\\
@@ -635,7 +640,7 @@ Nei processi aleatori avremo usualmente un segnale deterministico noto a cui è 
 	\caption{Esempio di segnale deterministico affetto da rumore}
 \end{figure}
 
-Per ogni realizzazione $x(t;\omega)$ del processo $X(t)$ dello spazio campione $\Omega$ si otterrà in uscita dal sistema filtro una funzione $y(t)=x(t;\omega)\ast h(t)$. L'insieme dei segnali di uscita costituisce un nuovo processo, $Y(t)$ che indichiamo con
+Per ogni realizzazione $x(t;\omega)$ del processo $X(t)$ dello spazio campione $\Omega$ si otterrà in uscita dal sistema filtro una funzione $y(t)=x(t;\omega)\ast h(t)$. L'insieme dei segnali di uscita costituisce un nuovo processo aleatorio, $Y(t)$ che indichiamo con
 \begin{equation}
 	Y(t)=X(t)\ast h(t)
 \end{equation}
@@ -656,6 +661,7 @@ Generalmente il problema di determinare la funzione densità di probabilità con
 
 Si determina allora la relazione dei parametri statistici di primo e secondo ordine in ingresso, almeno la funzione valor medio e la funzione autocorrelazione di $X(t)$, e i corrispondenti dell'uscita.
 
+\textbf{Funzione valor medio del processo in uscita $Y(t)$}
 \begin{equation}
 \begin{split}
 	\mu_Y(t)&=\E{Y(t)}=\E{X(t)\ast h(t)}=\E{\intinf{h(\tau)X(t-\tau)}{\tau}}=\\
@@ -669,7 +675,7 @@ Il risultato $\mu_Y(t)=\mu_Y(t)\ast h(t)$ è notevole: la funzione valor medio i
 	\underset{\text{proc.aleat.}}{X(t)} = \underset{\text{proc.aleat. a media nulla}}{X_0(t)} + \underset{\text{segn.determ.}}{\mu_x(t)}
 \end{equation}
 
-La funzione autocorrelazione in uscita
+\textbf{Funzione di autocorrelazione del processo in uscita $Y(t)$}
 \begin{equation}
 \begin{split}
 	R_Y(t_1,t_2)&=\E{Y(t_1)Y(t_2)}=\E{(X(t_1)\ast h(t_1))\cdot(X(t_2)\ast h(t_2))}=\\
@@ -684,13 +690,13 @@ La funzione autocorrelazione in uscita
 \label{sec:filtraggio_processo_SSL}
 Si ha in ingresso al filtro un processo stazionario in senso lato, che ha funzione valor medio costante e funzione di autocorrelazione dipendente da $\tau=t_1-t_2$ (eq.\ref{eq:processo_stazionario_senso_lato}).
 
-La funzione valor medio in uscita
+\textbf{Funzione valor medio del processo in uscita $Y(t)$ quando $X(t)$ è SSL}
 \begin{equation}
 	\mu_Y(t)=\mu_X(t)\ast h(t)=\intinf{h(\tau)\mu_X(t-\tau)}{\tau}=\mu_X\intinf{h(\tau)}{\tau}=\mu_X\cdot \restrict{H(f)}{f=0}=\text{cost}
 \end{equation}
 dove $H(0)$ è il valore della trasformata di Fourier della risposta all'impulso nell'origine, e la funzione valor medio in uscita assume valore costante.
 
-La funzione di autocorrelazione in uscita
+\textbf{Funzione di autocorrelazione del processo in uscita $Y(t)$ quando $X(t)$ è SSL}
 \begin{align*}
 	R_Y(t,t-\tau)&=\E{Y(t)Y(t-\tau)}=\E{(X(t)\ast h(t))(X(t-\tau)\ast h(t-\tau))}=\\&=\E{\intinf{\intinf{h(\alpha)X(t-\alpha)h(\beta)X(t-\tau-\beta)}{\alpha}}{\beta}}=\\&=\intinf{\intinf{h(\alpha)h(\beta)\E{X(t-\alpha)X(t-\tau-\beta)}}{\alpha}}{\beta}=\\&=\intinf{\intinf{h(\alpha)h(\beta)R_X(\tau+\beta-\alpha)}{\alpha}}{\beta}=\\
 	\intertext{si può osservare che la funzione di autocorrelazione non dipende da $t$ ma solo da $\tau$ pertanto filtrando un processo stazionario si ottiene un processo stazionario,}
@@ -704,7 +710,7 @@ Si ottiene quindi
 \end{equation}
 dove la convoluzione del segnale $h(\tau)\ast h(-\tau)$ è l'autocorrelazione del segnale deterministico risposta all'impulso.
 
-Un processo stazionario in senso lato in ingresso ad un sistema lineare tempo invariante viene filtrato e da in uscita un processo stazionario in senso lato.
+Quando un processo stazionario in senso lato in ingresso ad un sistema lineare tempo invariante viene filtrato in uscita si ottiene un processo stazionario in senso lato.
 
 Il filtraggio di un processo aleatorio $X(t)$ ha quindi due casi per cui la funzione valor medio e la funzione di autocorrelazione del processo in uscita sono legate a quelle del processo in ingresso.
 
